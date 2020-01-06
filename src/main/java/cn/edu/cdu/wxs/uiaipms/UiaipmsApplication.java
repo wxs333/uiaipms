@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author WXS
+ * @date 2019/12/25
  */
 @SpringBootApplication
 public class UiaipmsApplication {
