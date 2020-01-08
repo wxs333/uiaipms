@@ -1,12 +1,12 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
 import cn.edu.cdu.wxs.uiaipms.form.LoginForm;
+import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.utils.CodeUtils;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,17 +19,29 @@ import java.util.logging.Logger;
  * @author WXS
  * @date 2019/12/16
  */
-@Controller
-@RequestMapping("user")
-public class UserController {
+@RestController
+@RequestMapping("api/user")
+public class UserApiController {
 
-    private static final Logger log = Logger.getLogger("my---------UserController");
+    private static final Logger log = Logger.getLogger("UserController");
+    /**
+     * 登录成功
+     */
+    private static final String LOGIN_SUCCESS = "登陆成功";
+    /**
+     * 验证码
+     */
+    private static final String CODE = "code";
 
+    /**
+     * 用户登录
+     * @param form 表单数据
+     * @return json
+     */
     @PostMapping(value = "login", name = "登录")
-    @ResponseBody
-    public String userLogin(LoginForm form){
+    public JsonResult<String> userLogin(LoginForm form){
         log.info(form.toString());
-        return "s";
+        return JsonResult.jsonResult(LOGIN_SUCCESS);
     }
 
     @GetMapping(value = "code", name = "验证码")
@@ -38,7 +50,7 @@ public class UserController {
             String code = CodeUtils.getCode(100, 28, "jpeg", response.getOutputStream());
             log.warning(code);
             // 保存到session里
-            session.setAttribute("code", code);
+            session.setAttribute(CODE, code);
         } catch (IOException e) {
             e.printStackTrace();
         }

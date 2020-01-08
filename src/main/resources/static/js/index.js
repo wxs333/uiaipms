@@ -6,10 +6,10 @@ layui.use(['form', 'jquery'], function () {
 
     form.on('submit(login)', function (data) {
         $.post(
-            '/user/login',
+            '/api/user/login',
             data.field,
             function (result) {
-                layer.msg(result);
+                layer.msg(result.message);
             }
         );
         return false;
@@ -22,6 +22,6 @@ layui.use(['form', 'jquery'], function () {
  */
 function changeCode($) {
     $("#changeCode").click(function () {
-        $(".layui-word-aux img").attr('src', '/user/code?date=' + new Date());
+        $(".layui-word-aux img").attr('src', '/api/user/code?date=' + new Date());
     });
 }

@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class UiaipmsApplication {
 
     public static void main(String[] args) {
-
         SpringApplication.run(UiaipmsApplication.class, args);
     }
 
