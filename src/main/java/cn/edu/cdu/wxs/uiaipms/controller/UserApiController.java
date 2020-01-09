@@ -1,5 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
+import cn.edu.cdu.wxs.uiaipms.form.LoginForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.utils.CodeUtils;
 import org.springframework.web.bind.annotation.GetMapping;
