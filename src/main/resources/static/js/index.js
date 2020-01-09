@@ -9,7 +9,9 @@ layui.use(['form', 'jquery'], function () {
             '/api/user/login',
             data.field,
             function (result) {
-                layer.msg(result.message);
+                layer.msg(result.message,{time: 1000}, function () {
+                    window.location.href = "";
+                });
             }
         );
         return false;

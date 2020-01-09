@@ -6,52 +6,42 @@ import lombok.Setter;
 import java.util.Date;
 
 /**
- * 学生
+ * 财务记录
  *
  * @author WXS
  */
 @Setter
 @Getter
-public class Student {
+public class FinanceLog {
     /**
      * ID
      */
-    private Integer stuId;
+    private Integer finId;
 
     /**
-     * 姓名
+     * 管理员
      */
-    private String stuName;
+    private Integer adminId;
 
     /**
-     * 学号
+     * 申请人
      */
-    private String stuNo;
+    private Integer userId;
 
     /**
-     * 银行卡号
+     * 金额
      */
-    private String bankCard;
+    private Long finAmount;
 
     /**
-     * 联系地址
+     * 申请原因
      */
-    private String address;
+    private String finReason;
 
     /**
-     * 登录名
+     * 项目
      */
-    private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
-
-    /**
-     * 手机号
-     */
-    private String phone;
+    private Integer proId;
 
     /**
      * 更新时间

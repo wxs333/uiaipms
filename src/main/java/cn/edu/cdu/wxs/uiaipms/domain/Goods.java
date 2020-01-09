@@ -6,52 +6,42 @@ import lombok.Setter;
 import java.util.Date;
 
 /**
- * 学生
+ * 物品
  *
  * @author WXS
  */
 @Setter
 @Getter
-public class Student {
+public class Goods {
     /**
      * ID
      */
-    private Integer stuId;
+    private Integer goodsId;
 
     /**
-     * 姓名
+     * 名称
      */
-    private String stuName;
+    private String goodsName;
 
     /**
-     * 学号
+     * 数量
      */
-    private String stuNo;
+    private Integer goodsNum;
 
     /**
-     * 银行卡号
+     * 单位
      */
-    private String bankCard;
+    private Integer unitId;
 
     /**
-     * 联系地址
+     * 型号
      */
-    private String address;
+    private String oodsModel;
 
     /**
-     * 登录名
+     * 品牌
      */
-    private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
-
-    /**
-     * 手机号
-     */
-    private String phone;
+    private String goodsBrand;
 
     /**
      * 更新时间

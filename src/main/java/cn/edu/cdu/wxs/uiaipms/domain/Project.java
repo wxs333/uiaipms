@@ -6,37 +6,32 @@ import lombok.Setter;
 import java.util.Date;
 
 /**
- * 导师
+ * 项目
  *
  * @author WXS
  */
 @Setter
 @Getter
-public class Tutor {
+public class Project {
     /**
      * id
      */
-    private Integer tutorId;
+    private Integer proId;
 
     /**
-     * 姓名
+     * 名称
      */
-    private String realName;
+    private String proName;
 
     /**
-     * 登录名
+     * 申请学生ID
      */
-    private String username;
+    private Integer stuId;
 
     /**
-     * 密码
+     * 项目材料路径
      */
-    private String password;
-
-    /**
-     * 学院ID
-     */
-    private Integer facId;
+    private String proLocation;
 
     /**
      * 更新时间

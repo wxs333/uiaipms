@@ -6,49 +6,57 @@ import lombok.Setter;
 import java.util.Date;
 
 /**
- * 所有用户的抽象父类
+ * 企业
  *
  * @author WXS
- * @date 2019/12/24
  */
-@Getter
 @Setter
-public class User extends LogicDeleteEntity {
+@Getter
+public class Company {
     /**
-     * id
+     * ID
      */
-    private Integer id;
+    private Integer comId;
+
     /**
-     * 姓名
+     * 企业名称
      */
-    private String realName;
-    /**
-     * 性别
-     */
-    private Integer sex;
+    private String comName;
+
     /**
      * 用户名
      */
     private String username;
+
     /**
      * 密码
      */
     private String password;
+
     /**
-     * 创建时间
+     * 联系方式
      */
-    private Date createTime;
+    private String phone;
+
+    /**
+     * 负责人
+     */
+    private String principal;
+
     /**
      * 更新时间
      */
     private Date updateTime;
+
     /**
-     * 角色
+     * 创建时间
      */
-    private Integer role;
+    private Date createTime;
+
     /**
-     * 手机号
+     * 逻辑删除字段
      */
-    private String phone;
+    private Integer logicDeleteFlag;
+
 
 }

@@ -6,52 +6,37 @@ import lombok.Setter;
 import java.util.Date;
 
 /**
- * 学生
+ * 项目审批记录
  *
  * @author WXS
  */
 @Setter
 @Getter
-public class Student {
+public class ProjectApproval {
     /**
-     * ID
+     * id
      */
-    private Integer stuId;
+    private Integer paId;
 
     /**
-     * 姓名
+     * 项目ID
      */
-    private String stuName;
+    private Integer proId;
 
     /**
-     * 学号
+     * 审批导师ID
      */
-    private String stuNo;
+    private Integer tutorId;
 
     /**
-     * 银行卡号
+     * 是否通过标记
      */
-    private String bankCard;
+    private Integer approvalFlag;
 
     /**
-     * 联系地址
+     * 原因
      */
-    private String address;
-
-    /**
-     * 登录名
-     */
-    private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
-
-    /**
-     * 手机号
-     */
-    private String phone;
+    private String reason;
 
     /**
      * 更新时间

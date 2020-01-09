@@ -6,52 +6,42 @@ import lombok.Setter;
 import java.util.Date;
 
 /**
- * 学生
+ * 出入库记录
  *
  * @author WXS
  */
 @Setter
 @Getter
-public class Student {
+public class StockLog {
     /**
      * ID
      */
-    private Integer stuId;
+    private Integer stoId;
 
     /**
-     * 姓名
+     * 管理员
      */
-    private String stuName;
+    private Integer adminId;
 
     /**
-     * 学号
+     * 类型
      */
-    private String stuNo;
+    private Integer stoType;
 
     /**
-     * 银行卡号
+     * 货物
      */
-    private String bankCard;
+    private Integer goodsId;
 
     /**
-     * 联系地址
+     * 数量
      */
-    private String address;
+    private Integer goodsNum;
 
     /**
-     * 登录名
+     * 工作室
      */
-    private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
-
-    /**
-     * 手机号
-     */
-    private String phone;
+    private Integer studId;
 
     /**
      * 更新时间
@@ -67,6 +57,4 @@ public class Student {
      * 逻辑删除字段
      */
     private Integer logicDeleteFlag;
-
-
 }

@@ -4,20 +4,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 学院
+ * 计量单位
  *
  * @author WXS
- * @date 2019/12/26
  */
-@Getter
 @Setter
-public class Faculty {
+@Getter
+public class Unit {
     /**
-     * id
+     * ID
      */
-    private Integer id;
+    private Integer unitId;
+
     /**
-     * 学院名称
+     * 名称
      */
-    private String facultyName;
+    private String unitName;
 }

@@ -6,37 +6,27 @@ import lombok.Setter;
 import java.util.Date;
 
 /**
- * 导师
+ * 系统信息
  *
  * @author WXS
  */
 @Setter
 @Getter
-public class Tutor {
+public class SysInfo {
     /**
-     * id
+     * ID
      */
-    private Integer tutorId;
+    private Integer sysId;
 
     /**
-     * 姓名
+     * 名称
      */
-    private String realName;
+    private String sysParam;
 
     /**
-     * 登录名
+     * 数量
      */
-    private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
-
-    /**
-     * 学院ID
-     */
-    private Integer facId;
+    private Float sysConut;
 
     /**
      * 更新时间
@@ -52,6 +42,4 @@ public class Tutor {
      * 逻辑删除字段
      */
     private Integer logicDeleteFlag;
-
-
 }

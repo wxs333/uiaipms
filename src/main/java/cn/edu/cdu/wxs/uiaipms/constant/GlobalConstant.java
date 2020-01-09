@@ -26,4 +26,6 @@ public class GlobalConstant {
      * 默认查询页码
      */
     public static final int PAGR_NUM = 1;
+
+
 }
