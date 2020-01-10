@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * 管理员
@@ -52,5 +53,10 @@ public class Administrator {
      * 逻辑删除字段
      */
     private Integer logicDeleteFlag;
+
+    /**
+     * 角色
+     */
+    private Set<Role> roles;
 
 }

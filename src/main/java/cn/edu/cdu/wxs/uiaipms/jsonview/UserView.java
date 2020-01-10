@@ -6,5 +6,5 @@ package cn.edu.cdu.wxs.uiaipms.jsonview;
  * @author WXS
  * @date 2019/12/25
  */
-public interface StudentView extends View {
+public interface UserView extends View {
 }

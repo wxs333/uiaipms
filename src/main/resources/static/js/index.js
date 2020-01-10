@@ -10,7 +10,11 @@ layui.use(['form', 'jquery'], function () {
             data.field,
             function (result) {
                 layer.msg(result.message,{time: 1000}, function () {
-                    window.location.href = "";
+                    if (result.code === "success") {
+                        window.location.href = "/user/home";
+                    } else {
+                        changeCode($);
+                    }
                 });
             }
         );

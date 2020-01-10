@@ -68,7 +68,7 @@ public class CodeUtils {
         try {
             ImageIO.write(image, imgType, outputStream);
         } catch (IOException e) {
-            e.printStackTrace();
+            return null;
         }
         return buffer.toString();
     }

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * 角色
@@ -43,5 +44,8 @@ public class Role {
      */
     private Integer logicDeleteFlag;
 
-
+    /**
+     * 权限
+     */
+    private Set<String> permission;
 }
