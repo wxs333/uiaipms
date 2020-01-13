@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
- * BaseServiceImpl class
+ * 基础的服务层实现类
  *
  * @author WXS
  * @date 2020/1/10
@@ -36,4 +36,11 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
         return getMapper().selectOne(wrapper);
     }
 
+    @Override
+    public T getByUsername(String username, String idCol) {
+        QueryWrapper<T> wrapper = new QueryWrapper<>();
+        wrapper.select(idCol, "username")
+                .eq("username", username);
+        return getMapper().selectOne(wrapper);
+    }
 }

@@ -1,7 +1,8 @@
 layui.use(['form', 'jquery'], function () {
+    // 模块定义
     var form = layui.form;
     var $ = layui.$;
-
+    // 更换验证码
     changeCode($);
 
     form.on('submit(login)', function (data) {
@@ -9,11 +10,12 @@ layui.use(['form', 'jquery'], function () {
             '/api/user/login',
             data.field,
             function (result) {
+                console.log(result.message);
                 layer.msg(result.message,{time: 1000}, function () {
                     if (result.code === "success") {
                         window.location.href = "/user/home";
                     } else {
-                        changeCode($);
+                        doChange($);
                     }
                 });
             }
@@ -28,6 +30,13 @@ layui.use(['form', 'jquery'], function () {
  */
 function changeCode($) {
     $("#changeCode").click(function () {
-        $(".layui-word-aux img").attr('src', '/api/user/code?date=' + new Date());
+        doChange($);
     });
+}
+
+/**
+ * 执行更换验证码
+ */
+function doChange($) {
+    $(".layui-word-aux img").attr('src', '/api/user/code?date=' + new Date());
 }

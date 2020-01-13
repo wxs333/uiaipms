@@ -33,7 +33,7 @@ public class SystemUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(md5("zhangsan", "zhangsan"));
+        System.out.println(md5("fin_admin1", "fin_admin1"));
     }
 
 }

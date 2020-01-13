@@ -1,5 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.config;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import cn.edu.cdu.wxs.uiaipms.realm.UserRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -30,15 +31,14 @@ public class ShiroConfig {
         filterFactoryBean.setSecurityManager(securityManager);
         // 资源访问控制
         Map<String, String> map = new LinkedHashMap<>();
-        map.put("/api/user/code", "anon");
-        map.put("/api/**", "authc");
         map.put("/user/**", "authc");
+        map.put("/logout", "logout");
         map.put("/**", "anon");
         filterFactoryBean.setFilterChainDefinitionMap(map);
         // 路径控制
         filterFactoryBean.setSuccessUrl("/user/home");
         filterFactoryBean.setLoginUrl("/user/index");
-        filterFactoryBean.setUnauthorizedUrl("/user/login");
+        filterFactoryBean.setUnauthorizedUrl("/user/index");
         return filterFactoryBean;
     }
     /**
@@ -63,11 +63,24 @@ public class ShiroConfig {
         return realm;
     }
 
+    /**
+     * 密码加密
+     * @return HashedCredentialsMatcher
+     */
     @Bean("hashedCredentialsMatcher")
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
         hashedCredentialsMatcher.setHashAlgorithmName("MD5");
         hashedCredentialsMatcher.setHashIterations(1024);
         return hashedCredentialsMatcher;
+    }
+
+    /**
+     * 页面上使用shiro标签
+     * @return ShiroDialect
+     */
+    @Bean(name = "shiroDialect")
+    public ShiroDialect shiroDialect(){
+        return new ShiroDialect();
     }
 }

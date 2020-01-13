@@ -7,45 +7,52 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * 角色
+ * 导师
  *
  * @author WXS
+ * @date 2020/1/10
  */
-@Setter
 @Getter
-public class Role {
+@Setter
+public class Tutor {
     /**
      * id
      */
-    private Integer roleId;
-
+    private Integer tutorId;
     /**
-     * 角色名称
+     * 姓名
      */
-    private String roleName;
-
+    private String tutorName;
     /**
-     * 编码
+     * 登录名
      */
-    private String roleCode;
-
+    private String username;
+    /**
+     * 密码
+     */
+    private String password;
+    /**
+     * 手机号
+     */
+    private String phone;
+    /**
+     * 学院ID
+     */
+    private Integer facultyId;
+    /**
+     * 角色
+     */
+    private Set<Role> roles;
     /**
      * 更新时间
      */
     private Date updateTime;
-
     /**
      * 创建时间
      */
     private Date createTime;
-
     /**
      * 逻辑删除字段
      */
     private Integer logicDeleteFlag;
-
-    /**
-     * 权限
-     */
-    private Set<Permission> permission;
 }

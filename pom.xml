@@ -76,16 +76,11 @@
 
         <!-- 其他工具 -->
         <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>${pagehelper-spring-boot-starter.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>mybatis-spring-boot-starter</artifactId>
-                    <groupId>org.mybatis.spring.boot</groupId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.58</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

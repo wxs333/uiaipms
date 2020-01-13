@@ -81,6 +81,6 @@ public class CodeUtils {
      * @return true 相同  false 不同
      */
     public static boolean compare(String sessionCode, String formCode) {
-        return !StringUtils.isEmpty(formCode) && sessionCode.equals(formCode);
+        return !StringUtils.isEmpty(formCode) && formCode.equals(sessionCode);
     }
 }

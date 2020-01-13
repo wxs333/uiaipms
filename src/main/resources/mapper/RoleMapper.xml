@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.cdu.wxs.uiaipms.mapper.RoleMapper">
+
+    <select id="selectAllByUsername" resultType="string">
+        SELECT
+        r.role_code
+        FROM
+        role r, ${tableName} s, user_role u
+        WHERE
+        r.role_id = u.role_id
+        AND
+        u.user_id = s.${idCol}
+        AND
+        u.ur_who = 1
+        AND
+        s.username = #{username}
+    </select>
+</mapper>

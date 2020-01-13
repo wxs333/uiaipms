@@ -4,28 +4,29 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
- * 用户
+ * 学生
  *
  * @author WXS
  * @date 2020/1/10
  */
 @Getter
 @Setter
-public class User {
+public class Student {
     /**
      * id
      */
-    private Integer userId;
+    private Integer stuId;
     /**
      * 姓名
      */
-    private String userName;
+    private String stuName;
     /**
      * 学号
      */
-    private String no;
+    private String stuNo;
     /**
      * 银行卡号
      */
@@ -43,13 +44,13 @@ public class User {
      */
     private String password;
     /**
-     * 班级
-     */
-    private Integer clazzId;
-    /**
      * 手机号
      */
     private String phone;
+    /**
+     * 角色
+     */
+    private Set<Role> roles;
     /**
      * 更新时间
      */

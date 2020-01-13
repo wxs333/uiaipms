@@ -7,45 +7,44 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * 角色
+ * 企业用户
  *
  * @author WXS
+ * @date 2020/1/10
  */
-@Setter
 @Getter
-public class Role {
+@Setter
+public class Company {
     /**
-     * id
+     * ID
      */
-    private Integer roleId;
-
+    private Integer comId;
     /**
-     * 角色名称
+     * 企业名称
      */
-    private String roleName;
-
+    private String comName;
     /**
-     * 编码
+     * 登录名
      */
-    private String roleCode;
-
+    private String username;
+    /**
+     * 密码
+     */
+    private String password;
+    /**
+     * 角色
+     */
+    private Set<Role> roles;
     /**
      * 更新时间
      */
     private Date updateTime;
-
     /**
      * 创建时间
      */
     private Date createTime;
-
     /**
      * 逻辑删除字段
      */
     private Integer logicDeleteFlag;
-
-    /**
-     * 权限
-     */
-    private Set<Permission> permission;
 }

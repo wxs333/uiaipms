@@ -23,7 +23,7 @@ public class LoginForm {
     /**
      * 角色
      */
-    private Integer role;
+    private String role;
     /**
      * 验证码
      */

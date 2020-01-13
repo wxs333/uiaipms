@@ -31,4 +31,12 @@ public interface BaseService<T> {
      */
     T getById(String idCol, int id);
 
+    /**
+     * 根据用户名获取用户
+     * @param username 用户名
+     * @param idCol ID列字段名
+     * @return 用户
+     */
+    T getByUsername(String username, String idCol);
+
 }

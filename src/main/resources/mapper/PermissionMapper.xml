@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.cdu.wxs.uiaipms.mapper.PermissionMapper">
+
+    <select id="selectAllByRoleCode" resultType="string">
+        SELECT
+        p.per_code
+        FROM
+        role r, authority a, permission p
+        WHERE
+        r.role_id = a.role_id
+        AND
+        a.per_id = p.per_id
+        AND
+        r.role_code IN
+        <foreach collection="roles" separator="," open="(" close=")" item="val">
+            #{val}
+        </foreach>
+    </select>
+
+</mapper>
