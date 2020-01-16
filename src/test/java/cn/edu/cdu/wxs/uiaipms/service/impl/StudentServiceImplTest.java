@@ -1,6 +1,5 @@
 package cn.edu.cdu.wxs.uiaipms.service.impl;
 
-import cn.edu.cdu.wxs.uiaipms.column.StudentColumn;
 import cn.edu.cdu.wxs.uiaipms.service.StudentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,8 +14,14 @@ public class StudentServiceImplTest {
     @Autowired
     private StudentService studentService;
 
+
+    @Test
+    public void getByUsernameOrStuNo() {
+        System.out.println(studentService.isExistByUsernameOrStuNo("student1", "2016104143249"));
+    }
+
     @Test
     public void getByUsername() {
-        System.out.println(studentService.getByUsername("lisi", StudentColumn.STU_ID).getStuId());
+        System.out.println(studentService.getByUsername("student1"));
     }
 }

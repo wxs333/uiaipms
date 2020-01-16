@@ -16,12 +16,12 @@ public class StockLog {
     /**
      * ID
      */
-    private Integer stoId;
+    private String stoId;
 
     /**
      * 管理员
      */
-    private Integer adminId;
+    private String adminId;
 
     /**
      * 类型
@@ -31,7 +31,7 @@ public class StockLog {
     /**
      * 货物
      */
-    private Integer goodsId;
+    private String goodsId;
 
     /**
      * 数量
@@ -41,7 +41,7 @@ public class StockLog {
     /**
      * 工作室
      */
-    private Integer studId;
+    private String studId;
 
     /**
      * 更新时间

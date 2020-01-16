@@ -5,7 +5,7 @@ package cn.edu.cdu.wxs.uiaipms.column;
  * @author WXS
  * @date 2020/1/13
  */
-public class CompantColumn {
+public class CompanyColumn {
     /**
      * 企业表名
      */
@@ -14,4 +14,8 @@ public class CompantColumn {
      * 企业ID
      */
     public static final String COM_ID = "com_id";
+    /**
+     * 企业名
+     */
+    public static final String COM_NAME = "com_name";
 }

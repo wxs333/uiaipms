@@ -16,7 +16,7 @@ public class Goods {
     /**
      * ID
      */
-    private Integer goodsId;
+    private String goodsId;
 
     /**
      * 名称
@@ -31,12 +31,12 @@ public class Goods {
     /**
      * 单位
      */
-    private Integer unitId;
+    private String unitId;
 
     /**
      * 型号
      */
-    private String oodsModel;
+    private String goodsModel;
 
     /**
      * 品牌

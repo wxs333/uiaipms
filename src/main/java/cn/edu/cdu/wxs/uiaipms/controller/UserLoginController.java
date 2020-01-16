@@ -1,9 +1,5 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
-import cn.edu.cdu.wxs.uiaipms.column.AdminColumn;
-import cn.edu.cdu.wxs.uiaipms.column.CompantColumn;
-import cn.edu.cdu.wxs.uiaipms.column.StudentColumn;
-import cn.edu.cdu.wxs.uiaipms.column.TutorColumn;
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.form.LoginForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
@@ -78,6 +74,7 @@ public class UserLoginController extends BaseController {
      */
     @PostMapping(value = "login", name = "登录")
     public JsonResult<String> userLogin(LoginForm form, HttpSession session) {
+        log.info(form.toString());
         // 验证码验证
         String code = (String) session.getAttribute(SESSION_CODE);
         session.removeAttribute(SESSION_CODE);
@@ -131,16 +128,16 @@ public class UserLoginController extends BaseController {
         session.setAttribute("role", role);
         switch (role) {
             case "admin":
-                session.setAttribute(SESSION_USER, adminService.getByUsername(username, AdminColumn.ADMIN_ID));
+                session.setAttribute(SESSION_USER, adminService.getByUsername(username));
                 break;
             case "tutor":
-                session.setAttribute(SESSION_USER, tutorService.getByUsername(username, TutorColumn.TUTOR_ID));
+                session.setAttribute(SESSION_USER, tutorService.getByUsername(username));
                 break;
             case "student":
-                session.setAttribute(SESSION_USER, studentService.getByUsername(username, StudentColumn.STU_ID));
+                session.setAttribute(SESSION_USER, studentService.getByUsername(username));
                 break;
             case "company":
-                session.setAttribute(SESSION_USER, companyService.getByUsername(username, CompantColumn.COM_ID));
+                session.setAttribute(SESSION_USER, companyService.getByUsername(username));
                 break;
             default:
                 break;

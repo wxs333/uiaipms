@@ -16,7 +16,7 @@ public class Studio {
     /**
      * id
      */
-    private Integer studId;
+    private String studId;
 
     /**
      * 地址
@@ -36,7 +36,7 @@ public class Studio {
     /**
      * 所属企业ID
      */
-    private Integer comId;
+    private String comId;
 
     /**
      * 人数

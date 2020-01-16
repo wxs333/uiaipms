@@ -18,7 +18,7 @@ public class Admin {
     /**
      * id
      */
-    private Integer adminId;
+    private String adminId;
     /**
      * 姓名
      */

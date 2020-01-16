@@ -18,7 +18,7 @@ public class Company {
     /**
      * ID
      */
-    private Integer comId;
+    private String comId;
     /**
      * 企业名称
      */

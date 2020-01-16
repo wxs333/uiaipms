@@ -1,10 +1,11 @@
 package cn.edu.cdu.wxs.uiaipms.domain;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Date;
-import java.util.Set;
 
 /**
  * 角色
@@ -13,11 +14,13 @@ import java.util.Set;
  */
 @Setter
 @Getter
+@ToString
+@TableName("role")
 public class Role {
     /**
      * id
      */
-    private Integer roleId;
+    private String roleId;
 
     /**
      * 角色名称
@@ -43,9 +46,4 @@ public class Role {
      * 逻辑删除字段
      */
     private Integer logicDeleteFlag;
-
-    /**
-     * 权限
-     */
-    private Set<Permission> permission;
 }

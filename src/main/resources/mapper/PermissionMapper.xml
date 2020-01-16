@@ -12,6 +12,12 @@
         AND
         a.per_id = p.per_id
         AND
+        r.logic_delete_flag = 0
+        AND
+        a.logic_delete_flag = 0
+        AND
+        p.logic_delete_flag = 0
+        AND
         r.role_code IN
         <foreach collection="roles" separator="," open="(" close=")" item="val">
             #{val}

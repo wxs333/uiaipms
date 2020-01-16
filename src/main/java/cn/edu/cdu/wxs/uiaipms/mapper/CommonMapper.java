@@ -28,4 +28,13 @@ public interface CommonMapper<T> extends BaseMapper<T> {
      */
     String selectPasswordByUsername(@Param("username") String username, @Param("tableName") String tableName);
 
+    /**
+     * 根据用户名获取ID
+     * @param username 用户名
+     * @param tableName 表名
+     * @param idCol ID列名
+     * @return ID
+     */
+    String getIdByUsername(@Param("username") String username, @Param("tableName") String tableName, @Param("idCol") String idCol);
+
 }

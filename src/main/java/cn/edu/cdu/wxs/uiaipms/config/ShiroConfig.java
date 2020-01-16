@@ -31,7 +31,6 @@ public class ShiroConfig {
         filterFactoryBean.setSecurityManager(securityManager);
         // 资源访问控制
         Map<String, String> map = new LinkedHashMap<>();
-        map.put("/user/**", "authc");
         map.put("/logout", "logout");
         map.put("/**", "anon");
         filterFactoryBean.setFilterChainDefinitionMap(map);
@@ -46,7 +45,7 @@ public class ShiroConfig {
      * @param realm 自定义realm
      * @return DefaultWebSecurityManager
      */
-    @Bean
+    @Bean(name = "defaultWebSecurityManager")
     public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("userRealm") UserRealm realm){
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(realm);
@@ -83,4 +82,5 @@ public class ShiroConfig {
     public ShiroDialect shiroDialect(){
         return new ShiroDialect();
     }
+
 }

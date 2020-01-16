@@ -16,7 +16,7 @@ public class Permission {
     /**
      * id
      */
-    private Integer perId;
+    private String perId;
 
     /**
      * 权限的名称

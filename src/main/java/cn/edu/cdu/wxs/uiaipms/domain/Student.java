@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.Set;
 
 /**
  * 学生
@@ -18,7 +17,7 @@ public class Student {
     /**
      * id
      */
-    private Integer stuId;
+    private String stuId;
     /**
      * 姓名
      */
@@ -47,10 +46,6 @@ public class Student {
      * 手机号
      */
     private String phone;
-    /**
-     * 角色
-     */
-    private Set<Role> roles;
     /**
      * 更新时间
      */

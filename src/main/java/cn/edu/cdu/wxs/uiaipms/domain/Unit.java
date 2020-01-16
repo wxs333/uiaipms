@@ -14,7 +14,7 @@ public class Unit {
     /**
      * ID
      */
-    private Integer unitId;
+    private String unitId;
 
     /**
      * 名称

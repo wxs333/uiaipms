@@ -2,6 +2,8 @@ package cn.edu.cdu.wxs.uiaipms.utils;
 
 import org.apache.shiro.crypto.hash.Md5Hash;
 
+import java.util.UUID;
+
 /**
  * 系统工具类
  *
@@ -32,8 +34,19 @@ public class SystemUtils {
         return md5Hash.toString();
     }
 
+    /**
+     * 生成UUID 作为记录的ID
+     * @return UUID
+     */
+    public static String getUuid() {
+        return UUID.randomUUID().toString().replace("-", "");
+    }
+
     public static void main(String[] args) {
-        System.out.println(md5("fin_admin1", "fin_admin1"));
+        System.out.println(md5("tutor2", "tutor2"));
+        System.out.println(getUuid());
+        System.out.println(getUuid());
+        System.out.println(getUuid());
     }
 
 }

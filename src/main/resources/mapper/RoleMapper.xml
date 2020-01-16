@@ -10,9 +10,36 @@
         WHERE
         r.role_id = u.role_id
         AND
+        r.logic_delete_flag = 0
+        AND
+        s.logic_delete_flag = 0
+        AND
+        u.logic_delete_flag = 0
+        AND
         u.user_id = s.${idCol}
         AND
-        u.ur_who = 1
+        u.ur_who = #{who}
+        AND
+        s.username = #{username}
+    </select>
+
+    <select id="getListIdByUsername" resultType="string">
+        SELECT
+        r.role_id
+        FROM
+        role r, ${tableName} s, user_role u
+        WHERE
+        r.role_id = u.role_id
+        AND
+        r.logic_delete_flag = 0
+        AND
+        s.logic_delete_flag = 0
+        AND
+        u.logic_delete_flag = 0
+        AND
+        u.user_id = s.${idCol}
+        AND
+        u.ur_who = #{who}
         AND
         s.username = #{username}
     </select>

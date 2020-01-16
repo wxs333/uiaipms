@@ -16,17 +16,17 @@ public class ProjectApproval {
     /**
      * id
      */
-    private Integer paId;
+    private String paId;
 
     /**
      * 项目ID
      */
-    private Integer proId;
+    private String proId;
 
     /**
      * 审批导师ID
      */
-    private Integer tutorId;
+    private String tutorId;
 
     /**
      * 是否通过标记

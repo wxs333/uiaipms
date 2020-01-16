@@ -1,7 +1,8 @@
 package cn.edu.cdu.wxs.uiaipms.service.impl;
 
-import cn.edu.cdu.wxs.uiaipms.column.CompantColumn;
+import cn.edu.cdu.wxs.uiaipms.column.CompanyColumn;
 import cn.edu.cdu.wxs.uiaipms.domain.Company;
+import cn.edu.cdu.wxs.uiaipms.form.CompanyForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.CompanyMapper;
 import cn.edu.cdu.wxs.uiaipms.service.CompanyService;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -24,6 +25,11 @@ public class CompanyServiceImpl extends BaseServiceImpl<Company> implements Comp
 
     @Override
     public String getPasswordByUsername(String username) {
-        return mapper.selectPasswordByUsername(username, CompantColumn.COMPANY_TABLE);
+        return mapper.selectPasswordByUsername(username, CompanyColumn.COMPANY_TABLE);
+    }
+
+    @Override
+    public CompanyForm getByUsername(String username) {
+        return mapper.getByUsername(username);
     }
 }

@@ -16,17 +16,17 @@ public class FinanceLog {
     /**
      * ID
      */
-    private Integer finId;
+    private String finId;
 
     /**
      * 管理员
      */
-    private Integer adminId;
+    private String adminId;
 
     /**
      * 申请人
      */
-    private Integer userId;
+    private String userId;
 
     /**
      * 金额
@@ -41,7 +41,7 @@ public class FinanceLog {
     /**
      * 项目
      */
-    private Integer proId;
+    private String proId;
 
     /**
      * 更新时间

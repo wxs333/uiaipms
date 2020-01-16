@@ -2,6 +2,7 @@ package cn.edu.cdu.wxs.uiaipms.form;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * 登录表单
@@ -11,6 +12,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
 public class LoginForm {
     /**
      * 用户名

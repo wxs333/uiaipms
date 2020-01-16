@@ -1,5 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.service;
 
+import java.util.Map;
+
 /**
  * 基础的服务层，提供一些公用的服务
  *
@@ -32,11 +34,11 @@ public interface BaseService<T> {
     T getById(String idCol, int id);
 
     /**
-     * 根据用户名获取用户
-     * @param username 用户名
-     * @param idCol ID列字段名
-     * @return 用户
+     * 根据角色获取用户的表名以及ID列名
+     *
+     * @param role 角色
+     * @return 集合
      */
-    T getByUsername(String username, String idCol);
+    Map<String, Object> getTableNameAndIdColByRole(String role);
 
 }

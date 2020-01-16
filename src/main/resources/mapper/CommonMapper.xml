@@ -18,6 +18,19 @@
         ${tableName}
         WHERE
         username = #{username}
+        AND
+        logic_delete_flag = 0
+    </select>
+
+    <select id="getIdByUsername" resultType="string">
+        SELECT
+        ${idCol}
+        FROM
+        ${tableName}
+        WHERE
+        username = #{username}
+        AND
+        logic_delete_flag = 0
     </select>
 
 </mapper>

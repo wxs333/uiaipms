@@ -3,8 +3,8 @@ package cn.edu.cdu.wxs.uiaipms.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * 导师
@@ -14,11 +14,11 @@ import java.util.Set;
  */
 @Getter
 @Setter
-public class Tutor {
+public class Tutor implements Serializable {
     /**
      * id
      */
-    private Integer tutorId;
+    private String tutorId;
     /**
      * 姓名
      */
@@ -38,11 +38,7 @@ public class Tutor {
     /**
      * 学院ID
      */
-    private Integer facultyId;
-    /**
-     * 角色
-     */
-    private Set<Role> roles;
+    private String facultyId;
     /**
      * 更新时间
      */
@@ -55,4 +51,5 @@ public class Tutor {
      * 逻辑删除字段
      */
     private Integer logicDeleteFlag;
+
 }

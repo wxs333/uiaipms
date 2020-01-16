@@ -8,7 +8,8 @@ package cn.edu.cdu.wxs.uiaipms.constant;
  */
 public class GlobalConstant {
 
-    private GlobalConstant(){}
+    private GlobalConstant() {
+    }
 
     /**
      * 请求成功状态码
@@ -48,4 +49,13 @@ public class GlobalConstant {
      * 用户名
      */
     public static final String USERNAME = "username";
+
+    /**
+     * 逻辑删除字段
+     */
+    public static final String LOGIC_DELETE_FLAG = "logic_delete_flag";
+
+    public static final String TABLE_NAME = "tableName";
+    public static final String ID_COL = "idCol";
+    public static final String ROLE_TYPE = "roleType";
 }

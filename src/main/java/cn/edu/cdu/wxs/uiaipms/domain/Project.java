@@ -16,7 +16,7 @@ public class Project {
     /**
      * id
      */
-    private Integer proId;
+    private String proId;
 
     /**
      * 名称
@@ -26,7 +26,7 @@ public class Project {
     /**
      * 申请学生ID
      */
-    private Integer stuId;
+    private String stuId;
 
     /**
      * 项目材料路径

@@ -16,7 +16,7 @@ public class SysInfo {
     /**
      * ID
      */
-    private Integer sysId;
+    private String sysId;
 
     /**
      * 名称

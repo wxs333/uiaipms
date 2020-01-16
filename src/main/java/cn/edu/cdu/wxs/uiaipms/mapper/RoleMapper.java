@@ -4,6 +4,7 @@ import cn.edu.cdu.wxs.uiaipms.domain.Role;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -17,10 +18,23 @@ public interface RoleMapper extends CommonMapper<Role> {
 
     /**
      * 根据用户名查询用户所有角色与权限
-     * @param username 用户名
+     *
+     * @param username  用户名
      * @param tableName 表名
-     * @param idCol ID字段名
+     * @param idCol     ID字段名
+     * @param who       记录type
      * @return 集合
      */
     Set<String> selectAllByUsername(@Param("username") String username, @Param("tableName") String tableName, @Param("idCol") String idCol, @Param("who") int who);
+
+    /**
+     * 获取用户的角色ID
+     *
+     * @param tableName 用户表
+     * @param username  用户名
+     * @param idCol     ID列
+     * @param who       记录type
+     * @return 集合
+     */
+    List<String> getListIdByUsername(@Param("tableName") String tableName, @Param("username") String username, @Param("idCol") String idCol, @Param("who") int who);
 }

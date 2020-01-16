@@ -14,4 +14,13 @@ public class RoleColumn {
     /**
      * id
      */
+    public static final String ROLE_ID = "role_id";
+    /**
+     * 名称
+     */
+    public static final String ROLE_NAME = "role_name";
+    /**
+     * 角色编码
+     */
+    public static final String ROLE_CODE = "role_code";
 }

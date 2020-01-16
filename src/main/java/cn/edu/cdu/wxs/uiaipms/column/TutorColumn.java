@@ -14,4 +14,8 @@ public class TutorColumn {
      * 导师ID
      */
     public static final String TUTOR_ID = "tutor_id";
+    /**
+     * 姓名
+     */
+    public static final String TUTOR_NAME = "tutor_name";
 }

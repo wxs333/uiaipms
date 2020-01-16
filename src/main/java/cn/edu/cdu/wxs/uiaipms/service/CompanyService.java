@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.service;
 
 import cn.edu.cdu.wxs.uiaipms.domain.Company;
+import cn.edu.cdu.wxs.uiaipms.form.CompanyForm;
 
 /**
  * 企业的服务层
@@ -14,4 +15,11 @@ public interface CompanyService extends BaseService<Company> {
      * @return 密码
      */
     String getPasswordByUsername(String username);
+
+    /**
+     * 根据用户名获取用户
+     * @param username 用户名
+     * @return 用户
+     */
+    CompanyForm getByUsername(String username);
 }

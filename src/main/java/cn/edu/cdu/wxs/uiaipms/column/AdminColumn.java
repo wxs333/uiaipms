@@ -15,4 +15,8 @@ public class AdminColumn {
      * 管理员ID
      */
     public static final String ADMIN_ID = "admin_id";
+    /**
+     * 姓名
+     */
+    public static final String ADMIN_NAME = "admin_name";
 }

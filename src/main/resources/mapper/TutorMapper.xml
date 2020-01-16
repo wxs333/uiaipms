@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.cdu.wxs.uiaipms.mapper.TutorMapper">
+    <select id="getByUsername" resultType="cn.edu.cdu.wxs.uiaipms.form.TutorForm">
+        SELECT
+        tutor_id AS id, tutor_name AS `name`
+        FROM
+        tutor
+        WHERE
+        username = #{username}
+    </select>
+
+    <select id="selectAll" resultType="cn.edu.cdu.wxs.uiaipms.form.TutorForm">
+        SELECT
+        tutor_id AS id, tutor_name AS `name`, username
+        FROM
+        tutor
+    </select>
+</mapper>

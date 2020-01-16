@@ -1,10 +1,5 @@
 package cn.edu.cdu.wxs.uiaipms.realm;
 
-import cn.edu.cdu.wxs.uiaipms.column.AdminColumn;
-import cn.edu.cdu.wxs.uiaipms.column.CompantColumn;
-import cn.edu.cdu.wxs.uiaipms.column.StudentColumn;
-import cn.edu.cdu.wxs.uiaipms.column.TutorColumn;
-import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -42,13 +37,19 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        // 获取当前登录用户
+        Subject currentUser = SecurityUtils.getSubject();
+        // 获取用户名
+        String username = (String) currentUser.getPrincipal();
+        // 获取登录角色
+        String role = (String) currentUser.getSession().getAttribute("role");
         // 获取所有角色
-        Set<String> roles = getRoleByUsername();
+        Set<String> roles = roleService.getRoleByUsername(role, username);
+        info.setRoles(roles);
         // 获取所有权限
         Set<String> pers = permissionService.selectAllByRoleCode(roles);
-        // 授权
-        info.setRoles(roles);
         info.setStringPermissions(pers);
+
         return info;
     }
 
@@ -75,7 +76,7 @@ public class UserRealm extends AuthorizingRealm {
      */
     private String getPasswordByRoleAndUsername(String role, String username) {
         String password = null;
-        switch (role){
+        switch (role) {
             case "admin":
                 password = adminService.getPasswordByUsername(username);
                 break;
@@ -92,37 +93,6 @@ public class UserRealm extends AuthorizingRealm {
                 break;
         }
         return password;
-    }
-
-    /**
-     * 查询用户的角色
-     * @return 集合
-     */
-    private Set<String> getRoleByUsername(){
-        // 获取当前登录用户
-        Subject currentUser = SecurityUtils.getSubject();
-        Set<String> roles = null;
-        // 获取用户名
-        String username = (String) currentUser.getPrincipal();
-        // 获取登录角色
-        String role = (String) currentUser.getSession().getAttribute("role");
-        switch (role){
-            case "admin":
-                roles = roleService.selectAllByUsername(username, AdminColumn.ADMIN_TABLE, AdminColumn.ADMIN_ID, GlobalConstant.LOGIN_ROLE_ADMIN);
-                break;
-            case "tutor":
-                roles = roleService.selectAllByUsername(username, TutorColumn.TUTOR_TABLE, TutorColumn.TUTOR_ID, GlobalConstant.LOGIN_ROLE_TUTOR);
-                break;
-            case "student":
-                roles =  roleService.selectAllByUsername(username, StudentColumn.STUDENT_TABLE, StudentColumn.STU_ID, GlobalConstant.LOGIN_ROLE_STUDENT);
-                break;
-            case "company":
-                roles = roleService.selectAllByUsername(username, CompantColumn.COMPANY_TABLE, CompantColumn.COM_ID, GlobalConstant.LOGIN_ROLE_COMPANY);
-                break;
-            default:
-                break;
-        }
-        return roles;
     }
 
 }
