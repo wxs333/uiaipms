@@ -48,10 +48,9 @@ function getData(_transfer, data, index) {
     // 授权
     if (index === 0) {
         var $ = layui.$;
-
         $.post(
             '/api/admin/authority',
-            {'mark': $('#mark').val(), 'username': $('#username').val(), 'data': data},
+            {'mark': $('#mark').val(), 'username': $('#username').val(), 'data': JSON.stringify(data)},
             function (res) {
                 layer.msg(res.message);
             }

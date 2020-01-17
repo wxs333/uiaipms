@@ -20,15 +20,6 @@ public class GlobalConstant {
      */
     public static final String FAILURE = "failure";
     /**
-     * 默认每页条数
-     */
-    public static final int PAGE_SIZE = 10;
-    /**
-     * 默认查询页码
-     */
-    public static final int PAGR_NUM = 1;
-
-    /**
      * 登录角色-学生
      */
     public static final int LOGIN_ROLE_STUDENT = 3;

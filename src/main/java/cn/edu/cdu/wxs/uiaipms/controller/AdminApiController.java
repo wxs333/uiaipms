@@ -51,8 +51,7 @@ public class AdminApiController extends BaseController {
 
     @PostMapping("authority")
     public JsonResult<String> authority(AuthorityForm form) {
-        System.out.println("sss");
-        System.out.println(form);
+
 //        if (userRoleService.authority(form)) {
 //            return jsonResult("授权成功");
 //        }

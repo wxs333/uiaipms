@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
-
 /**
  * 授权参数接受表单
  * @author WXS
@@ -18,5 +16,5 @@ public class AuthorityForm {
 
     private String mark;
     private String username;
-    private List<UserRoleForm> data;
+    private String data;
 }
