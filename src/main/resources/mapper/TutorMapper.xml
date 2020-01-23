@@ -16,4 +16,21 @@
         FROM
         tutor
     </select>
+
+    <select id="selectAllInfo" resultType="cn.edu.cdu.wxs.uiaipms.form.TutorForm">
+        SELECT
+            t.tutor_id AS id,
+            t.tutor_name,
+            t.username,
+            t.phone,
+            t.update_time,
+            t.create_time,
+            f.fac_name AS facultyName
+        FROM
+            tutor t,
+            faculty f
+        WHERE
+            t.faculty_id =  f.fac_id
+            AND t.logic_delete_flag = 0
+    </select>
 </mapper>

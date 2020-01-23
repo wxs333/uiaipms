@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.edu.cdu.wxs.uiaipms.mapper.UserRoleMapper">
-    <update id="updateByUsername">
-        UPDATE
-        role r, user_role u, ${tableName} s
-        SET u.logic_delete_flag = 1
-        WHERE
-        r.role_id = u.role_id
-        AND
-        u.user_id = s.${idCol}
-        AND
-        s.username = #{username}
-    </update>
 
     <insert id="insert">
         INSERT INTO
         user_role(ur_id, role_id, user_id,ur_who, update_time, create_time )
         VALUES
-        (#{form.urId}, #{form.roleId}, #{form.userId}, #{form.urWho}, #{form.updateTime}, #{form.createTime})
+        <foreach collection="form.choose.keys" item="key" separator=",">
+            (#{form.choose[${key}]}, #{key}, #{form.userId}, #{form.urWho}, #{form.updateTime}, #{form.createTime})
+        </foreach>
     </insert>
+
+    <update id="updateLogicDeleteFlag">
+        <foreach collection="form.choose.keys" item="key" separator=";">
+            UPDATE user_role
+            SET logic_delete_flag = 1
+            WHERE
+            logic_delete_flag = 0
+            AND user_id = #{form.userId}
+            AND role_id = #{key}
+        </foreach>
+    </update>
 </mapper>

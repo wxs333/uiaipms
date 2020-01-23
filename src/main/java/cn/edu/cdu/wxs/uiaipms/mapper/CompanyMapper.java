@@ -2,6 +2,8 @@ package cn.edu.cdu.wxs.uiaipms.mapper;
 
 import cn.edu.cdu.wxs.uiaipms.domain.Company;
 import cn.edu.cdu.wxs.uiaipms.form.CompanyForm;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -16,4 +18,11 @@ public interface CompanyMapper extends CommonMapper<Company> {
      * @return 用户
      */
     CompanyForm getByUsername(@Param("username") String username);
+
+    /**
+     * 分页获取所有信息
+     * @param page 分页
+     * @return 分页集合
+     */
+    IPage<CompanyForm> selectAllInfo(Page<CompanyForm> page);
 }

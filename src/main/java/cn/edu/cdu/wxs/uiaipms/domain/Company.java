@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.Set;
 
 /**
  * 企业用户
@@ -24,6 +23,10 @@ public class Company {
      */
     private String comName;
     /**
+     * 负责人
+     */
+    private String comPeople;
+    /**
      * 登录名
      */
     private String username;
@@ -32,9 +35,9 @@ public class Company {
      */
     private String password;
     /**
-     * 角色
+     * 联系方式
      */
-    private Set<Role> roles;
+    private String phone;
     /**
      * 更新时间
      */

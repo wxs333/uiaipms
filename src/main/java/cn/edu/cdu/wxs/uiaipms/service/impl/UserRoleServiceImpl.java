@@ -7,6 +7,8 @@ import cn.edu.cdu.wxs.uiaipms.mapper.UserRoleMapper;
 import cn.edu.cdu.wxs.uiaipms.service.UserRoleService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +35,8 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole> implements Us
     @Override
     public boolean authority(UserRoleForm form) {
         Map<String, Object> map = getTableNameAndIdColByRole(form.getMark());
-        // 获取授权用户ID
-        String userId = mapper.getIdByUsername(form.getUsername(),(String)map.get(GlobalConstant.TABLE_NAME), (String) map.get(GlobalConstant.ID_COL));
 
-        form.setUrId(SystemUtils.getUuid());
-        form.setUserId(userId);
+        form.setUserId(form.getUserId());
         Date date = new Date();
         form.setCreateTime(date);
         form.setUpdateTime(date);
@@ -45,4 +44,10 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole> implements Us
 
         return SystemUtils.gtTheZero(mapper.insert(form));
     }
+
+    @Override
+    public boolean revoke(UserRoleForm form) {
+        return SystemUtils.gtTheZero(mapper.updateLogicDeleteFlag(form));
+    }
+
 }

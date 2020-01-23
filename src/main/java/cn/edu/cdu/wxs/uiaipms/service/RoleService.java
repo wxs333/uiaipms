@@ -42,8 +42,8 @@ public interface RoleService extends BaseService<Role> {
     /**
      * 获取用户的角色ID
      * @param role 角色
-     * @param username 用户名
+     * @param userId 用户id
      * @return 集合
      */
-    List<String> getListIdByUsername(String role, String username);
+    List<String> getListIdByUserId(String role, String userId);
 }

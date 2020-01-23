@@ -22,7 +22,7 @@ function navClick(element, $) {
 function changeHtml(id, $) {
 	switch(id) {
 		case "member":
-			$("#content").attr("src", "");
+			$("#content").attr("src", "/admin/member");
 			break;
 		case "authority":
 			$("#content").attr("src", "/admin/authority");

@@ -8,6 +8,8 @@ import cn.edu.cdu.wxs.uiaipms.mapper.RoleMapper;
 import cn.edu.cdu.wxs.uiaipms.service.RoleService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,9 +57,9 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
     }
 
     @Override
-    public List<String> getListIdByUsername(String role, String username) {
+    public List<String> getListIdByUserId(String role, String userId) {
         Map<String, Object> map = getTableNameAndIdColByRole(role);
-        return mapper.getListIdByUsername((String) map.get(GlobalConstant.TABLE_NAME), username, (String) map.get(GlobalConstant.ID_COL), (Integer) map.get(GlobalConstant.ROLE_TYPE));
+        return mapper.getListIdByUsername((String) map.get(GlobalConstant.TABLE_NAME), userId, (String) map.get(GlobalConstant.ID_COL), (Integer) map.get(GlobalConstant.ROLE_TYPE));
     }
 
 }

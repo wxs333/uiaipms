@@ -41,6 +41,6 @@
         AND
         u.ur_who = #{who}
         AND
-        s.username = #{username}
+        s.${idCol} = #{userId}
     </select>
 </mapper>

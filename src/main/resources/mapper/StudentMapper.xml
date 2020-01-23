@@ -8,11 +8,39 @@
         student
         WHERE
         username = #{username}
+        AND
+        logic_delete_flag = 0
     </select>
+
     <select id="selectAll" resultType="cn.edu.cdu.wxs.uiaipms.form.StudentForm">
         SELECT
         stu_id AS id, stu_name AS `name`, username
         FROM
         student
+        WHERE
+        logic_delete_flag = 0
+    </select>
+
+    <select id="selectAllInfo" resultType="cn.edu.cdu.wxs.uiaipms.form.StudentForm">
+        SELECT
+            s.stu_id AS id,
+            s.stu_name,
+            s.username,
+            s.stu_no,
+            s.address,
+            s.phone,
+            s.update_time,
+            s.create_time,
+            CONCAT( f.fac_short_name, ',', d.disc_name, ',', c.clazz_name ) AS clazzName
+        FROM
+            student s,
+            clazz c,
+            discipline d,
+            faculty f
+        WHERE
+            s.clazz_id = c.clazz_id
+            AND c.disc_id = d.disc_id
+            AND d.fac_id = f.fac_id
+            AND s.logic_delete_flag = 0
     </select>
 </mapper>

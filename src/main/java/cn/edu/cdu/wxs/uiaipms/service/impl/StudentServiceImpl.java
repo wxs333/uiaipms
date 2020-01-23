@@ -86,4 +86,9 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
     public IPage<StudentForm> getAll(Page<StudentForm> page) {
         return mapper.selectAll(page);
     }
+
+    @Override
+    public IPage<StudentForm> getAllToList(Page<StudentForm> page) {
+        return mapper.selectAllInfo(page);
+    }
 }

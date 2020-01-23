@@ -26,5 +26,12 @@ public interface TutorMapper extends CommonMapper<Tutor> {
      * @param page 分页
      * @return 分页集合
      */
-    IPage<TutorForm> selectAll(@Param("page") Page<TutorForm> page);
+    IPage<TutorForm> selectAll(Page<TutorForm> page);
+
+    /**
+     * 分页获取所有信息
+     * @param page 分页
+     * @return 分页集合
+     */
+    IPage<TutorForm> selectAllInfo(Page<TutorForm> page);
 }

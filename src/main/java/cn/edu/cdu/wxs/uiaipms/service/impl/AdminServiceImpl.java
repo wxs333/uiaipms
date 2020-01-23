@@ -6,6 +6,8 @@ import cn.edu.cdu.wxs.uiaipms.form.AdminForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.AdminMapper;
 import cn.edu.cdu.wxs.uiaipms.service.AdminService;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,4 +37,5 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminSer
     public AdminForm getByUsername(String username) {
         return mapper.getByUsername(username);
     }
+
 }

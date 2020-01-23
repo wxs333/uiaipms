@@ -31,10 +31,10 @@ public interface RoleMapper extends CommonMapper<Role> {
      * 获取用户的角色ID
      *
      * @param tableName 用户表
-     * @param username  用户名
+     * @param userId  用户id
      * @param idCol     ID列
      * @param who       记录type
      * @return 集合
      */
-    List<String> getListIdByUsername(@Param("tableName") String tableName, @Param("username") String username, @Param("idCol") String idCol, @Param("who") int who);
+    List<String> getListIdByUsername(@Param("tableName") String tableName, @Param("userId") String userId, @Param("idCol") String idCol, @Param("who") int who);
 }

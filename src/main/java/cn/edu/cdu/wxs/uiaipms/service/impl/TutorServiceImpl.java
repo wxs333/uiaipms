@@ -1,10 +1,12 @@
 package cn.edu.cdu.wxs.uiaipms.service.impl;
 
 import cn.edu.cdu.wxs.uiaipms.column.TutorColumn;
+import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.domain.Tutor;
 import cn.edu.cdu.wxs.uiaipms.form.TutorForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.TutorMapper;
 import cn.edu.cdu.wxs.uiaipms.service.TutorService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 导师的服务层实现类
+ *
  * @author WXS
  * @date 2020/1/13
  */
@@ -40,5 +43,10 @@ public class TutorServiceImpl extends BaseServiceImpl<Tutor> implements TutorSer
     @Override
     public IPage<TutorForm> getAllByPage(Page<TutorForm> page) {
         return mapper.selectAll(page);
+    }
+
+    @Override
+    public IPage<TutorForm> getAllToList(Page<TutorForm> page) {
+        return mapper.selectAllInfo(page);
     }
 }

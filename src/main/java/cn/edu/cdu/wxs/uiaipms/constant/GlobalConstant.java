@@ -40,6 +40,18 @@ public class GlobalConstant {
      * 用户名
      */
     public static final String USERNAME = "username";
+    /**
+     * 手机号码
+     */
+    public static final String PHONE = "phone";
+    /**
+     * 创建时间
+     */
+    public static final String CREATE_TIME = "create_time";
+    /**
+     * 更新时间
+     */
+    public static final String UPDATE_TIME = "update_time";
 
     /**
      * 逻辑删除字段

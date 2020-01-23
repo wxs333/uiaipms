@@ -1,5 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
+import cn.edu.cdu.wxs.uiaipms.domain.Tutor;
 import cn.edu.cdu.wxs.uiaipms.form.TutorForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.TutorService;
@@ -30,5 +31,15 @@ public class TutorApiController extends BaseController {
     @GetMapping("getAll")
     public JsonResult<IPage<TutorForm>> getAll(Page<TutorForm> ipage) {
         return jsonResult("0",tutorService.getAllByPage(ipage));
+    }
+
+    /**
+     * 分页获取所有信息
+     * @param page 分页
+     * @return json
+     */
+    @GetMapping("list")
+    public JsonResult<IPage<Tutor>> list(Page<Tutor> page) {
+        return jsonResult("0", tutorService.getAllToList(page));
     }
 }

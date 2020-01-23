@@ -22,4 +22,8 @@ public class StudentForm extends Student {
      * 姓名
      */
     private String name;
+    /**
+     * 班级名称
+     */
+    private String clazzName;
 }

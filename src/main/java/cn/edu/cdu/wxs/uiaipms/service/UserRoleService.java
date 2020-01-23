@@ -11,9 +11,16 @@ import cn.edu.cdu.wxs.uiaipms.form.UserRoleForm;
 public interface UserRoleService extends BaseService<UserRole> {
 
     /**
-     * 授权
+     * 授与角色
      * @param form 表单
      * @return true 成功 false 失败
      */
     boolean authority(UserRoleForm form);
+
+    /**
+     * 回收角色
+     * @param form 表单
+     * @return true 成功 false 失败
+     */
+    boolean revoke(UserRoleForm form);
 }

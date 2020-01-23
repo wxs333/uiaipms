@@ -20,7 +20,10 @@ public class TutorForm extends Tutor {
      * 姓名
      */
     private String name;
-
+    /**
+     * 学院名称
+     */
+    private String facultyName;
 
 
 }

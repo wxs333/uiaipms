@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 用户角色表单
  * @author WXS
@@ -14,10 +17,17 @@ import lombok.ToString;
 @Setter
 @ToString
 public class UserRoleForm extends UserRole {
-    private String mark;
-    private String username;
+    /**
+     * 选择的角色
+     */
+    private Map<String, String> choose;
 
-    private String value;
-    private String title;
+    private String mark;
+
+    private String userId;
+
+    private String data;
+
+    private List<String> roleIds;
 
 }

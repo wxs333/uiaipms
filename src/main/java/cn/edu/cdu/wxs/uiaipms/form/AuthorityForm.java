@@ -13,8 +13,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class AuthorityForm {
-
-    private String mark;
-    private String username;
-    private String data;
+    private String title;
+    private String value;
 }

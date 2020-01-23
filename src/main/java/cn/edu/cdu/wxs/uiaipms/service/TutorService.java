@@ -31,4 +31,11 @@ public interface TutorService extends BaseService<Tutor> {
      * @return 分页集合
      */
     IPage<TutorForm> getAllByPage(Page<TutorForm> page);
+
+    /**
+     * 获取所有
+     * @param page 分页
+     * @return 集合
+     */
+    IPage<TutorForm> getAllToList(Page<TutorForm> page);
 }

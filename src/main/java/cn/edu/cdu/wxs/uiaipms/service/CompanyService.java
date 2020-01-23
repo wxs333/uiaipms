@@ -2,6 +2,8 @@ package cn.edu.cdu.wxs.uiaipms.service;
 
 import cn.edu.cdu.wxs.uiaipms.domain.Company;
 import cn.edu.cdu.wxs.uiaipms.form.CompanyForm;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 /**
  * 企业的服务层
@@ -22,4 +24,12 @@ public interface CompanyService extends BaseService<Company> {
      * @return 用户
      */
     CompanyForm getByUsername(String username);
+
+    /**
+     * 分页获取所有信息
+     * @param page 分页
+     * @return 分页集合
+     */
+    IPage<CompanyForm> getAllInfo(Page<CompanyForm> page);
+
 }

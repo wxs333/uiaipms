@@ -1,10 +1,13 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
-import cn.edu.cdu.wxs.uiaipms.form.AuthorityForm;
+import cn.edu.cdu.wxs.uiaipms.form.UserRoleForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.AdminService;
 import cn.edu.cdu.wxs.uiaipms.service.RoleService;
 import cn.edu.cdu.wxs.uiaipms.service.UserRoleService;
+import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +20,7 @@ import java.util.Map;
 
 /**
  * 管理员 数据控制层
+ *
  * @author WXS
  * @date 2020/1/15
  */
@@ -35,27 +39,66 @@ public class AdminApiController extends BaseController {
 
     /**
      * 获取选择用户没有的角色
-     * @param mark 标识
+     *
+     * @param mark     标识
      * @param username 用户名
      * @return json
      */
     @GetMapping("getRoles")
-    public JsonResult<Map<String, List>> getRoles(String mark, String username) {
+    public JsonResult<Map<String, List>> getRoles(String mark, String userId) {
         Map<String, List> data = new HashMap<>(2);
 
         data.put("notHave", roleService.getListRole());
-        data.put("have", roleService.getListIdByUsername(mark, username));
+        data.put("have", roleService.getListIdByUserId(mark, userId));
 
         return jsonResult(data);
     }
 
+    /**
+     * 给用户授予角色
+     * @param form 表单
+     * @return json
+     */
     @PostMapping("authority")
-    public JsonResult<String> authority(AuthorityForm form) {
+    public JsonResult<String> authority(UserRoleForm form) {
+        // 获取选择角色的ID
+        form.setChoose(parseJson(form.getData()));
+        if (userRoleService.authority(form)) {
+            return jsonResult("角色授予成功");
+        }
 
-//        if (userRoleService.authority(form)) {
-//            return jsonResult("授权成功");
-//        }
+        return jsonResult("角色授予失败");
+    }
 
-        return jsonResult("授权失败");
+    /**
+     * 回收用户角色
+     * @param form 表单
+     * @return json
+     */
+    @PostMapping("revoke")
+    public JsonResult<String> revoke(UserRoleForm form) {
+        System.out.println(form);
+        // 获取选择角色的ID
+        form.setChoose(parseJson(form.getData()));
+        if (userRoleService.revoke(form)) {
+            return jsonResult("角色收回成功");
+        }
+        return jsonResult("角色收回失败");
+    }
+
+    /**
+     * 角色授予与回收辅助解析json字符串
+     * @param json json字符串
+     * @return 集合
+     */
+    private Map<String, String> parseJson(String json) {
+        JSONArray roles = JSONObject.parseArray(json);
+        // 数据集合 roleId-id
+        Map<String, String> choose = new HashMap<>(roles.size());
+        for (int i = 0; i < roles.size(); i++) {
+            String value = (String) roles.getJSONObject(i).get("value");
+            choose.put(value, SystemUtils.getUuid());
+        }
+        return choose;
     }
 }

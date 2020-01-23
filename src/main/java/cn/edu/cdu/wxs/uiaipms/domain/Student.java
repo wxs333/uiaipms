@@ -2,6 +2,7 @@ package cn.edu.cdu.wxs.uiaipms.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -49,10 +50,12 @@ public class Student {
     /**
      * 更新时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date updateTime;
     /**
      * 创建时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date createTime;
     /**
      * 逻辑删除字段

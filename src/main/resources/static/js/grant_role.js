@@ -13,7 +13,7 @@ function renderTransfer(_transfer, $) {
     getRoles($, function (data) {
         // 渲染
         doRender(_transfer, data);
-    }, $("#mark").val(), $("#username").val());
+    }, $("#mark").val(), $("#userId").val());
 }
 
 /**
@@ -45,19 +45,44 @@ function doRender(_transfer, data) {
  * 穿梭回调
  */
 function getData(_transfer, data, index) {
+    var $ = layui.$;
     // 授权
     if (index === 0) {
-        var $ = layui.$;
         $.post(
             '/api/admin/authority',
-            {'mark': $('#mark').val(), 'username': $('#username').val(), 'data': JSON.stringify(data)},
+            {'mark': $('#mark').val(), 'userId': $('#userId').val(), 'data': JSON.stringify(data)},
             function (res) {
                 layer.msg(res.message);
             }
         )
-    } else { // 回收权限
-        if (_transfer.getData('role') == null) {
-            layui.layer.msg("用户必须有一个角色", {time: 1000})
+    } else { // 回收角色
+        if (_transfer.getData('role').length === 0) {
+            layer.open({
+                title: "提示信息",
+                content: "用户必须有一个角色",
+                yes: function(index, layero){
+                    getRoles($, function (data) {
+                        // 渲染
+                        doRender(_transfer, data);
+                    }, $("#mark").val(), $("#userId").val());
+                    layer.close(index);
+                },
+                cancel: function(index, layero){
+                    getRoles($, function (data) {
+                        // 渲染
+                        doRender(_transfer, data);
+                    }, $("#mark").val(), $("#userId").val());
+                    layer.close(index);
+                }
+            })
+        } else {
+            $.post(
+                '/api/admin/revoke',
+                {'userId': $('#userId').val(),'data': JSON.stringify(data)},
+                function (res) {
+                    layer.msg(res.message);
+                }
+            )
         }
     }
 
@@ -66,10 +91,10 @@ function getData(_transfer, data, index) {
 /**
  * 获取所有角色
  */
-function getRoles($, fn, mark, username) {
+function getRoles($, fn, mark, userId) {
     $.get(
         '/api/admin/getRoles',
-        {'mark': mark, 'username': username},
+        {'mark': mark, 'userId': userId},
         function (res) {
             fn(res.data);
         }

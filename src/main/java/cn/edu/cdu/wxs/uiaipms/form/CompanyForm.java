@@ -1,5 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.form;
 
+import cn.edu.cdu.wxs.uiaipms.domain.Company;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,7 +13,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CompanyForm {
+public class CompanyForm extends Company {
     /**
      * ID
      */

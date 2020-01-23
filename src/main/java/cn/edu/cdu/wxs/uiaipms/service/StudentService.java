@@ -48,4 +48,10 @@ public interface StudentService extends BaseService<Student> {
      */
     IPage<StudentForm> getAll(Page<StudentForm> page);
 
+    /**
+     * 分页获取所有信息
+     * @param page 分页
+     * @return 分页集合
+     */
+    IPage<StudentForm> getAllToList(Page<StudentForm> page);
 }

@@ -14,18 +14,16 @@ import org.apache.ibatis.annotations.Param;
 public interface UserRoleMapper extends CommonMapper<UserRole> {
 
     /**
-     * 回收权限
-     * @param username 用户名
-     * @param tableName 表名
-     * @param idCol ID列名
-     * @return 影响行数
-     */
-    int updateByUsername(@Param("username") String username, @Param("tableName") String tableName, @Param("idCol") String idCol);
-
-    /**
      * 新增
      * @param form 表单
      * @return 影响行数
      */
     int insert(@Param("form") UserRoleForm form);
+
+    /**
+     * 回收角色
+     * @param form 表单
+     * @return 影响行数
+     */
+    int updateLogicDeleteFlag(@Param("form") UserRoleForm form);
 }

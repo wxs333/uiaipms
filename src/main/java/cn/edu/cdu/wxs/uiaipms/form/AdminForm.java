@@ -1,5 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.form;
 
+import cn.edu.cdu.wxs.uiaipms.domain.Admin;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,7 +13,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class AdminForm {
+public class AdminForm extends Admin {
     /**
      * ID
      */
@@ -21,4 +22,12 @@ public class AdminForm {
      * 姓名
      */
     private String name;
+    /**
+     * 标识
+     */
+    private String mark;
+    /**
+     * json字符串
+     */
+    private String data;
 }

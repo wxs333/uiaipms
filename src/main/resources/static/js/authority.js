@@ -9,7 +9,7 @@ layui.use(['table', 'transfer', 'layer'], function () {
     _table.on("tool(table)", function (obj) {
         if (obj.event === "role") {
             // 弹出角色穿梭框
-            openTransfer(_transfer, _layer, $("#mark").val(), obj.data.username);
+            openTransfer(_transfer, _layer, $("#mark").val(), obj.data.id);
         }
     });
     // 工具头监听
@@ -66,11 +66,11 @@ function renderTable(_table, $) {
 /**
  * 打开角色穿梭框
  */
-function openTransfer(_transfer, _layer, mark, username) {
+function openTransfer(_transfer, _layer, mark, id) {
     _layer.open({
         type: 2,
         title: "分配角色",
-        content: '/admin/grantRole?mark=' + mark + '&username=' + username,
+        content: '/admin/grantRole?mark=' + mark + '&userId=' + id,
         area: ['800px', '520px'],
         anim: 1,
         scrollbar: false,
