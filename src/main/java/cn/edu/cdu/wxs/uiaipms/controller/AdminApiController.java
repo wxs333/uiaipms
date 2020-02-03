@@ -1,8 +1,12 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
+import cn.edu.cdu.wxs.uiaipms.domain.Clazz;
+import cn.edu.cdu.wxs.uiaipms.domain.Discipline;
+import cn.edu.cdu.wxs.uiaipms.domain.Faculty;
 import cn.edu.cdu.wxs.uiaipms.form.UserRoleForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.AdminService;
+import cn.edu.cdu.wxs.uiaipms.service.ClazzService;
 import cn.edu.cdu.wxs.uiaipms.service.RoleService;
 import cn.edu.cdu.wxs.uiaipms.service.UserRoleService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
@@ -34,14 +38,16 @@ public class AdminApiController extends BaseController {
     private RoleService roleService;
     @Autowired
     private UserRoleService userRoleService;
+    @Autowired
+    private ClazzService clazzService;
 
     private static final String MARK_TUTOR = "tutor";
 
     /**
      * 获取选择用户没有的角色
      *
-     * @param mark     标识
-     * @param username 用户名
+     * @param mark   标识
+     * @param userId 用户id
      * @return json
      */
     @GetMapping("getRoles")
@@ -56,6 +62,7 @@ public class AdminApiController extends BaseController {
 
     /**
      * 给用户授予角色
+     *
      * @param form 表单
      * @return json
      */
@@ -72,6 +79,7 @@ public class AdminApiController extends BaseController {
 
     /**
      * 回收用户角色
+     *
      * @param form 表单
      * @return json
      */
@@ -88,6 +96,7 @@ public class AdminApiController extends BaseController {
 
     /**
      * 角色授予与回收辅助解析json字符串
+     *
      * @param json json字符串
      * @return 集合
      */
@@ -100,5 +109,37 @@ public class AdminApiController extends BaseController {
             choose.put(value, SystemUtils.getUuid());
         }
         return choose;
+    }
+
+    /**
+     * 获取所有学院
+     *
+     * @return json
+     */
+    @GetMapping("getFaculty")
+    public JsonResult<List<Faculty>> getFaculty() {
+        return null;
+    }
+
+    /**
+     * 获取某个学院的系
+     *
+     * @param facId 学院ID
+     * @return json
+     */
+    @GetMapping("getDiscipline")
+    public JsonResult<List<Discipline>> getDiscipline(String facId) {
+        return null;
+    }
+
+    /**
+     * 获取某个系所有的班级
+     *
+     * @param discId 系别ID
+     * @return json
+     */
+    @GetMapping("getClazz")
+    public JsonResult<List<Clazz>> getClazz(String discId) {
+        return jsonResult(clazzService.getAllByDiscId(discId));
     }
 }
