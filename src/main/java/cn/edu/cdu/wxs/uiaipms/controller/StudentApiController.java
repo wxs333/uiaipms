@@ -9,11 +9,10 @@ import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
@@ -93,16 +92,59 @@ public class StudentApiController extends BaseController {
      */
     @PostMapping("update")
     public JsonResult<String> update(StudentForm form) {
-        form.setDiscId(null);
-        form.setUpdateTime(LocalDateTime.now());
         if (studentService.update(form)) {
             return jsonResult("修改成功");
         }
-        return jsonResult(GlobalConstant.FAILURE,"修改失败");
+        return jsonResult(GlobalConstant.FAILURE, "修改失败");
+
     }
 
+    /**
+     * 根据ID获取学生信息
+     *
+     * @param id ID
+     * @return json
+     */
     @GetMapping("getOne")
     public JsonResult<StudentForm> getOne(String id) {
         return jsonResult(studentService.getOneById(id));
+    }
+
+    /**
+     * 头像上传
+     *
+     * @param multipartFile 头像图片
+     */
+    @PostMapping("imgUpload")
+    public JsonResult<String> imgUpload(@RequestParam("filePath") MultipartFile multipartFile) {
+        if (multipartFile.isEmpty()) {
+            return jsonResult(GlobalConstant.FAILURE, "文件不存在");
+        }
+        // 本地上传目录
+        String dir = "src/main/resources/static/img/head_portrait";
+        if (GlobalConstant.SUCCESS.equals(studentService.imgUpload(multipartFile, dir))) {
+            return jsonResult("");
+        }
+        return jsonResult(GlobalConstant.FAILURE, "头像上传失败");
+    }
+
+    @PostMapping("updateInfo")
+    public JsonResult<String> updateInfo(StudentForm form) {
+        if (studentService.updateInfo(form)) {
+            return jsonResult("修改成功");
+        }
+        return jsonResult(GlobalConstant.FAILURE, "修改失败");
+    }
+
+    /**
+     * 获取学生基本信息
+     *
+     * @return json
+     */
+    @GetMapping("info")
+    public JsonResult<StudentForm> info(HttpSession session) {
+        // 获取当前用户的ID
+        String id = ((StudentForm) session.getAttribute("user")).getId();
+        return jsonResult(studentService.getInfo(id));
     }
 }

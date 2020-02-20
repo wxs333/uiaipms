@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <title>学生基本资料</title>
-    <link rel="stylesheet" href="/static/layui/css/layui.css" />
-    <link rel="stylesheet" href="/static/css/common.css" />
+    <link rel="stylesheet" href="/static/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/static/css/common.css"/>
     <style>
         .layui-card-body {
             background-color: #EEEEEE;
@@ -14,13 +14,13 @@
         .layui-upload .layui-upload-list .layui-upload-img {
             width: 100px;
             height: 120px;
-            margin-left: 50px;
-            margin-top: 25px;
+            margin-left: 270px;
         }
 
         .layui-upload button {
             width: 100px;
-            margin-left: 50px;
+            margin-left: 270px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -28,41 +28,47 @@
 <body>
 <div class="layui-card">
     <div class="layui-card-body">
-        <form class="layui-form">
+        <form class="layui-form" enctype="multipart/form-data" lay-filter="info">
+            <div class="layui-form-item" hidden>
+                <label class="layui-form-label">id</label>
+                <div class="layui-input-block">
+                    <input type="hidden" class="layui-input" name="stuId"/>
+                </div>
+            </div>
             <div class="layui-form-item layui-col-md5">
                 <label class="layui-form-label">姓名</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="stuName" />
+                    <input class="layui-input" name="stuName"/>
                 </div>
             </div>
             <div class="layui-form-item layui-col-md5">
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="username" />
+                    <input  class="layui-input" name="username"/>
                 </div>
             </div>
             <div class="layui-form-item layui-col-md5">
                 <label class="layui-form-label">地址</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="address" />
+                    <input class="layui-input" name="address"/>
                 </div>
             </div>
             <div class="layui-form-item layui-col-md5">
                 <label class="layui-form-label">手机</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="phone" />
+                    <input class="layui-input" name="phone"/>
                 </div>
             </div>
             <div class="layui-upload">
                 <div class="layui-upload-list">
-                    <img class="layui-upload-img" src="" id="head-img">
+                    <img class="layui-upload-img" id="head-img">
                     <p id="upload-error"></p>
                 </div>
-                <button type="button" class="layui-btn" id="upload">上传图片</button>
+                <button type="button" class="layui-btn layui-btn-normal" id="upload">上传图片</button>
             </div>
-            <div class="layui-form-item" style="margin-left: 190px;">
+            <div class="layui-form-item" style="margin-left: 160px">
                 <div class="layui-input-block">
-                    <button class="layui-btn layui-btn-sm" lay-submit id="submit">确定</button>
+                    <button class="layui-btn layui-btn-sm" lay-submit id="submit">修改</button>
                     <button class="layui-btn layui-btn-sm" type="reset">重置</button>
                 </div>
             </div>

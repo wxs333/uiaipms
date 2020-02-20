@@ -27,4 +27,8 @@ public class StudentColumn {
      * 地址
      */
     public static final String ADDRESS = "address";
+    /**
+     * 头像路径
+     */
+    public static final String IMAGE = "image";
 }

@@ -1,6 +1,5 @@
 layui.use(['table', 'transfer', 'layer'], function () {
     var _table = layui.table;
-    var _transfer = layui.transfer;
     var _layer = layui.layer;
     var $ = layui.$;
     // 填充表格数据
@@ -9,7 +8,7 @@ layui.use(['table', 'transfer', 'layer'], function () {
     _table.on("tool(table)", function (obj) {
         if (obj.event === "role") {
             // 弹出角色穿梭框
-            openTransfer(_transfer, _layer, $("#mark").val(), obj.data.id);
+            openTransfer(_layer, $("#mark").val(), obj.data.id);
         }
     });
     // 工具头监听
@@ -66,7 +65,7 @@ function renderTable(_table, $) {
 /**
  * 打开角色穿梭框
  */
-function openTransfer(_transfer, _layer, mark, id) {
+function openTransfer(_layer, mark, id) {
     _layer.open({
         type: 2,
         title: "分配角色",

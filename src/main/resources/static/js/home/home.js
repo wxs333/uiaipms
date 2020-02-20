@@ -1,16 +1,28 @@
 /**
  * 加载依赖的模块
  */
-layui.use('element', function () {
+layui.use(['element','layer'], function () {
     var element = layui.element;
     var $ = layui.$;
-    navClick(element, $);
+    var _layer = layui.layer;
     // 绑定点击事件
-    click($);
+    $('#info').click(function () {
+        // 弹出基本资料框
+        _layer.open({
+            type: 2,
+            title: "基本资料",
+            content: '/stu/info',
+            area: ['650px', '510px'],
+            anim: 1,
+            scrollbar: false,
+            offset: '30px'
+        });
+    });
+    navClick(element, $);
 });
 
 /**
- * 左侧菜单栏点击的响应时间
+ * 左侧菜单栏点击的响应事件
  */
 function navClick(element, $) {
     element.on('nav', function (elem) {
@@ -50,14 +62,4 @@ function changeHtml(id, $) {
             elem.attr("src", "/stud/list");
             break;
     }
-}
-
-/**
- * 绑定点击事件
- */
-function click($) {
-    $('#info').click(function () {
-            $("#content").attr("src", "/stu/info");
-        }
-    );
 }

@@ -36,4 +36,8 @@ public class StudentForm extends Student {
      * 系别ID
      */
     private String discId;
+    /**
+     * 文件路径
+     */
+    private String filePath;
 }

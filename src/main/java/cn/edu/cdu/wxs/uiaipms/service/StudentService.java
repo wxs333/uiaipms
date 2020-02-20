@@ -3,6 +3,7 @@ package cn.edu.cdu.wxs.uiaipms.service;
 import cn.edu.cdu.wxs.uiaipms.form.StudentForm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 学生的服务层
@@ -67,4 +68,26 @@ public interface StudentService extends BaseService<StudentForm> {
      * @return true 成功 false 失败
      */
     boolean update(StudentForm form);
+
+    /**
+     * 头像上传
+     * @param multipartFile 头像
+     * @param dir 本地路径
+     * @return 消息
+     */
+    String imgUpload(MultipartFile multipartFile, String dir);
+
+    /**
+     * 修改信息，带头像
+     * @param form 表单
+     * @return true 成功 false 失败
+     */
+    boolean updateInfo(StudentForm form);
+
+    /**
+     * 获取学生基本信息
+     * @param stuId ID
+     * @return 实体
+     */
+    StudentForm getInfo(String stuId);
 }
