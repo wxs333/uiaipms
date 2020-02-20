@@ -18,4 +18,8 @@ public class CompanyColumn {
      * 企业名
      */
     public static final String COM_NAME = "com_name";
+    /**
+     * 负责人
+     */
+    public static final String COM_PEOPLE = "com_people";
 }

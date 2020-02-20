@@ -1,6 +1,5 @@
 package cn.edu.cdu.wxs.uiaipms.mapper;
 
-import cn.edu.cdu.wxs.uiaipms.domain.UserRole;
 import cn.edu.cdu.wxs.uiaipms.form.UserRoleForm;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -11,14 +10,14 @@ import org.apache.ibatis.annotations.Param;
  * @date 2020/1/13
  */
 @Mapper
-public interface UserRoleMapper extends CommonMapper<UserRole> {
+public interface UserRoleMapper extends CommonMapper<UserRoleForm> {
 
     /**
      * 新增
      * @param form 表单
      * @return 影响行数
      */
-    int insert(@Param("form") UserRoleForm form);
+    int insertBatch(@Param("form") UserRoleForm form);
 
     /**
      * 回收角色

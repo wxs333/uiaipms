@@ -1,61 +1,88 @@
 package cn.edu.cdu.wxs.uiaipms.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.ibatis.type.JdbcType;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
+ * <p>
  * 工作室
+ * </p>
  *
  * @author WXS
+ * @since 2020-02-10
  */
-@Setter
 @Getter
-public class Studio {
+@Setter
+@TableName("studio")
+public class Studio implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     /**
      * id
      */
+    @TableId(value = "stud_id", type = IdType.INPUT)
     private String studId;
 
     /**
      * 地址
      */
-    private String studAdress;
+    @TableField(value = "stud_address",jdbcType = JdbcType.VARCHAR)
+    private String studAddress;
 
     /**
      * 房间号
      */
+    @TableField(value = "stud_room_no",jdbcType = JdbcType.VARCHAR)
     private String studRoomNo;
 
     /**
      * 占地面积
      */
-    private Integer studArea;
+    @TableField(value = "stud_area",jdbcType = JdbcType.FLOAT)
+    private Float studArea;
 
     /**
      * 所属企业ID
      */
+    @TableField(value = "com_id",jdbcType = JdbcType.VARCHAR)
     private String comId;
 
     /**
      * 人数
      */
+    @TableField(value = "stud_num",jdbcType = JdbcType.INTEGER)
     private Integer studNum;
+    /**
+     * 是否禁用，0 禁用 1 启用
+     */
+    @TableField(value = "ban",jdbcType = JdbcType.INTEGER)
+    private Integer ban;
 
     /**
      * 更新时间
      */
-    private Date updateTime;
+    @TableField(value = "update_time",jdbcType = JdbcType.TIMESTAMP)
+    private LocalDateTime updateTime;
 
     /**
      * 创建时间
      */
-    private Date createTime;
+    @TableField(value = "create_time", jdbcType = JdbcType.TIMESTAMP)
+    private LocalDateTime createTime;
 
     /**
      * 逻辑删除字段
      */
+    @TableField(value = "logic_delete_flag",jdbcType = JdbcType.INTEGER)
     private Integer logicDeleteFlag;
 
 

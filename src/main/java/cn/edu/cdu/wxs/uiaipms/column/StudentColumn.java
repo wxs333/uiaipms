@@ -23,4 +23,8 @@ public class StudentColumn {
      * 姓名
      */
     public static final String STU_NAME = "stu_name";
+    /**
+     * 地址
+     */
+    public static final String ADDRESS = "address";
 }

@@ -21,7 +21,7 @@ public class AdminWebController {
      */
     @GetMapping("authority")
     public String authority() {
-        return "admin/authority";
+        return "authority/authority";
     }
 
     /**
@@ -33,7 +33,7 @@ public class AdminWebController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("mark", mark);
         modelAndView.addObject("userId", userId);
-        modelAndView.setViewName("admin/grant_role");
+        modelAndView.setViewName("authority/grant_role");
 
         return modelAndView;
     }
@@ -45,33 +45,33 @@ public class AdminWebController {
     @GetMapping("member")
     public ModelAndView member() {
         ModelAndView model = new ModelAndView();
-        model.setViewName("admin/member");
+        model.setViewName("member/member");
         return model;
     }
 
     /**
      * 成员修改视图
      * @param mark 标识
-     * @param id ID
      * @return 视图
      */
     @GetMapping("update")
     public ModelAndView update(@NotNull String mark, @NotNull String id) {
         ModelAndView model = new ModelAndView();
+        model.addObject("mark", mark);
         model.addObject("id", id);
         switch (mark) {
-            case "student":
-                model.setViewName("admin/update_student");
-                break;
-            case "tutor":
-                model.setViewName("admin/update_tutor");
-                break;
-            case "company":
-                model.setViewName("admin/update_company");
-                break;
-            default:
-                break;
-        }
-        return model;
+        case "student":
+            model.setViewName("member/update_student");
+            break;
+        case "tutor":
+            model.setViewName("member/update_tutor");
+            break;
+        case "company":
+            model.setViewName("member/update_company");
+            break;
+        default:
+            break;
     }
+        return model;
+}
 }

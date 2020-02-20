@@ -5,6 +5,7 @@ import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.domain.Student;
 import cn.edu.cdu.wxs.uiaipms.domain.UserRole;
 import cn.edu.cdu.wxs.uiaipms.form.StudentForm;
+import cn.edu.cdu.wxs.uiaipms.form.UserRoleForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.StudentMapper;
 import cn.edu.cdu.wxs.uiaipms.mapper.UserRoleMapper;
 import cn.edu.cdu.wxs.uiaipms.service.StudentService;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -27,7 +29,7 @@ import java.util.Date;
  * @date 2020/1/11
  */
 @Service
-public class StudentServiceImpl extends BaseServiceImpl<Student> implements StudentService {
+public class StudentServiceImpl extends BaseServiceImpl<StudentForm> implements StudentService {
     /**
      * mapper对象
      */
@@ -42,7 +44,7 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
     private static final String STUDENT_ROLE_ID = "10a258b4defc4f5db4847b09ce883f73";
 
     @Override
-    public BaseMapper<Student> getMapper() {
+    public BaseMapper<StudentForm> getMapper() {
         return mapper;
     }
 
@@ -56,22 +58,22 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
     @Transactional(rollbackFor = Exception.class)
     public boolean register(StudentForm form) {
         // 设置角色
-        UserRole userRole = new UserRole();
-        Date date = new Date();
+        UserRoleForm userRole = new UserRoleForm();
         userRole.setUrId(SystemUtils.getUuid());
         userRole.setRoleId(STUDENT_ROLE_ID);
         userRole.setUserId(form.getStuId());
         userRole.setUrWho(GlobalConstant.LOGIN_ROLE_STUDENT);
-        userRole.setCreateTime(date);
-        userRole.setUpdateTime(date);
+        userRole.setCreateTime(form.getCreateTime());
+        userRole.setUpdateTime(form.getUpdateTime());
 
         return add(form) && SystemUtils.gtTheZero(userRoleMapper.insert(userRole));
     }
 
     @Override
     public boolean isExistByUsernameOrStuNo(String username, String stuNo) {
-        QueryWrapper<Student> wrapper = new QueryWrapper<>();
-        wrapper.eq(GlobalConstant.USERNAME, username)
+        QueryWrapper<StudentForm> wrapper = new QueryWrapper<>();
+        wrapper.select(StudentColumn.STU_ID)
+                .eq(GlobalConstant.USERNAME, username)
                 .or()
                 .eq(StudentColumn.STU_NO, stuNo);
         return !ObjectUtils.isEmpty(mapper.selectOne(wrapper));
@@ -90,5 +92,15 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
     @Override
     public IPage<StudentForm> getAllToList(Page<StudentForm> page) {
         return mapper.selectAllInfo(page);
+    }
+
+    @Override
+    public StudentForm getOneById(String id) {
+        return mapper.selectOneById(id);
+    }
+
+    @Override
+    public boolean update(StudentForm form) {
+        return SystemUtils.gtTheZero(mapper.updateById(form));
     }
 }

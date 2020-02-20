@@ -10,10 +10,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 /**
@@ -46,11 +47,10 @@ public class StudentApiController extends BaseController {
         // 用户名，学号重复检测
         if (!studentService.isExistByUsernameOrStuNo(form.getUsername(), form.getStuNo())) {
             // 参数设置
-            Date date = new Date();
+            LocalDateTime date = LocalDateTime.now();
             form.setUpdateTime(date);
             form.setCreateTime(date);
-            String id = SystemUtils.getUuid();
-            form.setStuId(id);
+            form.setStuId(SystemUtils.getUuid());
             form.setPassword(SystemUtils.md5(form.getPassword(), form.getUsername()));
 
             if (studentService.register(form)) {
@@ -65,6 +65,7 @@ public class StudentApiController extends BaseController {
 
     /**
      * 获取所有
+     *
      * @param page 分页
      * @return json
      */
@@ -75,11 +76,33 @@ public class StudentApiController extends BaseController {
 
     /**
      * 分页获取所有信息
+     *
      * @param page 分页
      * @return 分页集合
      */
     @GetMapping("list")
     public JsonResult<IPage<StudentForm>> list(Page<StudentForm> page) {
         return jsonResult("0", studentService.getAllToList(page));
+    }
+
+    /**
+     * 修改
+     *
+     * @param form 表单
+     * @return json
+     */
+    @PostMapping("update")
+    public JsonResult<String> update(StudentForm form) {
+        form.setDiscId(null);
+        form.setUpdateTime(LocalDateTime.now());
+        if (studentService.update(form)) {
+            return jsonResult("修改成功");
+        }
+        return jsonResult(GlobalConstant.FAILURE,"修改失败");
+    }
+
+    @GetMapping("getOne")
+    public JsonResult<StudentForm> getOne(String id) {
+        return jsonResult(studentService.getOneById(id));
     }
 }

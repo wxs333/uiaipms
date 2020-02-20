@@ -25,7 +25,7 @@ import java.util.Set;
  * @date 2020/1/12
  */
 @Service
-public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService {
+public class RoleServiceImpl extends BaseServiceImpl<RoleForm> implements RoleService {
 
     @Autowired
     private RoleMapper mapper;
@@ -33,7 +33,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 
 
     @Override
-    public BaseMapper<Role> getMapper() {
+    public BaseMapper<RoleForm> getMapper() {
         return mapper;
     }
 
@@ -43,8 +43,8 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
     }
 
     @Override
-    public List<Role> getListRole() {
-        QueryWrapper<Role> wrapper = new QueryWrapper<>();
+    public List<RoleForm> getListRole() {
+        QueryWrapper<RoleForm> wrapper = new QueryWrapper<>();
         wrapper.select(RoleColumn.ROLE_ID, RoleColumn.ROLE_NAME)
                 .eq(GlobalConstant.LOGIC_DELETE_FLAG, 0);
         return mapper.selectList(wrapper);

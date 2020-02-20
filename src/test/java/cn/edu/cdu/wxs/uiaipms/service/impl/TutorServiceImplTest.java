@@ -23,4 +23,9 @@ public class TutorServiceImplTest {
     public void getAllToList() {
         System.out.println(service.getAllToList(new Page<>()).getRecords().size());
     }
+
+    @Test
+    public void getOneById() {
+        System.out.println(service.getOneById("66c38cfebcac46649d071058f2eb7fd1").getTutorName());
+    }
 }

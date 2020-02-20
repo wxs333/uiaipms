@@ -1,6 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.mapper;
 
-import cn.edu.cdu.wxs.uiaipms.domain.Role;
+import cn.edu.cdu.wxs.uiaipms.form.RoleForm;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,7 +14,7 @@ import java.util.Set;
  * @date 2020/1/12
  */
 @Mapper
-public interface RoleMapper extends CommonMapper<Role> {
+public interface RoleMapper extends CommonMapper<RoleForm> {
 
     /**
      * 根据用户名查询用户所有角色与权限

@@ -1,6 +1,5 @@
 package cn.edu.cdu.wxs.uiaipms.mapper;
 
-import cn.edu.cdu.wxs.uiaipms.domain.Admin;
 import cn.edu.cdu.wxs.uiaipms.form.AdminForm;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -11,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
  * @date 2020/1/13
  */
 @Mapper
-public interface AdminMapper extends CommonMapper<Admin> {
+public interface AdminMapper extends CommonMapper<AdminForm> {
     /**
      * 根据用户名获取用户
      * @param username 用户名

@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.form;
 
 import cn.edu.cdu.wxs.uiaipms.domain.Student;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,6 +14,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@TableName("student")
 public class StudentForm extends Student {
     /**
      * ID
@@ -26,4 +28,12 @@ public class StudentForm extends Student {
      * 班级名称
      */
     private String clazzName;
+    /**
+     * 学院ID
+     */
+    private String facId;
+    /**
+     * 系别ID
+     */
+    private String discId;
 }

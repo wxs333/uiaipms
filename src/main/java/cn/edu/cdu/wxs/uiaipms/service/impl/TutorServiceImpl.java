@@ -6,6 +6,7 @@ import cn.edu.cdu.wxs.uiaipms.domain.Tutor;
 import cn.edu.cdu.wxs.uiaipms.form.TutorForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.TutorMapper;
 import cn.edu.cdu.wxs.uiaipms.service.TutorService;
+import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -20,13 +21,13 @@ import org.springframework.stereotype.Service;
  * @date 2020/1/13
  */
 @Service
-public class TutorServiceImpl extends BaseServiceImpl<Tutor> implements TutorService {
+public class TutorServiceImpl extends BaseServiceImpl<TutorForm> implements TutorService {
 
     @Autowired
     private TutorMapper mapper;
 
     @Override
-    public BaseMapper<Tutor> getMapper() {
+    public BaseMapper<TutorForm> getMapper() {
         return mapper;
     }
 
@@ -48,5 +49,18 @@ public class TutorServiceImpl extends BaseServiceImpl<Tutor> implements TutorSer
     @Override
     public IPage<TutorForm> getAllToList(Page<TutorForm> page) {
         return mapper.selectAllInfo(page);
+    }
+
+    @Override
+    public TutorForm getOneById(String id) {
+        QueryWrapper<TutorForm> wrapper = new QueryWrapper<>();
+        wrapper.select(TutorColumn.TUTOR_ID, TutorColumn.TUTOR_NAME, GlobalConstant.USERNAME, TutorColumn.FACULTY_ID, GlobalConstant.PHONE)
+                .eq(TutorColumn.TUTOR_ID, id);
+        return mapper.selectOne(wrapper);
+    }
+
+    @Override
+    public boolean update(TutorForm form) {
+        return SystemUtils.gtTheZero(mapper.updateById(form));
     }
 }

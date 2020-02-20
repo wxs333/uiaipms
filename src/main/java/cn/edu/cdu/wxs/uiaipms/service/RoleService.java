@@ -1,6 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.service;
 
-import cn.edu.cdu.wxs.uiaipms.domain.Role;
+import cn.edu.cdu.wxs.uiaipms.form.RoleForm;
 
 import java.util.List;
 import java.util.Set;
@@ -11,7 +11,7 @@ import java.util.Set;
  * @author WXS
  * @date 2020/1/12
  */
-public interface RoleService extends BaseService<Role> {
+public interface RoleService extends BaseService<RoleForm> {
     /**
      * 根据用户ID查询用户所有角色与权限
      *
@@ -28,7 +28,7 @@ public interface RoleService extends BaseService<Role> {
      *
      * @return 集合
      */
-    List<Role> getListRole();
+    List<RoleForm> getListRole();
 
     /**
      * 获取用户的角色编码

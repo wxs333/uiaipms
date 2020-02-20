@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>权限分配</title>
+    <link rel="stylesheet" href="/static/layui/css/layui.css"/>
+    <style>
+        .layui-table-page{text-align: center;}
+        .layui-table-tool {background-color: white}
+    </style>
+</head>
+
+<body>
+<div class="layui-card">
+    <!-- 标识 -->
+    <input type="hidden" value="tutor" id="mark">
+
+    <div class="layui-card-body">
+        <table class="layui-table" id="demo" lay-filter="table"></table>
+    </div>
+</div>
+<!-- 表头工具栏 -->
+<script type="text/html" id="toolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="tutor">导师</button>
+        <button class="layui-btn layui-btn-sm" lay-event="student">学生</button>
+    </div>
+</script>
+<!-- 行工具 -->
+<script type="text/html" id="rowTool">
+    <button class="layui-btn layui-btn-sm" lay-event="role">角色分配</button>
+</script>
+
+<!-- js文件 -->
+<script type="text/javascript" src="/static/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/authority/authority.js"></script>
+</body>
+
+</html>

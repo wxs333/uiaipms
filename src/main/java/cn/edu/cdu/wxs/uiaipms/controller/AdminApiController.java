@@ -1,14 +1,12 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
+import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.domain.Clazz;
 import cn.edu.cdu.wxs.uiaipms.domain.Discipline;
 import cn.edu.cdu.wxs.uiaipms.domain.Faculty;
 import cn.edu.cdu.wxs.uiaipms.form.UserRoleForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
-import cn.edu.cdu.wxs.uiaipms.service.AdminService;
-import cn.edu.cdu.wxs.uiaipms.service.ClazzService;
-import cn.edu.cdu.wxs.uiaipms.service.RoleService;
-import cn.edu.cdu.wxs.uiaipms.service.UserRoleService;
+import cn.edu.cdu.wxs.uiaipms.service.*;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -40,6 +38,12 @@ public class AdminApiController extends BaseController {
     private UserRoleService userRoleService;
     @Autowired
     private ClazzService clazzService;
+    @Autowired
+    private FacultyService facultyService;
+    @Autowired
+    private DisciplineService disciplineService;
+    @Autowired
+    private TutorService tutorService;
 
     private static final String MARK_TUTOR = "tutor";
 
@@ -53,10 +57,8 @@ public class AdminApiController extends BaseController {
     @GetMapping("getRoles")
     public JsonResult<Map<String, List>> getRoles(String mark, String userId) {
         Map<String, List> data = new HashMap<>(2);
-
         data.put("notHave", roleService.getListRole());
         data.put("have", roleService.getListIdByUserId(mark, userId));
-
         return jsonResult(data);
     }
 
@@ -73,8 +75,7 @@ public class AdminApiController extends BaseController {
         if (userRoleService.authority(form)) {
             return jsonResult("角色授予成功");
         }
-
-        return jsonResult("角色授予失败");
+        return jsonResult(GlobalConstant.FAILURE, "角色授予失败");
     }
 
     /**
@@ -91,7 +92,7 @@ public class AdminApiController extends BaseController {
         if (userRoleService.revoke(form)) {
             return jsonResult("角色收回成功");
         }
-        return jsonResult("角色收回失败");
+        return jsonResult(GlobalConstant.FAILURE, "角色收回失败");
     }
 
     /**
@@ -118,18 +119,17 @@ public class AdminApiController extends BaseController {
      */
     @GetMapping("getFaculty")
     public JsonResult<List<Faculty>> getFaculty() {
-        return null;
+        return jsonResult(facultyService.getAll());
     }
 
     /**
-     * 获取某个学院的系
+     * 获取所有系
      *
-     * @param facId 学院ID
      * @return json
      */
     @GetMapping("getDiscipline")
-    public JsonResult<List<Discipline>> getDiscipline(String facId) {
-        return null;
+    public JsonResult<List<Discipline>> getDiscipline() {
+        return jsonResult(disciplineService.getAll());
     }
 
     /**
@@ -141,5 +141,17 @@ public class AdminApiController extends BaseController {
     @GetMapping("getClazz")
     public JsonResult<List<Clazz>> getClazz(String discId) {
         return jsonResult(clazzService.getAllByDiscId(discId));
+    }
+
+    /**
+     * 禁用账号
+     *
+     * @param mark 标识
+     * @param id   ID
+     * @return json
+     */
+    @PostMapping("ban")
+    public JsonResult<String> ban(String mark, String id) {
+        return null;
     }
 }

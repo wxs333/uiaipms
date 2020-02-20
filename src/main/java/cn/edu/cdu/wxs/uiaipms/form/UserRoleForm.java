@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.form;
 
 import cn.edu.cdu.wxs.uiaipms.domain.UserRole;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,6 +17,7 @@ import java.util.Map;
 @Getter
 @Setter
 @ToString
+@TableName("user_role")
 public class UserRoleForm extends UserRole {
     /**
      * 选择的角色

@@ -1,6 +1,5 @@
 package cn.edu.cdu.wxs.uiaipms.mapper;
 
-import cn.edu.cdu.wxs.uiaipms.domain.Student;
 import cn.edu.cdu.wxs.uiaipms.form.StudentForm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -14,7 +13,7 @@ import org.apache.ibatis.annotations.Param;
  * @date 2020/1/11
  */
 @Mapper
-public interface StudentMapper extends CommonMapper<Student> {
+public interface StudentMapper extends CommonMapper<StudentForm> {
     /**
      * 根据用户名获取用户
      *
@@ -37,4 +36,11 @@ public interface StudentMapper extends CommonMapper<Student> {
      * @return 分页集合
      */
     IPage<StudentForm> selectAllInfo(Page<StudentForm> page);
+
+    /**
+     * 根据ID查询学生
+     * @param id ID
+     * @return 学生
+     */
+    StudentForm selectOneById(@Param("id") String id);
 }

@@ -1,6 +1,5 @@
 package cn.edu.cdu.wxs.uiaipms.service;
 
-import cn.edu.cdu.wxs.uiaipms.domain.Student;
 import cn.edu.cdu.wxs.uiaipms.form.StudentForm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -11,7 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
  * @author WXS
  * @date 2020/1/11
  */
-public interface StudentService extends BaseService<Student> {
+public interface StudentService extends BaseService<StudentForm> {
     /**
      * 根据用户名获取密码
      * @param username 用户名
@@ -37,7 +36,7 @@ public interface StudentService extends BaseService<Student> {
     /**
      * 根据用户名获取用户
      * @param username 用户名
-     * @return 用户
+     * @return 学生
      */
     StudentForm getByUsername(String username);
 
@@ -54,4 +53,18 @@ public interface StudentService extends BaseService<Student> {
      * @return 分页集合
      */
     IPage<StudentForm> getAllToList(Page<StudentForm> page);
+
+    /**
+     * 根据ID获取学生
+     * @param id ID
+     * @return 学生
+     */
+    StudentForm getOneById(String id);
+
+    /**
+     * 修改
+     * @param form 表单
+     * @return true 成功 false 失败
+     */
+    boolean update(StudentForm form);
 }

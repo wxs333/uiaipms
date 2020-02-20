@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -18,9 +19,9 @@ public class UserWebController {
      *
      * @return 视图
      */
-    @RequestMapping("home")
+    @GetMapping("home")
     public String home() {
-        return "home";
+        return "home/home";
     }
 
     /**
@@ -28,7 +29,7 @@ public class UserWebController {
      *
      * @return 视图
      */
-    @RequestMapping("index")
+    @GetMapping("index")
     public String index() {
         return "index";
     }
@@ -37,17 +38,17 @@ public class UserWebController {
      * 默认页面
      * @return 视图
      */
-    @RequestMapping("default")
+    @GetMapping("default")
     public String defaultPage() {
-        return "default";
+        return "home/default";
     }
 
     /**
      * 注册页面
-     * @return
+     * @return 视图
      */
-    @RequestMapping("register")
+    @GetMapping("register")
     public String registerHtml() {
-        return "register";
+        return "register/register";
     }
 }

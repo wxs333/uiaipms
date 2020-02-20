@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
 
@@ -22,13 +23,13 @@ import java.util.Map;
  * @date 2020/1/13
  */
 @Service
-public class UserRoleServiceImpl extends BaseServiceImpl<UserRole> implements UserRoleService {
+public class UserRoleServiceImpl extends BaseServiceImpl<UserRoleForm> implements UserRoleService {
 
     @Autowired
     private UserRoleMapper mapper;
 
     @Override
-    public BaseMapper<UserRole> getMapper() {
+    public BaseMapper<UserRoleForm> getMapper() {
         return mapper;
     }
 
@@ -37,12 +38,12 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole> implements Us
         Map<String, Object> map = getTableNameAndIdColByRole(form.getMark());
 
         form.setUserId(form.getUserId());
-        Date date = new Date();
+        LocalDateTime date = LocalDateTime.now();
         form.setCreateTime(date);
         form.setUpdateTime(date);
         form.setUrWho((Integer) map.get(GlobalConstant.ROLE_TYPE));
 
-        return SystemUtils.gtTheZero(mapper.insert(form));
+        return SystemUtils.gtTheZero(mapper.insertBatch(form));
     }
 
     @Override

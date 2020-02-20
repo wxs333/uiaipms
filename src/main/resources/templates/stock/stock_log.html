@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>工作室管理</title>
+    <link rel="stylesheet" href="/static/layui/css/layui.css"/>
+    <style>
+        .layui-table-tool {
+            background-color: white
+        }
+
+        .layui-table-page {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table class="layui-table" id="table" lay-filter="table"></table>
+    </div>
+</div>
+<!-- js文件 -->
+<script type="text/javascript" src="/static/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/stock/stock_log.js"></script>
+<!-- 头工具栏 -->
+<script type="text/html" id="toolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="into-log">入库记录</button>
+        <button class="layui-btn layui-btn-sm" lay-event="out-log">出库记录</button>
+        <button class="layui-btn layui-btn-sm" lay-event="into">入库</button>
+        <button class="layui-btn layui-btn-sm" lay-event="out">出库</button>
+    </div>
+</script>
+<!-- 时间格式化-->
+<script type="text/html" id="createTime">
+    {{ layui.util.toDateString(d.createTime, 'yyyy-MM-dd HH:mm:ss') }}
+</script>
+<script type="text/html" id="updateTime">
+    {{ layui.util.toDateString(d.updateTime, 'yyyy-MM-dd HH:mm:ss') }}
+</script>
+</body>
+</html>

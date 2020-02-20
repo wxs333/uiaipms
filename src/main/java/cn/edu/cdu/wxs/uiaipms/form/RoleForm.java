@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.form;
 
 import cn.edu.cdu.wxs.uiaipms.domain.Role;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,5 +12,6 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@TableName("role")
 public class RoleForm extends Role {
 }

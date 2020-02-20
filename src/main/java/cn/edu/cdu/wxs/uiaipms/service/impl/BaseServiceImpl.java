@@ -36,7 +36,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 
     @Override
     public boolean modifyById(T domain) {
-        return false;
+        return SystemUtils.gtTheZero(getMapper().updateById(domain));
     }
 
     @Override

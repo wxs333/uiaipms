@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.form;
 
 import cn.edu.cdu.wxs.uiaipms.domain.Tutor;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@TableName("tutor")
 public class TutorForm extends Tutor {
     /**
      * ID

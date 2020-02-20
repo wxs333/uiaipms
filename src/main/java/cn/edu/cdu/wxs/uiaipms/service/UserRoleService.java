@@ -1,6 +1,5 @@
 package cn.edu.cdu.wxs.uiaipms.service;
 
-import cn.edu.cdu.wxs.uiaipms.domain.UserRole;
 import cn.edu.cdu.wxs.uiaipms.form.UserRoleForm;
 
 /**
@@ -8,7 +7,7 @@ import cn.edu.cdu.wxs.uiaipms.form.UserRoleForm;
  * @author WXS
  * @date 2020/1/13
  */
-public interface UserRoleService extends BaseService<UserRole> {
+public interface UserRoleService extends BaseService<UserRoleForm> {
 
     /**
      * 授与角色

@@ -24,4 +24,9 @@ public class StudentServiceImplTest {
     public void getByUsername() {
         System.out.println(studentService.getByUsername("student1"));
     }
+
+    @Test
+    public void getOneById() {
+        System.out.println(studentService.getOneById("1fc437fc26b647109322e0e05c0efe5d"));
+    }
 }

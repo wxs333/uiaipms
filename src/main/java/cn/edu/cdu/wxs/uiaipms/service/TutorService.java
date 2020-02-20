@@ -1,6 +1,5 @@
 package cn.edu.cdu.wxs.uiaipms.service;
 
-import cn.edu.cdu.wxs.uiaipms.domain.Tutor;
 import cn.edu.cdu.wxs.uiaipms.form.TutorForm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -10,7 +9,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
  * @author WXS
  * @date 2020/1/13
  */
-public interface TutorService extends BaseService<Tutor> {
+public interface TutorService extends BaseService<TutorForm> {
     /**
      * 根据用户名获取密码
      * @param username 用户名
@@ -38,4 +37,18 @@ public interface TutorService extends BaseService<Tutor> {
      * @return 集合
      */
     IPage<TutorForm> getAllToList(Page<TutorForm> page);
+
+    /**
+     * 根据ID获取
+     * @param id id
+     * @return 数据
+     */
+    TutorForm getOneById(String id);
+
+    /**
+     * 修改信息
+     * @param form 表单
+     * @return true 成功 false 失败
+     */
+    boolean update(TutorForm form);
 }

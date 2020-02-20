@@ -43,4 +43,24 @@
             AND d.fac_id = f.fac_id
             AND s.logic_delete_flag = 0
     </select>
+
+    <select id="selectOneById" resultType="cn.edu.cdu.wxs.uiaipms.form.StudentForm">
+        SELECT
+            s.stu_id,
+            s.stu_name,
+            s.stu_no,
+            s.username,
+            s.clazz_id,
+            s.address,
+            s.phone,
+            d.disc_id
+        FROM
+            student s,
+            clazz c,
+            discipline d
+        WHERE
+            s.clazz_id = c.clazz_id
+            AND c.disc_id = d.disc_id
+            AND s.stu_id = #{id}
+    </select>
 </mapper>

@@ -18,4 +18,9 @@ public class CompanyServiceImplTest {
     public void getByUsername() {
         System.out.println(service.getByUsername("company1"));
     }
+
+    @Test
+    public void getAll() {
+        System.out.println(service.getAll().get(0).getComName());
+    }
 }

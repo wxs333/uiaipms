@@ -43,7 +43,7 @@ public class SystemUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(md5("student3", "student3"));
+        //System.out.println(md5("dahan", "dahan"));
         System.out.println(getUuid());
         System.out.println(getUuid());
         System.out.println(getUuid());

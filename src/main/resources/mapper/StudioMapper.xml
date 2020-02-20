@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.cdu.wxs.uiaipms.mapper.StudioMapper">
+
+    <select id="selectAll" resultType="cn.edu.cdu.wxs.uiaipms.form.StudioForm">
+        SELECT
+            s.stud_id,
+            s.stud_address,
+            s.stud_area,
+            s.stud_room_no,
+            s.ban,
+            c.com_name,
+            c.com_people,
+            s.stud_num,
+            s.update_time,
+            s.create_time
+        FROM
+            studio s,
+            company c
+        WHERE
+            s.com_id = c.com_id
+        ORDER BY
+	        s.update_time DESC
+    </select>
+
+    <update id="updateBan">
+        UPDATE
+        studio
+        SET
+        ban = #{ban},
+        update_time = #{updateTime}
+        WHERE
+        stud_id = #{studId}
+    </update>
+</mapper>

@@ -1,6 +1,5 @@
 package cn.edu.cdu.wxs.uiaipms.mapper;
 
-import cn.edu.cdu.wxs.uiaipms.domain.Company;
 import cn.edu.cdu.wxs.uiaipms.form.CompanyForm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -11,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
  * @author WXS
  * @date 2020/1/13
  */
-public interface CompanyMapper extends CommonMapper<Company> {
+public interface CompanyMapper extends CommonMapper<CompanyForm> {
     /**
      * 根据用户名获取用户
      * @param username 用户名

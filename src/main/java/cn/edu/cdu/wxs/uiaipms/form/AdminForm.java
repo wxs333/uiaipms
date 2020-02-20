@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.form;
 
 import cn.edu.cdu.wxs.uiaipms.domain.Admin;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,6 +14,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@TableName("admin")
 public class AdminForm extends Admin {
     /**
      * ID

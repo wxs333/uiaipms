@@ -28,6 +28,16 @@ public class JsonResult<T> {
     /**
      * 构造方法
      *
+     * @param data    数据
+     */
+    public JsonResult(T data) {
+
+        this.data = data;
+    }
+
+    /**
+     * 构造方法
+     *
      * @param code    数据状态
      * @param message 消息提示
      * @param data    数据
