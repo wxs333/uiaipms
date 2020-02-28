@@ -4,7 +4,10 @@ import cn.edu.cdu.wxs.uiaipms.form.ProjectForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.ProjectService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,5 +44,18 @@ public class ProjectApiController extends BaseController {
         form.setProLocation("test");
         // 新增
         return projectService.add(form) ? jsonResult("申报成功，等待导师审批") : jsonResult("发生错误，申报失败");
+    }
+
+    /**
+     * 获取未审批的项目
+     *
+     * @param page 分页
+     * @return json
+     */
+    @GetMapping("getNoAppr")
+    public JsonResult<IPage<ProjectForm>> getNoAppr(Page<ProjectForm> page) {
+        // 从session里获取当前登录导师的学院ID
+        String facId = "af6d4fea76c742fea432e482c391911b";
+        return jsonResult("0", projectService.getByFacId(page, facId));
     }
 }

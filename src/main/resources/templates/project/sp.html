@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>项目审批</title>
+    <link rel="stylesheet" href="/static/layui/css/layui.css" />
+    <link rel="stylesheet" href="/static/css/common.css" />
+    <style>
+        .layui-card-body {
+            background-color: #EEEEEE;
+        }
+
+        .layui-btn-container {
+            margin-left: 110px;
+        }
+
+        .layui-btn-container .layui-btn {
+            margin-bottom: 0;
+        }
+        .layui-form .layui-form-item textarea {
+            height: 169px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form" lay-filter="update-form">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-submit>确定</button>
+                <button class="layui-btn layui-btn-sm" type="reset">重置</button>
+            </div>
+            <hr class="html-editor-hr" />
+            <div class="layui-form-item" hidden="hidden">
+                <label class="layui-form-label">id</label>
+                <div class="layui-input-block">
+                    <input type="hidden" id="id" class="layui-input" name="proId" th:value="${proId}" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">项目名</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" name="proName" th:value="${proName}" readonly />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否通过</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" value="1" name="approvalFlag" lay-skin="switch" lay-text="通过|打回">
+                </div>
+            </div>
+            <div class="layui-form-item layui-col-md-offset1 layui-col-md7">
+                <label class="layui-form-label">原因</label>
+                <div class="layui-input-block">
+                    <textarea class="layui-input" name="reason"></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- js文件 -->
+<script type="text/javascript" src="/static/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/project/sp.js"></script>
+</body>
+
+</html>

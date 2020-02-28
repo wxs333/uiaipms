@@ -53,7 +53,7 @@ function changeHtml(id, $) {
             elem.attr("src", "/pro/sb");
             break;
         case "project-sp":
-            elem.attr("src", "");
+            elem.attr("src", "/pro/sp");
             break;
         case "project-lx":
             elem.attr("src", "");

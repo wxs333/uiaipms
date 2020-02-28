@@ -9,6 +9,7 @@ import cn.edu.cdu.wxs.uiaipms.service.BaseService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,16 +31,19 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean add(T domain) {
         return SystemUtils.gtTheZero(getMapper().insert(domain));
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean modifyById(T domain) {
         return SystemUtils.gtTheZero(getMapper().updateById(domain));
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class, readOnly = true)
     public T getById(String idCol, int id) {
         QueryWrapper<T> wrapper = new QueryWrapper<>();
         wrapper.eq(idCol, id)

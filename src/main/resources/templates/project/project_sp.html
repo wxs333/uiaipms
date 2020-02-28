@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>项目审批列表</title>
+    <link rel="stylesheet" href="/static/layui/css/layui.css"/>
+    <style>
+        .layui-card-body {
+            margin: 20px 30px;
+        }
+
+        .layui-table-page {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-card-body">
+    <div class="layui-tab layui-tab-brief" lay-filter="sp">
+        <div class="layui-tab-title">
+            <li class="layui-this">未审批</li>
+            <li class="">我审批的</li>
+        </div>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <div>
+                    <table class="layui-table" id="no-appr" lay-skin="line"></table>
+                </div>
+            </div>
+            <div class="layui-tab-item">
+                <div>
+                    <table class="layui-table" id="appred" lay-skin="line"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- js文件 -->
+<script type="text/javascript" src="/static/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/project/project_sp.js"></script>
+<!-- 行工具 -->
+<script type="text/html" id="rowTool">
+    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="approve">审批</button>
+</script>
+<!-- 格式化审批结果 -->
+<script type="text/html" id="flag">
+    {{# if (d.approvalFlag == 0) { }}
+    <span>未通过</span>
+    {{# } else { }}
+    <span>通过</span>
+    {{# } }}
+</script>
+<!-- 时间格式化 -->
+<script type="text/html" id="updateTime">
+    {{ layui.util.toDateString(d.updateTime, 'yyyy-MM-dd HH:mm:ss') }}
+</script>
+</body>
+</html>
