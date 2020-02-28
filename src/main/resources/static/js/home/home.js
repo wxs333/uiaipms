@@ -50,7 +50,7 @@ function changeHtml(id, $) {
             elem.attr("src", "/sto/list");
             break;
         case "project-sb":
-            elem.attr("src", "");
+            elem.attr("src", "/pro/sb");
             break;
         case "project-sp":
             elem.attr("src", "");

@@ -49,6 +49,17 @@ public class Project implements Serializable {
      */
     @TableField(value = "pro_location", jdbcType = JdbcType.VARCHAR)
     private String proLocation;
+    /**
+     * 项目描述
+     */
+    @TableField(value = "pro_desc", jdbcType = JdbcType.VARCHAR)
+    private String proDesc;
+
+    /**
+     * 项目是否审批 0 未审批 1 已审批
+     */
+    @TableField(value = "pro_appr", jdbcType = JdbcType.INTEGER)
+    private Integer proAppr;
 
     /**
      * 更新时间
