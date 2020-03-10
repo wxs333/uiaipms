@@ -1,6 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.service.impl;
 
-import cn.edu.cdu.wxs.uiaipms.form.StockLogForm;
+import cn.edu.cdu.wxs.uiaipms.form.StockOutLogForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.StockOutLogMapper;
 import cn.edu.cdu.wxs.uiaipms.service.StockLogService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
@@ -18,24 +18,24 @@ import org.springframework.transaction.annotation.Transactional;
  * @date 2020/2/17
  */
 @Service
-public class StockLogServiceImpl extends BaseServiceImpl<StockLogForm> implements StockLogService {
+public class StockLogServiceImpl extends BaseServiceImpl<StockOutLogForm> implements StockLogService {
 
     @Autowired
     private StockOutLogMapper mapper;
 
     @Override
-    public BaseMapper<StockLogForm> getMapper() {
+    public BaseMapper<StockOutLogForm> getMapper() {
         return mapper;
     }
 
     @Override
-    public IPage<StockLogForm> getAll(Page<StockLogForm> page, String type) {
+    public IPage<StockOutLogForm> getAll(Page<StockOutLogForm> page, String type) {
         return mapper.selectAll(page, type);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean add(StockLogForm domain) {
+    public boolean add(StockOutLogForm domain) {
         // 填充数据
         domain.setStoId(SystemUtils.getUuid());
         return false;

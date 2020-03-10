@@ -90,6 +90,12 @@
             <artifactId>commons-net</artifactId>
             <version>3.6</version>
         </dependency>
+        <!-- easy poi -->
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-web</artifactId>
+            <version>4.0.0</version>
+        </dependency>
 
         <!-- test -->
         <dependency>

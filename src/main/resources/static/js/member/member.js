@@ -72,7 +72,7 @@ function getCols(mark) {
         case 'student':
             cols[0] = [ // 表头
                 {field: 'id', title: 'id', align: "center", hide: 'true'},
-                {field: 'stuName', title: '姓名', align: "center"},
+                {field: 'stuName', title: '学生姓名', align: "center"},
                 {field: 'username', title: '用户名', align: "center"},
                 {field: 'stuNo', title: '学号', align: "center"},
                 {field: 'clazzName', title: '班级', align: "center"},
@@ -88,7 +88,7 @@ function getCols(mark) {
         case 'tutor':
             cols[0] = [ // 表头
                 {field: 'id', title: 'id', align: "center", hide: 'true'},
-                {field: 'tutorName', title: '姓名', align: "center"},
+                {field: 'tutorName', title: '导师姓名', align: "center"},
                 {field: 'username', title: '用户名', align: "center"},
                 {field: 'facultyName', title: '学院', align: "center"},
                 {field: 'phone', title: '手机号码', align: "center"},
@@ -102,7 +102,7 @@ function getCols(mark) {
         case 'company':
             cols[0] = [ // 表头
                 {field: 'comId', title: 'id', align: "center", hide: 'true'},
-                {field: 'comName', title: '企业名', align: "center"},
+                {field: 'comName', title: '企业名称', align: "center"},
                 {field: 'comPeople', title: '负责人', align: "center"},
                 {field: 'username', title: '用户名', align: "center"},
                 {field: 'phone', title: '联系方式', align: "center"},

@@ -1,6 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.form;
 
-import cn.edu.cdu.wxs.uiaipms.domain.StockLog;
+import cn.edu.cdu.wxs.uiaipms.domain.StockOutLog;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @TableName("stock_out_log")
-public class StockLogForm extends StockLog {
+public class StockOutLogForm extends StockOutLog {
     /**
      * 操作人
      */

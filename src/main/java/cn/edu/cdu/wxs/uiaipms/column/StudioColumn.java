@@ -32,4 +32,8 @@ public class StudioColumn {
      * 面积
      */
     public static final String STUD_AREA = "stud_area";
+    /**
+     * 禁用
+     */
+    public static final String BAN = "ban";
 }

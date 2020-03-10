@@ -21,7 +21,7 @@ layui.use(['table'], function () {
                 {icon: 3, title: '提示', offset: '150px', anim: 1},
                 function (index) {
                     _layer.close(index);
-                    var ban = data.event === 'ban' ? 1 : 0;
+                    var ban = data.event === 'ban' ? 0 : 1;
                     // 修改禁用状态
                     updateBan(_table, $, _layer, ban, data.data.studId);
                 });

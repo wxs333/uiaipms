@@ -4,6 +4,7 @@ import cn.edu.cdu.wxs.uiaipms.form.StudioForm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
 
 /**
@@ -38,4 +39,20 @@ public interface StudioService extends BaseService<StudioForm> {
      * @return true 成功 false 失败
      */
     boolean updateBan(String ban, String studId, LocalDateTime updateTime);
+
+    /**
+     * 根据企业ID获取工作室信息
+     * @param page 分页
+     * @param comId 企业ID
+     * @return 分页集合
+     */
+    IPage<StudioForm> getAllByComId(Page<StudioForm> page, String comId);
+
+    /**
+     * 根据企业ID查询导出的数据
+     * @param comId 企业ID
+     * @param response 响应
+     * @return 集合
+     */
+    void export(String comId, HttpServletResponse response);
 }

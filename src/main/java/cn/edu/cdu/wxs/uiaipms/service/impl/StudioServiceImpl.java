@@ -1,6 +1,9 @@
 package cn.edu.cdu.wxs.uiaipms.service.impl;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.edu.cdu.wxs.uiaipms.column.StudioColumn;
+import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.form.StudioForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.StudioMapper;
 import cn.edu.cdu.wxs.uiaipms.service.StudioService;
@@ -9,10 +12,15 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 工作室 业务层实现类
@@ -47,5 +55,44 @@ public class StudioServiceImpl extends BaseServiceImpl<StudioForm> implements St
     @Override
     public boolean updateBan(String ban, String studId, LocalDateTime updateTime) {
         return SystemUtils.gtTheZero(mapper.updateBan(ban, studId, updateTime));
+    }
+
+    @Override
+    public IPage<StudioForm> getAllByComId(Page<StudioForm> page, String comId) {
+        return mapper.selectPage(page, tableData(comId));
+    }
+
+    @Override
+    public void export(String comId, HttpServletResponse response) {
+        List<StudioForm> data = mapper.selectList(tableData(comId));
+        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("工作室", "我的工作室"), StudioForm.class, data);
+        OutputStream os = null;
+        try {
+            response.setContentType("application/octet-stream;charset=UTF-8");
+            response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("我的工作室.xls", "utf-8"));
+            response.addHeader("Pargam", "no-cache");
+            response.addHeader("Cache-Control", "no-cache");
+            os = response.getOutputStream();
+            workbook.write(os);
+            os.flush();
+            os.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * 企业用户工作室表格数据
+     *
+     * @param comId 企业ID
+     * @return 查询
+     */
+    private QueryWrapper<StudioForm> tableData(String comId) {
+        QueryWrapper<StudioForm> wrapper = new QueryWrapper<>();
+        wrapper.select(StudioColumn.STUD_ID, StudioColumn.STUD_ADDRESS, StudioColumn.STUD_ROOM_NO, StudioColumn.BAN,
+                StudioColumn.STUD_NUM, StudioColumn.STUD_AREA, GlobalConstant.CREATE_TIME, GlobalConstant.UPDATE_TIME)
+                .eq(StudioColumn.COM_ID, comId)
+                .eq(GlobalConstant.LOGIC_DELETE_FLAG, 0);
+        return wrapper;
     }
 }

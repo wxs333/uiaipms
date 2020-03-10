@@ -35,9 +35,9 @@
 <script type="text/html" id="rowTool">
     <button class="layui-btn layui-btn-sm layui-bg-orange" lay-event="edit">修改</button>
     {{# if (d.ban == 0) { }}
-    <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="ban">禁用</button>
-    {{# } else { }}
     <button class="layui-btn layui-btn-sm layui-bg-blue" lay-event="enable">启用</button>
+    {{# } else { }}
+    <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="ban">禁用</button>
     {{# } }}
 </script>
 <!-- 时间格式化-->

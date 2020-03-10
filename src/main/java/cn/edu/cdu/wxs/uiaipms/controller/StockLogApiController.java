@@ -2,7 +2,7 @@ package cn.edu.cdu.wxs.uiaipms.controller;
 
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.domain.Unit;
-import cn.edu.cdu.wxs.uiaipms.form.StockLogForm;
+import cn.edu.cdu.wxs.uiaipms.form.StockOutLogForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.StockLogService;
 import cn.edu.cdu.wxs.uiaipms.service.UnitService;
@@ -39,7 +39,7 @@ public class StockLogApiController extends BaseController {
      * @return json
      */
     @GetMapping("list")
-    public JsonResult<IPage<StockLogForm>> list(Page<StockLogForm> page, String type) {
+    public JsonResult<IPage<StockOutLogForm>> list(Page<StockOutLogForm> page, String type) {
         return jsonResult("0", stockLogService.getAll(page, type));
     }
 
@@ -58,7 +58,7 @@ public class StockLogApiController extends BaseController {
      * @return
      */
     @PostMapping("add")
-    public JsonResult<String> add(StockLogForm form) {
+    public JsonResult<String> add(StockOutLogForm form) {
         if (stockLogService.add(form)) {
             return jsonResult("入库成功");
         }

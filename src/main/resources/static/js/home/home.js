@@ -18,6 +18,7 @@ layui.use(['element','layer'], function () {
             offset: '30px'
         });
     });
+    // 菜单点击事件监听
     navClick(element, $);
 });
 
@@ -27,6 +28,7 @@ layui.use(['element','layer'], function () {
 function navClick(element, $) {
     element.on('nav', function (elem) {
         var id = elem.attr('id');
+        // 更换页面
         changeHtml(id, $);
     });
 }
@@ -60,6 +62,9 @@ function changeHtml(id, $) {
             break;
         case "studio":
             elem.attr("src", "/stud/list");
+            break;
+        case "com-studio":
+            elem.attr("src", "/com/myStudio");
             break;
     }
 }

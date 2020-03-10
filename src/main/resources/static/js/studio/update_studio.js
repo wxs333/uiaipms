@@ -22,7 +22,6 @@ function initForm(_form, $) {
         {'studId': studId},
         function (res) {
             // 给select框赋值
-            console.log(res.data.comId);
             initSelect(_form, $, res.data.comId);
             _form.val('update-form', res.data);
         }
@@ -44,7 +43,6 @@ function initSelect(_form, $, id) {
                 } else {
                     html += '<option value=' + item.comId + '>' + item.comName + '</option>';
                 }
-
             });
             $('#company').html(html);
             _form.render('select');

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 库存出入库记录
+ * 库存出库记录
  * </p>
  *
  * @author WXS
@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
-public class StockLog implements Serializable {
+public class StockOutLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,12 +35,6 @@ public class StockLog implements Serializable {
      */
     @TableField(value = "admin_id",jdbcType = JdbcType.VARCHAR)
     private String adminId;
-
-    /**
-     * 类型
-     */
-    @TableField(value = "sto_type", jdbcType = JdbcType.VARCHAR)
-    private String stoType;
 
     /**
      * 货物
