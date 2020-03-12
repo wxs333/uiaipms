@@ -1,35 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.edu.cdu.wxs.uiaipms.mapper.StockOutLogMapper">
-    <select id="selectAll" resultType="cn.edu.cdu.wxs.uiaipms.form.StockOutLogForm">
+    <select id="selectAllApplied" resultType="cn.edu.cdu.wxs.uiaipms.form.StockOutLogForm">
         SELECT
-			a.admin_name,
-			s.sto_type,
-			g.goods_name,
-			s.goods_num,
-			c.com_name,
+			s.apply_num,
 			s.update_time,
-			s.create_time
+			s.create_time,
+			g.goods_name,
+			a.admin_name,
+			CONCAT(st.stud_address,',',st.stud_room_no) AS address,
+			s.agree
 		FROM
 			stock_out_log s,
-			admin a,
 			goods g,
-			studio st,
-			company c
+			admin a,
+			studio st
 		WHERE
-			s.admin_id = a.admin_id
-			AND s.goods_id = g.goods_id
+			s.goods_id = g.goods_id
+			AND s.admin_id = a.admin_id
 			AND s.stud_id = st.stud_id
-			AND st.com_id = c.com_id
-			AND s.logic_delete_flag = 0
-			AND a.logic_delete_flag = 0
-			AND g.logic_delete_flag = 0
-			AND st.logic_delete_flag = 0
-			AND c.logic_delete_flag = 0
-			<if test="type != null and type !=''">
-				AND s.sto_type = #{type}
-			</if>
+			AND s.admin_id IS NOT NULL
+			AND s.agree = 0
 		ORDER BY
-			s.update_time DESC
+			s.create_time DESC
     </select>
+
+    <select id="selectAllNotApplied" resultType="cn.edu.cdu.wxs.uiaipms.form.StockOutLogForm">
+		SELECT
+			s.sto_id,
+			g.goods_id,
+			g.goods_name,
+			g.goods_brand,
+			g.goods_model,
+			s.apply_num,
+			s.create_time,
+			CONCAT(st.stud_address,',',st.stud_room_no) AS address
+		FROM
+			stock_out_log s,
+			studio st,
+			goods g
+		WHERE
+			s.stud_id = st.stud_id
+			AND s.goods_id = g.goods_id
+			AND s.logic_delete_flag = 0
+			AND st.logic_delete_flag = 0
+			AND(s.admin_id IS NULL
+			OR s.admin_id = '')
+	</select>
 </mapper>

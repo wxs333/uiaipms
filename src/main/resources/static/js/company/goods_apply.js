@@ -9,7 +9,12 @@ layui.use(['form'], function () {
         // 向后台传输数据
         goodsApply($, _layer, data.field);
         return false;
-    })
+    });
+    // select框监听
+    _form.on("select",function (obj) {
+        // 获取数据，并填充表单
+        getDataAndRenderForm($, obj.value);
+    });
 });
 
 /**
@@ -25,7 +30,7 @@ function initSelect($, _layer, _form) {
                 // 初始化
                 var html = '<option value="">请选择</option>';
                 $.each(res.data, function (index, item) {
-                    html += '<option value=' + item.goodsId + '>' + item.goodsName + '(剩余：' + item.goodsNum + ')</option>';
+                    html += '<option value=' + item.goodsId + '>' + item.goodsName + '</option>';
                 });
                 $('#goods').html(html);
                 _form.render('select');
@@ -51,4 +56,19 @@ function goodsApply($, _layer, data) {
             });
         }
     )
+}
+/**
+ * 获取数据，并填充表单
+ */
+function getDataAndRenderForm($, value) {
+    $.get(
+        '/api/goods/getOne',
+        {'id': value},
+        function (res) {
+            var inputs = $(".layui-form-item input");
+            $(inputs[2]).val(res.data.goodsBrand);
+            $(inputs[3]).val(res.data.goodsModel);
+            $(inputs[4]).val(res.data.goodsNum);
+        }
+    );
 }

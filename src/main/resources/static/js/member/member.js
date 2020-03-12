@@ -123,7 +123,7 @@ function getCols(mark) {
 function openUpdateHtml(mark, _layer, id, _table) {
     _layer.open({
         type: 2,
-        title: "修改学生",
+        title: "修改",
         content: '/admin/update?mark=' + mark + "&id=" + id,
         area: ['800px', '550px'],
         anim: 1,

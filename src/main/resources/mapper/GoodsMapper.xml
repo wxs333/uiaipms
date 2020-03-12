@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.cdu.wxs.uiaipms.mapper.GoodsMapper">
+
+    <select id="selectByForm" resultType="string">
+        SELECT
+            goods_id
+        FROM
+            goods
+        WHERE
+            goods_name = #{form.goodsName}
+            AND unit_id = #{form.unitId}
+            AND goods_model = #{form.goodsModel}
+            AND goods_price = #{form.goodsPrice}
+            AND goods_brand = #{form.goodsBrand}
+    </select>
+
+    <update id="addGoodsNum">
+        UPDATE goods
+        SET goods_num = goods_num + #{form.goodsNum},
+        update_time = #{form.updateTime}
+        WHERE
+            goods_id = #{form.goodsId}
+    </update>
+
+    <update id="reduceGoodsNum">
+        UPDATE goods
+        SET goods_num = goods_num - #{num},
+        update_time = now()
+        WHERE
+            goods_id = #{id}
+    </update>
+
+    <select id="selectGoodsByStudId" resultType="cn.edu.cdu.wxs.uiaipms.form.GoodsForm">
+        SELECT
+            g.goods_name,
+            g.goods_brand,
+	        g.goods_model,
+            s.apply_num AS goodsNum,
+	        s.update_time,
+            u.unit_name
+        FROM
+            goods g,
+            studio st,
+            stock_out_log s,
+            unit u
+        WHERE
+            s.stud_id = st.stud_id
+            AND s.goods_id = g.goods_id
+            AND g.unit_id = u.unit_id
+            AND s.agree = 0
+            AND s.stud_id = #{studId}
+    </select>
+
+</mapper>

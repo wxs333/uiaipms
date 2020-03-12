@@ -66,5 +66,9 @@ function changeHtml(id, $) {
         case "com-studio":
             elem.attr("src", "/com/myStudio");
             break;
+        case "goods":
+            elem.attr("src", "/goods/list");
+            break;
+
     }
 }

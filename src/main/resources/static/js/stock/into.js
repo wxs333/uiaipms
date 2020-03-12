@@ -7,6 +7,7 @@ layui.use(['form'], function () {
     // 入库
     _form.on('submit', function (data) {
         add($, _layer, data.field);
+        return false;
     })
 });
 
@@ -15,7 +16,7 @@ layui.use(['form'], function () {
  */
 function initSelect($, _form) {
     $.get(
-        '/api/sto/getUnit',
+        '/api/into/unit',
         {},
         function (res) {
             var html = '<option value="">请选择</option>';
@@ -33,11 +34,11 @@ function initSelect($, _form) {
  */
 function add($, _layer, data) {
     $.post(
-        '/api/sto/add',
+        '/api/goods/add',
         data,
         function (res) {
-            var icon = res.code === 'success'? 1 : 2;
-            _layer.msg(res.message, {time: 1500, icon: icon}, function () {
+            var icon = res.code === 'success' ? 1 : 2;
+            _layer.msg(res.message, {time: 1500, icon: icon, offset: '200px'}, function () {
                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                 parent.layer.close(index); //再执行关闭
             });

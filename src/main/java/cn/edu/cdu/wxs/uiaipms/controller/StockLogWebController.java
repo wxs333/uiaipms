@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("sto")
 @Controller
 public class StockLogWebController {
+    /**
+     * 前缀
+     */
+    private static final String PREFIX = "stock/";
 
     /**
      * 列表
@@ -21,7 +25,7 @@ public class StockLogWebController {
      */
     @GetMapping("list")
     public String list() {
-        return "stock/stock_log";
+        return PREFIX + "stock_log";
     }
 
     /**
@@ -31,16 +35,16 @@ public class StockLogWebController {
      */
     @GetMapping("into")
     public String into() {
-        return "stock/into";
+        return PREFIX + "into";
     }
 
     /**
-     * 出库
+     * 出库审批列表
      *
      * @return 视图
      */
-    @GetMapping("out")
+    @GetMapping("out_list")
     public String out() {
-        return "stock/out";
+        return PREFIX + "out_list";
     }
 }

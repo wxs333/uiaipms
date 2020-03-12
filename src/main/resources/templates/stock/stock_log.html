@@ -12,10 +12,32 @@
         .layui-table-page {
             text-align: center;
         }
+
+        .layui-card-header {
+            background-color: #EEEEEE;
+        }
+
+        .layui-card .layui-card-header {
+            margin-top: 10px;
+            height: 50px;
+        }
+
+        .layui-card .layui-card-header div {
+            margin: 15px 20px;
+        }
+
+        .layui-card .layui-card-header div span {
+            font-size: 2em;
+        }
     </style>
 </head>
 <body>
 <div class="layui-card">
+    <div class="layui-card-header">
+        <div>
+            <span id="title">入库记录</span>
+        </div>
+    </div>
     <div class="layui-card-body">
         <table class="layui-table" id="table" lay-filter="table"></table>
     </div>
@@ -29,7 +51,7 @@
         <button class="layui-btn layui-btn-sm" lay-event="into-log">入库记录</button>
         <button class="layui-btn layui-btn-sm" lay-event="out-log">出库记录</button>
         <button class="layui-btn layui-btn-sm" lay-event="into">入库</button>
-        <button class="layui-btn layui-btn-sm" lay-event="out">出库</button>
+        <button class="layui-btn layui-btn-sm" lay-event="out">出库审批</button>
     </div>
 </script>
 <!-- 时间格式化-->

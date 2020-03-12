@@ -14,4 +14,8 @@ import lombok.Setter;
 @Setter
 @TableName("goods")
 public class GoodsForm extends Goods {
+    /**
+     * 单位名称
+     */
+    private String unitName;
 }

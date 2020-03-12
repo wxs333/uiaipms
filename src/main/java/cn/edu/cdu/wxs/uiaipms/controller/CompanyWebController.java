@@ -54,4 +54,17 @@ public class CompanyWebController {
         modelAndView.setViewName(PREFIX + "goods_apply");
         return modelAndView;
     }
+
+    /**
+     * 查看设备详情页面
+     * @param studId 工作室
+     * @return 视图
+     */
+    @GetMapping("details")
+    public ModelAndView details(@NotNull String studId) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("studId", studId);
+        modelAndView.setViewName(PREFIX + "goods_details");
+        return modelAndView;
+    }
 }

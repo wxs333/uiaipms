@@ -1,44 +1,41 @@
 layui.use(['table'], function () {
-    var _table = layui.table;
-    var $ = layui.$;
-    var _layer = layui.layer;
+        var _table = layui.table;
+        var $ = layui.$;
+        var _layer = layui.layer;
+
     // 初始化表格
-    tableRender(_table);
+    tableRender(_table, 'into-log');
     // 表头工具栏监听
-    _table.on('toolbar(table)', function (data) {
-        var event = data.event;
-        // 记录分类查询
-        if (event.split('-')[1] === 'log') {
-            // 表格重加载
-            reloadTable(_table, event);
+    _table.on('toolbar(table)', function (obj) {
+        var event = obj.event;
+        // 修改标题
+        changeTitle($, event);
+        if (event === 'into-log' || event === 'out-log') {
+            // 重载表格
+            tableRender(_table, event);
         } else {
-            // 弹出表单页面
+            // 打开相应页面
             openHtml(_table, _layer, event);
         }
+
     });
 });
 
 /**
  * 初始化表格
  */
-function tableRender(_table) {
+function tableRender(_table, event) {
+    // 获取cols与url
+    var data = getColsAndUrl(event);
     _table.render({
         elem: '#table',
         height: 550,
         toolbar: "#toolbar",
         defaultToolbar: [],
-        url: '/api/sto/list', //数据接口
+        url: data[1], //数据接口
         page: true, //开启分页
         limits: [10, 20, 30],
-        cols: [[ // 表头
-            {field: 'adminName', title: '处理人', align: "center"},
-            {field: 'stoType', title: '类型', align: "center"},
-            {field: 'goodsName', title: '物品', align: "center"},
-            {field: 'goodsNum', title: '数量', align: "center"},
-            {field: 'comName', title: '申请人', align: "center"},
-            {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
-            {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},
-        ]],
+        cols: [data[0]],
         parseData: function (res) { // 返回数据格式解析
             return {
                 "code": res.code, //解析接口状态
@@ -55,33 +52,47 @@ function tableRender(_table) {
 }
 
 /**
- * 表格重加载
+ * 获取不同的表头和url
  */
-function reloadTable(_table, event) {
-    var type = event === 'into-log' ? 1 : 0;
-    _table.reload('table',
-        {
-            url: '/api/sto/list',
-            page: {
-                curr: 1
-            },
-            where: {
-                'type': type
-            }
-        });
+function getColsAndUrl(event) {
+    var data = [];
+    if (event === 'into-log') {
+        data[0] = [ // 表头
+            {field: 'adminName', title: '管理员', align: "center"},
+            {field: 'goodsName', title: '物品', align: "center"},
+            {field: 'goodsNum', title: '数量', align: "center"},
+            {field: 'goodsBrand', title: '品牌', align: "center"},
+            {field: 'goodsModel', title: '型号', align: "center"},
+            {field: 'goodsPrice', title: '价格', align: "center"},
+            {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
+            {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'}
+        ];
+        data[1] = '/api/into/list';
+    } else {
+        data[0] = [ // 表头
+            {field: 'adminName', title: '管理员', align: "center"},
+            {field: 'goodsName', title: '物品', align: "center"},
+            {field: 'applyNum', title: '数量', align: "center"},
+            {field: 'address', title: '申请人', align: "center"},
+            {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
+            {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'}
+        ];
+        data[1] = '/api/out/list';
+    }
+    return data;
 }
+
 /**
  * 打开页面
  */
 function openHtml(_table, _layer, event) {
     var d = {};
     if ('into' === event) {
-        d = {'title': '入库', 'content': '/sto/into'};
-        doOpen(_table, _layer, d);
-    } else if ('edit' === event) {
-        d = {'out': '出库', 'content': '/sto/out'};
-        doOpen(_table, _layer, d);
+        d = {'title': '入库', 'content': '/sto/into', 'width': '800px'};
+    } else if ('out' === event) {
+        d = {'title': '出库审批', 'content': '/sto/out_list','width': '1200px'};
     }
+    doOpen(_table, _layer, d);
 }
 
 /**
@@ -92,18 +103,21 @@ function doOpen(_table, _layer, data) {
         type: 2,
         title: data.title,
         content: data.content,
-        area: ['800px', '550px'],
+        area: [data.width, '550px'],
         anim: 1,
         scrollbar: false,
-        offset: '30px',
-        end: function f() {
-            _table.reload('table',
-                {
-                    url: '/api/sto/list',
-                    page: {
-                        curr: 1
-                    }
-                });
-        }
+        offset: '30px'
     });
+}
+
+/**
+ * 修改标题
+ */
+function changeTitle($, event) {
+    if (event === 'into-log') {
+        $('#title').text('入库记录');
+    } else if (event === 'out-log') {
+        $('#title').text('出库记录');
+    }
+
 }

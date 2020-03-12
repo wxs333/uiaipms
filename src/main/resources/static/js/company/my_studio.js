@@ -19,9 +19,9 @@ layui.use('table', function () {
         } else if ('goods-apply' === event) {
             // 打开物品申请页面
             openGoodsApplyHtml(_layer, obj.data.studId);
-        } else {
+        } else if ("goods" === event) {
             // 打开设备详情页面
-
+            openDetail(_layer, obj.data.studId);
         }
 
     });
@@ -103,5 +103,20 @@ function openPrompt(_layer, $, _table, value, studId) {
                 })
             }
         );
+    });
+}
+
+/**
+ * 执行设备详情页面
+ */
+function openDetail(_layer, studId) {
+    _layer.open({
+        type: 2,
+        title: "工作室设备详情",
+        content: "/com/details?studId=" + studId,
+        area: ["1200px", '550px'],
+        anim: 1,
+        scrollbar: false,
+        offset: '30px'
     });
 }

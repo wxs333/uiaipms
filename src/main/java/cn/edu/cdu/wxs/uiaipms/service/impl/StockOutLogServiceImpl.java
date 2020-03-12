@@ -1,14 +1,20 @@
 package cn.edu.cdu.wxs.uiaipms.service.impl;
 
 import cn.edu.cdu.wxs.uiaipms.form.StockOutLogForm;
+import cn.edu.cdu.wxs.uiaipms.mapper.GoodsMapper;
 import cn.edu.cdu.wxs.uiaipms.mapper.StockOutLogMapper;
 import cn.edu.cdu.wxs.uiaipms.service.StockOutLogService;
+import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 出库记录 业务层实现类
+ *
  * @author WXS
  * @date 2020/3/10
  */
@@ -17,9 +23,31 @@ public class StockOutLogServiceImpl extends BaseServiceImpl<StockOutLogForm> imp
 
     @Autowired
     private StockOutLogMapper mapper;
+    @Autowired
+    private GoodsMapper goodsMapper;
 
     @Override
     public BaseMapper<StockOutLogForm> getMapper() {
         return mapper;
+    }
+
+    @Override
+    public IPage<StockOutLogForm> getAllApplied(Page<StockOutLogForm> page) {
+        return mapper.selectAllApplied(page);
+    }
+
+    @Override
+    public IPage<StockOutLogForm> getAllNotApplied(Page<StockOutLogForm> page) {
+        return mapper.selectAllNotApplied(page);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public boolean modifyById(StockOutLogForm domain) {
+        if (domain.getAgree() == 0) {
+            return super.modifyById(domain) &&
+                    SystemUtils.gtTheZero(goodsMapper.reduceGoodsNum(domain.getApplyNum(), domain.getGoodsId()));
+        }
+        return super.modifyById(domain);
     }
 }

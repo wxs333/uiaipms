@@ -1,21 +1,23 @@
 package cn.edu.cdu.wxs.uiaipms.form;
 
-import cn.edu.cdu.wxs.uiaipms.domain.StockOutLog;
+import cn.edu.cdu.wxs.uiaipms.domain.StockIntoLog;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 /**
- * 库存记录 表单
+ * 库存入库记录 表单
  * @author WXS
- * @date 2020/2/17
+ * @date 2020/3/11
  */
 @Getter
 @Setter
-@TableName("stock_out_log")
-public class StockOutLogForm extends StockOutLog {
+@TableName("stock_into_log")
+public class StockIntoLogForm extends StockIntoLog {
     /**
-     * 操作人
+     * 处理人姓名
      */
     private String adminName;
     /**
@@ -23,16 +25,15 @@ public class StockOutLogForm extends StockOutLog {
      */
     private String goodsName;
     /**
-     * 申请人地址
+     * 品牌
      */
-    private String address;
+    private String goodsBrand;
     /**
      * 型号
      */
     private String goodsModel;
     /**
-     * 品牌
+     * 价格
      */
-    private String goodsBrand;
-
+    private BigDecimal goodsPrice;
 }
