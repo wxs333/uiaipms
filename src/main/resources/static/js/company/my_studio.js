@@ -6,7 +6,6 @@ layui.use('table', function () {
     tableRender(_table);
     // 表头工具栏监听
     _table.on('toolbar(my-studio)', function (obj) {
-        console.log("sss")
         window.location.href = '/api/com/export';
     });
 

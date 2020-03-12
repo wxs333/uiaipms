@@ -76,7 +76,7 @@ function openConfirm(_layer, $, _table, event, data) {
             "goodsId": data.goodsId
         });
         // 关闭提示框
-        layer.close(index);
+        _layer.close(index);
     });
 }
 

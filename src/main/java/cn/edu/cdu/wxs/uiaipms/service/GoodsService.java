@@ -1,6 +1,8 @@
 package cn.edu.cdu.wxs.uiaipms.service;
 
 import cn.edu.cdu.wxs.uiaipms.form.GoodsForm;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ import java.util.List;
  */
 public interface GoodsService extends BaseService<GoodsForm> {
     /**
-     * 获取所有物品的ID，名称，剩余数量
+     * 获取所有物品的ID，名称
      * @return 集合
      */
     List<GoodsForm> getAllGoods();
@@ -44,5 +46,18 @@ public interface GoodsService extends BaseService<GoodsForm> {
      * @return 集合
      */
     List<GoodsForm> getGoodsByStudId(String studId);
+
+    /**
+     * 分页获取所有物品
+     * @param page 分页
+     * @return 分页集合
+     */
+    IPage<GoodsForm> getByPage(Page<GoodsForm> page);
+
+    /**
+     * 获取所有物品
+     * @return 集合
+     */
+    List<GoodsForm> getList();
 
 }

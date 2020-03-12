@@ -63,22 +63,8 @@ public class StudioServiceImpl extends BaseServiceImpl<StudioForm> implements St
     }
 
     @Override
-    public void export(String comId, HttpServletResponse response) {
-        List<StudioForm> data = mapper.selectList(tableData(comId));
-        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("工作室", "我的工作室"), StudioForm.class, data);
-        OutputStream os = null;
-        try {
-            response.setContentType("application/octet-stream;charset=UTF-8");
-            response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("我的工作室.xls", "utf-8"));
-            response.addHeader("Pargam", "no-cache");
-            response.addHeader("Cache-Control", "no-cache");
-            os = response.getOutputStream();
-            workbook.write(os);
-            os.flush();
-            os.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public List<StudioForm> getList(String comId) {
+        return mapper.selectList(tableData(comId));
     }
 
     /**

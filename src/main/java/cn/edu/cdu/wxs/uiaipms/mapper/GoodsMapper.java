@@ -2,6 +2,8 @@ package cn.edu.cdu.wxs.uiaipms.mapper;
 
 import cn.edu.cdu.wxs.uiaipms.form.GoodsForm;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -43,4 +45,17 @@ public interface GoodsMapper extends BaseMapper<GoodsForm> {
      * @return 集合
      */
     List<GoodsForm> selectGoodsByStudId(@Param("studId") String studId);
+
+    /**
+     * 分页获取所有物品
+     * @param page 分页
+     * @return 分页集合
+     */
+    IPage<GoodsForm> selectByPage(Page<GoodsForm> page);
+
+    /**
+     * 获取所有物品
+     * @return 集合
+     */
+    List<GoodsForm> selectToList();
 }

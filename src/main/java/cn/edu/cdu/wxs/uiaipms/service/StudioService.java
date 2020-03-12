@@ -4,8 +4,8 @@ import cn.edu.cdu.wxs.uiaipms.form.StudioForm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 工作室 业务层接口
@@ -49,10 +49,9 @@ public interface StudioService extends BaseService<StudioForm> {
     IPage<StudioForm> getAllByComId(Page<StudioForm> page, String comId);
 
     /**
-     * 根据企业ID查询导出的数据
-     * @param comId 企业ID
-     * @param response 响应
+     * 获取企业用户的工作室
+     * @param comId 用户id
      * @return 集合
      */
-    void export(String comId, HttpServletResponse response);
+    List<StudioForm> getList(String comId);
 }

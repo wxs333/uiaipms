@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>物品入库</title>
+    <title>物品修改</title>
     <link rel="stylesheet" href="/static/layui/css/layui.css"/>
     <link rel="stylesheet" href="/static/css/common.css"/>
     <style>
@@ -27,6 +27,12 @@
                 <button class="layui-btn layui-btn-sm" type="reset">重置</button>
             </div>
             <hr class="html-editor-hr"/>
+            <div class="layui-form-item" hidden>
+                <label class="layui-form-label">id</label>
+                <div class="layui-input-block">
+                    <input type="hidden" class="layui-input" id="id" name="goodsId" th:value="${id}"/>
+                </div>
+            </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">名称</label>
                 <div class="layui-input-block">
@@ -46,21 +52,9 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">单价</label>
-                <div class="layui-input-block">
-                    <input class="layui-input" name="goodsPrice"/>
-                </div>
-            </div>
-            <div class="layui-form-item">
                 <label class="layui-form-label">单位</label>
                 <div class="layui-input-block">
                     <select class="layui-input" name="unitId" id="unit"></select>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">数量</label>
-                <div class="layui-input-block">
-                    <input class="layui-input" name="goodsNum"/>
                 </div>
             </div>
         </form>
@@ -68,6 +62,6 @@
 </div>
 <!-- js文件 -->
 <script type="text/javascript" src="/static/layui/layui.js"></script>
-<script type="text/javascript" src="/static/js/stock/into.js"></script>
+<script type="text/javascript" src="/static/js/goods/update.js"></script>
 </body>
 </html>

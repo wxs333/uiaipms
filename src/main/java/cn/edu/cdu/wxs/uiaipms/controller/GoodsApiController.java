@@ -3,14 +3,19 @@ package cn.edu.cdu.wxs.uiaipms.controller;
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.form.GoodsForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
+import cn.edu.cdu.wxs.uiaipms.service.ExcelService;
 import cn.edu.cdu.wxs.uiaipms.service.GoodsService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -25,9 +30,11 @@ public class GoodsApiController extends BaseController {
 
     @Autowired
     private GoodsService service;
+    @Autowired
+    private ExcelService<GoodsForm> excelService;
 
     /**
-     * 获取所有物品的ID，名称，剩余数量
+     * 获取所有物品的ID，名称
      *
      * @return json
      */
@@ -48,7 +55,7 @@ public class GoodsApiController extends BaseController {
         if (service.add(form, adminId)) {
             return jsonResult("入库成功");
         }
-        return jsonResult(GlobalConstant.FAILURE, "入库失败");
+        return jsonResult(GlobalConstant.FAILURE, "发生错误，请与系统管理员联系");
     }
 
     /**
@@ -72,4 +79,44 @@ public class GoodsApiController extends BaseController {
     public JsonResult<List<GoodsForm>> seeGoods(@NotNull String studId) {
         return jsonResult("0", service.getGoodsByStudId(studId));
     }
+
+    /**
+     * 分页获取所有物品
+     *
+     * @param page 分页
+     * @return json
+     */
+    @GetMapping("list")
+    public JsonResult<IPage<GoodsForm>> list(Page<GoodsForm> page) {
+        return jsonResult("0", service.getByPage(page));
+    }
+
+    /**
+     * 修改
+     *
+     * @param form 表单
+     * @return json
+     */
+    @PostMapping("update")
+    public JsonResult<String> update(GoodsForm form) {
+        form.setUpdateTime(LocalDateTime.now());
+        if (service.modifyById(form)) {
+            return jsonResult("修改成功");
+        }
+        return jsonResult(GlobalConstant.FAILURE, "发生错误，请与系统管理员联系");
+    }
+
+    /**
+     * 数据导出
+     *
+     * @param response 响应
+     */
+    @GetMapping("export")
+    public void export(HttpServletResponse response) {
+        // 获取数据
+        List<GoodsForm> data = service.getList();
+        // 数据导出
+        excelService.export("物品列表", "物品列表", data, GoodsForm.class, response);
+    }
+
 }

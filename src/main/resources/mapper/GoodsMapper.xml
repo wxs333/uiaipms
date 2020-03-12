@@ -52,4 +52,43 @@
             AND s.stud_id = #{studId}
     </select>
 
+    <select id="selectByPage" resultType="cn.edu.cdu.wxs.uiaipms.form.GoodsForm">
+        SELECT
+            g.goods_id,
+            g.goods_name,
+            g.goods_brand,
+            g.goods_model,
+            g.goods_price,
+            g.goods_num,
+            g.ban,
+            g.create_time,
+            g.update_time,
+            u.unit_name
+        FROM
+            goods g,
+            unit u
+        WHERE
+            g.unit_id = u.unit_id
+            AND g.logic_delete_flag = 0
+        ORDER BY
+	        g.update_time DESC
+    </select>
+
+    <select id="selectToList" resultType="cn.edu.cdu.wxs.uiaipms.form.GoodsForm">
+        SELECT
+            g.goods_name,
+            g.goods_brand,
+            g.goods_model,
+            g.goods_price,
+            g.goods_num,
+            g.ban,
+            u.unit_name
+        FROM
+            goods g,
+            unit u
+        WHERE
+            g.unit_id = u.unit_id
+            AND g.logic_delete_flag = 0
+    </select>
+
 </mapper>

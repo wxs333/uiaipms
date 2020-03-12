@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.service.impl;
 
 import cn.edu.cdu.wxs.uiaipms.column.GoodsColumn;
+import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.form.GoodsForm;
 import cn.edu.cdu.wxs.uiaipms.form.StockIntoLogForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.GoodsMapper;
@@ -9,6 +10,8 @@ import cn.edu.cdu.wxs.uiaipms.service.GoodsService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +39,8 @@ public class GoodsServiceImpl extends BaseServiceImpl<GoodsForm> implements Good
     @Override
     public List<GoodsForm> getAllGoods() {
         QueryWrapper<GoodsForm> wrapper = new QueryWrapper<>();
-        wrapper.select(GoodsColumn.GOODS_ID, GoodsColumn.GOODS_NAME);
+        wrapper.select(GoodsColumn.GOODS_ID, GoodsColumn.GOODS_NAME)
+                .eq(GlobalConstant.LOGIC_DELETE_FLAG, 0);
         return mapper.selectList(wrapper);
     }
 
@@ -83,7 +87,8 @@ public class GoodsServiceImpl extends BaseServiceImpl<GoodsForm> implements Good
     @Override
     public GoodsForm getById(String id) {
         QueryWrapper<GoodsForm> wrapper = new QueryWrapper<>();
-        wrapper.select(GoodsColumn.GOODS_BRAND, GoodsColumn.GOODS_MODEL, GoodsColumn.GOODS_NUM)
+        wrapper.select(GoodsColumn.GOODS_ID, GoodsColumn.GOODS_NAME, GoodsColumn.GOODS_BRAND, GoodsColumn.GOODS_MODEL, GoodsColumn.GOODS_NUM
+                , GoodsColumn.UNIT_ID)
                 .eq(GoodsColumn.GOODS_ID, id);
         return mapper.selectOne(wrapper);
     }
@@ -91,5 +96,15 @@ public class GoodsServiceImpl extends BaseServiceImpl<GoodsForm> implements Good
     @Override
     public List<GoodsForm> getGoodsByStudId(String studId) {
         return mapper.selectGoodsByStudId(studId);
+    }
+
+    @Override
+    public IPage<GoodsForm> getByPage(Page<GoodsForm> page) {
+        return mapper.selectByPage(page);
+    }
+
+    @Override
+    public List<GoodsForm> getList() {
+        return mapper.selectToList();
     }
 }

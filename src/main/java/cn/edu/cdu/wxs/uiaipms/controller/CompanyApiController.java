@@ -5,6 +5,7 @@ import cn.edu.cdu.wxs.uiaipms.form.CompanyForm;
 import cn.edu.cdu.wxs.uiaipms.form.StudioForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.CompanyService;
+import cn.edu.cdu.wxs.uiaipms.service.ExcelService;
 import cn.edu.cdu.wxs.uiaipms.service.StudioService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 企业用户 数据控制层
@@ -31,6 +33,8 @@ public class CompanyApiController extends BaseController {
     private CompanyService service;
     @Autowired
     private StudioService studioService;
+    @Autowired
+    private ExcelService<StudioForm> excelService;
 
     /**
      * 分页获取所有信息
@@ -84,13 +88,16 @@ public class CompanyApiController extends BaseController {
 
     /**
      * 数据导出
+     *
      * @param response 响应
      */
     @GetMapping("export")
     public void export(HttpServletResponse response) {
         // 获取当前登录企业用户的ID
         String comId = "19ccb469b89b4c59a7ff1ad559f9b53a";
+        // 获取数据
+        List<StudioForm> list = studioService.getList(comId);
         // 数据导出
-        studioService.export(comId, response);
+        excelService.export("工作室", "我的工作室", list, StudioForm.class, response);
     }
 }
