@@ -40,7 +40,7 @@ function tableRender(_table, mark) {
     var data = getCols(mark);
     _table.render({
         elem: '#table',
-        height: 550,
+        height: 600,
         toolbar: "#toolbar",
         defaultToolbar: [],
         url: data[1][0],

@@ -47,4 +47,9 @@ public class ProjectApprovalServiceImpl extends BaseServiceImpl<ProjectApprovalF
         return SystemUtils.gtTheZero(projectMapper.updateProAppr(projectForm))
                 && super.add(domain);
     }
+
+    @Override
+    public IPage<ProjectApprovalForm> getByPage(Page<ProjectApprovalForm> page) {
+        return mapper.selectByPage(page);
+    }
 }

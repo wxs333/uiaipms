@@ -20,4 +20,11 @@ public interface ProjectApprovalService extends BaseService<ProjectApprovalForm>
      * @return 分页集合
      */
     IPage<ProjectApprovalForm> getByTutorId(Page<ProjectApprovalForm> page, String tutorId);
+
+    /**
+     * 分页获取
+     * @param page 分页
+     * @return 分页集合
+     */
+    IPage<ProjectApprovalForm> getByPage(Page<ProjectApprovalForm> page);
 }

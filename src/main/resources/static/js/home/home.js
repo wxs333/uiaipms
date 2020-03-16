@@ -58,7 +58,7 @@ function changeHtml(id, $) {
             elem.attr("src", "/pro/sp");
             break;
         case "project-lx":
-            elem.attr("src", "");
+            elem.attr("src", "/ps/list");
             break;
         case "studio":
             elem.attr("src", "/stud/list");
@@ -68,6 +68,9 @@ function changeHtml(id, $) {
             break;
         case "goods":
             elem.attr("src", "/goods/list");
+            break;
+        case "project-sh":
+            elem.attr("src", "/pr/list");
             break;
 
     }

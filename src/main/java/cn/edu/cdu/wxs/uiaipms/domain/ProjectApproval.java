@@ -57,6 +57,12 @@ public class ProjectApproval implements Serializable {
     private String reason;
 
     /**
+     * 是否审核 0 未审核 1 已审核，默认 0
+     */
+    @TableField(value = "review")
+    private Integer review;
+
+    /**
      * 更新时间
      */
     @TableField(value = "update_time", jdbcType = JdbcType.TIMESTAMP)

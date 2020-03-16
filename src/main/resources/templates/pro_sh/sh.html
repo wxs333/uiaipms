@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>项目审核</title>
+    <link rel="stylesheet" href="/static/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/static/css/common.css"/>
+    <style>
+        .layui-card-body {
+            background-color: #EEEEEE;
+        }
+        .layui-btn-container {
+            margin-left: 110px;
+        }
+
+        .layui-btn-container .layui-btn {
+            margin-bottom: 0;
+        }
+        .layui-form .layui-form-item textarea {
+            height: 255px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-submit>确定</button>
+                <button class="layui-btn layui-btn-sm" type="reset">重置</button>
+            </div>
+            <hr class="html-editor-hr"/>
+            <div class="layui-form-item" hidden>
+                <label class="layui-form-label">审批记录id</label>
+                <div class="layui-input-block">
+                    <input type="hidden" class="layui-input" th:value="${paId}" name="paId"/>
+                </div>
+            </div>
+            <div class="layui-form-item" hidden>
+                <label class="layui-form-label">标识</label>
+                <div class="layui-input-block">
+                    <input type="hidden" class="layui-input" th:value="${event}" id="event"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">项目名</label>
+                <div class="layui-input-block">
+                    <input type="text" class="layui-input" th:value="${proName}" name="proName"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">理由</label>
+                <div class="layui-input-block">
+                    <textarea class="layui-input" name="reason"></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- js文件 -->
+<script type="text/javascript" src="/static/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/pro_sh/sh.js"></script>
+</body>
+
+</html>

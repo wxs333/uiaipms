@@ -21,4 +21,11 @@ public interface ProjectApprovalMapper extends CommonMapper<ProjectApprovalForm>
      * @return 分页集合
      */
     IPage<ProjectApprovalForm> selectByTutorId(Page<ProjectApprovalForm> page, @Param("tutorId") String tutorId);
+
+    /**
+     * 分页获取
+     * @param page 分页
+     * @return 分页集合
+     */
+    IPage<ProjectApprovalForm> selectByPage(Page<ProjectApprovalForm> page);
 }

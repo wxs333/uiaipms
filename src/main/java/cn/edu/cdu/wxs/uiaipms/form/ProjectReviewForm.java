@@ -1,20 +1,21 @@
 package cn.edu.cdu.wxs.uiaipms.form;
 
-import cn.edu.cdu.wxs.uiaipms.domain.ProjectApproval;
+import cn.edu.cdu.wxs.uiaipms.domain.ProjectReview;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * 项目审核表 表单
  * @author WXS
- * @date 2020/2/28
+ * @date 2020/3/13
  */
-@Getter
 @Setter
-@TableName("project_approval")
-public class ProjectApprovalForm extends ProjectApproval {
+@Getter
+@TableName("project_review")
+public class ProjectReviewForm extends ProjectReview {
     /**
-     * 项目标题
+     * 项目名称
      */
     private String proName;
     /**
@@ -22,11 +23,11 @@ public class ProjectApprovalForm extends ProjectApproval {
      */
     private String proDesc;
     /**
-     * 项目材料地址
-     */
-    private String proLocation;
-    /**
-     * 审批人信息
+     * 导师名称
      */
     private String tutorName;
+    /**
+     * 审批理由
+     */
+    private String paReason;
 }
