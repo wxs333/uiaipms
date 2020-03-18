@@ -3,6 +3,7 @@ package cn.edu.cdu.wxs.uiaipms.controller;
 import cn.edu.cdu.wxs.uiaipms.form.ProjectForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.ProjectService;
+import cn.edu.cdu.wxs.uiaipms.service.TutorService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -26,6 +27,8 @@ public class ProjectApiController extends BaseController {
 
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private TutorService tutorService;
 
     /**
      * 项目申报
@@ -54,8 +57,10 @@ public class ProjectApiController extends BaseController {
      */
     @GetMapping("getNoAppr")
     public JsonResult<IPage<ProjectForm>> getNoAppr(Page<ProjectForm> page) {
-        // 从session里获取当前登录导师的学院ID
-        String facId = "af6d4fea76c742fea432e482c391911b";
+        // 从session里获取当前登录导师ID
+        String tutorId = "e80f275768a24d9e855bf5595a6e1f33";
+        // 获取导师的学院id
+        String facId = tutorService.getFacIdById(tutorId);
         return jsonResult("0", projectService.getByFacId(page, facId));
     }
 }

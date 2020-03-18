@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.cdu.wxs.uiaipms.mapper.ProjectFinanceMapper">
+
+    <select id="selectAllNotDeal" resultType="cn.edu.cdu.wxs.uiaipms.form.ProjectFinanceForm">
+        SELECT
+            pf.pf_id,
+            pf.pf_amount,
+            pf.apply_reason,
+            pf.create_time,
+            p.pro_name,
+            t.tutor_name
+        FROM
+            project_finance pf,
+            project p,
+            tutor t
+        WHERE
+            pf.pro_id = p.pro_id
+            AND pf.user_id = t.tutor_id
+            AND pf.logic_delete_flag = 0
+            AND p.logic_delete_flag = 0
+            AND t.logic_delete_flag = 0
+            AND pf.deal = 1
+            ORDER BY pf.create_time DESC
+    </select>
+
+    <select id="selectAllDealed" resultType="cn.edu.cdu.wxs.uiaipms.form.ProjectFinanceForm">
+        SELECT
+            pf.pf_id,
+            pf.pf_amount,
+            pf.apply_reason,
+            pf.create_time,
+            pf.update_time,
+            pf.agree,
+            pf.review_reason,
+            p.pro_name,
+            t.tutor_name,
+            a.admin_name
+        FROM
+            project_finance pf,
+            project p,
+            tutor t,
+            admin a
+        WHERE
+            pf.pro_id = p.pro_id
+            AND pf.user_id = t.tutor_id
+            AND pf.admin_id = a.admin_id
+            AND pf.logic_delete_flag = 0
+            AND p.logic_delete_flag = 0
+            AND t.logic_delete_flag = 0
+            AND pf.deal = 0
+            ORDER BY pf.update_time DESC
+    </select>
+
+    <select id="selectCount" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            project_finance
+        WHERE
+            deal = #{deal}
+    </select>
+
+</mapper>

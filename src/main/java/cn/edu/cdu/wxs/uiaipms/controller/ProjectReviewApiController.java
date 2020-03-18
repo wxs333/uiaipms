@@ -39,6 +39,7 @@ public class ProjectReviewApiController extends BaseController {
         String tutorId = "e80f275768a24d9e855bf5595a6e1f33";
         form.setTutorId(tutorId);
         form.setReview(0);
+        form.setProName(null);
         // 修改审批记录
         ProjectApprovalForm approvalForm = new ProjectApprovalForm();
         approvalForm.setPaId(form.getPaId());
@@ -61,5 +62,32 @@ public class ProjectReviewApiController extends BaseController {
         // 当前登录用户id
         String tutorId = "e80f275768a24d9e855bf5595a6e1f33";
         return jsonResult("0", service.getByTutorId(page, tutorId));
+    }
+
+    /**
+     * 分页获取通过审核的项目
+     * @param page 分页
+     * @return json
+     */
+    @GetMapping("starting")
+    public JsonResult<IPage<ProjectReviewForm>> starting(Page<ProjectReviewForm> page) {
+        return jsonResult("0", service.getReviewed(page));
+    }
+
+    /**
+     * 更新
+     * @param form 表单
+     * @return json
+     */
+    @PostMapping("lx")
+    public JsonResult<String> update(ProjectReviewForm form) {
+        form.setUpdateTime(LocalDateTime.now());
+        form.setLxTime(LocalDateTime.now());
+        String tutorId = "e80f275768a24d9e855bf5595a6e1f33";
+        form.setTutorId(tutorId);
+        if (service.projectStarting(form)) {
+            return jsonResult("成功");
+        }
+        return jsonResult(GlobalConstant.FAILURE, "失败");
     }
 }

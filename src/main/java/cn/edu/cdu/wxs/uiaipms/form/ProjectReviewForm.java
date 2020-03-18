@@ -30,4 +30,8 @@ public class ProjectReviewForm extends ProjectReview {
      * 审批理由
      */
     private String paReason;
+    /**
+     * 项目id
+     */
+    private String proId;
 }

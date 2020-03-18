@@ -36,4 +36,11 @@ public interface ProjectReviewService extends BaseService<ProjectReviewForm> {
      * @return 分页集合
      */
     IPage<ProjectReviewForm> getReviewed(Page<ProjectReviewForm> page);
+
+    /**
+     * 项目立项，修改审核表记录，新增立项记录
+     * @param form 审核表单
+     * @return true 成功 false 失败
+     */
+    boolean projectStarting(ProjectReviewForm form);
 }

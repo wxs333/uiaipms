@@ -2,8 +2,10 @@ package cn.edu.cdu.wxs.uiaipms.service.impl;
 
 import cn.edu.cdu.wxs.uiaipms.form.ProjectApprovalForm;
 import cn.edu.cdu.wxs.uiaipms.form.ProjectReviewForm;
+import cn.edu.cdu.wxs.uiaipms.form.ProjectStartingForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.ProjectApprovalMapper;
 import cn.edu.cdu.wxs.uiaipms.mapper.ProjectReviewMapper;
+import cn.edu.cdu.wxs.uiaipms.mapper.ProjectStartingMapper;
 import cn.edu.cdu.wxs.uiaipms.service.ProjectReviewService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -24,6 +26,8 @@ public class ProjectReviewServiceImpl extends BaseServiceImpl<ProjectReviewForm>
     private ProjectReviewMapper mapper;
     @Autowired
     private ProjectApprovalMapper approvalMapper;
+    @Autowired
+    private ProjectStartingMapper startingMapper;
 
     @Override
     public BaseMapper<ProjectReviewForm> getMapper() {
@@ -44,5 +48,20 @@ public class ProjectReviewServiceImpl extends BaseServiceImpl<ProjectReviewForm>
     @Override
     public IPage<ProjectReviewForm> getReviewed(Page<ProjectReviewForm> page) {
         return mapper.selectReviewed(page);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public boolean projectStarting(ProjectReviewForm form) {
+        // 立项记录表单
+        ProjectStartingForm startingForm = new ProjectStartingForm();
+        startingForm.setPsId(SystemUtils.getUuid());
+        startingForm.setCreateTime(form.getUpdateTime());
+        startingForm.setUpdateTime(form.getUpdateTime());
+        startingForm.setTutorId(form.getTutorId());
+        startingForm.setPrId(form.getPrId());
+
+        form.setTutorId(null);
+        return modifyById(form) && SystemUtils.gtTheZero(startingMapper.insert(startingForm));
     }
 }

@@ -5,19 +5,19 @@ layui.use('table', function () {
     // 初始化
     tableRender(_table);
     // 头工具栏事件监听
-    _table.on('toolbar(goods)', function (obj) {
+    _table.on('toolbar(pro-lx)', function (obj) {
         // 数据导出
-        window.location.href = "/api/goods/export";
+        window.location.href = "";
     });
     // 行工具栏事件监听
-    _table.on('tool(goods)', function (obj) {
+    _table.on('tool(pro-lx)', function (obj) {
         var event = obj.event;
-        if ("edit" === event) {
-            // 打开修改页面
-            openUpdateHtml(_layer, _table, obj.data.goodsId);
-        } else {
+        if ("lx" === event) {
             // 弹出确认框
-            openConfirm($, _layer, _table, obj);
+            openConfirm($, _layer, _table, {"prId": obj.data.prId, "lx": 0});
+        } else if ("apply" === event) {
+            // 打开申请页面
+            openApplyHtml(_layer, obj.data.proId);
         }
     })
 
@@ -28,24 +28,22 @@ layui.use('table', function () {
  */
 function tableRender(_table) {
     _table.render({
-        elem: '#goods',
-        height: 550,
+        elem: '#pro-lx',
+        height: 570,
         toolbar: "#toolbar",
         defaultToolbar: [],
-        url: "/api/goods/list",
+        url: "/api/pr/starting",
         page: true,
         cols: [[ // 表头
-            {field: 'goodsId', title: 'id', align: "center", hide: 'true'},
-            {field: 'goodsName', title: '名称', align: "center"},
-            {field: 'goodsBrand', title: '品牌', align: "center"},
-            {field: 'goodsModel', title: '型号', align: "center"},
-            {field: 'goodsNum', title: '剩余数量', align: "center"},
-            {field: 'unitName', title: '单位', align: "center"},
-            {field: 'goodsPrice', title: '价格', align: "center"},
-            {field: 'ban', title: '状态', align: "center", templet: "#ban"},
-            {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
-            {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},
-            {field: '', title: "操作", minWidth: '150', align: "center", toolbar: "#rowTool"}
+            {field: 'prId', title: '审核记录id', align: "center", hide: 'true'},
+            {field: 'proId', title: '项目id', align: "center", hide: 'true'},
+            {field: 'proName', title: '项目名称', align: "center"},
+            {field: 'tutorName', title: '审核导师', align: "center"},
+            {field: 'reason', title: '审核理由', align: "center"},
+            {field: 'createTime', title: '审核时间', align: "center", templet: "#createTime"},
+            {field: 'lx', title: '立项', align: "center", templet: "#lx"},
+            {field: 'lxTime', title: '立项时间', align: "center", templet: "#lx_time"},
+            {field: '', title: "操作", minWidth: '200', align: "center", toolbar: "#rowTool"}
         ]],
         limits: [10, 20, 30],
         parseData: function (res) { // 返回数据格式解析
@@ -87,9 +85,9 @@ function openUpdateHtml(_layer, _table, id) {
  * @param _table
  */
 function reloadTable(_table) {
-    _table.reload('goods',
+    _table.reload('pro-lx',
         {
-            url: "/api/goods/list",
+            url: "/api/pr/starting",
             page: {
                 curr: 1
             }
@@ -97,39 +95,42 @@ function reloadTable(_table) {
 }
 
 /**
- * 弹出确认框
- * @param $
- * @param _layer
- * @param obj
+ * 弹出资金申请页面
  */
-function openConfirm($, _layer, _table, obj) {
-    var msg = obj.event === "ban" ? "您确定要下架吗？" : "您确定要上架吗？";
-    _layer.confirm(msg, {icon: 3, title: "确认信息", offset: '80px'}, function (index) {
-        // 执行修改
-        updateStatus($, _layer, _table, obj.event, obj.data.goodsId);
-        // 关闭
-        _layer.close(index);
-    });
+function openConfirm(_layer, data) {
+
 }
 
 /**
  * 修改状态
- * @param $
- * @param event
  */
-function updateStatus($, _layer, _table, event, id) {
-    var ban = event === "ban" ? 1 : 0;
+function updateStatus($, _layer, _table, data) {
     $.post(
-        "/api/goods/update",
-        {"goodsId": id, "ban": ban},
+        "/api/pr/lx",
+        data,
         function (res) {
             var icon = res.code === 'success' ? 1 : 2;
             _layer.msg(
                 res.message,
-                {time: 1500, icon: icon, offset: '200px'},
+                {time: 2000, icon: icon, offset: '200px'},
                 function () {
                     reloadTable(_table);
                 });
         }
     );
 }
+
+/**
+ * 弹出资金输入框
+ */
+function openApplyHtml(_layer, proId) {
+    _layer.open({
+        type: 2,
+        content: "/ps/apply?proId=" + proId,
+        area: ["800px", "550px"],
+        anim: 1,
+        scrollbar: false,
+        offset: "30px"
+    });
+}
+

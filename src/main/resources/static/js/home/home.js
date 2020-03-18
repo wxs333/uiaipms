@@ -45,8 +45,8 @@ function changeHtml(id, $) {
         case "authority":
             elem.attr("src", "/admin/authority");
             break;
-        case "finance":
-            elem.attr("src", "");
+        case "pro-fin":
+            elem.attr("src", "/pf/list");
             break;
         case "stock":
             elem.attr("src", "/sto/list");

@@ -63,4 +63,12 @@ public class TutorServiceImpl extends BaseServiceImpl<TutorForm> implements Tuto
     public boolean update(TutorForm form) {
         return SystemUtils.gtTheZero(mapper.updateById(form));
     }
+
+    @Override
+    public String getFacIdById(String id) {
+        QueryWrapper<TutorForm> wrapper = new QueryWrapper<>();
+        wrapper.select(TutorColumn.FACULTY_ID)
+                .eq(TutorColumn.TUTOR_ID, id);
+        return mapper.selectOne(wrapper).getFacultyId();
+    }
 }

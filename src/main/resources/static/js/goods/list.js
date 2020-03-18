@@ -114,8 +114,6 @@ function openConfirm($, _layer, _table, obj) {
 
 /**
  * 修改状态
- * @param $
- * @param event
  */
 function updateStatus($, _layer, _table, event, id) {
     var ban = event === "ban" ? 1 : 0;

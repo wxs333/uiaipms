@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -39,16 +38,10 @@ public class ProjectStarting implements Serializable {
     private String tutorId;
 
     /**
-     * 项目id
+     * 项目审核记录id
      */
-    @TableField("pro_id")
-    private String proId;
-
-    /**
-     * 开始资金
-     */
-    @TableField("money")
-    private BigDecimal money;
+    @TableField("pr_id")
+    private String prId;
 
     /**
      * 创建时间

@@ -129,7 +129,7 @@ function openUpdateHtml(mark, _layer, id, _table) {
         anim: 1,
         scrollbar: false,
         offset: '30px',
-        end: function f() {
+        end: function () {
             _table.reload('table',
                 {
                     url: getCols(mark)[1],

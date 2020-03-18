@@ -57,8 +57,14 @@ public class ProjectReview implements Serializable {
     /**
      * 是否立项 0 是 1 否，默认 1
      */
-    @TableField("starting")
-    private String starting;
+    @TableField("lx")
+    private String lx;
+
+    /**
+     * 立项时间
+     */
+    @TableField("lx_time")
+    private LocalDateTime lxTime;
 
     /**
      * 更新时间

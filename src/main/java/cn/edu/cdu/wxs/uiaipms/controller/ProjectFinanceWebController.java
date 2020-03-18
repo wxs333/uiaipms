@@ -1,6 +1,5 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,20 +8,18 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.constraints.NotNull;
 
 /**
- * <p>
- * 项目立项表 视图控制器
- * </p>
+ * 项目拨款记录 视图控制类
  *
  * @author WXS
- * @since 2020-03-13
+ * @date 2020/3/18
  */
+@RequestMapping("pf")
 @Controller
-@RequestMapping("/ps")
-public class ProjectStartingWebController {
+public class ProjectFinanceWebController {
     /**
-     * 前缀
+     * 视图前缀
      */
-    private static final String PREFIX = "pro_lx/";
+    private static final String PREFIX = "pro_finance/";
 
     /**
      * 列表
@@ -35,17 +32,16 @@ public class ProjectStartingWebController {
     }
 
     /**
-     * 资金申请
+     * 项目资金申请审批
      *
-     * @param proId 项目id
      * @return 视图
      */
-    @GetMapping("apply")
-    public ModelAndView apply(@NotNull String proId) {
+    @GetMapping("sp")
+    public ModelAndView sp(@NotNull String pfId, @NotNull String proName) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("proId", proId);
-        modelAndView.setViewName(PREFIX + "apply");
+        modelAndView.addObject("pfId", pfId);
+        modelAndView.addObject("proName", proName);
+        modelAndView.setViewName(PREFIX + "sp");
         return modelAndView;
     }
 }
-

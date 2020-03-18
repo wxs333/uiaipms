@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>物品管理</title>
+    <title>项目立项</title>
     <link rel="stylesheet" href="/static/layui/css/layui.css"/>
     <style>
         .layui-table-page {
@@ -17,12 +17,12 @@
 <body>
 <div class="layui-card">
     <div class="layui-card-body">
-        <table class="layui-table" id="goods" lay-filter="goods"></table>
+        <table class="layui-table" id="pro-lx" lay-filter="pro-lx"></table>
     </div>
 </div>
 <!-- js文件 -->
 <script type="text/javascript" src="/static/layui/layui.js"></script>
-<script type="text/javascript" src="/static/js/goods/list.js"></script>
+<script type="text/javascript" src="/static/js/pro_lx/list.js"></script>
 <!-- 头工具栏 -->
 <script type="text/html" id="toolbar">
     <div class="layui-btn-container">
@@ -31,27 +31,27 @@
 </script>
 <!-- 行工具 -->
 <script type="text/html" id="rowTool">
-    <button class="layui-btn layui-btn-sm layui-bg-orange" lay-event="edit">修改</button>
-    {{# if(d.ban == 0) { }}
-    <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="ban">下架</button>
+    {{# if(d.lx == 1) { }}
+    <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="lx">立项</button>
     {{# } else { }}
-    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="reset">上架</button>
+    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="apply">资金申请</button>
+    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="record">申请记录</button>
     {{# } }}
 </script>
 <!-- 格式化状态 -->
-<script type="text/html" id="ban">
-    {{#  if(d.ban == 0) {  }}
-    正常
+<script type="text/html" id="lx">
+    {{#  if(d.lx == 0) {  }}
+    已立项
     {{# }else { }}
-    已下架
+    未立项
     {{# } }}
 </script>
 <!-- 时间格式化-->
 <script type="text/html" id="createTime">
     {{ layui.util.toDateString(d.createTime, 'yyyy-MM-dd HH:mm:ss') }}
 </script>
-<script type="text/html" id="updateTime">
-    {{ layui.util.toDateString(d.updateTime, 'yyyy-MM-dd HH:mm:ss') }}
+<script type="text/html" id="lx_time">
+    {{ layui.util.toDateString(d.lxTime, 'yyyy-MM-dd HH:mm:ss') }}
 </script>
 </body>
 </html>

@@ -29,11 +29,14 @@
 
     <select id="selectReviewed" resultType="cn.edu.cdu.wxs.uiaipms.form.ProjectReviewForm">
         SELECT
+            p.pro_id,
             p.pro_name,
             t.tutor_name,
+            pr.pr_id,
             pr.reason,
             pr.create_time,
-            pr.`starting`
+            pr.lx,
+            pr.lx_time
         FROM
             project_review pr,
             project_approval pa,

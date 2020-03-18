@@ -51,4 +51,11 @@ public interface TutorService extends BaseService<TutorForm> {
      * @return true 成功 false 失败
      */
     boolean update(TutorForm form);
+
+    /**
+     * 跟id获取学院id
+     * @param id 导师id
+     * @return 学院id
+     */
+    String getFacIdById(String id);
 }

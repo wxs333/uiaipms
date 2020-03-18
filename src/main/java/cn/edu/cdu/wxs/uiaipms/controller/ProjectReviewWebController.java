@@ -1,10 +1,9 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.constraints.NotNull;
@@ -61,6 +60,7 @@ public class ProjectReviewWebController {
     public String history() {
         return PREFIX + "history";
     }
+
 
 }
 

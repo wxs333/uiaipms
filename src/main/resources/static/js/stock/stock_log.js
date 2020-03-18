@@ -29,7 +29,7 @@ function tableRender(_table, event) {
     var data = getColsAndUrl(event);
     _table.render({
         elem: '#table',
-        height: 550,
+        height: 500,
         toolbar: "#toolbar",
         defaultToolbar: [],
         url: data[1], //数据接口

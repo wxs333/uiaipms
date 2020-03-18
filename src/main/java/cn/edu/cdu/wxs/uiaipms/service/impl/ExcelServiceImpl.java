@@ -28,8 +28,10 @@ public class ExcelServiceImpl<T> implements ExcelService<T> {
         try {
             response.setContentType("application/octet-stream;charset=UTF-8");
             response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(sheetName + ".xls", "utf-8"));
-            response.addHeader("Pargam", "no-cache");
+            // 浏览器不缓存
+            response.addHeader("Pragma", "no-cache");
             response.addHeader("Cache-Control", "no-cache");
+            response.setDateHeader("expries", -1);
             os = response.getOutputStream();
             workbook.write(os);
             os.flush();
