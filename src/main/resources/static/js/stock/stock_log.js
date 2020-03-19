@@ -88,9 +88,11 @@ function getColsAndUrl(event) {
 function openHtml(_table, _layer, event) {
     var d = {};
     if ('into' === event) {
-        d = {'title': '入库', 'content': '/sto/into', 'width': '800px'};
+        d = {'title': '物品入库', 'content': '/sto/into', 'width': '800px'};
     } else if ('out' === event) {
         d = {'title': '出库审批', 'content': '/sto/out_list','width': '1200px'};
+    } else if ('apply' === event) {
+        d = {'title': '采购资金申请', 'content': '/sto/out_list','width': '800px'};
     }
     doOpen(_table, _layer, d);
 }

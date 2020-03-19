@@ -75,7 +75,7 @@ public class ProjectFinance implements Serializable {
      */
     @TableField("agree")
     @Excel(name = "处理结果", orderNum = "6", replace = {"同意_0", "驳回_1"})
-    private String agree;
+    private Integer agree;
     /**
      * 同意与否的原因
      */

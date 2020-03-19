@@ -37,10 +37,11 @@ public class ProjectFinanceWebController {
      * @return 视图
      */
     @GetMapping("sp")
-    public ModelAndView sp(@NotNull String pfId, @NotNull String proName) {
+    public ModelAndView sp(@NotNull String pfId, @NotNull String proName, @NotNull String pfAmount) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("pfId", pfId);
         modelAndView.addObject("proName", proName);
+        modelAndView.addObject("pfAmount", pfAmount);
         modelAndView.setViewName(PREFIX + "sp");
         return modelAndView;
     }

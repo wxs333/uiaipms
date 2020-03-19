@@ -72,6 +72,9 @@ function changeHtml(id, $) {
         case "project-sh":
             elem.attr("src", "/pr/list");
             break;
+            case "sto-fin":
+            elem.attr("src", "/pr/list");
+            break;
 
     }
 }

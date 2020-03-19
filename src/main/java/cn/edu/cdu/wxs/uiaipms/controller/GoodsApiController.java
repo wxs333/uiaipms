@@ -119,4 +119,15 @@ public class GoodsApiController extends BaseController {
         excelService.export("物品列表", "物品列表", data, GoodsForm.class, response);
     }
 
+    /**
+     * 获取某个工作室的设备及其数量
+     *
+     * @param studId 工作室id
+     * @return json
+     */
+    @GetMapping("details")
+    public JsonResult<List<GoodsForm>> details(@NotNull String studId) {
+        return jsonResult(service.getGoodsAndNumByStudId(studId));
+    }
+
 }

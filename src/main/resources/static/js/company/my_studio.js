@@ -32,7 +32,7 @@ layui.use('table', function () {
 function tableRender(_table) {
     _table.render({
         elem: '#my-studio',
-        height: 550,
+        height: 500,
         toolbar: "#toolbar",
         defaultToolbar: [],
         url: '/api/com/getAllStudio',

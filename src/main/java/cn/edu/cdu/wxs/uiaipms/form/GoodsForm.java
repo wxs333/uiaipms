@@ -20,4 +20,8 @@ public class GoodsForm extends Goods {
      */
     @Excel(name = "单位", orderNum = "5")
     private String unitName;
+    /**
+     * 设备数量
+     */
+    private Integer num;
 }

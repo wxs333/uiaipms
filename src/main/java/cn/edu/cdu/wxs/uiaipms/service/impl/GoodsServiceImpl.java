@@ -107,4 +107,9 @@ public class GoodsServiceImpl extends BaseServiceImpl<GoodsForm> implements Good
     public List<GoodsForm> getList() {
         return mapper.selectToList();
     }
+
+    @Override
+    public List<GoodsForm> getGoodsAndNumByStudId(String studId) {
+        return mapper.selectGoodsAndNumByStudId(studId);
+    }
 }

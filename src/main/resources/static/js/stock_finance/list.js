@@ -80,7 +80,7 @@ function getColsAndUrl(event) {
             {field: 'adminName', title: '处理人', align: "center"},
             {field: 'agree', title: '处理结果', align: "center", templet: "#agree"},
             {field: 'reviewReason', title: '理由', align: "center"},
-            {field: 'updateTime', title: '处理时间', align: "center", templet: "#updateTime"}
+            {field: 'updateTime', title: '处理时间', align: "center",  templet: "#updateTime"}
         ];
         data[1] = '/api/pf/deal';
     }
@@ -106,7 +106,7 @@ function openConfirmHtml(_layer, _table, obj) {
     _layer.open({
         type: 2,
         title: "项目资金申请审批",
-        content: "/pf/sp?pfId=" + obj.data.pfId + "&proName=" + obj.data.proName + "&pfAmount=" + obj.data.pfAmount,
+        content: "/pf/sp?pfId=" + obj.data.pfId + "&proName=" + obj.data.proName,
         area: ['800px', '550px'],
         anim: 1,
         scrollbar: false,

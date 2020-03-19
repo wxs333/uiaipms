@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * 物品 数据层
+ *
  * @author WXS
  * @date 2020/2/17
  */
@@ -19,6 +20,7 @@ public interface GoodsMapper extends BaseMapper<GoodsForm> {
 
     /**
      * 根据表单查询ID
+     *
      * @param form 表单
      * @return 个数
      */
@@ -26,6 +28,7 @@ public interface GoodsMapper extends BaseMapper<GoodsForm> {
 
     /**
      * 增加物品数量
+     *
      * @param form 表单
      * @return 影响行数
      */
@@ -33,14 +36,16 @@ public interface GoodsMapper extends BaseMapper<GoodsForm> {
 
     /**
      * 减少物品数量
+     *
      * @param num 减少量
-     * @param id id
+     * @param id  id
      * @return 影响行数
      */
     int reduceGoodsNum(@Param("num") Integer num, @Param("id") String id);
 
     /**
      * 获取工作室的所有设备
+     *
      * @param studId 工作室id
      * @return 集合
      */
@@ -48,6 +53,7 @@ public interface GoodsMapper extends BaseMapper<GoodsForm> {
 
     /**
      * 分页获取所有物品
+     *
      * @param page 分页
      * @return 分页集合
      */
@@ -55,7 +61,16 @@ public interface GoodsMapper extends BaseMapper<GoodsForm> {
 
     /**
      * 获取所有物品
+     *
      * @return 集合
      */
     List<GoodsForm> selectToList();
+
+    /**
+     * 获取某个工作室的设备及其数量
+     *
+     * @param studId 工作室id
+     * @return 集合
+     */
+    List<GoodsForm> selectGoodsAndNumByStudId(@Param("studId") String studId);
 }

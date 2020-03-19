@@ -4,6 +4,8 @@ layui.use(['table'], function () {
 
     // 数据初始化
     tableRender(_table, $);
+    // 请求设备及其数量
+    getGoodsAndNum($, $("#studId").val());
 });
 
 /**
@@ -12,7 +14,6 @@ layui.use(['table'], function () {
 function tableRender(_table, $) {
     _table.render({
         elem: '#details',
-        height: 450,
         defaultToolbar: [],
         url: '/api/goods/seeGoods', //数据接口
         where: {"studId": $("#studId").val()},
@@ -32,4 +33,21 @@ function tableRender(_table, $) {
             };
         }
     });
+}
+
+/**
+ * 请求设备及其数量
+ */
+function getGoodsAndNum($, studId) {
+    $.get(
+        "/api/goods/details",
+        {"studId": studId},
+        function (res) {
+            var html = "";
+            $.each(res.data, function (index, item) {
+                html += "<td>" + item.goodsName + "：" + item.num + item.unitName + "</td>";
+            });
+            $("#item").html(html);
+        }
+    );
 }

@@ -53,4 +53,30 @@
             AND pr.review = 0
     </select>
 
+    <select id="selectReviewedToList" resultType="cn.edu.cdu.wxs.uiaipms.form.ProjectReviewForm">
+        SELECT
+            p.pro_name,
+            t.tutor_name,
+            pr.pr_id,
+            pr.reason,
+            pr.create_time,
+            pr.lx,
+            pr.lx_time
+        FROM
+            project_review pr,
+            project_approval pa,
+            project p,
+            tutor t
+        WHERE
+            pr.pa_id = pa.pa_id
+            AND pa.pro_id = p.pro_id
+            AND pr.tutor_id = t.tutor_id
+            AND pr.logic_delete_flag = 0
+            AND pa.logic_delete_flag = 0
+            AND p.logic_delete_flag = 0
+            AND t.logic_delete_flag = 0
+            AND pr.review = 0
+    </select>
+
+
 </mapper>

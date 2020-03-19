@@ -4,6 +4,7 @@ import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.form.ProjectApprovalForm;
 import cn.edu.cdu.wxs.uiaipms.form.ProjectReviewForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
+import cn.edu.cdu.wxs.uiaipms.service.ExcelService;
 import cn.edu.cdu.wxs.uiaipms.service.ProjectReviewService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 项目审核表 数据控制器
@@ -28,6 +32,8 @@ public class ProjectReviewApiController extends BaseController {
 
     @Autowired
     private ProjectReviewService service;
+    @Autowired
+    private ExcelService<ProjectReviewForm> excelService;
 
     @PostMapping("add")
     public JsonResult<String> add(ProjectReviewForm form) {
@@ -89,5 +95,20 @@ public class ProjectReviewApiController extends BaseController {
             return jsonResult("成功");
         }
         return jsonResult(GlobalConstant.FAILURE, "失败");
+    }
+
+    /**
+     * 数据导出
+     * @param response 响应
+     */
+    @GetMapping("export")
+    public void export(HttpServletResponse response) {
+        // 获取数据
+        List<ProjectReviewForm> data = service.getReviewedToList();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        System.out.println(data.get(0).getCreateTime().toString());
+        // 导出
+        excelService.export("项目立项","项目项目立项", data, ProjectReviewForm.class, response);
     }
 }

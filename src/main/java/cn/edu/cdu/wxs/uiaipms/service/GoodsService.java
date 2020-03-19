@@ -60,4 +60,12 @@ public interface GoodsService extends BaseService<GoodsForm> {
      */
     List<GoodsForm> getList();
 
+    /**
+     * 获取某个工作室的设备及其数量
+     *
+     * @param studId 工作室id
+     * @return 集合
+     */
+    List<GoodsForm> getGoodsAndNumByStudId(String studId);
+
 }

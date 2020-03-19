@@ -91,4 +91,27 @@
             AND g.logic_delete_flag = 0
     </select>
 
+    <select id="selectGoodsAndNumByStudId" resultType="cn.edu.cdu.wxs.uiaipms.form.GoodsForm">
+        SELECT
+            g.goods_name,
+            SUM( s.apply_num ) AS num,
+            u.unit_name
+        FROM
+            goods g,
+            stock_out_log s,
+            studio st,
+            unit u
+        WHERE
+            s.goods_id = g.goods_id
+            AND s.stud_id = st.stud_id
+            AND g.unit_id = u.unit_id
+            AND g.logic_delete_flag = 0
+            AND s.logic_delete_flag = 0
+            AND st.logic_delete_flag = 0
+            AND s.stud_id = #{studId}
+        GROUP BY
+            g.goods_name,
+            u.unit_name
+    </select>
+
 </mapper>

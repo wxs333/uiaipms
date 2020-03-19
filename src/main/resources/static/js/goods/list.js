@@ -29,7 +29,7 @@ layui.use('table', function () {
 function tableRender(_table) {
     _table.render({
         elem: '#goods',
-        height: 550,
+        height: 570,
         toolbar: "#toolbar",
         defaultToolbar: [],
         url: "/api/goods/list",

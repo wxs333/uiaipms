@@ -5,6 +5,8 @@ import cn.edu.cdu.wxs.uiaipms.form.ProjectReviewForm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import java.util.List;
+
 /**
  * @author WXS
  * @date 2020/3/13
@@ -43,4 +45,10 @@ public interface ProjectReviewService extends BaseService<ProjectReviewForm> {
      * @return true 成功 false 失败
      */
     boolean projectStarting(ProjectReviewForm form);
+
+    /**
+     * 查询所有通过审核的项目
+     * @return 集合
+     */
+    List<ProjectReviewForm> getReviewedToList();
 }

@@ -1,5 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.form;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.edu.cdu.wxs.uiaipms.domain.ProjectReview;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
@@ -17,6 +18,7 @@ public class ProjectReviewForm extends ProjectReview {
     /**
      * 项目名称
      */
+    @Excel(name = "项目名称", width = 30)
     private String proName;
     /**
      * 项目描述
@@ -25,6 +27,7 @@ public class ProjectReviewForm extends ProjectReview {
     /**
      * 导师名称
      */
+    @Excel(name = "审核导师", orderNum = "1")
     private String tutorName;
     /**
      * 审批理由

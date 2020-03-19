@@ -65,4 +65,8 @@ public class GlobalConstant {
     public static final String TABLE_NAME = "tableName";
     public static final String ID_COL = "idCol";
     public static final String ROLE_TYPE = "roleType";
+    /**
+     * 系统信息表中系统金额记录的id
+     */
+    public static final String MONEY_ID = "e0dacc4daba5459689e6de8aef2b05a5";
 }

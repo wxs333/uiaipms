@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @author WXS
  * @date 2020/3/13
@@ -63,5 +65,10 @@ public class ProjectReviewServiceImpl extends BaseServiceImpl<ProjectReviewForm>
 
         form.setTutorId(null);
         return modifyById(form) && SystemUtils.gtTheZero(startingMapper.insert(startingForm));
+    }
+
+    @Override
+    public List<ProjectReviewForm> getReviewedToList() {
+        return mapper.selectReviewedToList();
     }
 }

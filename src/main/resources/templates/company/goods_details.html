@@ -16,12 +16,20 @@
         .layui-table-page {
             text-align: center;
         }
+        #item {
+            color: black;
+        }
+        #item td {
+            padding-left: 40px;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
 <div class="layui-card">
     <div class="layui-card-body">
         <input type="hidden" th:value="${studId}" id="studId">
+        <div id="item"></div>
         <table class="layui-table" id="details"></table>
     </div>
 </div>

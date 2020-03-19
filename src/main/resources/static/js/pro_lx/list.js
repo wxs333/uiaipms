@@ -6,8 +6,10 @@ layui.use('table', function () {
     tableRender(_table);
     // 头工具栏事件监听
     _table.on('toolbar(pro-lx)', function (obj) {
-        // 数据导出
-        window.location.href = "";
+        if (obj.event === "export") {
+            // 数据导出
+            window.location.href = "/api/pr/export";
+        }
     });
     // 行工具栏事件监听
     _table.on('tool(pro-lx)', function (obj) {

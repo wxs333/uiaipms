@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * <p>
  * 项目审核表 Mapper 接口
@@ -33,4 +35,10 @@ public interface ProjectReviewMapper extends BaseMapper<ProjectReviewForm> {
      * @return 分页集合
      */
     IPage<ProjectReviewForm> selectReviewed(@Param("page") Page<ProjectReviewForm> page);
+
+    /**
+     * 查询所有通过审核的项目
+     * @return 集合
+     */
+    List<ProjectReviewForm> selectReviewedToList();
 }

@@ -26,7 +26,7 @@ layui.use('table', function () {
 function tableRender(_table) {
     _table.render({
         elem: '#pro-sh',
-        height: 600,
+        height: 550,
         toolbar: "#tool",
         defaultToolbar: [],
         url: "/api/pa/list",

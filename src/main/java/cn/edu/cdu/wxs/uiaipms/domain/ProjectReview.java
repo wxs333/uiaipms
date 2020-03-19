@@ -1,5 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.domain;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -53,17 +54,20 @@ public class ProjectReview implements Serializable {
      * 审核意见
      */
     @TableField("reason")
+    @Excel(name = "审核理由", orderNum = "2", width = 30)
     private String reason;
     /**
      * 是否立项 0 是 1 否，默认 1
      */
     @TableField("lx")
+    @Excel(name = "立项", orderNum = "4", replace = {"已立项_0", "未立项_1"})
     private String lx;
 
     /**
      * 立项时间
      */
     @TableField("lx_time")
+    @Excel(name = "立项时间", orderNum = "5", width = 22, format = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lxTime;
 
     /**
@@ -76,6 +80,7 @@ public class ProjectReview implements Serializable {
      * 创建时间
      */
     @TableField("create_time")
+    @Excel(name = "审核时间", orderNum = "3", width = 22, format = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
     /**

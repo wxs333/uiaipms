@@ -35,7 +35,7 @@ function renderTable(_table, $) {
 
     _table.render({
         elem: '#demo'
-        , height: 550
+        , height: 570
         , toolbar: "#toolbar"
         , defaultToolbar: []
         , url: url //数据接口
