@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.cdu.wxs.uiaipms.mapper.BuyFundsApplyMapper">
+
+    <select id="selectPageNoDeal" resultType="cn.edu.cdu.wxs.uiaipms.form.BuyFundsApplyForm">
+        SELECT
+            b.bfa_id,
+            a.admin_name AS applyUserName,
+            b.apply_reason,
+            b.apply_mount,
+            b.create_time
+        FROM
+            buy_funds_apply b,
+            admin a
+        WHERE
+            b.apply_user_id = a.admin_id
+            AND b.logic_delete_flag = 0
+            AND a.logic_delete_flag = 0
+            AND b.deal = 1
+        ORDER BY
+            b.create_time DESC
+    </select>
+
+    <select id="selectPageDeal" resultType="cn.edu.cdu.wxs.uiaipms.form.BuyFundsApplyForm">
+          SELECT
+            a2.admin_name AS applyUserName,
+            a1.admin_name AS dealUserName,
+            b.bfa_agree,
+            b.bfa_reason,
+            b.apply_reason,
+            b.apply_mount,
+            b.create_time,
+            b.update_time
+        FROM
+            admin a1
+            RIGHT JOIN buy_funds_apply b ON a1.admin_id = b.deal_user_id
+            LEFT JOIN admin a2 ON b.apply_user_id = a2.admin_id
+        WHERE
+            b.logic_delete_flag = 0
+            AND a1.logic_delete_flag = 0
+            AND a2.logic_delete_flag = 0
+            AND b.deal = 0
+        ORDER BY
+            b.update_time DESC
+    </select>
+</mapper>

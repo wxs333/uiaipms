@@ -5,7 +5,10 @@ import cn.edu.cdu.wxs.uiaipms.form.BuyFundsApplyForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.BuyFundsApplyService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,4 +48,44 @@ public class BuyFundsApplyApiController extends BaseController {
         }
         return jsonResult(GlobalConstant.FAILURE, GlobalConstant.FAILURE_MSG);
     }
+
+    /**
+     * 未处理记录列表
+     *
+     * @param page 分页
+     * @return json
+     */
+    @GetMapping("listNoDeal")
+    public JsonResult<IPage<BuyFundsApplyForm>> listNoDeal(Page<BuyFundsApplyForm> page) {
+        return jsonResult("0", service.getPageNoDeal(page));
+    }
+
+    /**
+     * 已处理处理记录列表
+     *
+     * @param page 分页
+     * @return json
+     */
+    @GetMapping("listDeal")
+    public JsonResult<IPage<BuyFundsApplyForm>> listDeal(Page<BuyFundsApplyForm> page) {
+        return jsonResult("0", service.getPageDeal(page));
+    }
+
+    /**
+     * 审批
+     *
+     * @param form 表单
+     * @return json
+     */
+    @PostMapping("update")
+    public JsonResult<String> update(BuyFundsApplyForm form) {
+        String adminId = "883a51f8cae347048e45a785b8f87a0e";
+        form.setDealUserId(adminId);
+        if (service.modifyById(form)) {
+            return jsonResult("审批成功");
+        }
+        return jsonResult(GlobalConstant.FAILURE, GlobalConstant.FAILURE_MSG);
+    }
+
+
 }

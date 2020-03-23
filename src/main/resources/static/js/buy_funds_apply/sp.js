@@ -12,11 +12,11 @@ layui.use("form", function () {
 });
 
 /**
- * 新增项目拨款记录
+ * 审批数据提交
  */
 function updateProjectFinance($, _layer, data) {
     $.post(
-        "/api/pf/update",
+        "/api/bf/update",
         data,
         function (res) {
             var icon = res.code === 'success' ? 1 : 2;

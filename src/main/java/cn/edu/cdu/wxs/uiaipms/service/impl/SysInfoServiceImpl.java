@@ -38,6 +38,7 @@ public class SysInfoServiceImpl extends BaseServiceImpl<SysInfo> implements SysI
 
     @Override
     public boolean modifyById(SysInfo domain) {
+        // 减少对应的金额
         domain.setSysCount(getSysMoney().subtract(domain.getSysCount()));
         return super.modifyById(domain);
     }

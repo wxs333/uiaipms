@@ -41,6 +41,12 @@ function changeHtml(id, $, _layer) {
         case "stock":
             elem.attr("src", "/sto/list");
             break;
+        case "sto-fin":
+            elem.attr("src", "/bf/list");
+            break;
+            case "pro-fin":
+            elem.attr("src", "/pf/list");
+            break;
         case "project-sb":
             elem.attr("src", "/pro/sb");
             break;
@@ -62,12 +68,10 @@ function changeHtml(id, $, _layer) {
         case "project-sh":
             elem.attr("src", "/pr/list");
             break;
-        case "sto-fin":
-            elem.attr("src", "/pr/list");
-            break;
         case "buy-funds-apply":
             var data = {
-                "title": "采购资金申请", "url": "/bf/apply"};
+                "title": "采购资金申请", "url": "/bf/apply"
+            };
             openHtml(_layer, data);
             break;
 

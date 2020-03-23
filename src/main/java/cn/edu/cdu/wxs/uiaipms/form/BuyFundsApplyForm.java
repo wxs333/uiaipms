@@ -14,4 +14,12 @@ import lombok.Setter;
 @Setter
 @TableName("buy_funds_apply")
 public class BuyFundsApplyForm extends BuyFundsApply {
+    /**
+     * 申请人姓名
+     */
+    private String applyUserName;
+    /**
+     * 处理人姓名
+     */
+    private String dealUserName;
 }
