@@ -1,5 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.domain;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -48,6 +49,7 @@ public class BuyFundsApply implements Serializable {
      * 是否同意 0 同意 1 不同意 默认 1
      */
     @TableField("bfa_agree")
+    @Excel(name = "是否同意", orderNum = "4", replace = {"是_0","否_1"})
     private Integer bfaAgree;
 
     /**
@@ -72,18 +74,21 @@ public class BuyFundsApply implements Serializable {
      * 申请金额
      */
     @TableField("apply_mount")
+    @Excel(name = "申请金额(单位：元)", orderNum = "1", width = 18)
     private BigDecimal applyMount;
 
     /**
      * 创建时间
      */
     @TableField("create_time")
+    @Excel(name = "申请时间", orderNum = "2", width = 22)
     private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
     @TableField("update_time")
+    @Excel(name = "处理时间", orderNum = "5", width = 22)
     private LocalDateTime updateTime;
 
     /**

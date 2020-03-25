@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import java.util.List;
+
 /**
  * 采购资金申请 数据访问类
  *
@@ -27,4 +29,10 @@ public interface BuyFundsApplyMapper extends BaseMapper<BuyFundsApplyForm> {
      * @return 分页集合
      */
     IPage<BuyFundsApplyForm> selectPageDeal(Page<BuyFundsApplyForm> page);
+
+    /**
+     * 查询需要导出的数据
+     * @return 集合
+     */
+    List<BuyFundsApplyForm> selectExportData();
 }

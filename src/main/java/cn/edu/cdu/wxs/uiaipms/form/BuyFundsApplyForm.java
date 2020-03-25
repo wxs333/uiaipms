@@ -1,5 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.form;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.edu.cdu.wxs.uiaipms.domain.BuyFundsApply;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
@@ -17,9 +18,11 @@ public class BuyFundsApplyForm extends BuyFundsApply {
     /**
      * 申请人姓名
      */
+    @Excel(name = "申请人")
     private String applyUserName;
     /**
      * 处理人姓名
      */
+    @Excel(name = "处理人", orderNum = "3")
     private String dealUserName;
 }

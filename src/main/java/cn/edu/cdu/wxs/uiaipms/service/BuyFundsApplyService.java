@@ -4,6 +4,8 @@ import cn.edu.cdu.wxs.uiaipms.form.BuyFundsApplyForm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import java.util.List;
+
 /**
  * 采购资金申请 业务接口类
  * @author WXS
@@ -25,4 +27,10 @@ public interface BuyFundsApplyService extends BaseService<BuyFundsApplyForm> {
      * @return 分页集合
      */
     IPage<BuyFundsApplyForm> getPageDeal(Page<BuyFundsApplyForm> page);
+
+    /**
+     * 查询需要导出的数据
+     * @return 集合
+     */
+    List<BuyFundsApplyForm> getExportData();
 }

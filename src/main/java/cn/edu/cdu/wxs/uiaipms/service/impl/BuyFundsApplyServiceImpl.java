@@ -16,6 +16,7 @@ import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 采购资金申请 业务实现类
@@ -62,5 +63,10 @@ public class BuyFundsApplyServiceImpl extends BaseServiceImpl<BuyFundsApplyForm>
     @Override
     public IPage<BuyFundsApplyForm> getPageDeal(Page<BuyFundsApplyForm> page) {
         return mapper.selectPageDeal(page);
+    }
+
+    @Override
+    public List<BuyFundsApplyForm> getExportData() {
+        return mapper.selectExportData();
     }
 }
