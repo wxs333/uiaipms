@@ -56,6 +56,7 @@ public class EmailServiceImpl implements EmailService {
         } catch (Exception e) {
             logger.info("邮件发送失败");
         }
+
         return code;
     }
 }
