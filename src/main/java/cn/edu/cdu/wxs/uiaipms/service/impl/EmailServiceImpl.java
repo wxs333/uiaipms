@@ -48,7 +48,7 @@ public class EmailServiceImpl implements EmailService {
         // 邮件主题
         message.setSubject(subject);
         // 邮件内容
-        message.setText("大憨包，文莎莎");
+        message.setText(content);
         try {
             // 发送
             mailSender.send(message);
