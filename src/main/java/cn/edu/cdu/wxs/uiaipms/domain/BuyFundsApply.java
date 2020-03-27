@@ -5,8 +5,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -20,8 +18,6 @@ import java.time.LocalDateTime;
  * @author WXS
  * @since 2020-03-19
  */
-@Getter
-@Setter
 @TableName("buy_funds_apply")
 public class BuyFundsApply implements Serializable {
 
@@ -97,27 +93,91 @@ public class BuyFundsApply implements Serializable {
     @TableField("logic_delete_flag")
     private Integer logicDeleteFlag;
 
+    public String getBfaId() {
+        return bfaId;
+    }
 
-    public static final String BFA_ID = "bfa_id";
+    public void setBfaId(String bfaId) {
+        this.bfaId = bfaId;
+    }
 
-    public static final String DEAL_USER_ID = "deal_user_id";
+    public String getDealUserId() {
+        return dealUserId;
+    }
 
-    public static final String DEAL = "deal";
+    public void setDealUserId(String dealUserId) {
+        this.dealUserId = dealUserId;
+    }
 
-    public static final String BFA_AGREE = "bfa_agree";
+    public Integer getDeal() {
+        return deal;
+    }
 
-    public static final String BFA_REASON = "bfa_reason";
+    public void setDeal(Integer deal) {
+        this.deal = deal;
+    }
 
-    public static final String APPLY_USER_ID = "apply_user_id";
+    public Integer getBfaAgree() {
+        return bfaAgree;
+    }
 
-    public static final String APPLY_REASON = "apply_reason";
+    public void setBfaAgree(Integer bfaAgree) {
+        this.bfaAgree = bfaAgree;
+    }
 
-    public static final String APPLY_MOUNT = "apply_mount";
+    public String getBfaReason() {
+        return bfaReason;
+    }
 
-    public static final String CREATE_TIME = "create_time";
+    public void setBfaReason(String bfaReason) {
+        this.bfaReason = bfaReason;
+    }
 
-    public static final String UPDATE_TIME = "update_time";
+    public String getApplyUserId() {
+        return applyUserId;
+    }
 
-    public static final String LOGIC_DELETE_FLAG = "logic_delete_flag";
+    public void setApplyUserId(String applyUserId) {
+        this.applyUserId = applyUserId;
+    }
 
+    public String getApplyReason() {
+        return applyReason;
+    }
+
+    public void setApplyReason(String applyReason) {
+        this.applyReason = applyReason;
+    }
+
+    public BigDecimal getApplyMount() {
+        return applyMount;
+    }
+
+    public void setApplyMount(BigDecimal applyMount) {
+        this.applyMount = applyMount;
+    }
+
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
+    }
+
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Integer getLogicDeleteFlag() {
+        return logicDeleteFlag;
+    }
+
+    public void setLogicDeleteFlag(Integer logicDeleteFlag) {
+        this.logicDeleteFlag = logicDeleteFlag;
+    }
 }

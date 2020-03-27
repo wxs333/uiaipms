@@ -74,21 +74,4 @@ public class BuyWipeOut implements Serializable {
     @TableField("logic_delete_flag")
     private Integer logicDeleteFlag;
 
-
-    public static final String BWO_ID = "bwo_id";
-
-    public static final String DEAL_USER_ID = "deal_user_id";
-
-    public static final String BWO_REASON = "bwo_reason";
-
-    public static final String BWO_AMOUNT = "bwo_amount";
-
-    public static final String BWO_USER_ID = "bwo_user_id";
-
-    public static final String CREATE_TIME = "create_time";
-
-    public static final String UPDATE_TIME = "update_time";
-
-    public static final String LOGIC_DELETE_FLAG = "logic_delete_flag";
-
 }
