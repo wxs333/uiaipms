@@ -86,7 +86,6 @@ public class AdminApiController extends BaseController {
      */
     @PostMapping("revoke")
     public JsonResult<String> revoke(UserRoleForm form) {
-        System.out.println(form);
         // 获取选择角色的ID
         form.setChoose(parseJson(form.getData()));
         if (userRoleService.revoke(form)) {
