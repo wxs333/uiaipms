@@ -90,11 +90,30 @@ public class SystemUtils {
         return ((TutorForm) session.getAttribute("user")).getTutorId();
     }
 
+    /**
+     * 生成6位验证码，用于找回密码身份验证
+     * @return 验证码
+     */
+    public static String verificationCode(){
+        int length = 6;
+        // 获取一个随机数
+        double v = Math.random();
+        // 处理成6位验证码
+        v = v * 1000000;
+        String code = Integer.toString(new Double(v).intValue());
+        // 缺位补0
+        if (code.length() < length) {
+            code += "0";
+        }
+        return code;
+    }
+
     public static void main(String[] args) {
         //System.out.println(md5("dahan", "dahan"));
-        System.out.println(getUuid());
-        System.out.println(getUuid());
-        System.out.println(getUuid());
+//        System.out.println(getUuid());
+//        System.out.println(getUuid());
+//        System.out.println(getUuid());
+        System.out.println(verificationCode());
     }
 
 }
