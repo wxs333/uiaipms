@@ -61,12 +61,28 @@ public class GlobalConstant {
      * 逻辑删除字段
      */
     public static final String LOGIC_DELETE_FLAG = "logic_delete_flag";
-
+    /**
+     * 表名
+     */
     public static final String TABLE_NAME = "tableName";
+    /**
+     * id列名
+     */
     public static final String ID_COL = "idCol";
+    /**
+     * 角色类型
+     */
     public static final String ROLE_TYPE = "roleType";
     /**
      * 系统信息表中系统金额记录的id
      */
     public static final String MONEY_ID = "e0dacc4daba5459689e6de8aef2b05a5";
+    /**
+     * FTP中头像存放目录
+     */
+    public static final String FTP_HEAD_IMG_DIRECTORY = "/uiaipms/head-img/";
+    /**
+     * FTP中word文件存放目录
+     */
+    public static final String FTP_WORD_DIRECTORY = "/uiaipms/word/";
 }

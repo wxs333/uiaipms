@@ -3,10 +3,7 @@ package cn.edu.cdu.wxs.uiaipms.controller;
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.form.LoginForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
-import cn.edu.cdu.wxs.uiaipms.service.AdminService;
-import cn.edu.cdu.wxs.uiaipms.service.CompanyService;
-import cn.edu.cdu.wxs.uiaipms.service.StudentService;
-import cn.edu.cdu.wxs.uiaipms.service.TutorService;
+import cn.edu.cdu.wxs.uiaipms.service.*;
 import cn.edu.cdu.wxs.uiaipms.utils.CodeUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -57,6 +54,11 @@ public class UserLoginController extends BaseController {
      */
     @Autowired
     private CompanyService companyService;
+    /**
+     * ftp服务层
+     */
+    @Autowired
+    private FtpService ftpService;
     /**
      * session里的用户
      */
@@ -114,6 +116,20 @@ public class UserLoginController extends BaseController {
         // 保存到session里
         if (!ObjectUtils.isEmpty(code)) {
             session.setAttribute(SESSION_CODE, code);
+        }
+    }
+
+    /**
+     * 头像显示
+     * @param response 响应
+     */
+    @GetMapping("headImg")
+    public void headImg(HttpServletResponse response) {
+        String path = GlobalConstant.FTP_HEAD_IMG_DIRECTORY + "icon.png";
+        try {
+            ftpService.download(path, response.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

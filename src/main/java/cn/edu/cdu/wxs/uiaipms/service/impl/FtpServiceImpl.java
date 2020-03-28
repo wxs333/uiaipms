@@ -1,13 +1,15 @@
 package cn.edu.cdu.wxs.uiaipms.service.impl;
 
-import cn.edu.cdu.wxs.uiaipms.service.FileService;
+import cn.edu.cdu.wxs.uiaipms.service.FtpService;
 import cn.edu.cdu.wxs.uiaipms.utils.FtpUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
-import java.time.LocalDateTime;
+import java.io.OutputStream;
 
 /**
  * 文件 服务层实现类
@@ -16,8 +18,8 @@ import java.time.LocalDateTime;
  * @date 2020/2/26
  */
 @Service
-@PropertySource("classpath:ftp.properties")
-public class FileServiceImpl implements FileService {
+@PropertySource("classpath:/ftp.properties")
+public class FtpServiceImpl implements FtpService {
     /**
      * 地址
      */
@@ -39,14 +41,19 @@ public class FileServiceImpl implements FileService {
     @Value("${ftp.password}")
     private String password;
 
-    @Override
-    public boolean upload(String path, InputStream inputStream) {
-        String fileName = LocalDateTime.now().toString();
-        return upload(path, fileName, inputStream);
-    }
+    /**
+     * 日志
+     */
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
 
     @Override
     public boolean upload(String path, String fileName, InputStream inputStream) {
-        return FtpUtils.upload(host, port, username, password,path, fileName, inputStream);
+        return FtpUtils.upload(host, port, username, password, path, fileName, inputStream);
+    }
+
+    @Override
+    public void download(String path, OutputStream outputStream) {
+        FtpUtils.download(host, port, username, password, path, outputStream);
     }
 }

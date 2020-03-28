@@ -92,9 +92,10 @@ public class SystemUtils {
 
     /**
      * 生成6位验证码，用于找回密码身份验证
+     *
      * @return 验证码
      */
-    public static String verificationCode(){
+    public static String verificationCode() {
         int length = 6;
         // 获取一个随机数
         double v = Math.random();
@@ -108,12 +109,30 @@ public class SystemUtils {
         return code;
     }
 
+    /**
+     * 获取不重复的文件名
+     *
+     * @param filename 原来的文件名
+     * @return 新的文件名
+     */
+    public static String getNotRepeatingFilename(String filename) {
+        // 得到文件后缀
+        int index = filename.lastIndexOf(".");
+        String suffix = filename.substring(index);
+        System.out.println(index);
+        // 重新命名
+        return System.currentTimeMillis() + suffix;
+
+    }
+
     public static void main(String[] args) {
         //System.out.println(md5("dahan", "dahan"));
 //        System.out.println(getUuid());
 //        System.out.println(getUuid());
 //        System.out.println(getUuid());
-        System.out.println(verificationCode());
+ //       System.out.println(verificationCode());
+
+        System.out.println(getNotRepeatingFilename("123.jpg"));
     }
 
 }

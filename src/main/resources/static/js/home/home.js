@@ -13,7 +13,16 @@ layui.use(['element', 'layer'], function () {
     });
     // 菜单点击事件监听
     navClick(element, $, _layer);
+    // 头像显示
+    headImg($)
 });
+
+/**
+ * 头像显示
+ */
+function headImg($) {
+    $("#img").attr("src", "/api/user/headImg");
+}
 
 /**
  * 左侧菜单栏点击的响应事件
