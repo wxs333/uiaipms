@@ -6,6 +6,7 @@ import lombok.ToString;
 
 /**
  * 授权参数接受表单
+ *
  * @author WXS
  * @date 2020/1/16
  */

@@ -61,7 +61,7 @@ public class UserRealm extends AuthorizingRealm {
         String[] strs = username.split("-");
         String password = getPasswordByRoleAndUsername(strs[1], strs[0]);
 
-        if (ObjectUtils.isEmpty(password)){
+        if (ObjectUtils.isEmpty(password)) {
             throw new UnknownAccountException();
         }
 
@@ -70,7 +70,8 @@ public class UserRealm extends AuthorizingRealm {
 
     /**
      * 根据角色和用户获取密码
-     * @param role 角色
+     *
+     * @param role     角色
      * @param username 用户名
      * @return 密码
      */

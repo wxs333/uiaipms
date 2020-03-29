@@ -9,8 +9,10 @@ import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
@@ -111,26 +113,15 @@ public class StudentApiController extends BaseController {
     }
 
     /**
-     * 头像上传
-     *
-     * @param multipartFile 头像图片
+     * 修改
+     * @param form 表单
+     * @return json
      */
-    @PostMapping("imgUpload")
-    public JsonResult<String> imgUpload(@RequestParam("filePath") MultipartFile multipartFile) {
-        if (multipartFile.isEmpty()) {
-            return jsonResult(GlobalConstant.FAILURE, "文件不存在");
-        }
-        // 本地上传目录
-        String dir = "src/main/resources/static/img/head_portrait";
-        if (GlobalConstant.SUCCESS.equals(studentService.imgUpload(multipartFile, dir))) {
-            return jsonResult("");
-        }
-        return jsonResult(GlobalConstant.FAILURE, "头像上传失败");
-    }
-
     @PostMapping("updateInfo")
     public JsonResult<String> updateInfo(StudentForm form) {
-        if (studentService.updateInfo(form)) {
+        // 参数设置
+        form.setUpdateTime(LocalDateTime.now());
+        if (studentService.modifyById(form)) {
             return jsonResult("修改成功");
         }
         return jsonResult(GlobalConstant.FAILURE, "修改失败");

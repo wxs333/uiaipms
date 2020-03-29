@@ -6,12 +6,14 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 /**
  * 出库记录 业务层接口
+ *
  * @author WXS
  * @date 2020/3/10
  */
 public interface StockOutLogService extends BaseService<StockOutLogForm> {
     /**
      * 分页获取所有已审批的记录
+     *
      * @param page 分页
      * @return 分页集合
      */
@@ -19,6 +21,7 @@ public interface StockOutLogService extends BaseService<StockOutLogForm> {
 
     /**
      * 分页获取所有未审批的记录
+     *
      * @param page 分页
      * @return 分页集合
      */

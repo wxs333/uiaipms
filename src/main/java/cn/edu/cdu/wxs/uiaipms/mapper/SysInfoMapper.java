@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 系统信息 数据访问类
+ *
  * @author WXS
  * @date 2020/3/19
  */

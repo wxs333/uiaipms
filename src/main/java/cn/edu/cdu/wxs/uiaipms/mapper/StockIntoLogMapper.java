@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 库存记录 数据层
+ *
  * @author WXS
  * @date 2020/2/17
  */
@@ -15,6 +16,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface StockIntoLogMapper extends BaseMapper<StockIntoLogForm> {
     /**
      * 分页获取所有的记录
+     *
      * @param page 分页
      * @return 分页集合
      */

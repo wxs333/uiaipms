@@ -20,6 +20,7 @@ public interface ProjectFinanceMapper extends BaseMapper<ProjectFinanceForm> {
 
     /**
      * 分页获取没有处理的记录
+     *
      * @param page 分页
      * @return 分页集合
      */
@@ -27,6 +28,7 @@ public interface ProjectFinanceMapper extends BaseMapper<ProjectFinanceForm> {
 
     /**
      * 分页获取已处理的记录
+     *
      * @param page 分页
      * @return 分页集合
      */
@@ -34,6 +36,7 @@ public interface ProjectFinanceMapper extends BaseMapper<ProjectFinanceForm> {
 
     /**
      * 根据deal标识获取数量
+     *
      * @param deal 0 已处理 1 未处理
      * @return json
      */

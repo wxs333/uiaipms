@@ -41,7 +41,7 @@ public class Project implements Serializable {
     /**
      * 申请学生ID
      */
-    @TableField(value = "stu_id" ,jdbcType = JdbcType.VARCHAR)
+    @TableField(value = "stu_id", jdbcType = JdbcType.VARCHAR)
     private String stuId;
 
     /**

@@ -19,6 +19,7 @@ public interface StudioMapper extends CommonMapper<StudioForm> {
 
     /**
      * 查询所有
+     *
      * @param page 分页
      * @return 集合
      */
@@ -26,8 +27,9 @@ public interface StudioMapper extends CommonMapper<StudioForm> {
 
     /**
      * 修改禁用状态
-     * @param ban 禁用状态
-     * @param studId ID
+     *
+     * @param ban        禁用状态
+     * @param studId     ID
      * @param updateTime 修改时间
      * @return 影响行数
      */

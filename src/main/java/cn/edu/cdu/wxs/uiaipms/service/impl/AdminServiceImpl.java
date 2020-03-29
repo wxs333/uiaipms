@@ -27,10 +27,6 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminForm> implements Admi
      */
     @Autowired
     private AdminMapper mapper;
-    @Autowired
-    private StudentMapper studentMapper;
-    @Autowired
-    private TutorMapper tutorMapper;
 
     @Override
     public BaseMapper<AdminForm> getMapper() {

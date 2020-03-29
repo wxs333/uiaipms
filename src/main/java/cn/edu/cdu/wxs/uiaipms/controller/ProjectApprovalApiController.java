@@ -81,6 +81,7 @@ public class ProjectApprovalApiController extends BaseController {
 
     /**
      * 修改
+     *
      * @param form 表单
      * @return json
      */
@@ -100,9 +101,9 @@ public class ProjectApprovalApiController extends BaseController {
         reviewForm.setReview(1);
 
         form.setReason(null);
-        if (reviewService.add(reviewForm,form)) {
+        if (reviewService.add(reviewForm, form)) {
             return jsonResult("审批成功");
         }
-        return jsonResult(GlobalConstant.FAILURE,"发生未知错误，操作失败");
+        return jsonResult(GlobalConstant.FAILURE, "发生未知错误，操作失败");
     }
 }

@@ -36,6 +36,7 @@ public class UserWebController {
 
     /**
      * 默认页面
+     *
      * @return 视图
      */
     @GetMapping("default")
@@ -45,10 +46,16 @@ public class UserWebController {
 
     /**
      * 注册页面
+     *
      * @return 视图
      */
     @GetMapping("register")
     public String registerHtml() {
         return "register/register";
+    }
+
+    @GetMapping("img")
+    public String img() {
+        return "user/img";
     }
 }

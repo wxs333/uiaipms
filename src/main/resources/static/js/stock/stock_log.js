@@ -1,7 +1,7 @@
 layui.use(['table'], function () {
-        var _table = layui.table;
-        var $ = layui.$;
-        var _layer = layui.layer;
+    var _table = layui.table;
+    var $ = layui.$;
+    var _layer = layui.layer;
 
     // 初始化表格
     tableRender(_table, 'into-log');
@@ -90,9 +90,9 @@ function openHtml(_table, _layer, event) {
     if ('into' === event) {
         d = {'title': '物品入库', 'content': '/sto/into', 'width': '800px'};
     } else if ('out' === event) {
-        d = {'title': '出库审批', 'content': '/sto/out_list','width': '1200px'};
+        d = {'title': '出库审批', 'content': '/sto/out_list', 'width': '1200px'};
     } else if ('apply' === event) {
-        d = {'title': '采购资金申请', 'content': '/sto/out_list','width': '800px'};
+        d = {'title': '采购资金申请', 'content': '/sto/out_list', 'width': '800px'};
     }
     doOpen(_table, _layer, d);
 }

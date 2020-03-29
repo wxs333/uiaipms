@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="UTF-8">
-		<title>角色分配页面</title>
-		<link rel="stylesheet" href="/static/layui/css/layui.css" />
-		<link rel="stylesheet" href="/static/css/common.css" />
-		<style>
-			.layui-transfer {
-				text-align: center;
-			}
-			.layui-transfer-box .layui-transfer-data li {
-				text-align: left;
-			}
-		</style>
-	</head>
-	<body>
-		<!-- 标识 -->
-		<input type="hidden" id="mark" th:value="${mark}">
-		<input type="hidden" id="userId" th:value="${userId}">
-		<!-- 穿梭框的容器 -->
-		<div id="role"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>角色分配页面</title>
+    <link rel="stylesheet" href="/static/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/static/css/common.css"/>
+    <style>
+        .layui-transfer {
+            text-align: center;
+        }
 
-		<!-- js文件 -->
-		<script type="text/javascript" src="/static/layui/layui.js"></script>
-		<script type="text/javascript" src="/static/js/authority/grant_role.js" ></script>
-	</body>
+        .layui-transfer-box .layui-transfer-data li {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<!-- 标识 -->
+<input type="hidden" id="mark" th:value="${mark}">
+<input type="hidden" id="userId" th:value="${userId}">
+<!-- 穿梭框的容器 -->
+<div id="role"></div>
+
+<!-- js文件 -->
+<script type="text/javascript" src="/static/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/authority/grant_role.js"></script>
+</body>
 </html>

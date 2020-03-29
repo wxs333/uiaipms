@@ -31,7 +31,7 @@ public interface RoleMapper extends CommonMapper<RoleForm> {
      * 获取用户的角色ID
      *
      * @param tableName 用户表
-     * @param userId  用户id
+     * @param userId    用户id
      * @param idCol     ID列
      * @param who       记录type
      * @return 集合

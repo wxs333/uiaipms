@@ -27,8 +27,9 @@ public interface BaseService<T> {
 
     /**
      * 根据ID获取
+     *
      * @param idCol ID的数据库字段名
-     * @param id ID
+     * @param id    ID
      * @return 实体
      */
     T getById(String idCol, int id);

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 /**
  * 物品 表单
+ *
  * @author WXS
  * @date 2020/2/17
  */

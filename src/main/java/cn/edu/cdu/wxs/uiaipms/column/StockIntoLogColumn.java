@@ -2,6 +2,7 @@ package cn.edu.cdu.wxs.uiaipms.column;
 
 /**
  * 入库记录 字段映射
+ *
  * @author WXS
  * @date 2020/3/11
  */
@@ -35,5 +36,6 @@ public class StockIntoLogColumn {
      */
     public static final String LOGIC_DELETE_FLAG = "logic_delete_flag";
 
-    private StockIntoLogColumn(){}
+    private StockIntoLogColumn() {
+    }
 }

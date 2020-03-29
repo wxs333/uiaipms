@@ -23,8 +23,9 @@ public interface FtpService {
 
     /**
      * 文件下载
-     * @param path 路径
-     * @param outputStream  输出流
+     *
+     * @param path         路径
+     * @param outputStream 输出流
      */
     void download(String path, OutputStream outputStream);
 }

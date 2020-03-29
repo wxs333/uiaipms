@@ -22,11 +22,12 @@ import java.util.Map;
 public class ShiroConfig {
     /**
      * 创建ShiroFilterFactoryBean
+     *
      * @param securityManager securityManager
      * @return ShiroFilterFactoryBean
      */
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("defaultWebSecurityManager") DefaultWebSecurityManager securityManager){
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("defaultWebSecurityManager") DefaultWebSecurityManager securityManager) {
         ShiroFilterFactoryBean filterFactoryBean = new ShiroFilterFactoryBean();
         filterFactoryBean.setSecurityManager(securityManager);
         // 资源访问控制
@@ -40,23 +41,27 @@ public class ShiroConfig {
         filterFactoryBean.setUnauthorizedUrl("/user/index");
         return filterFactoryBean;
     }
+
     /**
      * 创建DefaultWebSecurityManager(web程序，Java 程序创建DefaultSecurityManager)
+     *
      * @param realm 自定义realm
      * @return DefaultWebSecurityManager
      */
     @Bean(name = "defaultWebSecurityManager")
-    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("userRealm") UserRealm realm){
+    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("userRealm") UserRealm realm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(realm);
         return securityManager;
     }
+
     /**
      * 创建realm
+     *
      * @return realm
      */
     @Bean("userRealm")
-    public UserRealm getRealm(@Qualifier("hashedCredentialsMatcher") HashedCredentialsMatcher hashedCredentialsMatcher){
+    public UserRealm getRealm(@Qualifier("hashedCredentialsMatcher") HashedCredentialsMatcher hashedCredentialsMatcher) {
         UserRealm realm = new UserRealm();
         realm.setCredentialsMatcher(hashedCredentialsMatcher);
         return realm;
@@ -64,6 +69,7 @@ public class ShiroConfig {
 
     /**
      * 密码加密
+     *
      * @return HashedCredentialsMatcher
      */
     @Bean("hashedCredentialsMatcher")
@@ -76,10 +82,11 @@ public class ShiroConfig {
 
     /**
      * 页面上使用shiro标签
+     *
      * @return ShiroDialect
      */
     @Bean(name = "shiroDialect")
-    public ShiroDialect shiroDialect(){
+    public ShiroDialect shiroDialect() {
         return new ShiroDialect();
     }
 

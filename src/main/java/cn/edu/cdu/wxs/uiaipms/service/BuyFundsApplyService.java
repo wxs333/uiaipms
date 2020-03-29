@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * 采购资金申请 业务接口类
+ *
  * @author WXS
  * @date 2020/3/19
  */
@@ -30,6 +31,7 @@ public interface BuyFundsApplyService extends BaseService<BuyFundsApplyForm> {
 
     /**
      * 查询需要导出的数据
+     *
      * @return 集合
      */
     List<BuyFundsApplyForm> getExportData();

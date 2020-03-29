@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * 管理员 视图控制器
+ *
  * @author WXS
  * @date 2020/1/14
  */
@@ -17,6 +18,7 @@ import javax.validation.constraints.NotNull;
 public class AdminWebController {
     /**
      * 权限分配主页面
+     *
      * @return 视图
      */
     @GetMapping("authority")
@@ -26,6 +28,7 @@ public class AdminWebController {
 
     /**
      * 角色分配页面
+     *
      * @return 视图
      */
     @GetMapping("grantRole")
@@ -40,6 +43,7 @@ public class AdminWebController {
 
     /**
      * 成员管理页面
+     *
      * @return 视图
      */
     @GetMapping("member")
@@ -51,6 +55,7 @@ public class AdminWebController {
 
     /**
      * 成员修改视图
+     *
      * @param mark 标识
      * @return 视图
      */
@@ -60,18 +65,18 @@ public class AdminWebController {
         model.addObject("mark", mark);
         model.addObject("id", id);
         switch (mark) {
-        case "student":
-            model.setViewName("member/update_student");
-            break;
-        case "tutor":
-            model.setViewName("member/update_tutor");
-            break;
-        case "company":
-            model.setViewName("member/update_company");
-            break;
-        default:
-            break;
-    }
+            case "student":
+                model.setViewName("member/update_student");
+                break;
+            case "tutor":
+                model.setViewName("member/update_tutor");
+                break;
+            case "company":
+                model.setViewName("member/update_company");
+                break;
+            default:
+                break;
+        }
         return model;
-}
+    }
 }

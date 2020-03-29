@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * MybatisPlus 配置
+ *
  * @author WXS
  * @date 2020/1/14
  */
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class MybatisPlusConfig {
     /**
      * 分页插件
+     *
      * @return PaginationInterceptor
      */
     @Bean

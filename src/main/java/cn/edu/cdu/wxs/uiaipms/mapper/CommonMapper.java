@@ -13,16 +13,18 @@ public interface CommonMapper<T> extends BaseMapper<T> {
 
     /**
      * 逻辑删除
-     * @param id ID
+     *
+     * @param id        ID
      * @param tableName 表名
-     * @param idCol id列字段名
+     * @param idCol     id列字段名
      * @return 影响行数
      */
     int logicDeleteById(@Param("id") int id, @Param("tableName") String tableName, @Param("idCol") String idCol);
 
     /**
      * 根据用户名查询密码
-     * @param username 用户名
+     *
+     * @param username  用户名
      * @param tableName 表名
      * @return 密码
      */
@@ -30,9 +32,10 @@ public interface CommonMapper<T> extends BaseMapper<T> {
 
     /**
      * 根据用户名获取ID
-     * @param username 用户名
+     *
+     * @param username  用户名
      * @param tableName 表名
-     * @param idCol ID列名
+     * @param idCol     ID列名
      * @return ID
      */
     String getIdByUsername(@Param("username") String username, @Param("tableName") String tableName, @Param("idCol") String idCol);

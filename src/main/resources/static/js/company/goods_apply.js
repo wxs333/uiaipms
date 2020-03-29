@@ -11,7 +11,7 @@ layui.use(['form'], function () {
         return false;
     });
     // select框监听
-    _form.on("select",function (obj) {
+    _form.on("select", function (obj) {
         // 获取数据，并填充表单
         getDataAndRenderForm($, obj.value);
     });
@@ -57,6 +57,7 @@ function goodsApply($, _layer, data) {
         }
     )
 }
+
 /**
  * 获取数据，并填充表单
  */

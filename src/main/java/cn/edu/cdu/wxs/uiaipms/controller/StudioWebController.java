@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * 工作室 视图控制器
+ *
  * @author WXS
  * @date 2020/2/15
  */
@@ -18,6 +19,7 @@ public class StudioWebController {
 
     /**
      * 工作室管理主页
+     *
      * @return 视图
      */
     @GetMapping("list")
@@ -29,6 +31,7 @@ public class StudioWebController {
 
     /**
      * 新增页面
+     *
      * @return 视图
      */
     @GetMapping("add")
@@ -40,6 +43,7 @@ public class StudioWebController {
 
     /**
      * 修改页面
+     *
      * @return 视图
      */
     @GetMapping("update")

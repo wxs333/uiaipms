@@ -35,37 +35,37 @@ public class UserRole implements Serializable {
     /**
      * 角色
      */
-    @TableField(value = "role_id",jdbcType = JdbcType.VARCHAR)
+    @TableField(value = "role_id", jdbcType = JdbcType.VARCHAR)
     private String roleId;
 
     /**
      * 用户
      */
-    @TableField(value = "user_id",jdbcType = JdbcType.VARCHAR)
+    @TableField(value = "user_id", jdbcType = JdbcType.VARCHAR)
     private String userId;
 
     /**
      * 用户类型
      */
-    @TableField(value = "ur_who",jdbcType = JdbcType.INTEGER)
+    @TableField(value = "ur_who", jdbcType = JdbcType.INTEGER)
     private Integer urWho;
 
     /**
      * 更新时间
      */
-    @TableField(value = "update_time",jdbcType = JdbcType.TIMESTAMP)
+    @TableField(value = "update_time", jdbcType = JdbcType.TIMESTAMP)
     private LocalDateTime updateTime;
 
     /**
      * 创建时间
      */
-    @TableField(value = "create_time",jdbcType = JdbcType.TIMESTAMP)
+    @TableField(value = "create_time", jdbcType = JdbcType.TIMESTAMP)
     private LocalDateTime createTime;
 
     /**
      * 逻辑删除字段
      */
-    @TableField(value = "logic_delete_flag",jdbcType = JdbcType.INTEGER)
+    @TableField(value = "logic_delete_flag", jdbcType = JdbcType.INTEGER)
     private Integer logicDeleteFlag;
 
 

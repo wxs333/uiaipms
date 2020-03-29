@@ -32,6 +32,7 @@ public interface StudentMapper extends CommonMapper<StudentForm> {
 
     /**
      * 分页获取所有信息
+     *
      * @param page 分页
      * @return 分页集合
      */
@@ -39,6 +40,7 @@ public interface StudentMapper extends CommonMapper<StudentForm> {
 
     /**
      * 根据ID查询学生
+     *
      * @param id ID
      * @return 学生
      */

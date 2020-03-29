@@ -16,6 +16,7 @@ public interface PermissionMapper {
 
     /**
      * 根据角色查询权限
+     *
      * @param roles 角色集合
      * @return 集合
      */

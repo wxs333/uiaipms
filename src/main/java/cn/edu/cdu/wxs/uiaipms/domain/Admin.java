@@ -47,6 +47,11 @@ public class Admin implements Serializable {
     @TableField(value = "phone", jdbcType = JdbcType.VARCHAR)
     private String phone;
     /**
+     * 照片地址
+     */
+    @TableField(value = "image", jdbcType = JdbcType.VARCHAR)
+    private String image;
+    /**
      * 更新时间
      */
     @TableField(value = "update_time", jdbcType = JdbcType.TIMESTAMP)

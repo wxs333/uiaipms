@@ -22,7 +22,7 @@ function initSelect(_form, $) {
         function (res) {
             var html = '<option value="">请选择</option>';
             $.each(res.data, function (index, item) {
-                html += '<option value='+ item.comId+'>'+item.comName+'</option>';
+                html += '<option value=' + item.comId + '>' + item.comName + '</option>';
             });
             $('#company').html(html);
             _form.render('select');
@@ -34,15 +34,15 @@ function initSelect(_form, $) {
  * 新增
  */
 function add($, _layer, data) {
-	$.post(
-		'/api/stud/add',
-		data,
-		function (res) {
-            var icon = res.code === 'success'? 1 : 2;
-			_layer.msg(res.message, {time: 1500, icon: icon}, function () {
+    $.post(
+        '/api/stud/add',
+        data,
+        function (res) {
+            var icon = res.code === 'success' ? 1 : 2;
+            _layer.msg(res.message, {time: 1500, icon: icon}, function () {
                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                 parent.layer.close(index); //再执行关闭
             });
         }
-	);
+    );
 }

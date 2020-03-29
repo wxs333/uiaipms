@@ -35,7 +35,7 @@ public class ProjectApproval implements Serializable {
     /**
      * 项目ID
      */
-    @TableField(value = "pro_id",jdbcType = JdbcType.VARCHAR)
+    @TableField(value = "pro_id", jdbcType = JdbcType.VARCHAR)
     private String proId;
 
     /**

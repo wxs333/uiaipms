@@ -28,7 +28,7 @@ public class JsonResult<T> {
     /**
      * 构造方法
      *
-     * @param data    数据
+     * @param data 数据
      */
     public JsonResult(T data) {
 

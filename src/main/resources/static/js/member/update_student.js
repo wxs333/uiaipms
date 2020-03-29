@@ -50,7 +50,7 @@ function update($, _layer, data) {
         '/api/stu/update',
         data,
         function (res) {
-            var icon = res.code === 'success'? 1 : 2;
+            var icon = res.code === 'success' ? 1 : 2;
             _layer.msg(res.message, {time: 1500, icon: icon}, function () {
                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                 parent.layer.close(index); //再执行关闭
@@ -70,9 +70,9 @@ function getDiscipline($, _form, discId) {
             var html = '';
             $.each(res.data, function (index, item) {
                 if (discId === item.discId) {
-                    html += '<option value='+ item.discId +' selected>'+ item.discName +'</option>';
+                    html += '<option value=' + item.discId + ' selected>' + item.discName + '</option>';
                 } else {
-                    html += '<option value='+ item.discId +'>'+ item.discName +'</option>';
+                    html += '<option value=' + item.discId + '>' + item.discName + '</option>';
                 }
             });
             $('#disc').html(html);

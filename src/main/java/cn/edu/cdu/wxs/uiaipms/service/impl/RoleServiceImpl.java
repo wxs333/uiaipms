@@ -31,7 +31,6 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleForm> implements RoleSe
     private RoleMapper mapper;
 
 
-
     @Override
     public BaseMapper<RoleForm> getMapper() {
         return mapper;

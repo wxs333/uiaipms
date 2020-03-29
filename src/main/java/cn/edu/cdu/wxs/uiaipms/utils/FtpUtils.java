@@ -29,7 +29,6 @@ public class FtpUtils {
      * @param username 用户名
      * @param password 密码
      * @return FTPClient
-     * @throws Exception 异常
      */
     private static FTPClient getFtpClient(String host, int port, String username, String password) {
         FTPClient ftpClient = new FTPClient();

@@ -3,7 +3,6 @@ package cn.edu.cdu.wxs.uiaipms.config;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.http.MediaType;
@@ -50,8 +49,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
      *
      * @return HttpMessageConverter
      */
-    @Bean
-    public HttpMessageConverter httpMessageConverter() {
+    private HttpMessageConverter httpMessageConverter() {
         FastJsonHttpMessageConverter messageConverter = new FastJsonHttpMessageConverter();
         FastJsonConfig config = new FastJsonConfig();
         config.setSerializerFeatures(

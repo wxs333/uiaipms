@@ -7,12 +7,14 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * 企业的数据层
+ *
  * @author WXS
  * @date 2020/1/13
  */
 public interface CompanyMapper extends CommonMapper<CompanyForm> {
     /**
      * 根据用户名获取用户
+     *
      * @param username 用户名
      * @return 用户
      */
@@ -20,6 +22,7 @@ public interface CompanyMapper extends CommonMapper<CompanyForm> {
 
     /**
      * 分页获取所有信息
+     *
      * @param page 分页
      * @return 分页集合
      */

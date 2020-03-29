@@ -8,7 +8,7 @@ layui.use("table", function () {
     _table.on("toolbar(sto-fin)", function (obj) {
         var event = obj.event;
         if (event === "export") {
-             window.location.href = "/api/bf/export";
+            window.location.href = "/api/bf/export";
         } else if (event === "wipe-out") {
             // 弹出报销页面
         } else {
@@ -76,7 +76,7 @@ function getColsAndUrl(event) {
             {field: 'applyUserName', title: '申请人', align: "center"},
             {field: 'applyMount', title: '申请金额', align: "center"},
             {field: 'applyReason', title: '申请理由', align: "center"},
-            {field: 'createTime', title: '申请时间', align: "center",templet: "#createTime"},
+            {field: 'createTime', title: '申请时间', align: "center", templet: "#createTime"},
             {field: 'dealUserName', title: '处理人', align: "center"},
             {field: 'bfaAgree', title: '处理结果', align: "center", templet: "#agree"},
             {field: 'bfaReason', title: '结果说明', align: "center"},

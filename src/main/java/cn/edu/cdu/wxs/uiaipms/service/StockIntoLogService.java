@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 public interface StockIntoLogService extends BaseService<StockIntoLogForm> {
     /**
      * 分页获取所有的记录
+     *
      * @param page 分页
      * @return 分页集合
      */

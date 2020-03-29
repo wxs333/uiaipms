@@ -31,6 +31,7 @@ public interface ProjectReviewMapper extends BaseMapper<ProjectReviewForm> {
 
     /**
      * 分页查询所有通过审核的项目
+     *
      * @param page 分页
      * @return 分页集合
      */
@@ -38,6 +39,7 @@ public interface ProjectReviewMapper extends BaseMapper<ProjectReviewForm> {
 
     /**
      * 查询所有通过审核的项目
+     *
      * @return 集合
      */
     List<ProjectReviewForm> selectReviewedToList();

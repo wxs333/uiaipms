@@ -7,6 +7,7 @@ import lombok.Setter;
 
 /**
  * 库存记录 表单
+ *
  * @author WXS
  * @date 2020/2/17
  */

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 学院 数据层
+ *
  * @author WXS
  * @date 2020/2/10
  */

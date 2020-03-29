@@ -3,13 +3,14 @@
 <mapper namespace="cn.edu.cdu.wxs.uiaipms.mapper.StudentMapper">
     <select id="getByUsername" resultType="cn.edu.cdu.wxs.uiaipms.form.StudentForm">
         SELECT
-            stu_id AS id,
-            stu_name AS `name`
+          stu_id AS id,
+          stu_name AS `name`,
+          image
         FROM
-            student
+          student
         WHERE
-            username = #{username}
-            AND logic_delete_flag = 0
+          username = #{username}
+          AND logic_delete_flag = 0
     </select>
 
     <select id="selectAll" resultType="cn.edu.cdu.wxs.uiaipms.form.StudentForm">

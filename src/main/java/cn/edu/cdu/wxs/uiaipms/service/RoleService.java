@@ -41,7 +41,8 @@ public interface RoleService extends BaseService<RoleForm> {
 
     /**
      * 获取用户的角色ID
-     * @param role 角色
+     *
+     * @param role   角色
      * @param userId 用户id
      * @return 集合
      */

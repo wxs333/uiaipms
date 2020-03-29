@@ -45,7 +45,7 @@ public class Goods implements Serializable {
      * 数量
      */
     @TableField(value = "goods_num", jdbcType = JdbcType.INTEGER)
-    @Excel(name = "数量" , orderNum = "4")
+    @Excel(name = "数量", orderNum = "4")
     private Integer goodsNum;
 
     /**
@@ -78,7 +78,7 @@ public class Goods implements Serializable {
      * 状态 0 可申请 1 已下架
      */
     @TableField(value = "ban", jdbcType = JdbcType.INTEGER)
-    @Excel(name = "状态", replace = {"正常_0","已下架_1"}, orderNum = "6")
+    @Excel(name = "状态", replace = {"正常_0", "已下架_1"}, orderNum = "6")
     private Integer ban;
     /**
      * 更新时间

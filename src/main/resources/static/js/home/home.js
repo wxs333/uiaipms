@@ -6,17 +6,29 @@ layui.use(['element', 'layer'], function () {
     var $ = layui.$;
     var _layer = layui.layer;
     // 绑定点击事件
-    $('#info').click(function () {
-        // 弹出基本资料框
-        var data = {"title": "基本资料", "url": "/stu/info"};
-        openHtml(_layer, data);
-    });
+    click($, _layer);
     // 菜单点击事件监听
     navClick(element, $, _layer);
     // 头像显示
     headImg($)
 });
 
+/**
+ * 绑定点击事件
+ */
+function click($,_layer) {
+    $('#info').click(function () {
+        // 弹出基本资料框
+        var data = {"title": "基本资料", "url": "/stu/info","width": "800px"};
+        openHtml(_layer, data);
+    });
+    $('#update-img').click(function () {
+        // 弹出修改头像框
+        var data = {"title": "修改头像", "url": "/user/img","width": "800px"};
+        openHtml(_layer, data);
+    });
+
+}
 /**
  * 头像显示
  */
@@ -53,7 +65,7 @@ function changeHtml(id, $, _layer) {
         case "sto-fin":
             elem.attr("src", "/bf/list");
             break;
-            case "pro-fin":
+        case "pro-fin":
             elem.attr("src", "/pf/list");
             break;
         case "project-sb":
@@ -95,9 +107,9 @@ function openHtml(_layer, data) {
         type: 2,
         title: data.title,
         content: data.url,
-        area: ["1100px", "630px"],
+        area: [data.width, "630px"],
         anim: 1,
         scrollbar: false,
-        offset: ['50px', "300px"]
+        offset: '50px'
     });
 }

@@ -23,34 +23,55 @@ import java.time.LocalDateTime;
 @Setter
 @TableName("tutor")
 public class Tutor implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+    /**
+     * id
+     */
     @TableId(value = "tutor_id", type = IdType.INPUT)
     private String tutorId;
-
-    @TableField(value = "tutor_name",jdbcType = JdbcType.VARCHAR)
+    /**
+     * 导师姓名
+     */
+    @TableField(value = "tutor_name", jdbcType = JdbcType.VARCHAR)
     private String tutorName;
-
-    @TableField(value = "phone",jdbcType = JdbcType.VARCHAR)
+    /**
+     * 手机号
+     */
+    @TableField(value = "phone", jdbcType = JdbcType.VARCHAR)
     private String phone;
-
-    @TableField(value = "password",jdbcType = JdbcType.VARCHAR)
+    /**
+     * 密码
+     */
+    @TableField(value = "password", jdbcType = JdbcType.VARCHAR)
     private String password;
-
-    @TableField(value = "username",jdbcType = JdbcType.VARCHAR)
+    /**
+     * 账号
+     */
+    @TableField(value = "username", jdbcType = JdbcType.VARCHAR)
     private String username;
-
-    @TableField(value = "faculty_id",jdbcType = JdbcType.VARCHAR)
+    /**
+     * 学院id
+     */
+    @TableField(value = "faculty_id", jdbcType = JdbcType.VARCHAR)
     private String facultyId;
-
-    @TableField(value = "update_time",jdbcType = JdbcType.TIMESTAMP)
+    /**
+     * 照片地址
+     */
+    @TableField(value = "image", jdbcType = JdbcType.VARCHAR)
+    private String image;
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time", jdbcType = JdbcType.TIMESTAMP)
     private LocalDateTime updateTime;
-
-    @TableField(value = "create_time",jdbcType = JdbcType.TIMESTAMP)
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time", jdbcType = JdbcType.TIMESTAMP)
     private LocalDateTime createTime;
-
-    @TableField(value = "logic_delete_flag",jdbcType = JdbcType.INTEGER)
+    /**
+     * 逻辑删除字段
+     */
+    @TableField(value = "logic_delete_flag", jdbcType = JdbcType.INTEGER)
     private Integer logicDeleteFlag;
 
 

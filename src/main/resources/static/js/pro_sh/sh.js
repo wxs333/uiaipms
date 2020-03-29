@@ -8,7 +8,7 @@ layui.use("form", function () {
         if ($("#event").val() === "yes") {
             add($, _layer, data.field);
         } else {
-            updateStatus($, _layer,data.field)
+            updateStatus($, _layer, data.field)
         }
 
         return false;

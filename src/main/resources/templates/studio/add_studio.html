@@ -1,70 +1,70 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="UTF-8">
-		<title>新增工作室</title>
-		<link rel="stylesheet" href="/static/layui/css/layui.css" />
-		<link rel="stylesheet" href="/static/css/common.css" />
-		<style>
-			.layui-card-body {
-				background-color: #EEEEEE;
-			}
-			
-			.layui-btn-container {
-				margin-left: 110px;
-			}
-			
-			.layui-btn-container .layui-btn {
-				margin-bottom: 0;
-			}
-		</style>
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <title>新增工作室</title>
+    <link rel="stylesheet" href="/static/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/static/css/common.css"/>
+    <style>
+        .layui-card-body {
+            background-color: #EEEEEE;
+        }
 
-	<body>
-		<div class="layui-card">
-			<div class="layui-card-body">
-				<form class="layui-form">
-					<div class="layui-btn-container">
-						<button class="layui-btn layui-btn-sm" lay-submit>确定</button>
-						<button class="layui-btn layui-btn-sm" type="reset">重置</button>
-					</div>
-					<hr class="html-editor-hr" />
-					<div class="layui-form-item">
-						<label class="layui-form-label">地址</label>
-						<div class="layui-input-block">
-							<input class="layui-input" name="studAddress" />
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">房间号</label>
-						<div class="layui-input-block">
-							<input class="layui-input" name="studRoomNo" />
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">所属企业</label>
-						<div class="layui-input-block">
-							<select class="layui-input" id="company" name="comId"></select>
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">人数</label>
-						<div class="layui-input-block">
-							<input class="layui-input" name="studNum" />
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">占地面积</label>
-						<div class="layui-input-block">
-							<input class="layui-input" name="studArea" />
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-		<!-- js文件 -->
-		<script type="text/javascript" src="/static/layui/layui.js"></script>
-		<script type="text/javascript" src="/static/js/studio/add_studio.js"></script>
-	</body>
+        .layui-btn-container {
+            margin-left: 110px;
+        }
+
+        .layui-btn-container .layui-btn {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-submit>确定</button>
+                <button class="layui-btn layui-btn-sm" type="reset">重置</button>
+            </div>
+            <hr class="html-editor-hr"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">地址</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" name="studAddress"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">房间号</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" name="studRoomNo"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属企业</label>
+                <div class="layui-input-block">
+                    <select class="layui-input" id="company" name="comId"></select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">人数</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" name="studNum"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">占地面积</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" name="studArea"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- js文件 -->
+<script type="text/javascript" src="/static/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/studio/add_studio.js"></script>
+</body>
 
 </html>

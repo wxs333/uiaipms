@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改头像</title>
+    <!-- 网站图标 -->
+    <link rel="shortcut icon" href="/static/icon.ico"/>
+    <!-- css文件 -->
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/common.css"/>
+    <style>
+        .layui-upload-list img {
+            width: 100px;
+            height: 120px;
+            margin-left: 350px;
+            margin-top: 100px;
+        }
+        .layui-upload button {
+            margin-left: 350px;
+            width: 100px;
+            margin-bottom: 10px;
+        }
+        #ok {
+            margin-left: 350px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="layui-upload">
+        <div class="layui-upload-list">
+            <img class="layui-upload-img" id="img">
+        </div>
+        <button type="button" class="layui-btn layui-btn-normal" id="upload">选择头像</button>
+    </div>
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" id="ok">确定</button>
+        <button class="layui-btn layui-btn-sm layui-btn-primary" id="no">取消</button>
+    </div>
+</div>
+
+<!-- js 文件-->
+<!-- js文件 -->
+<script type="text/javascript" src="/static/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/user/img.js"></script>
+</body>
+</html>

@@ -35,7 +35,7 @@ public class Permission implements Serializable {
     /**
      * 权限的名称
      */
-    @TableField(value = "per_name" ,jdbcType = JdbcType.VARCHAR)
+    @TableField(value = "per_name", jdbcType = JdbcType.VARCHAR)
     private String perName;
 
     /**

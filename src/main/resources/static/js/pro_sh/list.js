@@ -6,8 +6,8 @@ layui.use('table', function () {
     tableRender(_table);
     // 行工具栏事件监听
     _table.on('tool(pro-sh)', function (obj) {
-            // 弹出填写理由页面
-            openReason(_layer, _table, obj);
+        // 弹出填写理由页面
+        openReason(_layer, _table, obj);
 
     });
     // 头工具事件监听

@@ -33,8 +33,8 @@ public interface StudioService extends BaseService<StudioForm> {
     /**
      * 修改禁用状态
      *
-     * @param ban    禁用状态
-     * @param studId ID
+     * @param ban        禁用状态
+     * @param studId     ID
      * @param updateTime 修改时间
      * @return true 成功 false 失败
      */
@@ -42,7 +42,8 @@ public interface StudioService extends BaseService<StudioForm> {
 
     /**
      * 根据企业ID获取工作室信息
-     * @param page 分页
+     *
+     * @param page  分页
      * @param comId 企业ID
      * @return 分页集合
      */
@@ -50,6 +51,7 @@ public interface StudioService extends BaseService<StudioForm> {
 
     /**
      * 获取企业用户的工作室
+     *
      * @param comId 用户id
      * @return 集合
      */

@@ -1,29 +1,34 @@
 body {
-	background-color: #EEEEEE;
+    background-color: #EEEEEE;
 }
+
 .layui-card {
-	margin: 0px 0px;
+    margin: 0px 0px;
 }
+
 .layui-card .layui-card-header {
-	margin-top: 3px;
-	height: 16px;
-	line-height: 16px;
-	padding: 2px 15px;
+    margin-top: 3px;
+    height: 16px;
+    line-height: 16px;
+    padding: 2px 15px;
 }
 
 .layui-card .layui-card-header .layui-breadcrumb span {
-	font-size: 12px;
+    font-size: 12px;
 }
+
 .layui-form .layui-btn-fluid {
-	text-align: center;
+    text-align: center;
 }
+
 .layui-form form .layui-inline {
-	margin: 5px 5px;
+    margin: 5px 5px;
 }
+
 .layui-layout-body .layui-layout .layui-header .layui-logo {
-	font-size: 1.8em;
+    font-size: 1.8em;
 }
 
 .layui-layout-body .layui-side ul li dl dd:hover {
-	background-color: #009688;
+    background-color: #009688;
 }

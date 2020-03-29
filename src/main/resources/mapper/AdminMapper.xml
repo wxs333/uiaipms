@@ -3,11 +3,13 @@
 <mapper namespace="cn.edu.cdu.wxs.uiaipms.mapper.AdminMapper">
     <select id="getByUsername" resultType="cn.edu.cdu.wxs.uiaipms.form.AdminForm">
         SELECT
-        admin_id AS id, admin_name AS `name`
+          admin_id AS id,
+          admin_name AS `name`,
+          image
         FROM
-        admin
+            admin
         WHERE
-        username = #{username}
-        AND logic_delete_flag = 0
+            username = #{username}
+            AND logic_delete_flag = 0
     </select>
 </mapper>

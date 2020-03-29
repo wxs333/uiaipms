@@ -57,6 +57,7 @@ public class CompanyWebController {
 
     /**
      * 查看设备详情页面
+     *
      * @param studId 工作室
      * @return 视图
      */

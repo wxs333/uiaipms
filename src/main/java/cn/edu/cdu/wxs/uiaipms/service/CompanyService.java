@@ -8,12 +8,14 @@ import java.util.List;
 
 /**
  * 企业的服务层
+ *
  * @author WXS
  * @date 2020/1/13
  */
 public interface CompanyService extends BaseService<CompanyForm> {
     /**
      * 根据用户名获取密码
+     *
      * @param username 用户名
      * @return 密码
      */
@@ -21,6 +23,7 @@ public interface CompanyService extends BaseService<CompanyForm> {
 
     /**
      * 根据用户名获取用户
+     *
      * @param username 用户名
      * @return 用户
      */
@@ -28,6 +31,7 @@ public interface CompanyService extends BaseService<CompanyForm> {
 
     /**
      * 分页获取所有信息
+     *
      * @param page 分页
      * @return 分页集合
      */
@@ -35,6 +39,7 @@ public interface CompanyService extends BaseService<CompanyForm> {
 
     /**
      * 根据ID获取
+     *
      * @param id ID
      * @return json
      */
@@ -42,6 +47,7 @@ public interface CompanyService extends BaseService<CompanyForm> {
 
     /**
      * 修改
+     *
      * @param form 表单
      * @return true 成功 false 失败
      */
@@ -49,6 +55,7 @@ public interface CompanyService extends BaseService<CompanyForm> {
 
     /**
      * 获取所有企业
+     *
      * @return 集合
      */
     List<CompanyForm> getAll();

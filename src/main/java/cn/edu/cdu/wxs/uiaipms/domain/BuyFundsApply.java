@@ -49,7 +49,7 @@ public class BuyFundsApply implements Serializable {
      * 是否同意 0 同意 1 不同意 默认 1
      */
     @TableField("bfa_agree")
-    @Excel(name = "是否同意", orderNum = "4", replace = {"是_0","否_1"})
+    @Excel(name = "是否同意", orderNum = "4", replace = {"是_0", "否_1"})
     private Integer bfaAgree;
 
     /**

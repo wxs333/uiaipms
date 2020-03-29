@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 
 /**
  * 导师 数据控制层
+ *
  * @author WXS
  * @date 2020/1/14
  */
@@ -28,16 +29,18 @@ public class TutorApiController extends BaseController {
 
     /**
      * 分页获取导师信息
+     *
      * @param page 分页
      * @return json
      */
     @GetMapping("getAll")
     public JsonResult<IPage<TutorForm>> getAll(Page<TutorForm> page) {
-        return jsonResult("0",tutorService.getAllByPage(page));
+        return jsonResult("0", tutorService.getAllByPage(page));
     }
 
     /**
      * 分页获取所有信息
+     *
      * @param page 分页
      * @return json
      */
@@ -48,6 +51,7 @@ public class TutorApiController extends BaseController {
 
     /**
      * 修改信息
+     *
      * @param form 信息
      * @return json
      */
@@ -57,11 +61,12 @@ public class TutorApiController extends BaseController {
         if (tutorService.update(form)) {
             return jsonResult("修改成功");
         }
-        return jsonResult(GlobalConstant.FAILURE,"修改失败");
+        return jsonResult(GlobalConstant.FAILURE, "修改失败");
     }
 
     /**
      * 根据ID获取导师信息
+     *
      * @param id ID
      * @return json
      */

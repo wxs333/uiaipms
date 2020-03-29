@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 
 /**
  * 物品出库记录 数据控制层
+ *
  * @author WXS
  * @date 2020/3/10
  */
@@ -29,6 +30,7 @@ public class StockOutLogApiController extends BaseController {
 
     /**
      * 列表
+     *
      * @param page 分页
      * @return json
      */
@@ -39,6 +41,7 @@ public class StockOutLogApiController extends BaseController {
 
     /**
      * 新增
+     *
      * @param form 表单
      * @return json
      */
@@ -57,6 +60,7 @@ public class StockOutLogApiController extends BaseController {
 
     /**
      * 分页获取所有未审批的物品申请记录
+     *
      * @param page 分页
      * @return json
      */
@@ -67,6 +71,7 @@ public class StockOutLogApiController extends BaseController {
 
     /**
      * 审批
+     *
      * @param form 表单
      * @return json
      */

@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 出库记录 数据层
+ *
  * @author WXS
  * @date 2020/2/17
  */
@@ -15,6 +16,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface StockOutLogMapper extends BaseMapper<StockOutLogForm> {
     /**
      * 分页获取所有已审批的记录
+     *
      * @param page 分页
      * @return 分页集合
      */
@@ -22,6 +24,7 @@ public interface StockOutLogMapper extends BaseMapper<StockOutLogForm> {
 
     /**
      * 分页获取所有未审批的记录
+     *
      * @param page 分页
      * @return 分页集合
      */

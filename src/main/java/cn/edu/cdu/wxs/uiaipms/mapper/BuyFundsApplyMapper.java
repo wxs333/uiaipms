@@ -32,6 +32,7 @@ public interface BuyFundsApplyMapper extends BaseMapper<BuyFundsApplyForm> {
 
     /**
      * 查询需要导出的数据
+     *
      * @return 集合
      */
     List<BuyFundsApplyForm> selectExportData();

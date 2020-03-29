@@ -35,7 +35,7 @@ public class Role implements Serializable {
     /**
      * 角色名称
      */
-    @TableField(value = "role_name",jdbcType = JdbcType.VARCHAR)
+    @TableField(value = "role_name", jdbcType = JdbcType.VARCHAR)
     private String roleName;
 
     /**

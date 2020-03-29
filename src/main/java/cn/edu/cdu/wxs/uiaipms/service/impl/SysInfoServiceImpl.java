@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 
 /**
  * 系统信息 业务实现类
+ *
  * @author WXS
  * @date 2020/3/19
  */

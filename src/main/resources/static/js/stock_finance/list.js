@@ -80,7 +80,7 @@ function getColsAndUrl(event) {
             {field: 'adminName', title: '处理人', align: "center"},
             {field: 'agree', title: '处理结果', align: "center", templet: "#agree"},
             {field: 'reviewReason', title: '理由', align: "center"},
-            {field: 'updateTime', title: '处理时间', align: "center",  templet: "#updateTime"}
+            {field: 'updateTime', title: '处理时间', align: "center", templet: "#updateTime"}
         ];
         data[1] = '/api/pf/deal';
     }

@@ -36,31 +36,31 @@ public class SysInfo implements Serializable {
     /**
      * 名称
      */
-    @TableField(value = "sys_param",jdbcType = JdbcType.VARCHAR)
+    @TableField(value = "sys_param", jdbcType = JdbcType.VARCHAR)
     private String sysParam;
 
     /**
      * 数量
      */
-    @TableField(value = "sys_count",jdbcType = JdbcType.DECIMAL)
+    @TableField(value = "sys_count", jdbcType = JdbcType.DECIMAL)
     private BigDecimal sysCount;
 
     /**
      * 更新时间
      */
-    @TableField(value = "update_time",jdbcType = JdbcType.TIMESTAMP)
+    @TableField(value = "update_time", jdbcType = JdbcType.TIMESTAMP)
     private LocalDateTime updateTime;
 
     /**
      * 创建时间
      */
-    @TableField(value = "create_time",jdbcType = JdbcType.TIMESTAMP)
+    @TableField(value = "create_time", jdbcType = JdbcType.TIMESTAMP)
     private LocalDateTime createTime;
 
     /**
      * 逻辑删除字段
      */
-    @TableField(value = "logic_delete_flag",jdbcType = JdbcType.INTEGER)
+    @TableField(value = "logic_delete_flag", jdbcType = JdbcType.INTEGER)
     private Integer logicDeleteFlag;
 
 

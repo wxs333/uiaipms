@@ -36,47 +36,47 @@ public class Studio implements Serializable {
     /**
      * 地址
      */
-    @TableField(value = "stud_address",jdbcType = JdbcType.VARCHAR)
+    @TableField(value = "stud_address", jdbcType = JdbcType.VARCHAR)
     @Excel(name = "地址")
     private String studAddress;
 
     /**
      * 房间号
      */
-    @TableField(value = "stud_room_no",jdbcType = JdbcType.VARCHAR)
+    @TableField(value = "stud_room_no", jdbcType = JdbcType.VARCHAR)
     @Excel(name = "房间号")
     private String studRoomNo;
 
     /**
      * 占地面积
      */
-    @TableField(value = "stud_area",jdbcType = JdbcType.FLOAT)
+    @TableField(value = "stud_area", jdbcType = JdbcType.FLOAT)
     @Excel(name = "占地面积(m^2)")
     private Float studArea;
 
     /**
      * 所属企业ID
      */
-    @TableField(value = "com_id",jdbcType = JdbcType.VARCHAR)
+    @TableField(value = "com_id", jdbcType = JdbcType.VARCHAR)
     private String comId;
 
     /**
      * 人数
      */
-    @TableField(value = "stud_num",jdbcType = JdbcType.INTEGER)
+    @TableField(value = "stud_num", jdbcType = JdbcType.INTEGER)
     @Excel(name = "人数")
     private Integer studNum;
     /**
      * 是否禁用，0 禁用 1 启用
      */
-    @TableField(value = "ban",jdbcType = JdbcType.INTEGER)
-    @Excel(name = "禁用", replace = {"禁用_0","可用_1"})
+    @TableField(value = "ban", jdbcType = JdbcType.INTEGER)
+    @Excel(name = "禁用", replace = {"禁用_0", "可用_1"})
     private Integer ban;
 
     /**
      * 更新时间
      */
-    @TableField(value = "update_time",jdbcType = JdbcType.TIMESTAMP)
+    @TableField(value = "update_time", jdbcType = JdbcType.TIMESTAMP)
     private LocalDateTime updateTime;
 
     /**
@@ -88,7 +88,7 @@ public class Studio implements Serializable {
     /**
      * 逻辑删除字段
      */
-    @TableField(value = "logic_delete_flag",jdbcType = JdbcType.INTEGER)
+    @TableField(value = "logic_delete_flag", jdbcType = JdbcType.INTEGER)
     private Integer logicDeleteFlag;
 
 

@@ -3,11 +3,14 @@
 <mapper namespace="cn.edu.cdu.wxs.uiaipms.mapper.CompanyMapper">
     <select id="getByUsername" resultType="cn.edu.cdu.wxs.uiaipms.form.CompanyForm">
         SELECT
-        com_id AS id, com_name AS `name`
+            com_id AS id,
+            com_name AS `name`,
+            image
         FROM
-        company
+          company
         WHERE
-        username = #{username}
+            username = #{username}
+            AND logic_delete_flag = 0
     </select>
 
     <select id="selectAllInfo" resultType="cn.edu.cdu.wxs.uiaipms.form.CompanyForm">

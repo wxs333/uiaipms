@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 
 /**
  * 库存入库记录 表单
+ *
  * @author WXS
  * @date 2020/3/11
  */

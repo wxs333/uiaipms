@@ -1,12 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.utils;
 
-import cn.edu.cdu.wxs.uiaipms.form.AdminForm;
-import cn.edu.cdu.wxs.uiaipms.form.CompanyForm;
-import cn.edu.cdu.wxs.uiaipms.form.StudentForm;
-import cn.edu.cdu.wxs.uiaipms.form.TutorForm;
 import org.apache.shiro.crypto.hash.Md5Hash;
 
-import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
 /**
@@ -51,46 +46,6 @@ public class SystemUtils {
     }
 
     /**
-     * 获取当前登录的管理员用户ID
-     *
-     * @param session 会话
-     * @return 用户ID
-     */
-    public static String getAdminId(HttpSession session) {
-        return ((AdminForm) session.getAttribute("user")).getAdminId();
-    }
-
-    /**
-     * 获取当前登录的学生用户ID
-     *
-     * @param session 会话
-     * @return 用户ID
-     */
-    public static String getStudentId(HttpSession session) {
-        return ((StudentForm) session.getAttribute("user")).getStuId();
-    }
-
-    /**
-     * 获取当前登录的企业用户ID
-     *
-     * @param session 会话
-     * @return 用户ID
-     */
-    public static String getCompanyId(HttpSession session) {
-        return ((CompanyForm) session.getAttribute("user")).getComId();
-    }
-
-    /**
-     * 获取当前登录的导师用户ID
-     *
-     * @param session 会话
-     * @return 用户ID
-     */
-    public static String getTutorId(HttpSession session) {
-        return ((TutorForm) session.getAttribute("user")).getTutorId();
-    }
-
-    /**
      * 生成6位验证码，用于找回密码身份验证
      *
      * @return 验证码
@@ -130,7 +85,7 @@ public class SystemUtils {
 //        System.out.println(getUuid());
 //        System.out.println(getUuid());
 //        System.out.println(getUuid());
- //       System.out.println(verificationCode());
+        //       System.out.println(verificationCode());
 
         System.out.println(getNotRepeatingFilename("123.jpg"));
     }

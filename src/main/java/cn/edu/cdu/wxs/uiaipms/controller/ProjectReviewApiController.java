@@ -60,6 +60,7 @@ public class ProjectReviewApiController extends BaseController {
 
     /**
      * 分页获取个人审核历史记录
+     *
      * @param page 分页
      * @return json
      */
@@ -72,6 +73,7 @@ public class ProjectReviewApiController extends BaseController {
 
     /**
      * 分页获取通过审核的项目
+     *
      * @param page 分页
      * @return json
      */
@@ -82,6 +84,7 @@ public class ProjectReviewApiController extends BaseController {
 
     /**
      * 更新
+     *
      * @param form 表单
      * @return json
      */
@@ -99,6 +102,7 @@ public class ProjectReviewApiController extends BaseController {
 
     /**
      * 数据导出
+     *
      * @param response 响应
      */
     @GetMapping("export")
@@ -109,6 +113,6 @@ public class ProjectReviewApiController extends BaseController {
 
         System.out.println(data.get(0).getCreateTime().toString());
         // 导出
-        excelService.export("项目立项","项目项目立项", data, ProjectReviewForm.class, response);
+        excelService.export("项目立项", "项目项目立项", data, ProjectReviewForm.class, response);
     }
 }

@@ -2,6 +2,7 @@ package cn.edu.cdu.wxs.uiaipms.column;
 
 /**
  * 系统信息 字段
+ *
  * @author WXS
  * @date 2020/3/19
  */

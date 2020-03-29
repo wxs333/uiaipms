@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * 系 数据层
+ *
  * @author WXS
  * @date 2020/2/11
  */
@@ -15,6 +16,7 @@ import java.util.List;
 public interface DisciplineMapper extends CommonMapper<Discipline> {
     /**
      * 根据学院ID获取系
+     *
      * @param facId 学院ID
      * @return 集合
      */

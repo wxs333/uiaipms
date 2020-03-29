@@ -32,6 +32,10 @@ public class GoodsColumn {
      */
     public static final String GOODS_BRAND = "goods_brand";
     /**
+     * 0 可申请 1 已下架
+     */
+    public static final String BAN = "ban";
+    /**
      * 更新时间
      */
     public static final String UPDATE_TIME = "update_time";

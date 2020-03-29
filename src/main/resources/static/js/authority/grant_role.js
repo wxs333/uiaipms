@@ -52,7 +52,7 @@ function getData(_transfer, data, index) {
             '/api/admin/authority',
             {'mark': $('#mark').val(), 'userId': $('#userId').val(), 'data': JSON.stringify(data)},
             function (res) {
-                var icon = res.code === 'success'? 1 : 2;
+                var icon = res.code === 'success' ? 1 : 2;
                 layer.msg(res.message, {icon: icon});
             }
         )
@@ -61,15 +61,15 @@ function getData(_transfer, data, index) {
             layer.open({
                 title: "提示信息",
                 content: "用户必须有一个角色",
-                icon:2,
-                yes: function(index, layero){
+                icon: 2,
+                yes: function (index, layero) {
                     getRoles($, function (data) {
                         // 渲染
                         doRender(_transfer, data);
                     }, $("#mark").val(), $("#userId").val());
                     layer.close(index);
                 },
-                cancel: function(index, layero){
+                cancel: function (index, layero) {
                     getRoles($, function (data) {
                         // 渲染
                         doRender(_transfer, data);
@@ -80,9 +80,9 @@ function getData(_transfer, data, index) {
         } else {
             $.post(
                 '/api/admin/revoke',
-                {'userId': $('#userId').val(),'data': JSON.stringify(data)},
+                {'userId': $('#userId').val(), 'data': JSON.stringify(data)},
                 function (res) {
-                    var icon = res.code === 'success'? 1 : 2;
+                    var icon = res.code === 'success' ? 1 : 2;
                     layer.msg(res.message, {icon: icon});
                 }
             )

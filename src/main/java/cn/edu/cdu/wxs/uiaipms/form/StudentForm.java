@@ -8,6 +8,7 @@ import lombok.ToString;
 
 /**
  * 学生表单
+ *
  * @author WXS
  * @date 2020/1/13
  */
@@ -36,8 +37,4 @@ public class StudentForm extends Student {
      * 系别ID
      */
     private String discId;
-    /**
-     * 文件路径
-     */
-    private String filePath;
 }
