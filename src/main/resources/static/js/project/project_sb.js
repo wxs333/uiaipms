@@ -8,28 +8,31 @@ layui.use(['upload', 'form', 'layer'], function () {
         // 数据提交导后台
         add($, _layer, data.field);
         return false;
-    })
+    });
+
+    wordUpload(_upload, $);
 });
 
 /**
  * Word文档上传
  */
-function wordUpload(_upload) {
+function wordUpload(_upload, $) {
     _upload.render({
         elem: '#word',
-        url: '/api/pro/word',
+        url: '/api/pro/uploadWord',
         headers: {'method': 'post'},
         accept: 'file',
         acceptMime: 'file/doc, file/docx',
         exts: 'doc|docx',
-        auto: false,
-        bindAction: '#submit',
         multiple: true,
-        before: function () {
-
+        choose: function (obj) {
+            obj.preview(function (index, file, result) {
+               $("#wordName").text("已选择：" + file.name);
+            });
         },
-        done: function () {
-
+        done: function (res) {
+            $("#proLocation").val(res.proLocation);
+            $("#hide-word-name").val(res.wordName);
         }
     })
 }

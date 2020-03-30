@@ -98,14 +98,12 @@ public class FtpUtils {
             if (!ObjectUtils.isEmpty(ftpClient)) {
                 InputStream inputStream = ftpClient.retrieveFileStream(path);
                 byte[] bytes = new byte[1024];
-                int len = inputStream.read(bytes);
-                while (len != -1) {
+                while ((inputStream.read(bytes)) != -1) {
                     outputStream.write(bytes);
-                    len = inputStream.read(bytes);
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info("下载文件失败");
         } finally {
             close(ftpClient);
         }

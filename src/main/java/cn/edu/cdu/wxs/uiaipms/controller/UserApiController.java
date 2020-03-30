@@ -172,11 +172,11 @@ public class UserApiController extends BaseController {
                 String type = (String) session.getAttribute("role");
                 // 修改用户图片的路径
                 updateImg(session, type, GlobalConstant.FTP_HEAD_IMG_DIRECTORY + filename);
-                map.put("msg", "修改成功");
+                map.put("msg", "头像修改成功");
                 map.put("code", "200");
             }
         } catch (Exception e) {
-            map.put("msg", "修改失败");
+            map.put("msg", "头像修改失败");
             map.put("code", "0");
         }
         return map;

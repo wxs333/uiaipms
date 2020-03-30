@@ -7,7 +7,6 @@ import cn.edu.cdu.wxs.uiaipms.column.TutorColumn;
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.service.BaseService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,18 +42,8 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class, readOnly = true)
-    public T getById(String idCol, int id) {
-        QueryWrapper<T> wrapper = new QueryWrapper<>();
-        wrapper.eq(idCol, id)
-                .eq(GlobalConstant.LOGIC_DELETE_FLAG, 0);
-
-        return getMapper().selectOne(wrapper);
-    }
-
-    @Override
     public Map<String, Object> getTableNameAndIdColByRole(String role) {
-        Map<String, Object> map = new HashMap<>(2);
+        Map<String, Object> map = new HashMap<>(3);
         switch (role) {
             case "admin":
                 map.put(GlobalConstant.TABLE_NAME, AdminColumn.ADMIN_TABLE);

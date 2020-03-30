@@ -50,6 +50,11 @@ public class Project implements Serializable {
     @TableField(value = "pro_location", jdbcType = JdbcType.VARCHAR)
     private String proLocation;
     /**
+     * 本地文件名
+     */
+    @TableField(value = "word_name", jdbcType = JdbcType.VARCHAR)
+    private String wordName;
+    /**
      * 项目描述
      */
     @TableField(value = "pro_desc", jdbcType = JdbcType.VARCHAR)

@@ -69,7 +69,7 @@ function changeHtml(id, $, _layer) {
             elem.attr("src", "/pf/list");
             break;
         case "project-sb":
-            elem.attr("src", "/pro/sb");
+            openHtml(_layer, {"title": "创新创业项目申报", "url": "/pro/sb", "width": "1200px"});
             break;
         case "project-sp":
             elem.attr("src", "/pro/sp");
@@ -90,12 +90,8 @@ function changeHtml(id, $, _layer) {
             elem.attr("src", "/pr/list");
             break;
         case "buy-funds-apply":
-            var data = {
-                "title": "采购资金申请", "url": "/bf/apply"
-            };
-            openHtml(_layer, data);
+            openHtml(_layer, {"title": "采购资金申请", "url": "/bf/apply", "width": "1200px"});
             break;
-
     }
 }
 

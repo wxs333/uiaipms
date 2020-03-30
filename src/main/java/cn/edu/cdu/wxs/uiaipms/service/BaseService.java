@@ -25,14 +25,6 @@ public interface BaseService<T> {
      */
     boolean modifyById(T domain);
 
-    /**
-     * 根据ID获取
-     *
-     * @param idCol ID的数据库字段名
-     * @param id    ID
-     * @return 实体
-     */
-    T getById(String idCol, int id);
 
     /**
      * 根据角色获取用户的表名以及ID列名

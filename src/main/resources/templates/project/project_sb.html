@@ -11,18 +11,6 @@
             background-color: #EEEEEE;
         }
 
-        .layui-upload .layui-upload-list .layui-upload-img {
-            width: 100px;
-            height: 120px;
-            margin-left: 270px;
-        }
-
-        .layui-upload button {
-            width: 100px;
-            margin-left: 270px;
-            margin-bottom: 10px;
-        }
-
         .layui-card .layui-card-header {
             margin-top: 10px;
             height: 50px;
@@ -39,6 +27,16 @@
         .layui-form .layui-form-item textarea {
             height: 169px;
         }
+
+        .layui-upload button {
+            margin-bottom: 10px;
+        }
+
+        .layui-upload span {
+            font-size: 1.2em;
+            margin-left: 20px;
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -51,6 +49,8 @@
     </div>
     <div class="layui-card-body">
         <form class="layui-form" enctype="multipart/form-data" lay-filter="info">
+            <input type="hidden" name="wordName" id="hide-word-name">
+            <input type="hidden" name="proLocation" id="proLocation">
             <div class="layui-form-item layui-col-md-offset1 layui-col-md7">
                 <label class="layui-form-label">标题</label>
                 <div class="layui-input-block">
@@ -63,11 +63,16 @@
                     <textarea class="layui-input" name="proDesc"></textarea>
                 </div>
             </div>
-            <div class="layui-form-item layui-col-md-offset2">
-                <div class="layui-btn-container" style="margin-left: 5px">
-                    <button class="layui-btn layui-btn-sm" lay-submit id="submit">申报</button>
-                    <button class="layui-btn layui-btn-sm" type="reset">重置</button>
+            <div class="layui-form-item layui-col-md-offset1">
+                <label class="layui-form-label">项目文档</label>
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn layui-btn-normal" id="word">选择word文档</button>
+                    <span class="" id="wordName"></span>
                 </div>
+            </div>
+            <div class="layui-btn-container layui-col-md-offset2">
+                <button class="layui-btn layui-btn-sm" style="margin-left: 12px" lay-submit id="submit">申报</button>
+                <button class="layui-btn layui-btn-sm" type="reset">重置</button>
             </div>
         </form>
     </div>
