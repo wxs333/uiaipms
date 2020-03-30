@@ -45,7 +45,7 @@ function tableRender(_table) {
             {field: 'createTime', title: '审核时间', align: "center", templet: "#createTime"},
             {field: 'lx', title: '立项', align: "center", templet: "#lx"},
             {field: 'lxTime', title: '立项时间', align: "center", templet: "#lx_time"},
-            {field: '', title: "操作", minWidth: '200', align: "center", toolbar: "#rowTool"}
+            {field: '', title: "操作", minWidth: '220', align: "center", toolbar: "#rowTool"}
         ]],
         limits: [10, 20, 30],
         parseData: function (res) { // 返回数据格式解析

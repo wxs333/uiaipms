@@ -33,11 +33,17 @@
 </script>
 <!-- 行工具 -->
 <script type="text/html" id="rowTool">
-    <button class="layui-btn layui-btn-sm layui-bg-orange" lay-event="edit">修改</button>
+    <button class="layui-btn layui-btn-sm layui-bg-orange" lay-event="edit">
+        <i class="layui-icon layui-icon-edit"></i>修改
+    </button>
     {{# if (d.ban == 0) { }}
-    <button class="layui-btn layui-btn-sm layui-bg-blue" lay-event="enable">启用</button>
+    <button class="layui-btn layui-btn-sm layui-bg-blue" lay-event="enable">
+        <i class="layui-icon layui-icon-ok"></i>启用
+    </button>
     {{# } else { }}
-    <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="ban">禁用</button>
+    <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="ban">
+        <i class="layui-icon layui-icon-close"></i>禁用
+    </button>
     {{# } }}
 </script>
 <!-- 时间格式化-->

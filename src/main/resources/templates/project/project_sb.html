@@ -22,6 +22,7 @@
 
         .layui-card .layui-card-header div span {
             font-size: 2em;
+            margin-left: 150px;
         }
 
         .layui-form .layui-form-item textarea {
@@ -66,13 +67,19 @@
             <div class="layui-form-item layui-col-md-offset1">
                 <label class="layui-form-label">项目文档</label>
                 <div class="layui-upload">
-                    <button type="button" class="layui-btn layui-btn-normal" id="word">选择word文档</button>
+                    <button type="button" class="layui-btn layui-btn-normal" id="word">
+                        <i class="layui-icon layui-icon-upload"></i>选择word文档
+                    </button>
                     <span class="" id="wordName"></span>
                 </div>
             </div>
             <div class="layui-btn-container layui-col-md-offset2">
-                <button class="layui-btn layui-btn-sm" style="margin-left: 12px" lay-submit id="submit">申报</button>
-                <button class="layui-btn layui-btn-sm" type="reset">重置</button>
+                <button class="layui-btn layui-btn-sm" style="margin-left: 12px" lay-submit id="submit">
+                    <i class="layui-icon layui-icon-ok"></i>申报
+                </button>
+                <button class="layui-btn layui-btn-sm" type="reset">
+                    <i class="layui-icon layui-icon-refresh"></i>重置
+                </button>
             </div>
         </form>
     </div>

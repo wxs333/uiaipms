@@ -48,15 +48,23 @@
 <!-- 头工具栏 -->
 <script type="text/html" id="toolbar">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="data-out">工作室导出</button>
+        <button class="layui-btn layui-btn-sm" lay-event="data-out">
+            <i class="layui-icon layui-icon-export"></i>导出
+        </button>
     </div>
 </script>
 <!-- 行工具 -->
 <script type="text/html" id="rowTool">
     {{# if(d.ban == 1) { }}
-    <button class="layui-btn layui-btn-sm layui-bg-orange" lay-event="edit">人数变更</button>
-    <button class="layui-btn layui-btn-sm" lay-event="goods-apply">设备申请</button>
-    <button class="layui-btn layui-btn-sm" lay-event="goods">查看设备</button>
+    <button class="layui-btn layui-btn-sm layui-bg-orange" lay-event="edit">
+        <i class="layui-icon layui-icon-edit"></i>人数变更
+    </button>
+    <button class="layui-btn layui-btn-sm" lay-event="goods-apply">
+        <i class="layui-icon layui-icon-form"></i>设备申请
+    </button>
+    <button class="layui-btn layui-btn-sm" lay-event="goods">
+        <i class="layui-icon layui-icon-list"></i>查看设备
+    </button>
     {{# } else { }}
     <span style="color: red">无操作可进行</span>
     {{#  } }}

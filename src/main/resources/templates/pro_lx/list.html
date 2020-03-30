@@ -26,16 +26,24 @@
 <!-- 头工具栏 -->
 <script type="text/html" id="toolbar">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="export">数据导出</button>
+        <button class="layui-btn layui-btn-sm" lay-event="export">
+            <i class="layui-icon layui-icon-export"></i>导出
+        </button>
     </div>
 </script>
 <!-- 行工具 -->
 <script type="text/html" id="rowTool">
     {{# if(d.lx == 1) { }}
-    <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="lx">立项</button>
+    <button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="lx">
+        <i class="layui-icon layui-icon-ok"></i>立项
+    </button>
     {{# } else { }}
-    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="apply">资金申请</button>
-    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="record">申请记录</button>
+    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="apply">
+        <i class="layui-icon layui-icon-form"></i>资金申请
+    </button>
+    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="record">
+        <i class="layui-icon layui-icon-list"></i>申请记录
+    </button>
     {{# } }}
 </script>
 <!-- 格式化状态 -->

@@ -14,6 +14,7 @@
         .layui-btn-container {
             margin-left: 110px;
         }
+
         .layui-btn-container .layui-btn {
             margin-bottom: 0;
         }
@@ -25,8 +26,12 @@
     <div class="layui-card-body">
         <form class="layui-form" enctype="multipart/form-data" lay-filter="info">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm" lay-submit>确定</button>
-                <button class="layui-btn layui-btn-sm" type="reset">重置</button>
+                <button class="layui-btn layui-btn-sm" lay-submit>
+                    <i class="layui-icon layui-icon-ok"></i>确定
+                </button>
+                <button class="layui-btn layui-btn-sm" type="reset">
+                    <i class="layui-icon layui-icon-refresh"></i>重置
+                </button>
             </div>
             <hr class="html-editor-hr"/>
             <div class="layui-form-item" hidden>

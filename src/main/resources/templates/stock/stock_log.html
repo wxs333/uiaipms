@@ -48,11 +48,21 @@
 <!-- 头工具栏 -->
 <script type="text/html" id="toolbar">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="into-log">入库记录</button>
-        <button class="layui-btn layui-btn-sm" lay-event="out-log">出库记录</button>
-        <button class="layui-btn layui-btn-sm" lay-event="into">入库</button>
-        <button class="layui-btn layui-btn-sm" lay-event="out">出库审批</button>
-        <button class="layui-btn layui-btn-sm" lay-event="apply">采购资金申请</button>
+        <button class="layui-btn layui-btn-sm" lay-event="into-log">
+            <i class="layui-icon layui-icon-list"></i>入库记录
+        </button>
+        <button class="layui-btn layui-btn-sm" lay-event="out-log">
+            <i class="layui-icon layui-icon-list"></i>出库记录
+        </button>
+        <button class="layui-btn layui-btn-sm" lay-event="into">
+            <i class="layui-icon layui-icon-add-1"></i>入库
+        </button>
+        <button class="layui-btn layui-btn-sm" lay-event="out">
+            <i class="layui-icon layui-icon-edit"></i>出库审批
+        </button>
+        <button class="layui-btn layui-btn-sm" lay-event="apply">
+            <i class="layui-icon layui-icon-form"></i>采购资金申请
+        </button>
     </div>
 </script>
 <!-- 时间格式化-->

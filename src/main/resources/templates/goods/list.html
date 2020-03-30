@@ -26,16 +26,24 @@
 <!-- 头工具栏 -->
 <script type="text/html" id="toolbar">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="export">数据导出</button>
+        <button class="layui-btn layui-btn-sm" lay-event="export">
+            <i class="layui-icon layui-icon-export"></i>导出
+        </button>
     </div>
 </script>
 <!-- 行工具 -->
 <script type="text/html" id="rowTool">
-    <button class="layui-btn layui-btn-sm layui-bg-orange" lay-event="edit">修改</button>
+    <button class="layui-btn layui-btn-sm layui-bg-orange" lay-event="edit">
+        <i class="layui-icon layui-icon-edit"></i>修改
+    </button>
     {{# if(d.ban == 0) { }}
-    <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="ban">下架</button>
+    <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="ban">
+        <i class="layui-icon layui-icon-close"></i>下架
+    </button>
     {{# } else { }}
-    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="reset">上架</button>
+    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="reset">
+        <i class="layui-icon layui-icon-ok"></i>上架
+    </button>
     {{# } }}
 </script>
 <!-- 格式化状态 -->

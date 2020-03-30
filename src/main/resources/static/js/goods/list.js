@@ -45,7 +45,7 @@ function tableRender(_table) {
             {field: 'ban', title: '状态', align: "center", templet: "#ban"},
             {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
             {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},
-            {field: '', title: "操作", minWidth: '150', align: "center", toolbar: "#rowTool"}
+            {field: '', title: "操作", minWidth: '170', align: "center", toolbar: "#rowTool"}
         ]],
         limits: [10, 20, 30],
         parseData: function (res) { // 返回数据格式解析
