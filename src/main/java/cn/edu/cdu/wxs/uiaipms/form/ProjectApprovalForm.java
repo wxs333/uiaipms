@@ -26,6 +26,10 @@ public class ProjectApprovalForm extends ProjectApproval {
      */
     private String proLocation;
     /**
+     * 项目文档名称
+     */
+    private String wordName;
+    /**
      * 审批人信息
      */
     private String tutorName;

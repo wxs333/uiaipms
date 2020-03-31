@@ -56,4 +56,9 @@ public class FtpServiceImpl implements FtpService {
     public void download(String path, OutputStream outputStream) {
         FtpUtils.download(host, port, username, password, path, outputStream);
     }
+
+    @Override
+    public InputStream download(String path) {
+        return FtpUtils.download(host, port, username, password, path);
+    }
 }

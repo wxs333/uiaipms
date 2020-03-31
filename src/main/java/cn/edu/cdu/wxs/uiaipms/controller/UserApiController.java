@@ -7,6 +7,9 @@ import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.*;
 import cn.edu.cdu.wxs.uiaipms.utils.CodeUtils;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
+import com.documents4j.api.DocumentType;
+import com.documents4j.api.IConverter;
+import com.documents4j.job.LocalConverter;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -20,6 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -180,6 +185,42 @@ public class UserApiController extends BaseController {
             map.put("code", "0");
         }
         return map;
+    }
+
+    /**
+     * 在线预览Word文档
+     *
+     * @param response 响应
+     * @param filePath 文件路径
+     */
+    @GetMapping("previewWord")
+    public void previewWord(HttpServletResponse response, String filePath) {
+        // 获取文件的输入流
+        InputStream inputStream = ftpService.download(filePath);
+        // 将Word文档转换未pdf文件
+        IConverter converter = LocalConverter.builder().build();
+        OutputStream outputStream = null;
+        try {
+            outputStream = response.getOutputStream();
+            boolean result = converter.convert(inputStream)
+                    .as(DocumentType.DOCX)
+                    .to(outputStream)
+                    .as(DocumentType.PDF)
+                    .execute();
+            if (!result) {
+                log.info("文档转换失败");
+            }
+            outputStream.flush();
+        } catch (IOException e) {
+            log.info("文档转换失败");
+        } finally {
+            try {
+                outputStream.close();
+            } catch (IOException e) {
+                log.info("outputStream关闭失败：" + e.getMessage());
+            }
+        }
+
     }
 
     /**

@@ -62,14 +62,14 @@ public class FtpUtils {
             // FTPClient连接服务器成功
             if (!ObjectUtils.isEmpty(ftpClient)) {
                 ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-                // 切换导上传目录
+                // 切换到上传目录
                 ftpClient.changeWorkingDirectory(path);
                 // 文件上传
                 boolean result = ftpClient.storeFile(filename, inputStream);
                 if (result) {
                     logger.info("文件上传成功");
-                    return true;
                 }
+                return result;
             }
         } catch (Exception e) {
             logger.info("文件上传失败：" + e);
@@ -110,10 +110,36 @@ public class FtpUtils {
     }
 
     /**
-     * 关闭ftp服务器连接
-     *
-     * @param ftpClient ftp客户端
+     * 获取文件输入流
+     * @param host         IP地址
+     * @param port         端口
+     * @param username     用户名
+     * @param password     密码
+     * @param path         路径
+     * @return 输入流
      */
+    public static InputStream download(String host, int port, String username, String password, String path) {
+        // 获取FTPClient
+        FTPClient ftpClient = getFtpClient(host, port, username, password);
+        InputStream inputStream = null;
+        try {
+            if (!ObjectUtils.isEmpty(ftpClient)) {
+                inputStream = ftpClient.retrieveFileStream(path);
+            }
+        } catch (Exception e) {
+            logger.info("获取文件输入流失败");
+        } finally {
+            close(ftpClient);
+        }
+        return inputStream;
+    }
+
+
+        /**
+         * 关闭ftp服务器连接
+         *
+         * @param ftpClient ftp客户端
+         */
     private static void close(FTPClient ftpClient) {
         try {
             ftpClient.disconnect();

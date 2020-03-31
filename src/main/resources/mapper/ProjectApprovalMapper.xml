@@ -7,6 +7,7 @@
             p.pro_name,
             p.pro_desc,
             p.pro_location,
+            p.word_name,
             pa.reason,
             pa.update_time,
             pa.approval_flag

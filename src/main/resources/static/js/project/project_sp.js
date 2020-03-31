@@ -2,6 +2,7 @@ layui.use(['element', 'table'], function () {
     var _element = layui.element;
     var _table = layui.table;
     var _layer = layui.layer;
+    var $ = layui.$;
 
     // 初始化未审批项目的表格
     initNoApprTable(_table);
@@ -16,15 +17,24 @@ layui.use(['element', 'table'], function () {
     });
     // 监听未审批表格的行事
     _table.on('tool', function (obj) {
-        // 打开审批页面
-        openApproveHtml(_table, _layer, obj.data.proId, obj.data.proName);
-    })
+        var event = obj.event;
+        if ("approve" === event) {
+            // 打开审批页面
+            openApproveHtml(_table, _layer, obj.data.proId, obj.data.proName);
+        } else if ("preview" === event) {
+            // 文档预览准备
+            wordPreview($, obj.data);
+        }
+
+    });
+
 });
 
 /**
  * 初始化未审批项目的表格
  */
 function initNoApprTable(_table) {
+
     _table.render({
         elem: '#no-appr',
         url: '/api/pro/getNoAppr',
@@ -82,17 +92,19 @@ function col() {
     var col = [];
     col[0] = [[
         {field: 'proId', title: 'id', align: "center", hide: 'true'},
+        {field: 'proLocation', title: '文档路径', align: "center", hide: 'true'},
         {field: 'proName', title: '标题', align: "center"},
         {field: 'proDesc', title: '描述', align: "center"},
-        {field: 'proLocation', title: '材料路径', align: "center"},
+        {field: 'wordName,', title: '项目文档', align: "center", event: "preview", templet: "#word"},
         {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
         {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},
         {field: '', title: "操作", align: "center", toolbar: "#rowTool"}
     ]];
     col[1] = [[
+        {field: 'proLocation', title: '文档路径', align: "center", hide: 'true'},
         {field: 'proName', title: '标题', align: "center"},
         {field: 'proDesc', title: '描述', align: "center"},
-        {field: 'proLocation', title: '材料路径', align: "center"},
+        {field: 'wordName', title: '项目文档', align: "center", event: "preview", templet: "#word"},
         {field: 'approvalFlag', title: '是否通过', align: "center", templet: '#flag'},
         {field: 'reason', title: '原因', align: "center"},
         {field: 'updateTime', title: '审批时间', align: "center", templet: '#updateTime'}
@@ -122,4 +134,12 @@ function openApproveHtml(_table, _layer, proId, proName) {
                 });
         }
     });
+}
+
+/**
+ * Word文档预览
+ */
+function wordPreview($, data) {
+    var url = "/static/pdf/web/viewer.html?file=" + encodeURIComponent("/api/user/previewWord?filePath=" + data.proLocation+"&fileName=" + data.wordName);
+    window.open(url);
 }

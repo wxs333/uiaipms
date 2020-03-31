@@ -8,6 +8,7 @@
             p.pro_name,
             p.pro_desc,
             p.pro_location,
+            p.word_name,
             p.create_time,
 	        p.update_time
         FROM
