@@ -4,6 +4,9 @@ import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.domain.Clazz;
 import cn.edu.cdu.wxs.uiaipms.domain.Discipline;
 import cn.edu.cdu.wxs.uiaipms.domain.Faculty;
+import cn.edu.cdu.wxs.uiaipms.form.CompanyForm;
+import cn.edu.cdu.wxs.uiaipms.form.StudentForm;
+import cn.edu.cdu.wxs.uiaipms.form.TutorForm;
 import cn.edu.cdu.wxs.uiaipms.form.UserRoleForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.*;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,8 +48,10 @@ public class AdminApiController extends BaseController {
     private DisciplineService disciplineService;
     @Autowired
     private TutorService tutorService;
-
-    private static final String MARK_TUTOR = "tutor";
+    @Autowired
+    private StudentService studentService;
+    @Autowired
+    private CompanyService companyService;
 
     /**
      * 获取选择用户没有的角色
@@ -150,7 +156,36 @@ public class AdminApiController extends BaseController {
      * @return json
      */
     @PostMapping("ban")
-    public JsonResult<String> ban(String mark, String id) {
-        return null;
+    public JsonResult<String> ban(String mark, String id, Integer ban) {
+        boolean result = false;
+        switch (mark) {
+            case "student":
+                StudentForm studentForm = new StudentForm();
+                studentForm.setStuId(id);
+                studentForm.setUpdateTime(LocalDateTime.now());
+                studentForm.setBan(ban);
+                result = studentService.modifyById(studentForm);
+                break;
+            case "tutor":
+                TutorForm tutorForm = new TutorForm();
+                tutorForm.setTutorId(id);
+                tutorForm.setUpdateTime(LocalDateTime.now());
+                tutorForm.setBan(ban);
+                result = tutorService.modifyById(tutorForm);
+                break;
+            case "company":
+                CompanyForm companyForm = new CompanyForm();
+                companyForm.setComId(id);
+                companyForm.setUpdateTime(LocalDateTime.now());
+                companyForm.setBan(ban);
+                result = companyService.modifyById(companyForm);
+                break;
+                default:
+                    break;
+        }
+        if (result) {
+            return jsonResult("操作成功");
+        }
+        return jsonResult(GlobalConstant.FAILURE, "操作失败");
     }
 }

@@ -87,6 +87,11 @@ public class Student implements Serializable {
      */
     @TableField(value = "image", jdbcType = JdbcType.VARCHAR)
     private String image;
+    /**
+     * 0 启用 1 禁用
+     */
+    @TableField(value = "ban", jdbcType = JdbcType.INTEGER)
+    private Integer ban;
 
     /**
      * 更新时间

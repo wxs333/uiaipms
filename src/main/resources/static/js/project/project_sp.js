@@ -135,11 +135,10 @@ function openApproveHtml(_table, _layer, proId, proName) {
         }
     });
 }
-
 /**
  * Word文档预览
  */
 function wordPreview($, data) {
-    var url = "/static/pdf/web/viewer.html?file=" + encodeURIComponent("/api/user/previewWord?filePath=" + data.proLocation+"&fileName=" + data.wordName);
+    var url = "/static/js/pdf/web/viewer.html?file=" + encodeURIComponent("/api/user/previewWord?filePath=" + data.proLocation+"&fileName=" + data.wordName);
     window.open(url);
 }

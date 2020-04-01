@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>项目审核</title>
-    <link rel="stylesheet" href="/static/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
     <style>
         .layui-table-page {
             text-align: center;
@@ -21,14 +21,18 @@
     </div>
 </div>
 <!-- js文件 -->
-<script type="text/javascript" src="/static/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/pro_sh/list.js"></script>
 <!-- 行工具 -->
 <script type="text/html" id="rowTool">
-    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="yes">
-        <i class="layui-icon layui-icon-ok"></i>通过</button>
-    <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="no">
-        <i class="layui-icon layui-icon-close"></i>驳回</button>
+    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="sh">
+        <i class="layui-icon layui-icon-edit"></i>审核</button>
+</script>
+<!-- 处理文档 -->
+<script type="text/html" id="word">
+    <span style="color: blue;text-decoration: underline">
+        {{ d.wordName }}
+    </span>
 </script>
 <!-- 表头工具  -->
 <script type="text/html" id="tool">

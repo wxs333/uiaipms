@@ -32,6 +32,7 @@
             s.phone,
             s.update_time,
             s.create_time,
+            s.ban,
             CONCAT( f.fac_short_name, ',', d.disc_name, ',', c.clazz_name ) AS clazzName
         FROM
             student s,

@@ -6,8 +6,13 @@ layui.use('table', function () {
     tableRender(_table);
     // 行工具栏事件监听
     _table.on('tool(pro-sh)', function (obj) {
-        // 弹出填写理由页面
-        openReason(_layer, _table, obj);
+        if (obj.event === "sh") {
+            // 弹出填写理由页面
+            openReason(_layer, _table, obj);
+        } else if (obj.event === "preview"){
+            wordPreview($, obj.data);
+        }
+
 
     });
     // 头工具事件监听
@@ -33,8 +38,9 @@ function tableRender(_table) {
         page: true,
         cols: [[ // 表头
             {field: 'paId', title: '审批记录id', align: "center", hide: 'true'},
+            {field: 'proLocation', title: '文档路径', align: "center", hide: 'true'},
             {field: 'proName', title: '项目名', align: "center"},
-            {field: 'proLocation', title: '项目材料', align: "center"},
+            {field: 'wordName,', title: '项目文档', align: "center", event: "preview", templet: "#word"},
             {field: 'tutorName', title: '审批人', align: "center"},
             {field: 'reason', title: '通过理由', align: "center"},
             {field: '', title: "操作", minWidth: '150', align: "center", toolbar: "#rowTool"}
@@ -72,11 +78,10 @@ function reloadTable(_table) {
  * 审核页面
  */
 function openReason(_layer, _table, obj) {
-    var title = obj.event === "yes" ? "项目通过" : "项目驳回";
     _layer.open({
         type: 2,
-        title: title,
-        content: '/pr/sh?paId=' + obj.data.paId + "&proName=" + obj.data.proName + "&event=" + obj.event,
+        title: "项目审核",
+        content: '/pr/sh?paId=' + obj.data.paId + "&proName=" + obj.data.proName,
         area: ['800px', '550px'],
         anim: 1,
         scrollbar: false,
@@ -101,4 +106,12 @@ function openHistory(_layer) {
         scrollbar: false,
         offset: '30px'
     });
+}
+
+/**
+ * Word文档预览
+ */
+function wordPreview($, data) {
+    var url = "/static/js/pdf/web/viewer.html?file=" + encodeURIComponent("/api/user/previewWord?filePath=" + data.proLocation+"&fileName=" + data.wordName);
+    window.open(url);
 }

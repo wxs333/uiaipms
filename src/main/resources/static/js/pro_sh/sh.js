@@ -5,7 +5,7 @@ layui.use("form", function () {
     // 表单提交监听
     _form.on("submit", function (data) {
         // 数据提交
-        if ($("#event").val() === "yes") {
+        if (data.field.review === "1") {
             add($, _layer, data.field);
         } else {
             updateStatus($, _layer, data.field)

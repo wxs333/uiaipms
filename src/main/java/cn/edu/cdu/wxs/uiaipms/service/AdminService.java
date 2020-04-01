@@ -24,4 +24,5 @@ public interface AdminService extends BaseService<AdminForm> {
      * @return 用户
      */
     AdminForm getByUsername(String username);
+
 }

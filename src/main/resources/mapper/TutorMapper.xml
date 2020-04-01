@@ -26,6 +26,7 @@
             t.tutor_name,
             t.username,
             t.phone,
+            t.ban,
             t.update_time,
             t.create_time,
             f.fac_name AS facultyName

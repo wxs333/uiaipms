@@ -42,11 +42,10 @@ public class ProjectReviewWebController {
      * @return 视图
      */
     @GetMapping("sh")
-    public ModelAndView sh(@NotNull String paId, @NotNull String proName, @NotNull String event) {
+    public ModelAndView sh(@NotNull String paId, @NotNull String proName) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("paId", paId);
         modelAndView.addObject("proName", proName);
-        modelAndView.addObject("event", event);
         modelAndView.setViewName(PREFIX + "sh");
         return modelAndView;
     }

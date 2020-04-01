@@ -106,6 +106,6 @@ function openHtml(_layer, data) {
         area: [data.width, "630px"],
         anim: 1,
         scrollbar: false,
-        offset: '50px'
+        offset: ['60px', "260px"]
     });
 }

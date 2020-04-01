@@ -30,6 +30,7 @@
         SELECT
             p.pro_name,
             p.pro_location,
+            p.word_name,
             pa.pa_id,
             t.tutor_name,
             pa.reason

@@ -14,20 +14,7 @@ layui.use('table', function () {
         if (obj.event === 'edit') {
             openUpdateHtml($("#mark").val(), _layer, obj.data.id, _table);
         } else {
-            _layer.confirm('确定要禁用该账号？',
-                {btn: ['确定', '取消'], icon: 3, anim: 1, offset: '130px'},
-                function (index) {
-                    $.post(
-                        '/api/admin/ban',
-                        {'mark': $("#mark").val(), 'id': obj.data.id},
-                        function (res) {
-
-                        }
-                    );
-                },
-                function (index) {
-                    _layer.close(index);
-                });
+            ban(_table, _layer, $, obj);
         }
     })
 
@@ -78,6 +65,7 @@ function getCols(mark) {
                 {field: 'clazzName', title: '班级', align: "center"},
                 {field: 'address', title: '联系地址', align: "center"},
                 {field: 'phone', title: '手机号码', align: "center"},
+                {field: 'ban', title: '状态', align: "center", templet: "#ban"},
                 {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
                 {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},
                 {field: '', title: "操作", align: "center", minWidth: "180", toolbar: "#rowTool"}
@@ -92,6 +80,7 @@ function getCols(mark) {
                 {field: 'username', title: '用户名', align: "center"},
                 {field: 'facultyName', title: '学院', align: "center"},
                 {field: 'phone', title: '手机号码', align: "center"},
+                {field: 'ban', title: '状态', align: "center", templet: "#ban"},
                 {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
                 {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},
                 {field: '', title: "操作", align: "center", minWidth: "200", toolbar: "#rowTool"}
@@ -101,11 +90,12 @@ function getCols(mark) {
             break;
         case 'company':
             cols[0] = [ // 表头
-                {field: 'comId', title: 'id', align: "center", hide: 'true'},
+                {field: 'id', title: 'id', align: "center", hide: 'true'},
                 {field: 'comName', title: '企业名称', align: "center"},
                 {field: 'comPeople', title: '负责人', align: "center"},
                 {field: 'username', title: '用户名', align: "center"},
                 {field: 'phone', title: '联系方式', align: "center"},
+                {field: 'ban', title: '状态', align: "center", templet: "#ban"},
                 {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
                 {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},
                 {field: '', title: "操作", align: "center", minWidth: "200", toolbar: "#rowTool"}
@@ -139,4 +129,30 @@ function openUpdateHtml(mark, _layer, id, _table) {
                 });
         }
     });
+}
+
+/**
+ * 账号禁用或启用
+ */
+function ban(_table, _layer, $, obj) {
+    var msg = obj.event === "ban" ? "确定要禁用该账号？" : "确定要启用该账号？";
+    var ban = obj.event === "ban" ? 1 : 0;
+    _layer.confirm(msg,
+        {btn: ['确定', '取消'], icon: 3, anim: 1, offset: '130px'},
+        function (index) {
+            _layer.close(index);
+            $.post(
+                '/api/admin/ban',
+                {'mark': $("#mark").val(), 'id': obj.data.id, "ban": ban},
+                function (res) {
+                    var icon = res.code === "success" ? 1 : 2;
+                    _layer.msg(res.message,
+                        {icon: icon, time: 1500},
+                        function () {
+                            // 重载表格
+                            tableRender(_table, $("#mark").val());
+                        });
+                }
+            );
+        });
 }

@@ -61,6 +61,11 @@ public class Company implements Serializable {
     @TableField(value = "image", jdbcType = JdbcType.VARCHAR)
     private String image;
     /**
+     * 0 启用 1 禁用
+     */
+    @TableField(value = "ban", jdbcType = JdbcType.INTEGER)
+    private Integer ban;
+    /**
      * 更新时间
      */
     @TableField(value = "update_time", jdbcType = JdbcType.TIMESTAMP)

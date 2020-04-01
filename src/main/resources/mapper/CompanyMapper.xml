@@ -19,6 +19,7 @@
             com_name,
             com_people,
             phone,
+            ban,
             username,
             update_time,
             create_time
