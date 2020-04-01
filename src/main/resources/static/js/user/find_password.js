@@ -14,7 +14,7 @@ layui.use(["form"], function () {
         if (data.field.code !== $("#email-code").val()) {
             _layer.msg("验证码不正确", {time: 1500, icon: 2, anim: 6})
         } else {
-            disableAndShow($, "#two", "#three");
+            disableAndShow($, "", "#three");
         }
         return false;
     });
