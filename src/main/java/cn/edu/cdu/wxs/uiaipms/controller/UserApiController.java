@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -69,6 +70,11 @@ public class UserApiController extends BaseController {
      */
     @Autowired
     private FtpService ftpService;
+    /**
+     * 邮件服务类
+     */
+    @Autowired
+    private EmailService emailService;
     /**
      * session里的用户
      */
@@ -220,7 +226,57 @@ public class UserApiController extends BaseController {
                 log.info("outputStream关闭失败：" + e.getMessage());
             }
         }
+    }
 
+    /**
+     * 发送邮件
+     *
+     * @param email 邮箱
+     * @return json
+     */
+    @GetMapping("sendEmail")
+    public JsonResult<String> sendEmail(String email) {
+        String code = emailService.sendVerCodeEmail(email);
+        if (!StringUtils.isEmpty(code)) {
+            return jsonResult(GlobalConstant.SUCCESS, "验证码发送成功", code);
+        }
+        return jsonResult(GlobalConstant.FAILURE, "验证码发送失败， 请稍后再试");
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param password 新密码
+     * @return json
+     */
+    @PostMapping("updatePassword")
+    public JsonResult<String> updatePassword(String password, String username) {
+        boolean result = false;
+        if (adminService.isUsernameExist(username)) {
+            AdminForm adminForm = new AdminForm();
+            adminForm.setPassword(SystemUtils.md5(password, username));
+            adminForm.setUpdateTime(LocalDateTime.now());
+            result =  adminService.updatePasswordByUsername(adminForm, username);
+        } else if (studentService.isUsernameExist(username)) {
+            StudentForm studentForm = new StudentForm();
+            studentForm.setPassword(SystemUtils.md5(password, username));
+            studentForm.setUpdateTime(LocalDateTime.now());
+            result = studentService.updatePasswordByUsername(studentForm, username);
+        } else if (tutorService.isUsernameExist(username)) {
+            TutorForm tutorForm = new TutorForm();
+            tutorForm.setPassword(SystemUtils.md5(password, username));
+            tutorForm.setUpdateTime(LocalDateTime.now());
+            result = tutorService.updatePasswordByUsername(tutorForm, username);
+        } else if (companyService.isUsernameExist(username)){
+            CompanyForm companyForm = new CompanyForm();
+            companyForm.setPassword(SystemUtils.md5(password, username));
+            companyForm.setUpdateTime(LocalDateTime.now());
+            result = companyService.updatePasswordByUsername(companyForm, username);
+        }
+        if (result) {
+            return jsonResult("修密码成功");
+        }
+        return jsonResult(GlobalConstant.FAILURE, "修改密码失败");
     }
 
     /**

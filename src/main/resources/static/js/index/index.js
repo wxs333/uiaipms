@@ -7,27 +7,38 @@ layui.use(['form', 'jquery'], function () {
     changeCode($);
     // 打开注册页面
     $("[name='register']").click(function () {
-        openRegisterHtml(_layer)
+        openHtml(_layer, {"title": "学生注册", "content": "/user/register"})
     });
 
     form.on('submit(login)', function (data) {
-        $.post(
-            '/api/user/login',
-            data.field,
-            function (result) {
-                var icon = result.code === 'success' ? 1 : 2;
-                _layer.msg(result.message, {time: 1500, icon: icon, offset: '250px'}, function () {
-                    if (result.code === "success") {
-                        window.location.href = "/user/home";
-                    } else {
-                        doChange($);
-                    }
-                });
-            }
-        );
+        login($, _layer, data.field);
         return false;
     });
+    // 忘记密码
+    $("#forget-password").click(function () {
+        openHtml(_layer, {"title": "找回密码", "content": "/user/findPassword"})
+    });
 });
+
+/**
+ * 登录
+ */
+function login($, _layer, data) {
+    $.post(
+        '/api/user/login',
+        data,
+        function (result) {
+            var icon = result.code === 'success' ? 1 : 2;
+            _layer.msg(result.message, {time: 1500, icon: icon, offset: '250px'}, function () {
+                if (result.code === "success") {
+                    window.location.href = "/user/home";
+                } else {
+                    doChange($);
+                }
+            });
+        }
+    );
+}
 
 /**
  * 更换验证码
@@ -47,13 +58,13 @@ function doChange($) {
 }
 
 /**
- * 打开注册页面
+ * 打开页面
  */
-function openRegisterHtml(_layer) {
+function openHtml(_layer, data) {
     _layer.open({
         type: 2,
-        title: "学生注册",
-        content: '/user/register',
+        title: data.title,
+        content: data.content,
         area: ['800px', '550px'],
         anim: 1,
         scrollbar: false

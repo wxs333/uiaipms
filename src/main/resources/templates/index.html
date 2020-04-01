@@ -6,11 +6,17 @@
     <title>用户登录</title>
     <link rel="shortcut icon" href="/static/icon.ico"/>
     <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <style>
+        #forget-password {
+            text-decoration: underline;
+            font-size: 0.9em;
+            color: blue;
+        }
+    </style>
 </head>
 
 <body style="background-color: #eeeeee;">
 <div class="layui-container" style="margin-top: 50px;">
-    <a href="/api/user/previewWord?filePath=/uiaipms/word/1585563920619.doc" target="_blank">点击</a>
     <form class="layui-form">
         <div class="layui-row">
             <div class="layui-col-md-offset3">
@@ -24,7 +30,7 @@
             </div>
             <div class="layui-col-md-offset3">
                 <div class="layui-form-item layui-col-md7">
-                    <label class="layui-form-label">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                    <label class="layui-form-label">密码</label>
                     <div class="layui-input-block">
                         <input class="layui-input" type="password" name="password" id="password" required
                                lay-verify="required" lay-verType="tips" placeholder="请输入密码"/>
@@ -52,6 +58,11 @@
                         <input class="layui-input" type="radio" name="role" title="学生" value="student" checked/>
                         <input class="layui-input" type="radio" name="role" title="企业" value="company"/>
                     </div>
+                </div>
+            </div>
+            <div class="layui-col-md-offset7">
+                <div class="layui-form-item">
+                    <a href="javascript:;" id="forget-password">忘记密码？</a>
                 </div>
             </div>
             <div class="layui-col-md-offset3">

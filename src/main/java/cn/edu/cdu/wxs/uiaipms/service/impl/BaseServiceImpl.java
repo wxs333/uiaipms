@@ -7,8 +7,10 @@ import cn.edu.cdu.wxs.uiaipms.column.TutorColumn;
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.service.BaseService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -69,5 +71,21 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
                 break;
         }
         return map;
+    }
+
+    @Override
+    public boolean isUsernameExist(String username) {
+        QueryWrapper<T> wrapper = new QueryWrapper<>();
+        wrapper.select(GlobalConstant.USERNAME)
+                .eq(GlobalConstant.LOGIC_DELETE_FLAG, 0)
+                .eq(GlobalConstant.USERNAME, username);
+        return !ObjectUtils.isEmpty(getMapper().selectOne(wrapper));
+    }
+
+    @Override
+    public boolean updatePasswordByUsername(T t, String username) {
+        QueryWrapper<T> wrapper = new QueryWrapper<>();
+        wrapper.eq(GlobalConstant.USERNAME, username);
+        return SystemUtils.gtTheZero(getMapper().update(t, wrapper));
     }
 }

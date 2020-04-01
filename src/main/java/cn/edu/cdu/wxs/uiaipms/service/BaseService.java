@@ -34,4 +34,20 @@ public interface BaseService<T> {
      */
     Map<String, Object> getTableNameAndIdColByRole(String role);
 
+    /**
+     * 用户是否存在
+     *
+     * @param username 用户名
+     * @return true 存在 false 不存在
+     */
+    boolean isUsernameExist(String username);
+
+    /**
+     * 根据用户名修改密码
+     * @param t 表单
+     * @param username 用户名
+     * @return true 成功 false 失败
+     */
+    boolean updatePasswordByUsername(T t, String username);
+
 }

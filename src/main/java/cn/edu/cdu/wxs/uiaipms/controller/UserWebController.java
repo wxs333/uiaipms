@@ -54,8 +54,17 @@ public class UserWebController {
         return "register/register";
     }
 
+    /**
+     * 修改头像页面
+     * @return 视图
+     */
     @GetMapping("img")
     public String img() {
         return "user/img";
+    }
+
+    @GetMapping("findPassword")
+    public String findPassword() {
+        return "user/find_password";
     }
 }
