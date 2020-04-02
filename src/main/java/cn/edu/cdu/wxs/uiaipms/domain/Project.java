@@ -61,12 +61,6 @@ public class Project implements Serializable {
     private String proDesc;
 
     /**
-     * 项目是否审批 0 未审批 1 已审批
-     */
-    @TableField(value = "pro_appr", jdbcType = JdbcType.INTEGER)
-    private Integer proAppr;
-
-    /**
      * 更新时间
      */
     @TableField(value = "update_time", jdbcType = JdbcType.TIMESTAMP)

@@ -4,29 +4,9 @@ layui.use(['table'], function () {
     var _layer = layui.layer;
     // 初始化表格
     tableRender(_table);
-    // 表头工具栏监听
-    _table.on('toolbar(table)', function (data) {
-        // 打开新增页面
-        openHtml(_table, _layer, data.event, null);
-    });
     // 行工具栏监听
-    _table.on('tool(table)', function (data) {
-        if (data.event === 'edit') {
-            // 打开修改页面
-            openHtml(_table, _layer, data.event, data.data.studId);
-        } else {
-            // 弹出提示框
-            var content = data.event === 'ban' ? '禁用' : '启用';
-            _layer.confirm('是否' + content + '此项？',
-                {icon: 3, title: '提示', offset: '150px', anim: 1},
-                function (index) {
-                    _layer.close(index);
-                    var ban = data.event === 'ban' ? 0 : 1;
-                    // 修改禁用状态
-                    updateBan(_table, $, _layer, ban, data.data.studId);
-                });
+    _table.on('tool(my-pro)', function (data) {
 
-        }
     })
 });
 
@@ -35,11 +15,10 @@ layui.use(['table'], function () {
  */
 function tableRender(_table) {
     _table.render({
-        elem: '#table',
+        elem: '#my-pro',
         height: 570,
-        toolbar: "#toolbar",
         defaultToolbar: [],
-        url: '/api/stud/list', //数据接口
+        url: '/api/pro/getPersonalPro', //数据接口
         page: true, //开启分页
         limits: [10, 20, 30],
         cols: [[ // 表头

@@ -39,5 +39,9 @@
     <button class="layui-btn layui-btn-sm" lay-event="personal">
         <i class="layui-icon layui-icon-log"></i>个人审核记录</button>
 </script>
+<!-- 时间格式化 -->
+<script type="text/html" id="updateTime">
+    {{ layui.util.toDateString(d.updateTime, 'yyyy-MM-dd HH:mm:ss') }}
+</script>
 </body>
 </html>

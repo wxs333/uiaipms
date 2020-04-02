@@ -33,4 +33,8 @@ public class ProjectApprovalForm extends ProjectApproval {
      * 审批人信息
      */
     private String tutorName;
+    /**
+     * 学生姓名
+     */
+    private String stuName;
 }

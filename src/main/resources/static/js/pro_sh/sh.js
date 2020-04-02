@@ -5,54 +5,24 @@ layui.use("form", function () {
     // 表单提交监听
     _form.on("submit", function (data) {
         // 数据提交
-        if (data.field.review === "1") {
-            add($, _layer, data.field);
-        } else {
-            updateStatus($, _layer, data.field)
-        }
-
+        update($, _layer, data.field);
         return false;
     });
 });
 
 /**
- * 新增审核记录
- *
+ * 审核
  */
-function add($, _layer, data) {
+function update($, _layer, data) {
     $.post(
-        "/api/pr/add",
+        "/api/pr/update",
         data,
         function (res) {
-            var icon = res.code === 'success' ? 1 : 2;
-            _layer.msg(
-                res.message,
-                {time: 2000, icon: icon, offset: '200px'},
-                function () {
-                    close(_layer);
-                });
+            msg(res.code, res.message, function () {
+                close();
+            })
         }
-    );
-}
-
-
-/**
- * 审批记录修改状态
- */
-function updateStatus($, _layer, data) {
-    $.post(
-        "/api/pa/update",
-        {"paId": data.paId, "review": 1, "reason": data.reason},
-        function (res) {
-            var icon = res.code === 'success' ? 1 : 2;
-            _layer.msg(
-                res.message,
-                {time: 2000, icon: icon, offset: '200px'},
-                function () {
-                    close();
-                });
-        }
-    );
+    )
 }
 
 /**

@@ -15,4 +15,12 @@ import lombok.Setter;
 @Setter
 @TableName("project")
 public class ProjectForm extends Project {
+    /**
+     * 学生姓名
+     */
+    private String stuName;
+    /**
+     * 对应审批记录id
+     */
+    private String paId;
 }

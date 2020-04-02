@@ -45,22 +45,16 @@ public class ProjectApproval implements Serializable {
     private String tutorId;
 
     /**
-     * 是否通过标记
+     * 是否通过标记 0 通过 1未通过， 默认 1
      */
-    @TableField(value = "approval_flag", jdbcType = JdbcType.INTEGER)
-    private Integer approvalFlag;
+    @TableField(value = "pass_flag", jdbcType = JdbcType.INTEGER)
+    private Integer passFlag;
 
     /**
      * 原因
      */
     @TableField(value = "reason", jdbcType = JdbcType.VARCHAR)
     private String reason;
-
-    /**
-     * 是否审核 0 未审核 1 已审核，默认 0
-     */
-    @TableField(value = "review")
-    private Integer review;
 
     /**
      * 更新时间

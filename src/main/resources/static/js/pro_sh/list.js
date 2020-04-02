@@ -9,7 +9,7 @@ layui.use('table', function () {
         if (obj.event === "sh") {
             // 弹出填写理由页面
             openReason(_layer, _table, obj);
-        } else if (obj.event === "preview"){
+        } else if (obj.event === "preview") {
             wordPreview($, obj.data);
         }
 
@@ -34,15 +34,17 @@ function tableRender(_table) {
         height: 550,
         toolbar: "#tool",
         defaultToolbar: [],
-        url: "/api/pa/list",
+        url: "/api/pr/listNotDeal",
         page: true,
         cols: [[ // 表头
-            {field: 'paId', title: '审批记录id', align: "center", hide: 'true'},
+            {field: 'prId', title: '审核记录id', align: "center", hide: 'true'},
             {field: 'proLocation', title: '文档路径', align: "center", hide: 'true'},
+            {field: 'stuName', title: '申请人', align: "center"},
             {field: 'proName', title: '项目名', align: "center"},
             {field: 'wordName,', title: '项目文档', align: "center", event: "preview", templet: "#word"},
             {field: 'tutorName', title: '审批人', align: "center"},
-            {field: 'reason', title: '通过理由', align: "center"},
+            {field: 'reason', title: '审批理由', align: "center"},
+            {field: 'updateTime', title: '审批时间', align: "center", templet: "#updateTime"},
             {field: '', title: "操作", minWidth: '150', align: "center", toolbar: "#rowTool"}
         ]],
         limits: [10, 20, 30],
@@ -67,7 +69,6 @@ function tableRender(_table) {
 function reloadTable(_table) {
     _table.reload('pro-sh',
         {
-            url: "/api/pa/list",
             page: {
                 curr: 1
             }
@@ -81,7 +82,7 @@ function openReason(_layer, _table, obj) {
     _layer.open({
         type: 2,
         title: "项目审核",
-        content: '/pr/sh?paId=' + obj.data.paId + "&proName=" + obj.data.proName,
+        content: '/pr/sh?prId=' + obj.data.prId + "&proName=" + obj.data.proName,
         area: ['800px', '550px'],
         anim: 1,
         scrollbar: false,
@@ -99,19 +100,11 @@ function openReason(_layer, _table, obj) {
 function openHistory(_layer) {
     _layer.open({
         type: 2,
-        title: "个人审核历史记录",
+        title: "个人审核记录",
         content: "/pr/history",
         area: ['1200px', '550px'],
         anim: 1,
         scrollbar: false,
         offset: '30px'
     });
-}
-
-/**
- * Word文档预览
- */
-function wordPreview($, data) {
-    var url = "/static/js/pdf/web/viewer.html?file=" + encodeURIComponent("/api/user/previewWord?filePath=" + data.proLocation+"&fileName=" + data.wordName);
-    window.open(url);
 }

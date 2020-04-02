@@ -1,12 +1,11 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
-import cn.edu.cdu.wxs.uiaipms.form.ProjectApprovalForm;
 import cn.edu.cdu.wxs.uiaipms.form.ProjectReviewForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.ExcelService;
 import cn.edu.cdu.wxs.uiaipms.service.ProjectReviewService;
-import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
+import cn.edu.cdu.wxs.uiaipms.service.TutorService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * 项目审核表 数据控制器
@@ -34,28 +30,22 @@ public class ProjectReviewApiController extends BaseController {
     private ProjectReviewService service;
     @Autowired
     private ExcelService<ProjectReviewForm> excelService;
+    @Autowired
+    private TutorService tutorService;
 
-    @PostMapping("add")
-    public JsonResult<String> add(ProjectReviewForm form) {
-        // 参数设置
-        form.setPrId(SystemUtils.getUuid());
-        LocalDateTime now = LocalDateTime.now();
-        form.setCreateTime(now);
-        form.setUpdateTime(now);
-        String tutorId = "e80f275768a24d9e855bf5595a6e1f33";
-        form.setTutorId(tutorId);
-        form.setReview(0);
-        form.setProName(null);
-        // 修改审批记录
-        ProjectApprovalForm approvalForm = new ProjectApprovalForm();
-        approvalForm.setPaId(form.getPaId());
-        approvalForm.setUpdateTime(now);
-        approvalForm.setReview(1);
+    /**
+     * 分页获取未处理的审核记录
+     * @param page 分页
+     * @return json
+     */
+    @GetMapping("listNotDeal")
+    public JsonResult<IPage<ProjectReviewForm>> listNotDeal(Page<ProjectReviewForm> page) {
+        // 获取当前登录导师的ID
+        String tutorId = "66c38cfebcac46649d071058f2eb7fd1";
+        // 获取当前登录导师的学院id
+        String facId = tutorService.getFacIdById(tutorId);
 
-        if (service.add(form, approvalForm)) {
-            return jsonResult("审批成功");
-        }
-        return jsonResult(GlobalConstant.FAILURE, "发生未知错误，操作失败");
+        return jsonResult("0", service.getByFacId(page, facId));
     }
 
     /**
@@ -72,47 +62,20 @@ public class ProjectReviewApiController extends BaseController {
     }
 
     /**
-     * 分页获取通过审核的项目
-     *
-     * @param page 分页
-     * @return json
-     */
-    @GetMapping("starting")
-    public JsonResult<IPage<ProjectReviewForm>> starting(Page<ProjectReviewForm> page) {
-        return jsonResult("0", service.getReviewed(page));
-    }
-
-    /**
-     * 更新
-     *
+     * 修改
      * @param form 表单
      * @return json
      */
-    @PostMapping("lx")
+    @PostMapping("update")
     public JsonResult<String> update(ProjectReviewForm form) {
-        form.setUpdateTime(LocalDateTime.now());
-        form.setLxTime(LocalDateTime.now());
+        // 当前登录用户id
         String tutorId = "e80f275768a24d9e855bf5595a6e1f33";
+        // 参数设置
         form.setTutorId(tutorId);
-        if (service.projectStarting(form)) {
-            return jsonResult("成功");
+        form.setUpdateTime(LocalDateTime.now());
+        if (service.modifyById(form)) {
+            return jsonResult("审核成功");
         }
-        return jsonResult(GlobalConstant.FAILURE, "失败");
-    }
-
-    /**
-     * 数据导出
-     *
-     * @param response 响应
-     */
-    @GetMapping("export")
-    public void export(HttpServletResponse response) {
-        // 获取数据
-        List<ProjectReviewForm> data = service.getReviewedToList();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        System.out.println(data.get(0).getCreateTime().toString());
-        // 导出
-        excelService.export("项目立项", "项目项目立项", data, ProjectReviewForm.class, response);
+        return jsonResult(GlobalConstant.FAILURE, "审核失败");
     }
 }

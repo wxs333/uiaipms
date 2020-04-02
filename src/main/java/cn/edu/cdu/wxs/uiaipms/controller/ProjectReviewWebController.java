@@ -37,14 +37,14 @@ public class ProjectReviewWebController {
     /**
      * 项目审核
      *
-     * @param paId    审批记录id
+     * @param prId    审批记录id
      * @param proName 项目名
      * @return 视图
      */
     @GetMapping("sh")
-    public ModelAndView sh(@NotNull String paId, @NotNull String proName) {
+    public ModelAndView sh(@NotNull String prId, @NotNull String proName) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("paId", paId);
+        modelAndView.addObject("prId", prId);
         modelAndView.addObject("proName", proName);
         modelAndView.setViewName(PREFIX + "sh");
         return modelAndView;

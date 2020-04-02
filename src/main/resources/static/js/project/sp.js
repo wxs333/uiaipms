@@ -16,7 +16,7 @@ layui.use(['form'], function () {
  */
 function approve($, _layer, data) {
     $.post(
-        '/api/pa/add',
+        '/api/pa/update',
         data,
         function (res) {
             var icon = res.code === 'success' ? 1 : 2;

@@ -16,10 +16,10 @@ layui.use('table', function () {
         var event = obj.event;
         if ("lx" === event) {
             // 弹出确认框
-            openConfirm($, _layer, _table, {"prId": obj.data.prId, "lx": 0});
+            openConfirm($, _layer, _table, {"psId": obj.data.psId, "lxFlag": 0});
         } else if ("apply" === event) {
             // 打开申请页面
-            openApplyHtml(_layer, obj.data.proId);
+            openApplyHtml(_layer, _table, obj.data.proId);
         }
     })
 
@@ -34,17 +34,20 @@ function tableRender(_table) {
         height: 570,
         toolbar: "#toolbar",
         defaultToolbar: [],
-        url: "/api/pr/starting",
+        url: "/api/ps/list",
         page: true,
         cols: [[ // 表头
-            {field: 'prId', title: '审核记录id', align: "center", hide: 'true'},
-            {field: 'proId', title: '项目id', align: "center", hide: 'true'},
+            {field: 'psId', title: '', align: "center", hide: 'true'},
+            {field: 'proId', title: '', align: "center", hide: 'true'},
+            {field: 'proLocation', title: '', align: "center", hide: 'true'},
+            {field: 'stuName', title: '申请人', align: "center"},
             {field: 'proName', title: '项目名称', align: "center"},
-            {field: 'tutorName', title: '审核导师', align: "center"},
-            {field: 'reason', title: '审核理由', align: "center"},
-            {field: 'createTime', title: '审核时间', align: "center", templet: "#createTime"},
-            {field: 'lx', title: '立项', align: "center", templet: "#lx"},
-            {field: 'lxTime', title: '立项时间', align: "center", templet: "#lx_time"},
+            {field: 'wordName', title: '项目文档', align: "center", templet: "#word"},
+            {field: 'prTutor', title: '审核导师', align: "center"},
+            {field: 'prTime', title: '审核时间', align: "center", templet: "#prTime"},
+            {field: 'lxFlag', title: '是否立项', align: "center", templet: "#lx"},
+            {field: 'psTutor', title: '立项导师', align: "center"},
+            {field: 'updateTime', title: '立项时间', align: "center", templet: "#updateTime"},
             {field: '', title: "操作", minWidth: '220', align: "center", toolbar: "#rowTool"}
         ]],
         limits: [10, 20, 30],
@@ -64,32 +67,12 @@ function tableRender(_table) {
 }
 
 /**
- * 打开修改页面
- */
-function openUpdateHtml(_layer, _table, id) {
-    _layer.open({
-        type: 2,
-        title: "修改",
-        content: "/goods/update?id=" + id,
-        area: ['800px', '550px'],
-        anim: 1,
-        scrollbar: false,
-        offset: '30px',
-        end: function f() {
-            reloadTable(_table);
-        }
-
-    });
-}
-
-/**
  * 表格重载
  * @param _table
  */
 function reloadTable(_table) {
     _table.reload('pro-lx',
         {
-            url: "/api/pr/starting",
             page: {
                 curr: 1
             }
@@ -97,42 +80,42 @@ function reloadTable(_table) {
 }
 
 /**
- * 弹出资金申请页面
+ * 立项确认
  */
-function openConfirm(_layer, data) {
-
+function openConfirm($, _layer, _table, data) {
+    _layer.confirm("确定要将该项目立项？",
+        {icon: 3, title:'确定提示'},
+        function (index) {
+            _layer.close(index);
+            lx($, _layer, _table, data);
+        });
 }
-
 /**
- * 修改状态
+ * 立项
  */
-function updateStatus($, _layer, _table, data) {
+function lx($, _layer, _table, data) {
     $.post(
-        "/api/pr/lx",
+        "/api/ps/lx",
         data,
         function (res) {
-            var icon = res.code === 'success' ? 1 : 2;
-            _layer.msg(
-                res.message,
-                {time: 2000, icon: icon, offset: '200px'},
-                function () {
-                    reloadTable(_table);
-                });
+            msg(res.code, res.message, function () {
+                reloadTable(_table);
+            })
         }
-    );
+    )
 }
-
 /**
- * 弹出资金输入框
+ * 弹出资金申请页面
  */
-function openApplyHtml(_layer, proId) {
+function openApplyHtml(_layer, _table, proId) {
     _layer.open({
         type: 2,
-        content: "/ps/apply?proId=" + proId,
-        area: ["800px", "550px"],
+        title: "项目资金申请",
+        content: '/ps/apply?proId=' + proId,
+        area: ['800px', '550px'],
         anim: 1,
         scrollbar: false,
-        offset: "30px"
+        offset: '30px'
     });
 }
 

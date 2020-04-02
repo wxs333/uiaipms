@@ -12,3 +12,11 @@ function msg(code, msg, func) {
         }
     });
 }
+
+/**
+ * Word文档预览
+ */
+function wordPreview($, data) {
+    var url = "/static/js/pdf/web/viewer.html?file=" + encodeURIComponent("/api/user/previewWord?filePath=" + data.proLocation+"&fileName=" + data.wordName);
+    window.open(url);
+}

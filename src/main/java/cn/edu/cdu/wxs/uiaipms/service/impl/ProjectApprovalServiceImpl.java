@@ -22,8 +22,7 @@ public class ProjectApprovalServiceImpl extends BaseServiceImpl<ProjectApprovalF
 
     @Autowired
     private ProjectApprovalMapper mapper;
-    @Autowired
-    protected ProjectMapper projectMapper;
+
 
     @Override
     public BaseMapper<ProjectApprovalForm> getMapper() {
@@ -35,21 +34,4 @@ public class ProjectApprovalServiceImpl extends BaseServiceImpl<ProjectApprovalF
         return mapper.selectByTutorId(page, tutorId);
     }
 
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public boolean add(ProjectApprovalForm domain) {
-        System.out.println("222222");
-        // 修改项目的审批标记
-        ProjectForm projectForm = new ProjectForm();
-        projectForm.setProId(domain.getProId());
-        projectForm.setUpdateTime(domain.getUpdateTime());
-        projectForm.setProAppr(1);
-        return SystemUtils.gtTheZero(projectMapper.updateProAppr(projectForm))
-                && super.add(domain);
-    }
-
-    @Override
-    public IPage<ProjectApprovalForm> getByPage(Page<ProjectApprovalForm> page) {
-        return mapper.selectByPage(page);
-    }
 }

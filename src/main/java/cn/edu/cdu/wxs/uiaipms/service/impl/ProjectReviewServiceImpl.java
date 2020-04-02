@@ -26,49 +26,21 @@ public class ProjectReviewServiceImpl extends BaseServiceImpl<ProjectReviewForm>
 
     @Autowired
     private ProjectReviewMapper mapper;
-    @Autowired
-    private ProjectApprovalMapper approvalMapper;
-    @Autowired
-    private ProjectStartingMapper startingMapper;
 
     @Override
     public BaseMapper<ProjectReviewForm> getMapper() {
         return mapper;
     }
 
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public boolean add(ProjectReviewForm reviewForm, ProjectApprovalForm approvalForm) {
-        return super.add(reviewForm) && SystemUtils.gtTheZero(approvalMapper.updateById(approvalForm));
-    }
 
     @Override
     public IPage<ProjectReviewForm> getByTutorId(Page<ProjectReviewForm> page, String tutorId) {
         return mapper.selectByTutorId(page, tutorId);
     }
 
-    @Override
-    public IPage<ProjectReviewForm> getReviewed(Page<ProjectReviewForm> page) {
-        return mapper.selectReviewed(page);
-    }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public boolean projectStarting(ProjectReviewForm form) {
-        // 立项记录表单
-        ProjectStartingForm startingForm = new ProjectStartingForm();
-        startingForm.setPsId(SystemUtils.getUuid());
-        startingForm.setCreateTime(form.getUpdateTime());
-        startingForm.setUpdateTime(form.getUpdateTime());
-        startingForm.setTutorId(form.getTutorId());
-        startingForm.setPrId(form.getPrId());
-
-        form.setTutorId(null);
-        return modifyById(form) && SystemUtils.gtTheZero(startingMapper.insert(startingForm));
-    }
-
-    @Override
-    public List<ProjectReviewForm> getReviewedToList() {
-        return mapper.selectReviewedToList();
+    public IPage<ProjectReviewForm> getByFacId(Page<ProjectReviewForm> page, String facId) {
+        return mapper.selectByFacId(page, facId);
     }
 }

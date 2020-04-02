@@ -40,19 +40,19 @@
             <div class="layui-form-item" hidden="hidden">
                 <label class="layui-form-label">id</label>
                 <div class="layui-input-block">
-                    <input type="hidden" id="id" class="layui-input" name="proId" th:value="${proId}"/>
+                    <input type="hidden" id="id" class="layui-input" name="paId" th:value="${paId}"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">项目名</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="proName" th:value="${proName}" readonly/>
+                    <input class="layui-input" th:value="${proName}" readonly/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">是否通过</label>
                 <div class="layui-input-block">
-                    <input type="checkbox" value="1" name="approvalFlag" lay-skin="switch" lay-text="通过|打回">
+                    <input type="checkbox" value="0" name="passFlag" lay-skin="switch" lay-text="通过|打回">
                 </div>
             </div>
             <div class="layui-form-item layui-col-md-offset1 layui-col-md7">

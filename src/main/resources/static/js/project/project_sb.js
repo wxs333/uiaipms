@@ -33,6 +33,7 @@ function wordUpload(_upload, $) {
         done: function (res) {
             $("#proLocation").val(res.proLocation);
             $("#hide-word-name").val(res.wordName);
+            $("#submit").removeClass("layui-btn-disabled");
         }
     })
 }

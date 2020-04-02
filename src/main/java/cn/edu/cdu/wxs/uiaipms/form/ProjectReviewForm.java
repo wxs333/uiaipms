@@ -22,20 +22,20 @@ public class ProjectReviewForm extends ProjectReview {
     @Excel(name = "项目名称", width = 30)
     private String proName;
     /**
-     * 项目描述
+     * 项目文档地址
      */
-    private String proDesc;
+    private String proLocation;
+    /**
+     * 项目文档名
+     */
+    private String wordName;
     /**
      * 导师名称
      */
     @Excel(name = "审核导师", orderNum = "1")
     private String tutorName;
     /**
-     * 审批理由
+     * 学生姓名
      */
-    private String paReason;
-    /**
-     * 项目id
-     */
-    private String proId;
+    private String stuName;
 }

@@ -39,16 +39,16 @@ public class ProjectReview implements Serializable {
     private String tutorId;
 
     /**
-     * 项目审批记录id
+     * 项目id
      */
-    @TableField("pa_id")
-    private String paId;
+    @TableField("pro_id")
+    private String proId;
 
     /**
-     * 是否通过审核 0 通过 1 未通过
+     * 是否通过审核 0 通过 1 未通过， 默认 1
      */
-    @TableField("review")
-    private Integer review;
+    @TableField("pass_flag")
+    private Integer passFlag;
 
     /**
      * 审核意见
@@ -56,19 +56,6 @@ public class ProjectReview implements Serializable {
     @TableField("reason")
     @Excel(name = "审核理由", orderNum = "2", width = 30)
     private String reason;
-    /**
-     * 是否立项 0 是 1 否，默认 1
-     */
-    @TableField("lx")
-    @Excel(name = "立项", orderNum = "4", replace = {"已立项_0", "未立项_1"})
-    private String lx;
-
-    /**
-     * 立项时间
-     */
-    @TableField("lx_time")
-    @Excel(name = "立项时间", orderNum = "5", width = 22, format = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime lxTime;
 
     /**
      * 更新时间

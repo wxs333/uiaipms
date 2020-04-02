@@ -38,10 +38,16 @@ public class ProjectStarting implements Serializable {
     private String tutorId;
 
     /**
-     * 项目审核记录id
+     * 项目id
      */
-    @TableField("pr_id")
-    private String prId;
+    @TableField("pro_id")
+    private String proId;
+
+    /**
+     * 是否立项 0 是 1否 默认 1
+     */
+    @TableField("lx_flag")
+    private Integer lxFlag;
 
     /**
      * 创建时间

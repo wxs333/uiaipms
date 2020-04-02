@@ -19,18 +19,18 @@
 <div class="layui-card-body">
     <div class="layui-tab layui-tab-brief" lay-filter="sp">
         <div class="layui-tab-title">
-            <li class="layui-this">未审批</li>
-            <li class="">我审批的</li>
+            <li class="layui-this">未审批项目</li>
+            <li class="">个人审批记录</li>
         </div>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
                 <div>
-                    <table class="layui-table" id="no-appr" lay-skin="line"></table>
+                    <table class="layui-table" id="no-deal" lay-skin="line"></table>
                 </div>
             </div>
             <div class="layui-tab-item">
                 <div>
-                    <table class="layui-table" id="appred" lay-skin="line"></table>
+                    <table class="layui-table" id="personal" lay-skin="line"></table>
                 </div>
             </div>
         </div>
@@ -39,6 +39,7 @@
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/project/project_sp.js"></script>
+<script type="text/javascript" src="/static/js/common/base.js"></script>
 <!-- 行工具 -->
 <script type="text/html" id="rowTool">
     <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="approve">
@@ -47,10 +48,10 @@
 </script>
 <!-- 格式化审批结果 -->
 <script type="text/html" id="flag">
-    {{# if (d.approvalFlag == 0) { }}
-    <span>未通过</span>
-    {{# } else { }}
+    {{# if (d.passFlag == 0) { }}
     <span>通过</span>
+    {{# } else { }}
+    <span>未通过</span>
     {{# } }}
 </script>
 <!-- 处理文档 -->

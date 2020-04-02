@@ -44,13 +44,13 @@ public class ProjectWebController {
     /**
      * 审批项目页面
      *
-     * @param proId 项目ID
+     * @param paId 项目对应审批记录ID
      * @return 视图
      */
     @GetMapping("doSp")
-    public ModelAndView doSp(@NotNull String proId, @NotNull String proName) {
+    public ModelAndView doSp(@NotNull String paId, @NotNull String proName) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("proId", proId);
+        modelAndView.addObject("paId", paId);
         modelAndView.addObject("proName", proName);
         modelAndView.setViewName(PREFIX + "sp");
         return modelAndView;

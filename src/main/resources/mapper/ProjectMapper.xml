@@ -4,27 +4,30 @@
 
     <select id="selectByFacId" resultType="cn.edu.cdu.wxs.uiaipms.form.ProjectForm">
         SELECT
-            p.pro_id,
+            pa.pa_id,
             p.pro_name,
             p.pro_desc,
-            p.pro_location,
             p.word_name,
+            p.pro_location,
             p.create_time,
-	        p.update_time
+            s.stu_name
         FROM
             project p,
+            project_approval pa,
             student s,
             clazz c,
             discipline d,
             faculty f
         WHERE
-            p.logic_delete_flag = 0
-            AND s.logic_delete_flag = 0
-            AND p.stu_id =.s.stu_id
+            pa.pro_id = p.pro_id
+            AND p.stu_id = s.stu_id
             AND s.clazz_id = c.clazz_id
             AND c.disc_id = d.disc_id
             AND d.fac_id = f.fac_id
-            AND p.pro_appr = 0
+            AND p.logic_delete_flag = 0
+            AND pa.logic_delete_flag = 0
+            AND s.logic_delete_flag = 0
+            AND pa.tutor_id IS NULL
             AND f.fac_id = #{facId}
     </select>
 

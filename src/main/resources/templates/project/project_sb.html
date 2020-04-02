@@ -50,6 +50,7 @@
     </div>
     <div class="layui-card-body">
         <form class="layui-form" enctype="multipart/form-data" lay-filter="info">
+            <!-- 隐藏域 -->
             <input type="hidden" name="wordName" id="hide-word-name">
             <input type="hidden" name="proLocation" id="proLocation">
             <div class="layui-form-item layui-col-md-offset1 layui-col-md7">
@@ -74,7 +75,7 @@
                 </div>
             </div>
             <div class="layui-btn-container layui-col-md-offset2">
-                <button class="layui-btn layui-btn-sm" style="margin-left: 12px" lay-submit id="submit">
+                <button class="layui-btn layui-btn-sm layui-btn-disabled" style="margin-left: 12px" lay-submit id="submit">
                     <i class="layui-icon layui-icon-ok"></i>申报
                 </button>
                 <button class="layui-btn layui-btn-sm" type="reset">

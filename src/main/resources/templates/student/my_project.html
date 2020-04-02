@@ -2,37 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>个人审核历史记录</title>
+    <title>我的项目</title>
     <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
     <style>
-        .layui-table-page {
-            text-align: center;
-        }
-
         .layui-table-tool {
             background-color: white
+        }
+
+        .layui-table-page {
+            text-align: center;
         }
     </style>
 </head>
 <body>
 <div class="layui-card">
     <div class="layui-card-body">
-        <table class="layui-table" id="personal" lay-filter="personal"></table>
+        <table class="layui-table" id="my-pro"></table>
     </div>
 </div>
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
-<script type="text/javascript" src="/static/js/pro_sh/history.js"></script>
+<script type="text/javascript" src="/static/js/student/my_project.js"></script>
 <!-- 时间格式化-->
+<script type="text/html" id="createTime">
+    {{ layui.util.toDateString(d.createTime, 'yyyy-MM-dd HH:mm:ss') }}
+</script>
 <script type="text/html" id="updateTime">
     {{ layui.util.toDateString(d.updateTime, 'yyyy-MM-dd HH:mm:ss') }}
-</script>
-<script type="text/html" id="flag">
-    {{# if(d.passFlag == 0) {  }}
-    通过
-    {{# } else { }}
-    未通过
-    {{# } }}
 </script>
 </body>
 </html>

@@ -10,18 +10,16 @@ layui.use("table", function () {
 function init(_table) {
     _table.render({
         elem: '#personal',
-        height: 420,
+        height: 440,
         defaultToolbar: [],
         url: "/api/pr/personal",
         page: true,
         cols: [[ // 表头
+            {field: 'stuName', title: '申请人', align: "center"},
             {field: 'proName', title: '项目名', align: "center"},
-            {field: 'proDesc', title: '项目描述', align: "center"},
-            {field: 'tutorName', title: '审批导师', align: "center"},
-            {field: 'paReason', title: '审批理由', align: "center"},
-            {field: 'review', title: '审核结果', align: "center", templet: "#review"},
+            {field: 'passFlag', title: '审核结果', align: "center", templet: "#flag"},
             {field: 'reason', title: '审核理由', align: "center"},
-            {field: 'createTime', title: '审核时间', align: "center", templet: "#createTime"}
+            {field: 'updateTime', title: '审核时间', align: "center", templet: "#updateTime"}
         ]],
         limits: [10, 20, 30],
         parseData: function (res) { // 返回数据格式解析

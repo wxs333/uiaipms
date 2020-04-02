@@ -41,19 +41,19 @@
             <div class="layui-form-item" hidden>
                 <label class="layui-form-label">审批记录id</label>
                 <div class="layui-input-block">
-                    <input type="hidden" class="layui-input" th:value="${paId}" name="paId"/>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">是否通过</label>
-                <div class="layui-input-block">
-                    <input type="checkbox" value="1" name="review" lay-skin="switch" lay-text="通过|驳回">
+                    <input type="hidden" class="layui-input" th:value="${prId}" name="prId"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">项目名</label>
                 <div class="layui-input-block">
-                    <input type="text" class="layui-input" th:value="${proName}" name="proName"/>
+                    <input type="text" class="layui-input" readonly th:value="${proName}"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否通过</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" value="0" name="passFlag" lay-skin="switch" lay-text="通过|驳回">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -68,6 +68,7 @@
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/pro_sh/sh.js"></script>
+<script type="text/javascript" src="/static/js/common/base.js"></script>
 </body>
 
 </html>
