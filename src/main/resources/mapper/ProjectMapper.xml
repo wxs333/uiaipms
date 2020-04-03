@@ -31,11 +31,32 @@
             AND f.fac_id = #{facId}
     </select>
 
-    <update id="updateProAppr">
-        UPDATE project
-        SET pro_appr = #{form.proAppr},
-        update_time = #{form.updateTime}
+   <select id="selectByStuId" resultType="cn.edu.cdu.wxs.uiaipms.form.ProjectForm">
+        SELECT DISTINCT
+           	p.pro_id,
+            p.pro_name,
+            p.pro_desc,
+            p.pro_location,
+            p.word_name,
+            p.create_time,
+            pa.pass_flag AS paFlag,
+            pa.tutor_id AS isPa,
+            pr.pass_flag AS prFlag,
+            pr.tutor_id AS isPr,
+            ps.lx_flag
+        FROM
+            project p,
+            project_approval pa,
+            project_review pr,
+            project_starting ps
         WHERE
-            pro_id = #{form.proId}
-    </update>
+            pa.pro_id = p.pro_id
+            AND pr.pro_id = p.pro_id
+            AND ps.pro_id = p.pro_id
+            AND p.logic_delete_flag = 0
+            AND pa.logic_delete_flag = 0
+            AND pr.logic_delete_flag = 0
+            AND ps.logic_delete_flag = 0
+            AND p.stu_id = #{stuId}
+   </select>
 </mapper>

@@ -92,6 +92,9 @@ function changeHtml(id, $, _layer) {
         case "buy-funds-apply":
             openHtml(_layer, {"title": "采购资金申请", "url": "/bf/apply", "width": "1200px"});
             break;
+        case "my-pro":
+            elem.attr("src", "/stu/myPro");
+            break;
     }
 }
 

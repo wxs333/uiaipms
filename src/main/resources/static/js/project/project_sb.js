@@ -47,7 +47,10 @@ function add($, _layer, data) {
         data,
         function (res) {
             var icon = res.code === 'success' ? 1 : 2;
-            _layer.msg(res.message, {time: 1500, icon: icon});
+            _layer.msg(res.message, {time: 1500, icon: icon}, function () {
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+            });
         }
     )
 }

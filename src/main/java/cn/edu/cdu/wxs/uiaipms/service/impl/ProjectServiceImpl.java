@@ -72,4 +72,9 @@ public class ProjectServiceImpl extends BaseServiceImpl<ProjectForm> implements 
         return super.add(domain) && approvalService.add(approvalForm)
                 && reviewService.add(reviewForm) && startingService.add(startingForm);
     }
+
+    @Override
+    public IPage<ProjectForm> getByStuId(Page<ProjectForm> page, String stuId) {
+        return mapper.selectByStuId(page, stuId);
+    }
 }

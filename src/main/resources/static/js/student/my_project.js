@@ -5,8 +5,12 @@ layui.use(['table'], function () {
     // 初始化表格
     tableRender(_table);
     // 行工具栏监听
-    _table.on('tool(my-pro)', function (data) {
-
+    _table.on('tool', function (obj) {
+        console.log(obj.event);
+        if ("preview" === obj.event) {
+            // 文档预览
+            wordPreview($, obj.data);
+        }
     })
 });
 
@@ -22,16 +26,16 @@ function tableRender(_table) {
         page: true, //开启分页
         limits: [10, 20, 30],
         cols: [[ // 表头
-            {field: 'studId', title: 'id', align: "center", hide: 'true'},
-            {field: 'studAddress', title: '地址', align: "center"},
-            {field: 'studRoomNo', title: '房间号', align: "center"},
-            {field: 'comName', title: '所属企业', align: "center"},
-            {field: 'comPeople', title: '负责人', align: "center"},
-            {field: 'studNum', title: '人数', align: "center"},
-            {field: 'studArea', title: '占地面积(m^2)', align: "center"},
-            {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
-            {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},
-            {field: '', title: "操作", align: "center", minWidth: "180", toolbar: "#rowTool"}
+            {field: 'proId', title: '', align: "center", hide: 'true'},
+            {field: 'proLocation', title: '', align: "center", hide: 'true'},
+            {field: 'proName', title: '项目名', align: "center"},
+            {field: 'wordName', title: '项目文档', align: "center", event: "preview", templet: "#word"},
+            {field: 'proDesc', title: '项目描述', align: "center"},
+            {field: 'createTime', title: '申报时间', align: "center", templet: '#createTime'},
+            {field: 'paFlag', title: '是否审批', align: "center", templet: "#pa"},
+            {field: 'prFlag', title: '是否审核', align: "center", templet: "#pr"},
+            {field: 'lxFlag', title: '是否立项', align: "center", templet: "#lx"},
+            {field: '', title: "操作", align: "center", toolbar: "#rowTool"}
         ]],
         parseData: function (res) { // 返回数据格式解析
             return {

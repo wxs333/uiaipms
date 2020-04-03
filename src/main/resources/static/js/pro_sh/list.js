@@ -12,8 +12,6 @@ layui.use('table', function () {
         } else if (obj.event === "preview") {
             wordPreview($, obj.data);
         }
-
-
     });
     // 头工具事件监听
     _table.on("toolbar(pro-sh)", function (obj) {

@@ -94,4 +94,17 @@ public class ProjectApiController extends BaseController {
         }
         return map;
     }
+
+    /**
+     * 分页获取某个学生申报的项目
+     * @param page 分页
+     * @return json
+     */
+    @GetMapping("getPersonalPro")
+    public JsonResult<IPage<ProjectForm>> getPersonalPro(Page<ProjectForm> page) {
+        // 当前登录的学生id
+        String stuId = "fb832302c2484467afaf1d01715ee2c4";
+
+        return jsonResult("0", projectService.getByStuId(page, stuId));
+    }
 }

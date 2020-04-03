@@ -16,6 +16,10 @@ import javax.validation.constraints.NotNull;
 @Controller
 @RequestMapping("stud")
 public class StudioWebController {
+    /**
+     * 前缀
+     */
+    private static final String PREFIX = "studio/";
 
     /**
      * 工作室管理主页
@@ -25,7 +29,7 @@ public class StudioWebController {
     @GetMapping("list")
     public ModelAndView list() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("studio/studio");
+        modelAndView.setViewName(PREFIX + "studio");
         return modelAndView;
     }
 
@@ -37,7 +41,7 @@ public class StudioWebController {
     @GetMapping("add")
     public ModelAndView add() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("studio/add_studio");
+        modelAndView.setViewName(PREFIX + "/add_studio");
         return modelAndView;
     }
 
@@ -51,7 +55,8 @@ public class StudioWebController {
         System.err.println(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("id", id);
-        modelAndView.setViewName("studio/update_studio");
+        modelAndView.setViewName(PREFIX + "update_studio");
         return modelAndView;
     }
+
 }

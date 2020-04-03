@@ -23,4 +23,25 @@ public class ProjectForm extends Project {
      * 对应审批记录id
      */
     private String paId;
+    /**
+     * 是否通过审批
+     */
+    private Integer paFlag;
+    /**
+     * 是否通过审核
+     */
+    private Integer prFlag;
+     /**
+     * 是否立项
+     */
+    private Integer lxFlag;
+    /**
+     * 是否审批
+     */
+    private String isPa;
+    /**
+     * 是否审核
+     */
+    private String isPr;
+
 }

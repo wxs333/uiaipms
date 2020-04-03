@@ -27,4 +27,13 @@ public class StudentWebController {
     public String info() {
         return PREFIX + "info";
     }
+
+    /**
+     * 个人申报的项目
+     * @return json
+     */
+    @GetMapping("myPro")
+    public String myPro() {
+        return PREFIX + "my_project";
+    }
 }
