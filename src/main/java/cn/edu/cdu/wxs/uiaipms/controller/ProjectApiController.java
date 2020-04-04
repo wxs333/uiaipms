@@ -87,6 +87,7 @@ public class ProjectApiController extends BaseController {
                 map.put("proLocation", GlobalConstant.FTP_WORD_DIRECTORY + filename);
                 map.put("wordName", file.getOriginalFilename());
                 map.put("code", "200");
+                map.put("msg", "word文档上传成功");
             }
         } catch (Exception e) {
             map.put("msg", "word文档上传失败");
@@ -106,5 +107,23 @@ public class ProjectApiController extends BaseController {
         String stuId = "fb832302c2484467afaf1d01715ee2c4";
 
         return jsonResult("0", projectService.getByStuId(page, stuId));
+    }
+
+
+    /**
+     * 项目重新申报
+     *
+     * @param form 表单
+     * @return json
+     */
+    @PostMapping("afresh")
+    public JsonResult<String> afresh(ProjectForm form, String oldProId) {
+        // 参数设置
+        form.setProId(SystemUtils.getUuid());
+        form.setCreateTime(LocalDateTime.now());
+        form.setUpdateTime(LocalDateTime.now());
+        form.setStuId("fb832302c2484467afaf1d01715ee2c4");
+
+        return projectService.afresh(form, oldProId) ? jsonResult("重新申报成功，等待导师审批") : jsonResult("发生错误，重新申报失败");
     }
 }

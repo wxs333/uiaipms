@@ -10,13 +10,13 @@ layui.use(['upload', 'form', 'layer'], function () {
         return false;
     });
 
-    wordUpload(_upload, $);
+    wordUpload(_upload, $, _layer);
 });
 
 /**
  * Word文档上传
  */
-function wordUpload(_upload, $) {
+function wordUpload(_upload, $, _layer) {
     _upload.render({
         elem: '#word',
         url: '/api/pro/uploadWord',
@@ -31,9 +31,12 @@ function wordUpload(_upload, $) {
             });
         },
         done: function (res) {
-            $("#proLocation").val(res.proLocation);
-            $("#hide-word-name").val(res.wordName);
-            $("#submit").removeClass("layui-btn-disabled");
+            var icon = res.code === "200" ? 1 : 2;
+            _layer.msg(res.msg, {time: 1500, icon: icon}, function () {
+                $("#proLocation").val(res.proLocation);
+                $("#hide-word-name").val(res.wordName);
+                $("#submit").removeClass("layui-btn-disabled");
+            });
         }
     })
 }

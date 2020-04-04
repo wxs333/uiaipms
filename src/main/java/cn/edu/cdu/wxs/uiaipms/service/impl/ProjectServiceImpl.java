@@ -1,5 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.service.impl;
 
+import cn.edu.cdu.wxs.uiaipms.column.ProjectColumn;
 import cn.edu.cdu.wxs.uiaipms.form.ProjectApprovalForm;
 import cn.edu.cdu.wxs.uiaipms.form.ProjectForm;
 import cn.edu.cdu.wxs.uiaipms.form.ProjectReviewForm;
@@ -10,12 +11,15 @@ import cn.edu.cdu.wxs.uiaipms.service.ProjectReviewService;
 import cn.edu.cdu.wxs.uiaipms.service.ProjectService;
 import cn.edu.cdu.wxs.uiaipms.service.ProjectStartingService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 
 /**
  * 项目 业务层实现类
@@ -47,6 +51,7 @@ public class ProjectServiceImpl extends BaseServiceImpl<ProjectForm> implements 
 
     /**
      * 重写add方法，申报项目时，会自动添加项目审批、审核、立项记录
+     *
      * @param domain 表单
      * @return true 成功 false 失败
      */
@@ -76,5 +81,17 @@ public class ProjectServiceImpl extends BaseServiceImpl<ProjectForm> implements 
     @Override
     public IPage<ProjectForm> getByStuId(Page<ProjectForm> page, String stuId) {
         return mapper.selectByStuId(page, stuId);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public boolean afresh(ProjectForm form, String odlProId) {
+        // 修改表单
+        ProjectForm updateForm = new ProjectForm();
+        updateForm.setUpdateTime(form.getUpdateTime());
+        updateForm.setProId(odlProId);
+        updateForm.setLogicDeleteFlag(1);
+        // 新增一条项目记录，旧项目逻辑删除
+        return add(form) && modifyById(updateForm);
     }
 }

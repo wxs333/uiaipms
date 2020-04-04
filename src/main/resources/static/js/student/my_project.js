@@ -10,6 +10,10 @@ layui.use(['table'], function () {
         if ("preview" === obj.event) {
             // 文档预览
             wordPreview($, obj.data);
+        } else if ("afresh" === obj.event) {
+            var url = "/stu/afresh?proId=" + obj.data.proId + "&proName=" + obj.data.proName + "&proDesc=" + obj.data.proDesc;
+            // 打开页面
+            openHtml(_table, _layer, {"title": "项目重新申报", "url": url, "width": "1000px"})
         }
     })
 });
@@ -53,64 +57,30 @@ function tableRender(_table) {
 }
 
 /**
- * 打开页面
+ * 重加载表格
  */
-function openHtml(_table, _layer, event, id) {
-    var d = {};
-    if ('add' === event) {
-        d = {'title': '新增工作室', 'content': '/stud/add', 'id': ''};
-        doOpen(_table, _layer, d);
-    } else if ('edit' === event) {
-        d = {'title': '修改工作室', 'content': '/stud/update', 'id': id};
-        doOpen(_table, _layer, d);
-    }
-}
-
-/**
- * 执行打开页面
- */
-function doOpen(_table, _layer, data) {
-    var content = data.id === '' ? data.content : data.content + '?id=' + data.id;
-    _layer.open({
-        type: 2,
-        title: data.title,
-        content: content,
-        area: ['800px', '550px'],
-        anim: 1,
-        scrollbar: false,
-        offset: '30px',
-        end: function f() {
-            _table.reload('table',
-                {
-                    url: '/api/stud/list',
-                    page: {
-                        curr: 1
-                    }
-                });
+function reload(_table) {
+    _table.reload("my-pro", {
+        page: {
+            curr: 1
         }
     });
 }
 
 /**
- * 修改禁用状态
+ * 弹出HTML页面
  */
-function updateBan(_table, $, _layer, ban, studId) {
-    $.post(
-        '/api/stud/updateBan',
-        {'ban': ban, 'studId': studId},
-        function (res) {
-            var icon = res.code === 'success' ? 1 : 2;
-            _layer.msg(res.message,
-                {time: 1500, icon: icon},
-                function () {
-                    _table.reload('table',
-                        {
-                            url: '/api/stud/list',
-                            page: {
-                                curr: 1
-                            }
-                        });
-                });
+function openHtml(_table, _layer, data) {
+    _layer.open({
+        type: 2,
+        title: data.title,
+        content: data.url,
+        area: [data.width, "530px"],
+        anim: 1,
+        scrollbar: false,
+        offset: '30px',
+        end: function () {
+            reload(_table);
         }
-    )
+    });
 }

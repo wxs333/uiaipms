@@ -27,4 +27,12 @@ public interface ProjectService extends BaseService<ProjectForm> {
      * @return 分页集合
      */
     IPage<ProjectForm> getByStuId(Page<ProjectForm> page, String stuId);
+
+    /**
+     * 重新申报项目
+     * @param form 新项目表单
+     * @param odlProId 旧项目id
+     * @return true 成功 false 失败
+     */
+    boolean afresh(ProjectForm form, String odlProId);
 }
