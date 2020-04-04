@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>项目申报</title>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/static/css/common.css"/>
+    <style>
+        .layui-card {
+            background-color: #EEEEEE;
+        }
+
+        .layui-card .layui-card-header {
+            margin-top: 10px;
+            height: 50px;
+        }
+
+        .layui-card .layui-card-header div {
+            margin: 15px 20px;
+        }
+
+        .layui-card .layui-card-header div span {
+            font-size: 2em;
+            margin-left: 150px;
+        }
+
+        .layui-form .layui-form-item textarea {
+            height: 169px;
+        }
+
+        .layui-upload button {
+            margin-bottom: 10px;
+        }
+
+        .layui-upload span {
+            font-size: 1.2em;
+            margin-left: 20px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+<div class="layui-card">
+    <div class="layui-card-header">
+        <div>
+            <span>项目申报</span>
+        </div>
+    </div>
+    <div class="layui-card-body">
+        <form class="layui-form" enctype="multipart/form-data" lay-filter="info">
+            <!-- 隐藏域 -->
+            <input type="hidden" name="wordName" id="hide-word-name">
+            <input type="hidden" name="proLocation" id="proLocation">
+            <input type="hidden" name="oldProId" th:value="${form.proId}">
+            <div class="layui-form-item layui-col-md-offset1 layui-col-md7">
+                <label class="layui-form-label">标题</label>
+                <div class="layui-input-block">
+                    <input type="text" class="layui-input" name="proName" th:value="${form.proName}" readonly/>
+                </div>
+            </div>
+            <div class="layui-form-item layui-col-md-offset1 layui-col-md7">
+                <label class="layui-form-label">描述</label>
+                <div class="layui-input-block">
+                    <textarea class="layui-input" name="proDesc" th:text="${form.proDesc}"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item layui-col-md-offset1">
+                <label class="layui-form-label">项目文档</label>
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn layui-btn-normal" id="word">
+                        <i class="layui-icon layui-icon-upload"></i>选择word文档
+                    </button>
+                    <span class="" id="wordName"></span>
+                </div>
+            </div>
+            <div class="layui-btn-container layui-col-md-offset2">
+                <button class="layui-btn layui-btn-sm layui-btn-disabled" style="margin-left: 27px" lay-submit id="submit">
+                    <i class="layui-icon layui-icon-ok"></i>申报
+                </button>
+                <button class="layui-btn layui-btn-sm" type="reset">
+                    <i class="layui-icon layui-icon-refresh"></i>重置
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- js文件 -->
+<script type="text/javascript" src="/static/js/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/student/pro_afresh.js"></script>
+</body>
+
+</html>
