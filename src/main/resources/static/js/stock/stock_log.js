@@ -60,10 +60,10 @@ function getColsAndUrl(event) {
         data[0] = [ // 表头
             {field: 'adminName', title: '管理员', align: "center"},
             {field: 'goodsName', title: '物品', align: "center"},
-            {field: 'goodsNum', title: '数量', align: "center"},
             {field: 'goodsBrand', title: '品牌', align: "center"},
             {field: 'goodsModel', title: '型号', align: "center"},
-            {field: 'goodsPrice', title: '价格', align: "center"},
+            {field: 'goodsNum', title: '数量', align: "center"},
+            {field: 'price', title: '入库价格', align: "center"},
             {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
             {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'}
         ];

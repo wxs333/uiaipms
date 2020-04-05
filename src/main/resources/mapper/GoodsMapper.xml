@@ -9,9 +9,7 @@
             goods
         WHERE
             goods_name = #{form.goodsName}
-            AND unit_id = #{form.unitId}
             AND goods_model = #{form.goodsModel}
-            AND goods_price = #{form.goodsPrice}
             AND goods_brand = #{form.goodsBrand}
     </select>
 
@@ -53,12 +51,11 @@
     </select>
 
     <select id="selectByPage" resultType="cn.edu.cdu.wxs.uiaipms.form.GoodsForm">
-        SELECT
+       SELECT
             g.goods_id,
             g.goods_name,
             g.goods_brand,
             g.goods_model,
-            g.goods_price,
             g.goods_num,
             g.ban,
             g.create_time,
@@ -71,7 +68,7 @@
             g.unit_id = u.unit_id
             AND g.logic_delete_flag = 0
         ORDER BY
-	        g.update_time DESC
+            g.update_time DESC
     </select>
 
     <select id="selectToList" resultType="cn.edu.cdu.wxs.uiaipms.form.GoodsForm">

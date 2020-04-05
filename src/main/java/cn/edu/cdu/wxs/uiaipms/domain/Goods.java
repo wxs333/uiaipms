@@ -10,7 +10,6 @@ import lombok.Setter;
 import org.apache.ibatis.type.JdbcType;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -60,13 +59,6 @@ public class Goods implements Serializable {
     @TableField(value = "goods_model", jdbcType = JdbcType.VARCHAR)
     @Excel(name = "型号", orderNum = "2")
     private String goodsModel;
-
-    /**
-     * 单价
-     */
-    @TableField(value = "goods_price", jdbcType = JdbcType.DECIMAL)
-    @Excel(name = "单价", orderNum = "3")
-    private BigDecimal goodsPrice;
 
     /**
      * 品牌

@@ -7,6 +7,7 @@ import cn.edu.cdu.wxs.uiaipms.form.StockIntoLogForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.GoodsMapper;
 import cn.edu.cdu.wxs.uiaipms.mapper.StockIntoLogMapper;
 import cn.edu.cdu.wxs.uiaipms.service.GoodsService;
+import cn.edu.cdu.wxs.uiaipms.service.StockIntoLogService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -29,7 +30,7 @@ public class GoodsServiceImpl extends BaseServiceImpl<GoodsForm> implements Good
     @Autowired
     private GoodsMapper mapper;
     @Autowired
-    private StockIntoLogMapper stockIntoLogMapper;
+    private StockIntoLogService stockIntoLogService;
 
     @Override
     public BaseMapper<GoodsForm> getMapper() {
@@ -48,36 +49,34 @@ public class GoodsServiceImpl extends BaseServiceImpl<GoodsForm> implements Good
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean add(GoodsForm form, String adminId) {
+        // 判断物品是否已存在，名称、品牌、型号一样就判定相同
         String goodsId = getId(form);
-        LocalDateTime dateTime = LocalDateTime.now();
-        // 新增一条入库记录
-        StockIntoLogForm stock = new StockIntoLogForm();
-        stock.setStoId(SystemUtils.getUuid());
-        stock.setAdminId(adminId);
-        stock.setUpdateTime(dateTime);
-        stock.setCreateTime(dateTime);
-        stock.setGoodsNum(form.getGoodsNum());
-        // 物品已存在
-        if (!StringUtils.isEmpty(goodsId)) {
-            form.setGoodsId(goodsId);
-            form.setUpdateTime(dateTime);
-
-            stock.setGoodsId(goodsId);
-
-            return SystemUtils.gtTheZero(mapper.addGoodsNum(form))
-                    && SystemUtils.gtTheZero(stockIntoLogMapper.insert(stock));
-        } else {
-            // 设置参数
+        // 无论物品是否存在，都会新增入库记录
+        StockIntoLogForm intoLogForm = new StockIntoLogForm();
+        intoLogForm.setCreateTime(LocalDateTime.now());
+        intoLogForm.setUpdateTime(LocalDateTime.now());
+        intoLogForm.setGoodsNum(form.getGoodsNum());
+        intoLogForm.setPrice(form.getPrice());
+        intoLogForm.setAdminId(adminId);
+        intoLogForm.setStoId(SystemUtils.getUuid());
+        form.setPrice(null);
+        // 不存在
+        if (StringUtils.isEmpty(goodsId)) {
             goodsId = SystemUtils.getUuid();
+            intoLogForm.setGoodsId(goodsId);
+            // 设置物品表单参数
             form.setGoodsId(goodsId);
-            form.setUpdateTime(dateTime);
-            form.setCreateTime(dateTime);
+            form.setUpdateTime(LocalDateTime.now());
+            form.setCreateTime(LocalDateTime.now());
 
-            stock.setGoodsId(goodsId);
-
-            return SystemUtils.gtTheZero(mapper.insert(form))
-                    && SystemUtils.gtTheZero(stockIntoLogMapper.insert(stock));
+            return add(form) && stockIntoLogService.add(intoLogForm);
         }
+        // 存在
+        intoLogForm.setGoodsId(goodsId);
+        form.setGoodsId(goodsId);
+        form.setUpdateTime(LocalDateTime.now());
+        form.setGoodsNum(getNumById(goodsId) + form.getGoodsNum());
+        return modifyById(form) && stockIntoLogService.add(intoLogForm);
     }
 
     @Override
@@ -112,5 +111,13 @@ public class GoodsServiceImpl extends BaseServiceImpl<GoodsForm> implements Good
     @Override
     public List<GoodsForm> getGoodsAndNumByStudId(String studId) {
         return mapper.selectGoodsAndNumByStudId(studId);
+    }
+
+    @Override
+    public int getNumById(String id) {
+        QueryWrapper<GoodsForm> wrapper = new QueryWrapper<>();
+        wrapper.select(GoodsColumn.GOODS_NUM)
+                .eq(GoodsColumn.GOODS_ID, id);
+        return mapper.selectOne(wrapper).getGoodsNum();
     }
 }

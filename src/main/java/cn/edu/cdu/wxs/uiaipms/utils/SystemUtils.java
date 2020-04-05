@@ -1,7 +1,9 @@
 package cn.edu.cdu.wxs.uiaipms.utils;
 
+import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import org.apache.shiro.crypto.hash.Md5Hash;
 
+import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
 /**
@@ -78,6 +80,16 @@ public class SystemUtils {
         // 重新命名
         return System.currentTimeMillis() + suffix;
 
+    }
+
+    /**
+     * 获取当前登录用户的id
+     *
+     * @param session 会话
+     * @return id
+     */
+    public static String getUserId(HttpSession session) {
+        return (String) session.getAttribute(GlobalConstant.USER_ID);
     }
 
     public static void main(String[] args) {

@@ -41,7 +41,6 @@ function tableRender(_table) {
             {field: 'goodsModel', title: '型号', align: "center"},
             {field: 'goodsNum', title: '剩余数量', align: "center"},
             {field: 'unitName', title: '单位', align: "center"},
-            {field: 'goodsPrice', title: '价格', align: "center"},
             {field: 'ban', title: '状态', align: "center", templet: "#ban"},
             {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
             {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},

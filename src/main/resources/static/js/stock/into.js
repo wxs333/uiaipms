@@ -30,7 +30,7 @@ function initSelect($, _form) {
 }
 
 /**
- * 入库
+ * 物品入库
  */
 function add($, _layer, data) {
     $.post(

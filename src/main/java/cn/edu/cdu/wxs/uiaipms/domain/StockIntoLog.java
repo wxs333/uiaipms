@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -54,6 +55,11 @@ public class StockIntoLog implements Serializable {
      */
     @TableField("update_time")
     private LocalDateTime updateTime;
+    /**
+     * 入库价格
+     */
+    @TableField("price")
+    private BigDecimal price;
 
     /**
      * 创建时间

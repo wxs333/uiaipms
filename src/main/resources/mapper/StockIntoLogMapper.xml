@@ -10,8 +10,8 @@
             g.goods_name,
             g.goods_model,
             g.goods_brand,
-            g.goods_price,
-            a.admin_name
+            a.admin_name,
+            s.price
         FROM
             stock_into_log s,
             goods g,

@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 /**
  * 物品 表单
  *
@@ -25,4 +27,8 @@ public class GoodsForm extends Goods {
      * 设备数量
      */
     private Integer num;
+    /**
+     * 入库价格
+     */
+    private BigDecimal price;
 }
