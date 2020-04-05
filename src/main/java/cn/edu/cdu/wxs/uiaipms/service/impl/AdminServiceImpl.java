@@ -43,7 +43,10 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminForm> implements Admi
 
     @Override
     public AdminForm getByUsername(String username) {
-        return mapper.getByUsername(username);
+        QueryWrapper<AdminForm> wrapper = new QueryWrapper<>();
+        wrapper.select(AdminColumn.ADMIN_ID, AdminColumn.NICKNAME, AdminColumn.IMAGE)
+                .eq(AdminColumn.LOGIC_DELETE_FLAG, 0)
+                .eq(AdminColumn.USERNAME, username);
+        return mapper.selectOne(wrapper);
     }
-
 }

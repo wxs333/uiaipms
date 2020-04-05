@@ -1,7 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
-import cn.edu.cdu.wxs.uiaipms.domain.Company;
 import cn.edu.cdu.wxs.uiaipms.form.*;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.*;
@@ -32,7 +31,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * 处理用户登录请求
+ * 处理用户通用请求
  *
  * @author WXS
  * @date 2019/12/16
@@ -76,10 +75,6 @@ public class UserApiController extends BaseController {
     @Autowired
     private EmailService emailService;
     /**
-     * session里的用户
-     */
-    private static final String SESSION_USER = "user";
-    /**
      * session里的验证码
      */
     private static final String SESSION_CODE = "code";
@@ -92,7 +87,6 @@ public class UserApiController extends BaseController {
      */
     @PostMapping(value = "login", name = "登录")
     public JsonResult<String> userLogin(LoginForm form, HttpSession session) {
-        log.info(form.toString());
         // 验证码验证
         String code = (String) session.getAttribute(SESSION_CODE);
         session.removeAttribute(SESSION_CODE);
@@ -142,24 +136,7 @@ public class UserApiController extends BaseController {
      */
     @GetMapping("headImg")
     public void headImg(HttpServletResponse response, HttpSession session) {
-        String role = (String) session.getAttribute("role");
-        String path = null;
-        switch (role) {
-            case "admin":
-                path = ((AdminForm) session.getAttribute(SESSION_USER)).getImage();
-                break;
-            case "tutor":
-                path = ((TutorForm) session.getAttribute(SESSION_USER)).getImage();
-                break;
-            case "student":
-                path = ((StudentForm) session.getAttribute(SESSION_USER)).getImage();
-                break;
-            case "company":
-                path = ((Company) session.getAttribute(SESSION_USER)).getImage();
-                break;
-            default:
-                break;
-        }
+        String path = (String) session.getAttribute(GlobalConstant.USER_IMAGE);
         try {
             ftpService.download(path, response.getOutputStream());
         } catch (IOException e) {
@@ -256,7 +233,7 @@ public class UserApiController extends BaseController {
             AdminForm adminForm = new AdminForm();
             adminForm.setPassword(SystemUtils.md5(password, username));
             adminForm.setUpdateTime(LocalDateTime.now());
-            result =  adminService.updatePasswordByUsername(adminForm, username);
+            result = adminService.updatePasswordByUsername(adminForm, username);
         } else if (studentService.isUsernameExist(username)) {
             StudentForm studentForm = new StudentForm();
             studentForm.setPassword(SystemUtils.md5(password, username));
@@ -267,7 +244,7 @@ public class UserApiController extends BaseController {
             tutorForm.setPassword(SystemUtils.md5(password, username));
             tutorForm.setUpdateTime(LocalDateTime.now());
             result = tutorService.updatePasswordByUsername(tutorForm, username);
-        } else if (companyService.isUsernameExist(username)){
+        } else if (companyService.isUsernameExist(username)) {
             CompanyForm companyForm = new CompanyForm();
             companyForm.setPassword(SystemUtils.md5(password, username));
             companyForm.setUpdateTime(LocalDateTime.now());
@@ -290,16 +267,28 @@ public class UserApiController extends BaseController {
         session.setAttribute("role", role);
         switch (role) {
             case "admin":
-                session.setAttribute(SESSION_USER, adminService.getByUsername(username));
+                AdminForm adminForm = adminService.getByUsername(username);
+                session.setAttribute(GlobalConstant.USER_ID, adminForm.getAdminId());
+                session.setAttribute(GlobalConstant.USER_NICKNAME, adminForm.getNickname());
+                session.setAttribute(GlobalConstant.USER_IMAGE, adminForm.getImage());
                 break;
             case "tutor":
-                session.setAttribute(SESSION_USER, tutorService.getByUsername(username));
+                TutorForm tutorForm = tutorService.getByUsername(username);
+                session.setAttribute(GlobalConstant.USER_ID, tutorForm.getTutorId());
+                session.setAttribute(GlobalConstant.USER_NICKNAME, tutorForm.getNickname());
+                session.setAttribute(GlobalConstant.USER_IMAGE, tutorForm.getImage());
                 break;
             case "student":
-                session.setAttribute(SESSION_USER, studentService.getByUsername(username));
+                StudentForm studentForm = studentService.getByUsername(username);
+                session.setAttribute(GlobalConstant.USER_ID, studentForm.getStuId());
+                session.setAttribute(GlobalConstant.USER_NICKNAME, studentForm.getNickname());
+                session.setAttribute(GlobalConstant.USER_IMAGE, studentForm.getImage());
                 break;
             case "company":
-                session.setAttribute(SESSION_USER, companyService.getByUsername(username));
+                CompanyForm companyForm = companyService.getByUsername(username);
+                session.setAttribute(GlobalConstant.USER_ID, companyForm.getComId());
+                session.setAttribute(GlobalConstant.USER_NICKNAME, companyForm.getComName());
+                session.setAttribute(GlobalConstant.USER_IMAGE, companyForm.getImage());
                 break;
             default:
                 break;
@@ -314,32 +303,32 @@ public class UserApiController extends BaseController {
      * @param url     路径
      */
     private void updateImg(HttpSession session, String type, String url) {
-        Object user = session.getAttribute(SESSION_USER);
+        String userId = (String) session.getAttribute(GlobalConstant.USER_ID);
         switch (type) {
             case "admin":
                 AdminForm adminForm = new AdminForm();
-                adminForm.setAdminId(((AdminForm) user).getId());
+                adminForm.setAdminId(userId);
                 adminForm.setImage(url);
                 adminForm.setUpdateTime(LocalDateTime.now());
                 adminService.modifyById(adminForm);
                 break;
             case "tutor":
                 TutorForm tutorForm = new TutorForm();
-                tutorForm.setTutorId(((TutorForm) user).getId());
+                tutorForm.setTutorId(userId);
                 tutorForm.setImage(url);
                 tutorForm.setUpdateTime(LocalDateTime.now());
                 tutorService.modifyById(tutorForm);
                 break;
             case "student":
                 StudentForm studentForm = new StudentForm();
-                studentForm.setStuId(((StudentForm) user).getId());
+                studentForm.setStuId(userId);
                 studentForm.setImage(url);
                 studentForm.setUpdateTime(LocalDateTime.now());
                 studentService.modifyById(studentForm);
                 break;
             case "company":
                 CompanyForm companyForm = new CompanyForm();
-                companyForm.setComId(((CompanyForm) user).getId());
+                companyForm.setComId(userId);
                 companyForm.setImage(url);
                 companyForm.setUpdateTime(LocalDateTime.now());
                 companyService.modifyById(companyForm);

@@ -15,14 +15,6 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface StudentMapper extends CommonMapper<StudentForm> {
     /**
-     * 根据用户名获取用户
-     *
-     * @param username 用户名
-     * @return 用户
-     */
-    StudentForm getByUsername(@Param("username") String username);
-
-    /**
      * 分页获取学生ID，姓名，用户名
      *
      * @param page 分页

@@ -4,7 +4,6 @@ import cn.edu.cdu.wxs.uiaipms.domain.Student;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 /**
  * 学生表单
@@ -14,17 +13,8 @@ import lombok.ToString;
  */
 @Getter
 @Setter
-@ToString
 @TableName("student")
 public class StudentForm extends Student {
-    /**
-     * ID
-     */
-    private String id;
-    /**
-     * 姓名
-     */
-    private String name;
     /**
      * 班级名称
      */

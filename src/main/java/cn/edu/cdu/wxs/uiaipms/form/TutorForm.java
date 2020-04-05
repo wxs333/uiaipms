@@ -16,14 +16,6 @@ import lombok.Setter;
 @TableName("tutor")
 public class TutorForm extends Tutor {
     /**
-     * ID
-     */
-    private String id;
-    /**
-     * 姓名
-     */
-    private String name;
-    /**
      * 学院名称
      */
     private String facultyName;

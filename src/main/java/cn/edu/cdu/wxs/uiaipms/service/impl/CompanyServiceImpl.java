@@ -1,8 +1,10 @@
 package cn.edu.cdu.wxs.uiaipms.service.impl;
 
+import cn.edu.cdu.wxs.uiaipms.column.AdminColumn;
 import cn.edu.cdu.wxs.uiaipms.column.CompanyColumn;
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.domain.Company;
+import cn.edu.cdu.wxs.uiaipms.form.AdminForm;
 import cn.edu.cdu.wxs.uiaipms.form.CompanyForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.CompanyMapper;
 import cn.edu.cdu.wxs.uiaipms.service.CompanyService;
@@ -37,7 +39,11 @@ public class CompanyServiceImpl extends BaseServiceImpl<CompanyForm> implements 
 
     @Override
     public CompanyForm getByUsername(String username) {
-        return mapper.getByUsername(username);
+        QueryWrapper<CompanyForm> wrapper = new QueryWrapper<>();
+        wrapper.select(CompanyColumn.COM_ID, CompanyColumn.COM_NAME, CompanyColumn.IMAGE)
+                .eq(CompanyColumn.LOGIC_DELETE_FLAG, 0)
+                .eq(CompanyColumn.USERNAME, username);
+        return mapper.selectOne(wrapper);
     }
 
     @Override

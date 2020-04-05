@@ -11,6 +11,7 @@
             s.ban,
             c.com_name,
             c.com_people,
+            c.phone,
             s.stud_num,
             s.update_time,
             s.create_time

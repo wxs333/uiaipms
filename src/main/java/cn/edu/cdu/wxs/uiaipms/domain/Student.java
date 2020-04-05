@@ -6,8 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
-import org.apache.ibatis.type.JdbcType;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -18,11 +16,10 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author WXS
- * @since 2020-02-10
+ * @since 2020-04-05
  */
 @Getter
 @Setter
-@ToString
 @TableName("student")
 public class Student implements Serializable {
 
@@ -37,79 +34,79 @@ public class Student implements Serializable {
     /**
      * 姓名
      */
-    @TableField(value = "stu_name", jdbcType = JdbcType.VARCHAR)
+    @TableField("stu_name")
     private String stuName;
 
     /**
      * 学号
      */
-    @TableField(value = "stu_no", jdbcType = JdbcType.VARCHAR)
+    @TableField("stu_no")
     private String stuNo;
-
-    /**
-     * 银行卡号
-     */
-    @TableField(value = "bank_card", jdbcType = JdbcType.VARCHAR)
-    private String bankCard;
 
     /**
      * 联系地址
      */
-    @TableField(value = "address", jdbcType = JdbcType.VARCHAR)
+    @TableField("address")
     private String address;
+
+    /**
+     * 昵称
+     */
+    @TableField("nickname")
+    private String nickname;
 
     /**
      * 登录名
      */
-    @TableField(value = "username", jdbcType = JdbcType.VARCHAR)
+    @TableField("username")
     private String username;
 
     /**
      * 密码
      */
-    @TableField(value = "password", jdbcType = JdbcType.VARCHAR)
+    @TableField("password")
     private String password;
 
     /**
      * 手机号
      */
-    @TableField(value = "phone", jdbcType = JdbcType.VARCHAR)
+    @TableField("phone")
     private String phone;
 
     /**
      * 班级
      */
-    @TableField(value = "clazz_id", jdbcType = JdbcType.VARCHAR)
+    @TableField("clazz_id")
     private String clazzId;
 
     /**
-     * 照片地址
-     */
-    @TableField(value = "image", jdbcType = JdbcType.VARCHAR)
-    private String image;
-    /**
      * 0 启用 1 禁用
      */
-    @TableField(value = "ban", jdbcType = JdbcType.INTEGER)
+    @TableField("ban")
     private Integer ban;
+
+    /**
+     * 照片路径
+     */
+    @TableField("image")
+    private String image;
 
     /**
      * 更新时间
      */
-    @TableField(value = "update_time", jdbcType = JdbcType.TIMESTAMP)
+    @TableField("update_time")
     private LocalDateTime updateTime;
 
     /**
      * 创建时间
      */
-    @TableField(value = "create_time", jdbcType = JdbcType.TIMESTAMP)
+    @TableField("create_time")
     private LocalDateTime createTime;
 
     /**
      * 逻辑删除字段
      */
-    @TableField(value = "logic_delete_flag", jdbcType = JdbcType.INTEGER)
+    @TableField("logic_delete_flag")
     private Integer logicDeleteFlag;
-
 
 }

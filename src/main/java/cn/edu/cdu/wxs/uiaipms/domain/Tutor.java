@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.ibatis.type.JdbcType;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -17,67 +16,85 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author WXS
- * @since 2020-02-10
+ * @since 2020-04-05
  */
 @Getter
 @Setter
 @TableName("tutor")
 public class Tutor implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     /**
      * id
      */
     @TableId(value = "tutor_id", type = IdType.INPUT)
     private String tutorId;
+
     /**
      * 导师姓名
      */
-    @TableField(value = "tutor_name", jdbcType = JdbcType.VARCHAR)
+    @TableField("tutor_name")
     private String tutorName;
+
     /**
      * 手机号
      */
-    @TableField(value = "phone", jdbcType = JdbcType.VARCHAR)
+    @TableField("phone")
     private String phone;
+
     /**
      * 密码
      */
-    @TableField(value = "password", jdbcType = JdbcType.VARCHAR)
+    @TableField("password")
     private String password;
+
+    /**
+     * 昵称
+     */
+    @TableField("nickname")
+    private String nickname;
+
     /**
      * 账号
      */
-    @TableField(value = "username", jdbcType = JdbcType.VARCHAR)
+    @TableField("username")
     private String username;
+
     /**
      * 学院id
      */
-    @TableField(value = "faculty_id", jdbcType = JdbcType.VARCHAR)
+    @TableField("faculty_id")
     private String facultyId;
-    /**
-     * 照片地址
-     */
-    @TableField(value = "image", jdbcType = JdbcType.VARCHAR)
-    private String image;
+
     /**
      * 0 启用 1 禁用
      */
-    @TableField(value = "ban", jdbcType = JdbcType.INTEGER)
+    @TableField("ban")
     private Integer ban;
+
+    /**
+     * 照片地址
+     */
+    @TableField("image")
+    private String image;
+
     /**
      * 更新时间
      */
-    @TableField(value = "update_time", jdbcType = JdbcType.TIMESTAMP)
+    @TableField("update_time")
     private LocalDateTime updateTime;
+
     /**
      * 创建时间
      */
-    @TableField(value = "create_time", jdbcType = JdbcType.TIMESTAMP)
+    @TableField("create_time")
     private LocalDateTime createTime;
+
     /**
      * 逻辑删除字段
      */
-    @TableField(value = "logic_delete_flag", jdbcType = JdbcType.INTEGER)
+    @TableField("logic_delete_flag")
     private Integer logicDeleteFlag;
-
 
 }

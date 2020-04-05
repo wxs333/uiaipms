@@ -17,12 +17,4 @@ import lombok.ToString;
 @ToString
 @TableName("company")
 public class CompanyForm extends Company {
-    /**
-     * ID
-     */
-    private String id;
-    /**
-     * 姓名
-     */
-    private String name;
 }

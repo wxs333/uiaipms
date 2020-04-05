@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
+
 /**
  * 学生 数据控制层
  *
@@ -136,7 +137,7 @@ public class StudentApiController extends BaseController {
     @GetMapping("info")
     public JsonResult<StudentForm> info(HttpSession session) {
         // 获取当前用户的ID
-        String id = ((StudentForm) session.getAttribute("user")).getId();
+        String id = (String) session.getAttribute(GlobalConstant.USER_ID);
         return jsonResult(studentService.getInfo(id));
     }
 }

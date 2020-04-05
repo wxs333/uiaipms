@@ -48,6 +48,7 @@ function tableRender(_table) {
             {field: 'studRoomNo', title: '房间号', align: "center"},
             {field: 'comName', title: '所属企业', align: "center"},
             {field: 'comPeople', title: '负责人', align: "center"},
+            {field: 'phone', title: '负责人手机号', align: "center"},
             {field: 'studNum', title: '人数', align: "center"},
             {field: 'studArea', title: '占地面积(m^2)', align: "center"},
             {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},

@@ -85,4 +85,16 @@ public class GlobalConstant {
      * FTP中word文件存放目录
      */
     public static final String FTP_WORD_DIRECTORY = "/uiaipms/word/";
+    /**
+     * session里的用户id
+     */
+    public static final String USER_ID = "id";
+    /**
+     * session里的用户昵称
+     */
+    public static final String USER_NICKNAME = "nickname";
+    /**
+     * session里的用户头像地址
+     */
+    public static final String USER_IMAGE = "image";
 }

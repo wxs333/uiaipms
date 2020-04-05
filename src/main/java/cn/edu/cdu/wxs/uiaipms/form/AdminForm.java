@@ -4,7 +4,6 @@ import cn.edu.cdu.wxs.uiaipms.domain.Admin;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 /**
  * 管理员表单
@@ -14,17 +13,8 @@ import lombok.ToString;
  */
 @Getter
 @Setter
-@ToString
 @TableName("admin")
 public class AdminForm extends Admin {
-    /**
-     * ID
-     */
-    private String id;
-    /**
-     * 姓名
-     */
-    private String name;
     /**
      * 标识
      */

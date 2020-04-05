@@ -23,4 +23,8 @@ public class StudioForm extends Studio {
      * 企业负责人
      */
     private String comPeople;
+    /**
+     * 负责人十几号
+     */
+    private String phone;
 }
