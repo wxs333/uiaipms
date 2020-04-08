@@ -19,13 +19,23 @@ public class StockLogWebController {
     private static final String PREFIX = "stock/";
 
     /**
-     * 列表
+     * 库存管理
      *
      * @return 视图
      */
     @GetMapping("list")
     public String list() {
-        return PREFIX + "stock_log";
+        return PREFIX + "stock";
+    }
+
+    /**
+     * 采购资金申请记录
+     *
+     * @return 视图
+     */
+    @GetMapping("applyList")
+    public String log() {
+        return PREFIX + "apply_list";
     }
 
     /**
@@ -46,5 +56,15 @@ public class StockLogWebController {
     @GetMapping("out_list")
     public String out() {
         return PREFIX + "out_list";
+    }
+
+    /**
+     * 库存记录统计
+     *
+     * @return 视图
+     */
+    @GetMapping("statistics")
+    public String statistics() {
+        return PREFIX + "stock_statistics";
     }
 }

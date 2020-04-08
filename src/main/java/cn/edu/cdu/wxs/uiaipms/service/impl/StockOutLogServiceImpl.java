@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.Map;
+
 /**
  * 出库记录 业务层实现类
  *
@@ -49,5 +52,10 @@ public class StockOutLogServiceImpl extends BaseServiceImpl<StockOutLogForm> imp
                     SystemUtils.gtTheZero(goodsMapper.reduceGoodsNum(domain.getApplyNum(), domain.getGoodsId()));
         }
         return super.modifyById(domain);
+    }
+
+    @Override
+    public Map<String, Map<String, Object>> getBetweenStartAndEnd(LocalDateTime start, LocalDateTime end) {
+        return mapper.selectBetweenStartAndEnd(start, end);
     }
 }

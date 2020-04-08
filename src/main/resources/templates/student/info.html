@@ -27,7 +27,7 @@
         <form class="layui-form" enctype="multipart/form-data" lay-filter="info">
             <div class="layui-btn-container">
                 <button class="layui-btn layui-btn-sm" lay-submit>
-                    <i class="layui-icon layui-icon-ok"></i>确定
+                    <i class="layui-icon layui-icon-ok"></i>修改
                 </button>
                 <button class="layui-btn layui-btn-sm" type="reset">
                     <i class="layui-icon layui-icon-refresh"></i>重置
@@ -43,13 +43,19 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">姓名</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="stuName"/>
+                    <input class="layui-input" name="stuName" readonly/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="username"/>
+                    <input class="layui-input" name="username" readonly/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" name="nickname"/>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -64,7 +70,6 @@
                     <input class="layui-input" name="phone"/>
                 </div>
             </div>
-
         </form>
     </div>
 </div>

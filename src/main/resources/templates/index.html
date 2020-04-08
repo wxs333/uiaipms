@@ -17,68 +17,61 @@
 
 <body style="background-color: #eeeeee;">
 <div class="layui-container" style="margin-top: 50px;">
-    <form class="layui-form">
+    <form class="layui-form layui-col-md-offset3 layui-col-md6">
         <div class="layui-row">
-            <div class="layui-col-md-offset3">
-                <div class="layui-form-item layui-col-md7">
-                    <label class="layui-form-label">用户名</label>
-                    <div class="layui-input-block">
-                        <input class="layui-input" type="text" name="username" id="username" required
-                               lay-verify="required" lay-verType="tips" placeholder="请输入用户名"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" type="text" name="username" id="username" required
+                           lay-verify="required" lay-verType="tips" placeholder="请输入用户名"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" type="password" name="password" id="password" required
+                           lay-verify="required" lay-verType="tips" placeholder="请输入密码"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-row">
+                    <div class="layui-col-md8">
+                        <label class="layui-form-label" for="code">验证码</label>
+                        <div class="layui-input-block">
+                            <input class="layui-input" type="text" name="code" id="code" required lay-verify="required"
+                                   lay-verType="tips" placeholder="请输入验证码"/>
+                        </div>
+                    </div>
+                    <div class="layui-col-md4">
+                        <div style="margin-left: 10px">
+                            <img src="/api/user/code" style="width: 100px; height: 28px;" id="img"/>
+                            <button type="button" id="changeCode" class="layui-btn layui-btn-xs">看不清</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="layui-col-md-offset3">
-                <div class="layui-form-item layui-col-md7">
-                    <label class="layui-form-label">密码</label>
-                    <div class="layui-input-block">
-                        <input class="layui-input" type="password" name="password" id="password" required
-                               lay-verify="required" lay-verType="tips" placeholder="请输入密码"/>
-                    </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input class="layui-input" type="radio" name="role" title="管理员" value="admin"/>
+                    <input class="layui-input" type="radio" name="role" title="导师" value="tutor"/>
+                    <input class="layui-input" type="radio" name="role" title="学生" value="student" checked/>
+                    <input class="layui-input" type="radio" name="role" title="企业" value="company"/>
                 </div>
             </div>
-            <div class="layui-col-md-offset3">
-                <div class="layui-form-item layui-col-md7">
-                    <label class="layui-form-label">验证码</label>
-                    <div class="layui-input-inline">
-                        <input class="layui-input" type="text" name="code" required lay-verify="required"
-                               lay-verType="tips" placeholder="请输入验证码"/>
-                    </div>
-                    <div class="layui-form-mid layui-word-aux">
-                        <img src="/api/user/code" style="width: 100px; height: 28px;"/>
-                        <button type="button" id="changeCode" class="layui-btn layui-btn-xs">看不清</button>
-                    </div>
-                </div>
+        </div>
+        <div class="layui-form-item layui-col-md-offset10">
+            <a href="javascript:;" id="forget-password">忘记密码？</a>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login">登录</button>
             </div>
-            <div class="layui-col-md-offset3">
-                <div class="layui-form-item layui-col-md7">
-                    <div class="layui-input-block">
-                        <input class="layui-input" type="radio" name="role" title="管理员" value="admin"/>
-                        <input class="layui-input" type="radio" name="role" title="导师" value="tutor"/>
-                        <input class="layui-input" type="radio" name="role" title="学生" value="student" checked/>
-                        <input class="layui-input" type="radio" name="role" title="企业" value="company"/>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-md-offset7">
-                <div class="layui-form-item">
-                    <a href="javascript:;" id="forget-password">忘记密码？</a>
-                </div>
-            </div>
-            <div class="layui-col-md-offset3">
-                <div class="layui-form-item layui-col-md7">
-                    <div class="layui-input-block">
-                        <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login">登录</button>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-md-offset3">
-                <div class="layui-form-item layui-col-md7">
-                    <div class="layui-input-block">
-                        <button class="layui-btn layui-btn-fluid layui-btn-primary" type="button" name="register">注册
-                        </button>
-                    </div>
-                </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-fluid layui-btn-primary" type="button" name="register">注册
+                </button>
             </div>
         </div>
     </form>
@@ -87,6 +80,10 @@
 <!-- js文件 -->
 <script src="/static/js/layui/layui.all.js"></script>
 <script type="text/javascript" src="/static/js/index/index.js"></script>
+<script type="text/javascript" src="/static/js/encryption/sha1.js"></script>
+<script type="text/javascript">
+   console.log(sha1("123"));
+</script>
 </body>
 
 </html>

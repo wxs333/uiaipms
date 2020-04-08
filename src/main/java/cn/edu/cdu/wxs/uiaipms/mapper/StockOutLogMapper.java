@@ -4,7 +4,12 @@ import cn.edu.cdu.wxs.uiaipms.form.StockOutLogForm;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.time.LocalDateTime;
+import java.util.Map;
 
 /**
  * 出库记录 数据层
@@ -29,5 +34,15 @@ public interface StockOutLogMapper extends BaseMapper<StockOutLogForm> {
      * @return 分页集合
      */
     IPage<StockOutLogForm> selectAllNotApplied(Page<StockOutLogForm> page);
+
+    /**
+     * 查询一段时间内的出库统计
+     *
+     * @param start 开始时间
+     * @param end   结束时间
+     * @return 集合
+     */
+    @MapKey("goodsName")
+    Map<String, Map<String, Object>> selectBetweenStartAndEnd(@Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
 
 }

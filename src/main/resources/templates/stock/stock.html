@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>工作室管理</title>
+    <title>库存管理</title>
     <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
     <style>
         .layui-table-tool {
@@ -44,7 +44,7 @@
 </div>
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
-<script type="text/javascript" src="/static/js/stock/stock_log.js"></script>
+<script type="text/javascript" src="/static/js/stock/stock.js"></script>
 <!-- 头工具栏 -->
 <script type="text/html" id="toolbar">
     <div class="layui-btn-container">
@@ -61,7 +61,10 @@
             <i class="layui-icon layui-icon-edit"></i>出库审批
         </button>
         <button class="layui-btn layui-btn-sm" lay-event="apply">
-            <i class="layui-icon layui-icon-form"></i>采购资金申请
+            <i class="layui-icon layui-icon-form"></i>资金申请记录
+        </button>
+        <button class="layui-btn layui-btn-sm" lay-event="statistics">
+            <i class="layui-icon layui-icon-chart"></i>统计
         </button>
     </div>
 </script>

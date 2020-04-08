@@ -92,7 +92,9 @@ function openHtml(_table, _layer, event) {
     } else if ('out' === event) {
         d = {'title': '出库审批', 'content': '/sto/out_list', 'width': '1200px'};
     } else if ('apply' === event) {
-        d = {'title': '采购资金申请', 'content': '/sto/out_list', 'width': '800px'};
+        d = {'title': '采购资金申请', 'content': '/sto/applyList', 'width': '1200px'};
+    } else if ("statistics" === event) {
+        d = {'title': '统计', 'content': '/sto/statistics', 'width': '1200px'};
     }
     doOpen(_table, _layer, d);
 }

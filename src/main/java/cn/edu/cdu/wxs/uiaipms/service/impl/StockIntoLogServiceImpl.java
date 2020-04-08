@@ -11,6 +11,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Map;
+
 /**
  * 库存出库记录 业务层实现类
  *
@@ -31,5 +34,10 @@ public class StockIntoLogServiceImpl extends BaseServiceImpl<StockIntoLogForm> i
     @Override
     public IPage<StockIntoLogForm> getAll(Page<StockIntoLogForm> page) {
         return mapper.selectAll(page);
+    }
+
+    @Override
+    public Map<String, Map<String, Object>> getBetweenStartAndEnd(LocalDateTime start, LocalDateTime end) {
+        return mapper.selectBetweenStartAndEnd(start, end);
     }
 }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>库存统计</title>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/static/css/common.css"/>
+    <style>
+        .layui-card-body {
+            background-color: #EEEEEE;
+        }
+        .layui-row .layui-col-md5 {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <div class="layui-row">
+            <!-- 入库日期选择 -->
+            <div class="layui-col-md5">
+                <label class="layui-form-label">入库日期</label>
+                <div class="layui-input-block">
+                    <input type="text" class="layui-input" id="into-date" placeholder="请选择入库日期">
+                </div>
+            </div>
+            <!-- 出库日期选择 -->
+            <div class="layui-col-md5 layui-col-md-offset1">
+                <label class="layui-form-label">出库日期</label>
+                <div class="layui-input-block">
+                    <input type="text" class="layui-input" id="out-date" placeholder="请选择出库日期">
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <!-- 入库量统计图 -->
+            <div class="layui-col-md5">
+                <div id="into" style="height: 400px; width: 540px"></div>
+            </div>
+            <!-- 出库量统计图 -->
+            <div class="layui-col-md5 layui-col-md-offset1">
+                <div id="out" style="width: 540px;height: 400px;"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- js文件 -->
+<script type="text/javascript" src="/static/js/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="/static/js/stock/stock_statistics.js"></script>
+
+</body>
+</html>

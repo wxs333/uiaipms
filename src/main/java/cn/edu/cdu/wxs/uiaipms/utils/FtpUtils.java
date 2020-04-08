@@ -142,9 +142,11 @@ public class FtpUtils {
          */
     private static void close(FTPClient ftpClient) {
         try {
-            ftpClient.disconnect();
+            if (!ObjectUtils.isEmpty(ftpClient)) {
+                ftpClient.disconnect();
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+           logger.info("关闭FTP连接报错");
         }
     }
 

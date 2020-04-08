@@ -4,7 +4,11 @@ import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import org.apache.shiro.crypto.hash.Md5Hash;
 
 import javax.servlet.http.HttpSession;
-import java.util.UUID;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.*;
 
 /**
  * 系统工具类
@@ -79,7 +83,6 @@ public class SystemUtils {
         System.out.println(index);
         // 重新命名
         return System.currentTimeMillis() + suffix;
-
     }
 
     /**
@@ -92,14 +95,59 @@ public class SystemUtils {
         return (String) session.getAttribute(GlobalConstant.USER_ID);
     }
 
+    /**
+     * 获取指定日期的开始时间
+     *
+     * @param date 日期
+     * @return 开始时间
+     */
+    public static LocalDateTime getStartOfDay(LocalDate date) {
+        return LocalDateTime.of(date, LocalTime.MIN);
+    }
+
+    /**
+     * 获取指定日期的结束时间
+     *
+     * @param date 日期
+     * @return 结束时间
+     */
+    public static LocalDateTime getEndOfDay(LocalDate date) {
+        return LocalDateTime.of(date, LocalTime.MAX);
+    }
+
+    /**
+     * 对出入库统计结果进行格式化
+     *
+     * @param map 结果集和
+     * @return 格式化结果集合
+     */
+    public static Map<String, List> formatMap(Map<String, Map<String, Object>> map) {
+        List<String> name = new ArrayList<>(map.size());
+        List<Integer> num = new ArrayList<>(name.size());
+        Iterator<Map<String, Object>> iterator = map.values().iterator();
+        while (iterator.hasNext()) {
+            Map<String, Object> next = iterator.next();
+            name.add((String) next.get("goodsName"));
+            num.add(((BigDecimal)next.get("total")).intValue());
+        }
+        Map<String, List> data = new HashMap<>(2);
+        data.put("name", name);
+        data.put("num", num);
+
+        return data;
+    }
+
     public static void main(String[] args) {
-        //System.out.println(md5("dahan", "dahan"));
+        //       System.out.println(md5("student1", "student1"));
 //        System.out.println(getUuid());
 //        System.out.println(getUuid());
 //        System.out.println(getUuid());
         //       System.out.println(verificationCode());
 
-        System.out.println(getNotRepeatingFilename("123.jpg"));
+        //System.out.println(getNotRepeatingFilename("123.jpg"));
+
+        System.out.println(LocalDateTime.of(LocalDate.now(), LocalTime.MIN));
+        System.out.println(LocalDateTime.of(LocalDate.now(), LocalTime.MAX));
     }
 
 }

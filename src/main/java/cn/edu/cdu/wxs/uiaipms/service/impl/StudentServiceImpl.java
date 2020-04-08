@@ -16,12 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
-import org.springframework.util.ResourceUtils;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.time.LocalDateTime;
 
 /**
@@ -115,8 +110,8 @@ public class StudentServiceImpl extends BaseServiceImpl<StudentForm> implements 
     @Override
     public StudentForm getInfo(String stuId) {
         QueryWrapper<StudentForm> wrapper = new QueryWrapper<>();
-        wrapper.select(StudentColumn.STU_ID, StudentColumn.STU_NAME, StudentColumn.ADDRESS,
-                GlobalConstant.USERNAME, GlobalConstant.PHONE, StudentColumn.IMAGE)
+        wrapper.select(StudentColumn.STU_ID, StudentColumn.STU_NAME, StudentColumn.NICKNAME, StudentColumn.ADDRESS,
+                StudentColumn.USERNAME, StudentColumn.PHONE, StudentColumn.IMAGE)
                 .eq(GlobalConstant.LOGIC_DELETE_FLAG, 0)
                 .eq(StudentColumn.STU_ID, stuId);
         return mapper.selectOne(wrapper);

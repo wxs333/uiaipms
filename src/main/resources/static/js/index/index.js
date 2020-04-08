@@ -46,6 +46,7 @@ function login($, _layer, data) {
  */
 function changeCode($) {
     $("#changeCode").click(function () {
+        console.log("sssssss");
         doChange($);
     });
 }
@@ -54,7 +55,7 @@ function changeCode($) {
  * 执行更换验证码
  */
 function doChange($) {
-    $(".layui-word-aux img").attr('src', '/api/user/code?date=' + new Date());
+    $("#img").attr('src', '/api/user/code?date=' + new Date());
 }
 
 /**

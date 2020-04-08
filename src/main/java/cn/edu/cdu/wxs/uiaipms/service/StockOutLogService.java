@@ -4,6 +4,9 @@ import cn.edu.cdu.wxs.uiaipms.form.StockOutLogForm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import java.time.LocalDateTime;
+import java.util.Map;
+
 /**
  * 出库记录 业务层接口
  *
@@ -26,4 +29,14 @@ public interface StockOutLogService extends BaseService<StockOutLogForm> {
      * @return 分页集合
      */
     IPage<StockOutLogForm> getAllNotApplied(Page<StockOutLogForm> page);
+
+
+    /**
+     * 查询一段时间内的出库统计
+     *
+     * @param start 开始时间
+     * @param end   结束时间
+     * @return 集合
+     */
+    Map<String, Map<String, Object>> getBetweenStartAndEnd(LocalDateTime start, LocalDateTime end);
 }
