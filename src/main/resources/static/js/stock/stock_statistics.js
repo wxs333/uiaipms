@@ -24,6 +24,7 @@ function renderInto(_laydate, $) {
         }
     })
 }
+
 /**
  * 渲染出库时间选择框
  */

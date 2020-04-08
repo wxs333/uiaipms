@@ -111,11 +111,12 @@ public class FtpUtils {
 
     /**
      * 获取文件输入流
-     * @param host         IP地址
-     * @param port         端口
-     * @param username     用户名
-     * @param password     密码
-     * @param path         路径
+     *
+     * @param host     IP地址
+     * @param port     端口
+     * @param username 用户名
+     * @param password 密码
+     * @param path     路径
      * @return 输入流
      */
     public static InputStream download(String host, int port, String username, String password, String path) {
@@ -135,18 +136,18 @@ public class FtpUtils {
     }
 
 
-        /**
-         * 关闭ftp服务器连接
-         *
-         * @param ftpClient ftp客户端
-         */
+    /**
+     * 关闭ftp服务器连接
+     *
+     * @param ftpClient ftp客户端
+     */
     private static void close(FTPClient ftpClient) {
         try {
             if (!ObjectUtils.isEmpty(ftpClient)) {
                 ftpClient.disconnect();
             }
         } catch (Exception e) {
-           logger.info("关闭FTP连接报错");
+            logger.info("关闭FTP连接报错");
         }
     }
 

@@ -39,7 +39,7 @@ layui.use(["form"], function () {
 /**
  * 发送邮件
  */
-function sendEmail($,_layer, email) {
+function sendEmail($, _layer, email) {
     var index = _layer.load(2);
     $.get(
         '/api/user/sendEmail',
@@ -51,7 +51,7 @@ function sendEmail($,_layer, email) {
                     $("#email-code").val(res.data);
                     disableAndShow($, "#one", "#two");
                 });
-            }  else {
+            } else {
                 msg(res.code, res.message, null);
             }
 
@@ -74,6 +74,7 @@ function updatePassword($, _layer, password) {
         }
     )
 }
+
 /**
  * 禁止此步输入框输入，和显示下一步
  */

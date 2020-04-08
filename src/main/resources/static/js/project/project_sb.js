@@ -27,7 +27,7 @@ function wordUpload(_upload, $, _layer) {
         multiple: true,
         choose: function (obj) {
             obj.preview(function (index, file, result) {
-               $("#wordName").text("已选择：" + file.name);
+                $("#wordName").text("已选择：" + file.name);
             });
         },
         done: function (res) {

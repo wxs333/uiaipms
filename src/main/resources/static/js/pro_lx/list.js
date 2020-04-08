@@ -84,12 +84,13 @@ function reloadTable(_table) {
  */
 function openConfirm($, _layer, _table, data) {
     _layer.confirm("确定要将该项目立项？",
-        {icon: 3, title:'确定提示'},
+        {icon: 3, title: '确定提示'},
         function (index) {
             _layer.close(index);
             lx($, _layer, _table, data);
         });
 }
+
 /**
  * 立项
  */
@@ -104,6 +105,7 @@ function lx($, _layer, _table, data) {
         }
     )
 }
+
 /**
  * 弹出资金申请页面
  */

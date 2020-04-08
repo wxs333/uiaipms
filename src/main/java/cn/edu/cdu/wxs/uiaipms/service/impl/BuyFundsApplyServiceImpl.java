@@ -69,4 +69,9 @@ public class BuyFundsApplyServiceImpl extends BaseServiceImpl<BuyFundsApplyForm>
     public List<BuyFundsApplyForm> getExportData() {
         return mapper.selectExportData();
     }
+
+    @Override
+    public IPage<BuyFundsApplyForm> getApplyList(Page<BuyFundsApplyForm> page) {
+        return mapper.selectApplyList(page);
+    }
 }

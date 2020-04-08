@@ -31,7 +31,7 @@
             AND f.fac_id = #{facId}
     </select>
 
-   <select id="selectByStuId" resultType="cn.edu.cdu.wxs.uiaipms.form.ProjectForm">
+    <select id="selectByStuId" resultType="cn.edu.cdu.wxs.uiaipms.form.ProjectForm">
         SELECT DISTINCT
            	p.pro_id,
             p.pro_name,

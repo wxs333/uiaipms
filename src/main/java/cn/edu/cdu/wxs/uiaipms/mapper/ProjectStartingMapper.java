@@ -20,7 +20,8 @@ public interface ProjectStartingMapper extends BaseMapper<ProjectStartingForm> {
 
     /**
      * 查询某个学院的可立项的项目
-     * @param page 分页
+     *
+     * @param page  分页
      * @param facId 学院id
      * @return 分页集合
      */

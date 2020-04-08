@@ -16,19 +16,20 @@ layui.use(['element', 'layer'], function () {
 /**
  * 绑定点击事件
  */
-function click($,_layer) {
+function click($, _layer) {
     $('#info').click(function () {
         // 弹出基本资料框
-        var data = {"title": "基本资料", "url": "/stu/info","width": "800px"};
+        var data = {"title": "基本资料", "url": "/stu/info", "width": "800px"};
         openHtml(_layer, data);
     });
     $('#update-img').click(function () {
         // 弹出修改头像框
-        var data = {"title": "修改头像", "url": "/user/img","width": "800px"};
+        var data = {"title": "修改头像", "url": "/user/img", "width": "800px"};
         openHtml(_layer, data);
     });
 
 }
+
 /**
  * 头像显示
  */

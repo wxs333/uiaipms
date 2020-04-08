@@ -24,7 +24,8 @@ public interface ProjectMapper extends CommonMapper<ProjectForm> {
 
     /**
      * 分页获取某个学生申报的项目
-     * @param page 分页
+     *
+     * @param page  分页
      * @param stuId 学生id
      * @return 分页集合
      */

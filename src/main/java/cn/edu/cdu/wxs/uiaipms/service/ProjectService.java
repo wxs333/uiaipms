@@ -22,7 +22,8 @@ public interface ProjectService extends BaseService<ProjectForm> {
 
     /**
      * 分页获取某个学生申报的项目
-     * @param page 分页
+     *
+     * @param page  分页
      * @param stuId 学生id
      * @return 分页集合
      */
@@ -30,7 +31,8 @@ public interface ProjectService extends BaseService<ProjectForm> {
 
     /**
      * 重新申报项目
-     * @param form 新项目表单
+     *
+     * @param form     新项目表单
      * @param odlProId 旧项目id
      * @return true 成功 false 失败
      */

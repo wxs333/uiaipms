@@ -106,4 +106,15 @@ public class BuyFundsApplyApiController extends BaseController {
         excelService.export(name, name, exportData, BuyFundsApplyForm.class, response);
     }
 
+    /**
+     * 获取资金申请列表
+     *
+     * @param page 分页
+     * @return json
+     */
+    @GetMapping("applyList")
+    public JsonResult<IPage<BuyFundsApplyForm>> applyList(Page<BuyFundsApplyForm> page) {
+        return jsonResult("0", service.getApplyList(page));
+    }
+
 }

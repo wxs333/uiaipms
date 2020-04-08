@@ -64,4 +64,30 @@
         ORDER BY
             b.update_time DESC
     </select>
+    <select id="selectApplyList" resultType="cn.edu.cdu.wxs.uiaipms.form.BuyFundsApplyForm">
+        SELECT DISTINCT
+            a1.admin_name AS applyUserName,
+            b1.apply_mount,
+            b1.apply_reason,
+            b1.create_time,
+            a2.admin_name AS dealUserName,
+            b1.deal_user_id,
+            b1.bfa_agree,
+            b1.bfa_reason,
+            b1.update_time
+        FROM
+            buy_funds_apply b1
+            LEFT JOIN admin a1 ON b1.apply_user_id = a1.admin_id,
+            buy_funds_apply b2
+            LEFT JOIN admin a2 ON b2.deal_user_id = a2.admin_id
+        WHERE
+            b1.logic_delete_flag = 0
+            AND a1.logic_delete_flag = 0
+            AND a2.logic_delete_flag = 0
+            AND b2.logic_delete_flag = 0
+        ORDER BY
+	        b1.create_time DESC
+    </select>
+
+
 </mapper>

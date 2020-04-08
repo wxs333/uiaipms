@@ -44,7 +44,8 @@ public interface BaseService<T> {
 
     /**
      * 根据用户名修改密码
-     * @param t 表单
+     *
+     * @param t        表单
      * @param username 用户名
      * @return true 成功 false 失败
      */

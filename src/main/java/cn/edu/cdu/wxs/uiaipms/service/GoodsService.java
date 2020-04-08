@@ -78,6 +78,7 @@ public interface GoodsService extends BaseService<GoodsForm> {
 
     /**
      * 根据id获取剩余数量
+     *
      * @param id id
      * @return 剩余数量
      */

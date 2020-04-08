@@ -36,4 +36,12 @@ public interface BuyFundsApplyMapper extends BaseMapper<BuyFundsApplyForm> {
      * @return 集合
      */
     List<BuyFundsApplyForm> selectExportData();
+
+    /**
+     * 分页查询所有申请
+     *
+     * @param page 分页
+     * @return 分页集合
+     */
+    IPage<BuyFundsApplyForm> selectApplyList(Page<BuyFundsApplyForm> page);
 }

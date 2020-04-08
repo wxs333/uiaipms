@@ -180,8 +180,8 @@ public class AdminApiController extends BaseController {
                 companyForm.setBan(ban);
                 result = companyService.modifyById(companyForm);
                 break;
-                default:
-                    break;
+            default:
+                break;
         }
         if (result) {
             return jsonResult("操作成功");

@@ -128,7 +128,7 @@ public class SystemUtils {
         while (iterator.hasNext()) {
             Map<String, Object> next = iterator.next();
             name.add((String) next.get("goodsName"));
-            num.add(((BigDecimal)next.get("total")).intValue());
+            num.add(((BigDecimal) next.get("total")).intValue());
         }
         Map<String, List> data = new HashMap<>(2);
         data.put("name", name);

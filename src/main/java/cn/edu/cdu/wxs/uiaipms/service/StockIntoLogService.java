@@ -24,9 +24,10 @@ public interface StockIntoLogService extends BaseService<StockIntoLogForm> {
 
     /**
      * 查询一段时间内的入库统计
+     *
      * @param start 开始时间
-     * @param end 结束时间
+     * @param end   结束时间
      * @return 集合
      */
-    Map<String, Map<String, Object>> getBetweenStartAndEnd(LocalDateTime start,LocalDateTime end);
+    Map<String, Map<String, Object>> getBetweenStartAndEnd(LocalDateTime start, LocalDateTime end);
 }

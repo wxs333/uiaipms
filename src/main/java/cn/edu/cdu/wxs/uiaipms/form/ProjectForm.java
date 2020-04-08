@@ -31,7 +31,7 @@ public class ProjectForm extends Project {
      * 是否通过审核
      */
     private Integer prFlag;
-     /**
+    /**
      * 是否立项
      */
     private Integer lxFlag;
