@@ -104,11 +104,6 @@ public class GoodsServiceImpl extends BaseServiceImpl<GoodsForm> implements Good
     }
 
     @Override
-    public List<GoodsForm> getList() {
-        return mapper.selectToList();
-    }
-
-    @Override
     public List<GoodsForm> getGoodsAndNumByStudId(String studId) {
         return mapper.selectGoodsAndNumByStudId(studId);
     }
@@ -119,5 +114,10 @@ public class GoodsServiceImpl extends BaseServiceImpl<GoodsForm> implements Good
         wrapper.select(GoodsColumn.GOODS_NUM)
                 .eq(GoodsColumn.GOODS_ID, id);
         return mapper.selectOne(wrapper).getGoodsNum();
+    }
+
+    @Override
+    public int getCount() {
+        return mapper.selectCount();
     }
 }

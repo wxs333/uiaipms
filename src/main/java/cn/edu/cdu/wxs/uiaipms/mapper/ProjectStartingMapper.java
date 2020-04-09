@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * <p>
  * 项目立项表 Mapper 接口
@@ -26,4 +28,11 @@ public interface ProjectStartingMapper extends BaseMapper<ProjectStartingForm> {
      * @return 分页集合
      */
     IPage<ProjectStartingForm> selectByFacId(Page<ProjectStartingForm> page, @Param("facId") String facId);
+
+    /**
+     * 获取某个学院可导出的数据
+     * @param facId 学院id
+     * @return 集合
+     */
+    List<ProjectStartingForm> selectExportData(@Param("facId") String facId);
 }

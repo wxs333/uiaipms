@@ -60,17 +60,16 @@ public interface GoodsMapper extends BaseMapper<GoodsForm> {
     IPage<GoodsForm> selectByPage(Page<GoodsForm> page);
 
     /**
-     * 获取所有物品
-     *
-     * @return 集合
-     */
-    List<GoodsForm> selectToList();
-
-    /**
      * 获取某个工作室的设备及其数量
      *
      * @param studId 工作室id
      * @return 集合
      */
     List<GoodsForm> selectGoodsAndNumByStudId(@Param("studId") String studId);
+
+    /**
+     * 获取总数
+     * @return 总数
+     */
+    int selectCount();
 }

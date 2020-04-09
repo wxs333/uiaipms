@@ -10,26 +10,75 @@
             p.pro_location,
             p.word_name,
             s.stu_name,
-            t.tutor_name AS prTutor,
-            tu.tutor_name AS psTutor,
+            t2.tutor_name AS prTutor,
+            t3.tutor_name AS psTutor,
             pr.update_time AS prTime,
             ps.lx_flag,
-            ps.update_time
+            ps.update_time,
+            t1.tutor_name AS paTutor,
+            pa.update_time AS paTime
         FROM
             project p,
-            project_review pr LEFT JOIN tutor t ON pr.tutor_id = t.tutor_id,
-            project_starting ps LEFT JOIN tutor tu ON ps.tutor_id = tu.tutor_id,
+            project_approval pa
+            LEFT JOIN tutor t1 ON pa.tutor_id = t1.tutor_id,
+            project_review pr
+            LEFT JOIN tutor t2 ON pr.tutor_id = t2.tutor_id,
+            project_starting ps
+            LEFT JOIN tutor t3 ON ps.tutor_id = t3.tutor_id,
             student s,
             clazz c,
             discipline d,
             faculty f
         WHERE
             pr.pro_id = p.pro_id
+            AND pa.pro_id = p.pro_id
             AND ps.pro_id = p.pro_id
             AND p.stu_id = s.stu_id
             AND s.clazz_id = c.clazz_id
             AND c.disc_id = d.disc_id
             AND d.fac_id = f.fac_id
+            AND pa.tutor_id IS NOT NULL
+            AND p.logic_delete_flag = 0
+            AND pr.logic_delete_flag = 0
+            AND s.logic_delete_flag = 0
+            AND pr.pass_flag = 0
+            AND f.fac_id = #{facId}
+        ORDER BY
+            pr.update_time DESC
+    </select>
+
+    <select id="selectExportData" resultType="cn.edu.cdu.wxs.uiaipms.form.ProjectStartingForm">
+        SELECT
+            p.pro_name,
+            s.stu_name,
+            t2.tutor_name AS prTutor,
+            t3.tutor_name AS psTutor,
+            pr.update_time AS prTime,
+            ps.lx_flag,
+            ps.update_time,
+            t1.tutor_name AS paTutor,
+            pa.update_time AS paTime
+        FROM
+            project p,
+            project_approval pa
+            LEFT JOIN tutor t1 ON pa.tutor_id = t1.tutor_id,
+            project_review pr
+            LEFT JOIN tutor t2 ON pr.tutor_id = t2.tutor_id,
+            project_starting ps
+            LEFT JOIN tutor t3 ON ps.tutor_id = t3.tutor_id,
+            student s,
+            clazz c,
+            discipline d,
+            faculty f
+        WHERE
+            pr.pro_id = p.pro_id
+            AND pa.pro_id = p.pro_id
+            AND ps.pro_id = p.pro_id
+            AND p.stu_id = s.stu_id
+            AND s.clazz_id = c.clazz_id
+            AND c.disc_id = d.disc_id
+            AND d.fac_id = f.fac_id
+            AND pa.tutor_id IS NOT NULL
             AND p.logic_delete_flag = 0
             AND pr.logic_delete_flag = 0
             AND s.logic_delete_flag = 0

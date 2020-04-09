@@ -114,7 +114,10 @@ public class GoodsApiController extends BaseController {
     @GetMapping("export")
     public void export(HttpServletResponse response) {
         // 获取数据
-        List<GoodsForm> data = service.getList();
+        int total = service.getCount();
+        Page<GoodsForm> page = new Page<>();
+        page.setSize(total);
+        List<GoodsForm> data = service.getByPage(page).getRecords();
         // 数据导出
         excelService.export("物品列表", "物品列表", data, GoodsForm.class, response);
     }

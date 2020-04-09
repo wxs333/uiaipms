@@ -40,6 +40,7 @@ function tableRender(_table) {
             {field: 'goodsBrand', title: '品牌', align: "center"},
             {field: 'goodsModel', title: '型号', align: "center"},
             {field: 'goodsNum', title: '剩余数量', align: "center"},
+            {field: 'price', title: '入库单价(元)', align: "center"},
             {field: 'unitName', title: '单位', align: "center"},
             {field: 'ban', title: '状态', align: "center", templet: "#ban"},
             {field: 'updateTime', title: '更新时间', align: "center"},

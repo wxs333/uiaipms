@@ -9,6 +9,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 项目立项表 业务实现类
  *
@@ -29,5 +31,10 @@ public class ProjectStartingServiceImpl extends BaseServiceImpl<ProjectStartingF
     @Override
     public IPage<ProjectStartingForm> getByFacId(Page<ProjectStartingForm> page, String facId) {
         return mapper.selectByFacId(page, facId);
+    }
+
+    @Override
+    public List<ProjectStartingForm> getExportData(String facId) {
+        return mapper.selectExportData(facId);
     }
 }

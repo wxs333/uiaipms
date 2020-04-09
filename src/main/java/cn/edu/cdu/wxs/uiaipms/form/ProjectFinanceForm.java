@@ -22,11 +22,11 @@ public class ProjectFinanceForm extends ProjectFinance {
     /**
      * 导师名称
      */
-    @Excel(name = "申请人", orderNum = "1")
+    @Excel(name = "申请人", orderNum = "1", width = 30)
     private String tutorName;
     /**
      * 处理人名字
      */
-    @Excel(name = "处理人", orderNum = "5")
+    @Excel(name = "处理人", orderNum = "5", width = 30)
     private String adminName;
 }

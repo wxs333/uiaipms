@@ -19,11 +19,11 @@ public class BuyFundsApplyForm extends BuyFundsApply {
     /**
      * 申请人姓名
      */
-    @Excel(name = "申请人")
+    @Excel(name = "申请人", width = 30)
     private String applyUserName;
     /**
      * 处理人姓名
      */
-    @Excel(name = "处理人", orderNum = "4")
+    @Excel(name = "处理人", orderNum = "4", width = 30)
     private String dealUserName;
 }

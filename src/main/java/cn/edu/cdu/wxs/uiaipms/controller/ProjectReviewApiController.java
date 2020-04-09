@@ -3,7 +3,6 @@ package cn.edu.cdu.wxs.uiaipms.controller;
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.form.ProjectReviewForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
-import cn.edu.cdu.wxs.uiaipms.service.ExcelService;
 import cn.edu.cdu.wxs.uiaipms.service.ProjectReviewService;
 import cn.edu.cdu.wxs.uiaipms.service.TutorService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -28,8 +27,6 @@ public class ProjectReviewApiController extends BaseController {
 
     @Autowired
     private ProjectReviewService service;
-    @Autowired
-    private ExcelService<ProjectReviewForm> excelService;
     @Autowired
     private TutorService tutorService;
 

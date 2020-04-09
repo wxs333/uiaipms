@@ -62,13 +62,6 @@ public interface GoodsService extends BaseService<GoodsForm> {
     IPage<GoodsForm> getByPage(Page<GoodsForm> page);
 
     /**
-     * 获取所有物品
-     *
-     * @return 集合
-     */
-    List<GoodsForm> getList();
-
-    /**
      * 获取某个工作室的设备及其数量
      *
      * @param studId 工作室id
@@ -83,5 +76,11 @@ public interface GoodsService extends BaseService<GoodsForm> {
      * @return 剩余数量
      */
     int getNumById(String id);
+
+    /**
+     * 获取记录总数
+     * @return 总数
+     */
+    int getCount();
 
 }

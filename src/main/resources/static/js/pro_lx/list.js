@@ -8,7 +8,7 @@ layui.use('table', function () {
     _table.on('toolbar(pro-lx)', function (obj) {
         if (obj.event === "export") {
             // 数据导出
-            window.location.href = "/api/pr/export";
+            window.location.href = "/api/ps/export";
         }
     });
     // 行工具栏事件监听
@@ -46,12 +46,14 @@ function tableRender(_table) {
             {field: 'stuName', title: '申请人', align: "center"},
             {field: 'proName', title: '项目名称', align: "center"},
             {field: 'wordName', title: '项目文档', align: "center", event:"preview", templet: "#word"},
+            {field: 'paTutor', title: '审批导师', align: "center"},
+            {field: 'paTime', title: '审批时间', align: "center"},
             {field: 'prTutor', title: '审核导师', align: "center"},
             {field: 'prTime', title: '审核时间', align: "center"},
             {field: 'lxFlag', title: '是否立项', align: "center", templet: "#lx"},
             {field: 'psTutor', title: '立项导师', align: "center"},
             {field: 'updateTime', title: '立项时间', align: "center"},
-            {field: '', title: "操作", minWidth: '220', align: "center", toolbar: "#rowTool"}
+            {field: '', title: "操作", minWidth: '180', align: "center", toolbar: "#rowTool"}
         ]],
         limits: [10, 20, 30],
         parseData: function (res) { // 返回数据格式解析

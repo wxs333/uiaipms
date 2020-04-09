@@ -1,5 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.domain;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -47,6 +48,7 @@ public class ProjectStarting implements Serializable {
      * 是否立项 0 是 1否 默认 1
      */
     @TableField("lx_flag")
+    @Excel(name = "是否立项", orderNum = "6", replace = {"已立项_0", "未立项_1"}, width = 30)
     private Integer lxFlag;
 
     /**
@@ -59,6 +61,7 @@ public class ProjectStarting implements Serializable {
      * 更新时间
      */
     @TableField("update_time")
+    @Excel(name = "立项时间", orderNum = "8", width = 30)
     private LocalDateTime updateTime;
 
     /**

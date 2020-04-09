@@ -49,7 +49,7 @@ public class ProjectFinance implements Serializable {
      * 金额
      */
     @TableField("pf_amount")
-    @Excel(name = "申请金额", orderNum = "2")
+    @Excel(name = "申请金额", orderNum = "2", width = 30)
     private BigDecimal pfAmount;
 
     /**
@@ -74,27 +74,27 @@ public class ProjectFinance implements Serializable {
      * 是否同意 0 同意 1 不同意 默认 1
      */
     @TableField("agree")
-    @Excel(name = "处理结果", orderNum = "6", replace = {"同意_0", "驳回_1"})
+    @Excel(name = "处理结果", orderNum = "6", replace = {"同意_0", "驳回_1"}, width = 30)
     private Integer agree;
     /**
      * 同意与否的原因
      */
     @TableField("review_reason")
-    @Excel(name = "理由", orderNum = "7", width = 30)
+    @Excel(name = "处理结果说明", orderNum = "7", width = 30)
     private String reviewReason;
 
     /**
      * 更新时间
      */
     @TableField("update_time")
-    @Excel(name = "处理时间", orderNum = "8", width = 22, exportFormat = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "处理时间", orderNum = "8", width = 30)
     private LocalDateTime updateTime;
 
     /**
      * 创建时间
      */
     @TableField("create_time")
-    @Excel(name = "申请时间", orderNum = "4", width = 22, exportFormat = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "申请时间", orderNum = "4", width = 30)
     private LocalDateTime createTime;
 
     /**
