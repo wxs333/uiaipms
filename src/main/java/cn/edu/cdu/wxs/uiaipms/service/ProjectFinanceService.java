@@ -37,4 +37,12 @@ public interface ProjectFinanceService extends BaseService<ProjectFinanceForm> {
      */
     int getCount(int deal);
 
+    /**
+     * 根据项目id获取
+     * @param page 分页
+     * @param proId 项目id
+     * @return 分页集合
+     */
+    IPage<ProjectFinanceForm> getByProId(Page<ProjectFinanceForm> page, String proId);
+
 }

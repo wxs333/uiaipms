@@ -23,6 +23,8 @@ layui.use('table', function () {
         } else if ("preview" === event) {
             // 文档预览
             wordPreview($, obj.data);
+        } else if ("record" === event) {
+            openRecordHtml(_layer, obj.data.proId);
         }
     })
 
@@ -126,3 +128,19 @@ function openApplyHtml(_layer, _table, proId) {
     });
 }
 
+/**
+ * 资金申请历史记录
+ * @param _layer
+ * @param proId
+ */
+function openRecordHtml(_layer, proId) {
+    _layer.open({
+        type: 2,
+        title: "资金申请历史记录",
+        content: "/ps/finHistory?proId=" + proId,
+        area: ["1200px", '560px'],
+        anim: 1,
+        scrollbar: false,
+        offset: '30px'
+    });
+}

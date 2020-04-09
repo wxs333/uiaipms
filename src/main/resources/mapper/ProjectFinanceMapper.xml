@@ -61,4 +61,26 @@
             deal = #{deal}
     </select>
 
+    <select id="selectByProId" resultType="cn.edu.cdu.wxs.uiaipms.form.ProjectFinanceForm">
+        SELECT
+            t.tutor_name,
+            p.pf_amount,
+            p.apply_reason,
+            p.create_time,
+            p.deal,
+            a.admin_name,
+            p.agree,
+            p.review_reason,
+            p.update_time
+        FROM
+            project_finance p
+            LEFT JOIN admin a ON p.admin_id = a.admin_id,
+            tutor t
+        WHERE
+            p.user_id = t.tutor_id
+            AND p.logic_delete_flag = 0
+            AND t.logic_delete_flag = 0
+            AND p.pro_id = #{proId}
+    </select>
+
 </mapper>

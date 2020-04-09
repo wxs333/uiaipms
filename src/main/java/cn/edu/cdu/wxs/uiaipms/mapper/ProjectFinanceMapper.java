@@ -41,4 +41,12 @@ public interface ProjectFinanceMapper extends BaseMapper<ProjectFinanceForm> {
      * @return json
      */
     int selectCount(@Param("deal") int deal);
+
+    /**
+     * 根据项目id获取
+     * @param page 分页
+     * @param proId 项目id
+     * @return 分页集合
+     */
+    IPage<ProjectFinanceForm> selectByProId(Page<ProjectFinanceForm> page, @Param("proId") String proId);
 }

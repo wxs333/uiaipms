@@ -2,6 +2,7 @@ package cn.edu.cdu.wxs.uiaipms.service.impl;
 
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.domain.SysInfo;
+import cn.edu.cdu.wxs.uiaipms.form.BuyFundsApplyForm;
 import cn.edu.cdu.wxs.uiaipms.form.ProjectFinanceForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.ProjectFinanceMapper;
 import cn.edu.cdu.wxs.uiaipms.service.ProjectFinanceService;
@@ -64,5 +65,10 @@ public class ProjectFinanceServiceImpl extends BaseServiceImpl<ProjectFinanceFor
         info.setSysCount(domain.getPfAmount());
         info.setSysId(GlobalConstant.MONEY_ID);
         return super.modifyById(domain) && sysInfoService.modifyById(info);
+    }
+
+    @Override
+    public IPage<ProjectFinanceForm> getByProId(Page<ProjectFinanceForm> page, String proId) {
+        return mapper.selectByProId(page, proId);
     }
 }

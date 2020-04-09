@@ -107,4 +107,15 @@ public class ProjectFinanceApiController extends BaseController {
         List<ProjectFinanceForm> data = service.getAllDealed(page).getRecords();
         excelService.export("项目拨款记录", "项目拨款记录", data, ProjectFinanceForm.class, response);
     }
+
+    /**
+     * 查询某个项目的历史申请记录
+     * @param page 分页
+     * @param proId 项目id
+     * @return json
+     */
+    @GetMapping("history")
+    public JsonResult<IPage<ProjectFinanceForm>> history(Page<ProjectFinanceForm> page, String proId) {
+            return jsonResult("0", service.getByProId(page, proId));
+    }
 }

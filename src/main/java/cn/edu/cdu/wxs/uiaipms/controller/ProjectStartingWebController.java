@@ -47,5 +47,13 @@ public class ProjectStartingWebController {
         modelAndView.setViewName(PREFIX + "apply");
         return modelAndView;
     }
+
+    @GetMapping("finHistory")
+    public ModelAndView finHistory(@NotNull String proId) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("proId", proId);
+        modelAndView.setViewName(PREFIX + "fin_history");
+        return modelAndView;
+    }
 }
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>资金申请历史记录</title>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <style>
+        .layui-table-page {
+            text-align: center;
+        }
+
+        .layui-table-tool {
+            background-color: white
+        }
+    </style>
+</head>
+<body>
+<!-- 隐藏域 -->
+<input type="hidden" id="proId" th:value="${proId}">
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table class="layui-table" id="history" lay-filter="history"></table>
+    </div>
+</div>
+<!-- js文件 -->
+<script type="text/javascript" src="/static/js/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/pro_lx/fin_history.js"></script>
+<script type="text/javascript" src="/static/js/common/base.js"></script>
+<script type="text/html" id="deal">
+    {{# if(d.deal == 1) { }}
+    <span style="color: #1E9FFF;">未处理</span>
+    {{# } else { }}
+    <span style="color: #009688;">已处理</span>
+    {{# } }}
+</script>
+<script type="text/html" id="agree">
+    {{# if(d.deal != 1) { }}
+    {{# if(d.agree == 0) { }}
+    <span style="color: #009688;">已同意</span>
+    {{# } else { }}
+    <span style="color: #FF5722;">未同意</span>
+    {{# } } }}
+</script>
+</body>
+</html>
