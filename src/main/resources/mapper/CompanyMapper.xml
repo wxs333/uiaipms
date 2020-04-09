@@ -3,7 +3,7 @@
 <mapper namespace="cn.edu.cdu.wxs.uiaipms.mapper.CompanyMapper">
     <select id="selectAllInfo" resultType="cn.edu.cdu.wxs.uiaipms.form.CompanyForm">
         SELECT
-            com_id AS id,
+            com_id,
             com_name,
             com_people,
             phone,

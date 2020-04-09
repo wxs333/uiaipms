@@ -15,7 +15,7 @@
 
     <select id="selectAllInfo" resultType="cn.edu.cdu.wxs.uiaipms.form.StudentForm">
         SELECT
-            s.stu_id AS id,
+            s.stu_id,
             s.stu_name,
             s.username,
             s.stu_no,

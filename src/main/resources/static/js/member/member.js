@@ -12,7 +12,9 @@ layui.use('table', function () {
     // 行工具栏事件监听
     _table.on('tool(table)', function (obj) {
         if (obj.event === 'edit') {
-            openUpdateHtml($("#mark").val(), _layer, obj.data.id, _table);
+            var mark = $("#mark").val();
+            var id = getId(mark, obj.data);
+                openUpdateHtml(mark, _layer, id, _table);
         } else {
             ban(_table, _layer, $, obj);
         }
@@ -58,7 +60,7 @@ function getCols(mark) {
     switch (mark) {
         case 'student':
             cols[0] = [ // 表头
-                {field: 'id', title: 'id', align: "center", hide: 'true'},
+                {field: 'stuId', title: 'id', align: "center", hide: 'true'},
                 {field: 'stuName', title: '学生姓名', align: "center"},
                 {field: 'username', title: '用户名', align: "center"},
                 {field: 'stuNo', title: '学号', align: "center"},
@@ -75,7 +77,7 @@ function getCols(mark) {
             break;
         case 'tutor':
             cols[0] = [ // 表头
-                {field: 'id', title: 'id', align: "center", hide: 'true'},
+                {field: 'tutorId', title: 'id', align: "center", hide: 'true'},
                 {field: 'tutorName', title: '导师姓名', align: "center"},
                 {field: 'username', title: '用户名', align: "center"},
                 {field: 'facultyName', title: '学院', align: "center"},
@@ -90,7 +92,7 @@ function getCols(mark) {
             break;
         case 'company':
             cols[0] = [ // 表头
-                {field: 'id', title: 'id', align: "center", hide: 'true'},
+                {field: 'comId', title: 'id', align: "center", hide: 'true'},
                 {field: 'comName', title: '企业名称', align: "center"},
                 {field: 'comPeople', title: '负责人', align: "center"},
                 {field: 'username', title: '用户名', align: "center"},
@@ -105,6 +107,20 @@ function getCols(mark) {
             break;
     }
     return cols;
+}
+
+/**
+ * 获取不同id数据
+ */
+function getId(mark, data) {
+    switch (mark) {
+        case "student":
+            return data.stuId;
+        case "tutor":
+            return data.tutorId;
+        case "company":
+            return data.comId;
+    }
 }
 
 /**
@@ -141,9 +157,11 @@ function ban(_table, _layer, $, obj) {
         {btn: ['确定', '取消'], icon: 3, anim: 1, offset: '130px'},
         function (index) {
             _layer.close(index);
+            var mark = $("#mark").val();
+            var id = getId(mark, obj.data);
             $.post(
                 '/api/admin/ban',
-                {'mark': $("#mark").val(), 'id': obj.data.id, "ban": ban},
+                {'mark': mark, 'id': id, "ban": ban},
                 function (res) {
                     var icon = res.code === "success" ? 1 : 2;
                     _layer.msg(res.message,

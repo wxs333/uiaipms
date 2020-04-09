@@ -52,7 +52,6 @@ function initSelect($, _form, facultyId) {
  * 修改信息
  */
 function update($, _layer, data) {
-    console.log(data);
     $.post(
         '/api/tutor/update',
         data,

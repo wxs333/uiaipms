@@ -156,7 +156,7 @@ public class AdminApiController extends BaseController {
      * @return json
      */
     @PostMapping("ban")
-    public JsonResult<String> ban(String mark, String id, Integer ban) {
+    public JsonResult<String> ban(String mark, String id, int ban) {
         boolean result = false;
         switch (mark) {
             case "student":

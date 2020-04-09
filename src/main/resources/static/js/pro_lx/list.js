@@ -20,6 +20,9 @@ layui.use('table', function () {
         } else if ("apply" === event) {
             // 打开申请页面
             openApplyHtml(_layer, _table, obj.data.proId);
+        } else if ("preview" === event) {
+            // 文档预览
+            wordPreview($, obj.data);
         }
     })
 
@@ -42,7 +45,7 @@ function tableRender(_table) {
             {field: 'proLocation', title: '', align: "center", hide: 'true'},
             {field: 'stuName', title: '申请人', align: "center"},
             {field: 'proName', title: '项目名称', align: "center"},
-            {field: 'wordName', title: '项目文档', align: "center", templet: "#word"},
+            {field: 'wordName', title: '项目文档', align: "center", event:"preview", templet: "#word"},
             {field: 'prTutor', title: '审核导师', align: "center"},
             {field: 'prTime', title: '审核时间', align: "center"},
             {field: 'lxFlag', title: '是否立项', align: "center", templet: "#lx"},
