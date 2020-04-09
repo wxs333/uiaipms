@@ -49,13 +49,14 @@ public class BuyFundsApply implements Serializable {
      * 是否同意 0 同意 1 不同意 默认 1
      */
     @TableField("bfa_agree")
-    @Excel(name = "是否同意", orderNum = "4", replace = {"是_0", "否_1"})
+    @Excel(name = "是否同意", orderNum = "5", replace = {"是_0", "否_1"})
     private Integer bfaAgree;
 
     /**
      * 处理结果说明
      */
     @TableField("bfa_reason")
+    @Excel(name = "处理结果说明", orderNum = "6", width = 30)
     private String bfaReason;
 
     /**
@@ -68,6 +69,7 @@ public class BuyFundsApply implements Serializable {
      * 申请理由
      */
     @TableField("apply_reason")
+    @Excel(name = "申请理由", orderNum = "2", width = 35)
     private String applyReason;
 
     /**
@@ -81,14 +83,14 @@ public class BuyFundsApply implements Serializable {
      * 创建时间
      */
     @TableField("create_time")
-    @Excel(name = "申请时间", orderNum = "2", width = 22)
+    @Excel(name = "申请时间", orderNum = "3", width = 22)
     private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
     @TableField("update_time")
-    @Excel(name = "处理时间", orderNum = "5", width = 22)
+    @Excel(name = "处理时间", orderNum = "7", width = 22)
     private LocalDateTime updateTime;
 
     /**

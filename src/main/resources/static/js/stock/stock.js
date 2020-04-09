@@ -64,8 +64,8 @@ function getColsAndUrl(event) {
             {field: 'goodsModel', title: '型号', align: "center"},
             {field: 'goodsNum', title: '数量', align: "center"},
             {field: 'price', title: '入库价格', align: "center"},
-            {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
-            {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'}
+            {field: 'updateTime', title: '更新时间', align: "center"},
+            {field: 'createTime', title: '创建时间', align: "center"}
         ];
         data[1] = '/api/into/list';
     } else {
@@ -74,8 +74,8 @@ function getColsAndUrl(event) {
             {field: 'goodsName', title: '物品', align: "center"},
             {field: 'applyNum', title: '数量', align: "center"},
             {field: 'address', title: '申请人', align: "center"},
-            {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
-            {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'}
+            {field: 'updateTime', title: '更新时间', align: "center"},
+            {field: 'createTime', title: '创建时间', align: "center"}
         ];
         data[1] = '/api/out/list';
     }

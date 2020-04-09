@@ -3,9 +3,13 @@
 <mapper namespace="cn.edu.cdu.wxs.uiaipms.mapper.TutorMapper">
     <select id="selectAll" resultType="cn.edu.cdu.wxs.uiaipms.form.TutorForm">
         SELECT
-        tutor_id AS id, tutor_name AS `name`, username
+          tutor_id,
+          tutor_name,
+          username
         FROM
-        tutor
+          tutor
+        WHERE
+          logic_delete_flag = 0
     </select>
 
     <select id="selectAllInfo" resultType="cn.edu.cdu.wxs.uiaipms.form.TutorForm">

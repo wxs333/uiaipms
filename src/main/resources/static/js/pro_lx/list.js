@@ -44,10 +44,10 @@ function tableRender(_table) {
             {field: 'proName', title: '项目名称', align: "center"},
             {field: 'wordName', title: '项目文档', align: "center", templet: "#word"},
             {field: 'prTutor', title: '审核导师', align: "center"},
-            {field: 'prTime', title: '审核时间', align: "center", templet: "#prTime"},
+            {field: 'prTime', title: '审核时间', align: "center"},
             {field: 'lxFlag', title: '是否立项', align: "center", templet: "#lx"},
             {field: 'psTutor', title: '立项导师', align: "center"},
-            {field: 'updateTime', title: '立项时间', align: "center", templet: "#updateTime"},
+            {field: 'updateTime', title: '立项时间', align: "center"},
             {field: '', title: "操作", minWidth: '220', align: "center", toolbar: "#rowTool"}
         ]],
         limits: [10, 20, 30],

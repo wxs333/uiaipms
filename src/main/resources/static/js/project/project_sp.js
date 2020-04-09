@@ -96,7 +96,7 @@ function col() {
         {field: 'proName', title: '标题', align: "center"},
         {field: 'proDesc', title: '描述', align: "center"},
         {field: 'wordName,', title: '项目文档', align: "center", event: "preview", templet: "#word"},
-        {field: 'createTime', title: '申报时间', align: "center", templet: '#createTime'},
+        {field: 'createTime', title: '申报时间', align: "center"},
         {field: '', title: "操作", align: "center", toolbar: "#rowTool"}
     ]];
     col[1] = [[
@@ -107,7 +107,7 @@ function col() {
         {field: 'wordName', title: '项目文档', align: "center", event: "preview", templet: "#word"},
         {field: 'passFlag', title: '是否通过', align: "center", templet: '#flag'},
         {field: 'reason', title: '原因', align: "center"},
-        {field: 'updateTime', title: '审批时间', align: "center", templet: '#updateTime'}
+        {field: 'updateTime', title: '审批时间', align: "center"}
     ]];
     return col;
 }

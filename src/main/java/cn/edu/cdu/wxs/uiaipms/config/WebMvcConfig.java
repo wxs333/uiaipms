@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.config;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.serializer.ValueFilter;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.nio.charset.Charset;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +69,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 // 避免循环引用
                 SerializerFeature.DisableCircularReferenceDetect
         );
+        config.setSerializeFilters((ValueFilter) (o, s, source) -> {
+            if (source instanceof LocalDateTime) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                return formatter.format((LocalDateTime)source);
+            }
+            return source;
+        });
         messageConverter.setFastJsonConfig(config);
         messageConverter.setDefaultCharset(Charset.forName("utf-8"));
         // 解决中文乱码

@@ -23,7 +23,7 @@ function tableRender(_table, $) {
             {field: 'goodsModel', title: '型号', align: "center"},
             {field: 'unitName', title: '单位', align: "center"},
             {field: 'goodsNum', title: '申请数量', align: "center"},
-            {field: 'updateTime', title: '申请时间', align: "center", templet: "#timeFormat"},
+            {field: 'updateTime', title: '申请时间', align: "center"}
         ]],
         parseData: function (res) { // 返回数据格式解析
             return {

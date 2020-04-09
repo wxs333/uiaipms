@@ -42,8 +42,8 @@ function tableRender(_table) {
             {field: 'goodsNum', title: '剩余数量', align: "center"},
             {field: 'unitName', title: '单位', align: "center"},
             {field: 'ban', title: '状态', align: "center", templet: "#ban"},
-            {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
-            {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},
+            {field: 'updateTime', title: '更新时间', align: "center"},
+            {field: 'createTime', title: '创建时间', align: "center"},
             {field: '', title: "操作", minWidth: '170', align: "center", toolbar: "#rowTool"}
         ]],
         limits: [10, 20, 30],

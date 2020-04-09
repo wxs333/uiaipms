@@ -31,7 +31,7 @@ function tableRender(_table) {
             {field: 'goodsBrand', title: '品牌', align: "center"},
             {field: 'goodsModel', title: '型号', align: "center"},
             {field: 'applyNum', title: '数量', align: "center"},
-            {field: 'createTime', title: '申请时间', align: "center", templet: "#timeFormat"},
+            {field: 'createTime', title: '申请时间', align: "center"},
             {field: '', title: '操作', align: "center", templet: '#option'}
         ]],
         parseData: function (res) { // 返回数据格式解析

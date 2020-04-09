@@ -35,7 +35,7 @@ function tableRender(_table) {
             {field: 'proName', title: '项目名', align: "center"},
             {field: 'wordName', title: '项目文档', align: "center", event: "preview", templet: "#word"},
             {field: 'proDesc', title: '项目描述', align: "center"},
-            {field: 'createTime', title: '申报时间', align: "center", templet: '#createTime'},
+            {field: 'createTime', title: '申报时间', align: "center"},
             {field: 'paFlag', title: '是否审批', align: "center", templet: "#pa"},
             {field: 'prFlag', title: '是否审核', align: "center", templet: "#pr"},
             {field: 'lxFlag', title: '是否立项', align: "center", templet: "#lx"},

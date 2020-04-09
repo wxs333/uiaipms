@@ -40,13 +40,9 @@
     {{ d.dealUserName }}
     {{# } }}
 </script>
-<!-- 时间格式化-->
-<script type="text/html" id="createTime">
-    {{ layui.util.toDateString(d.createTime, 'yyyy-MM-dd HH:mm:ss') }}
-</script>
 <script type="text/html" id="updateTime">
     {{# if(d.dealUserId != "") { }}
-    {{ layui.util.toDateString(d.updateTime, 'yyyy-MM-dd HH:mm:ss') }}
+    {{ d.updateTime }}
     {{# } }}
 </script>
 </body>

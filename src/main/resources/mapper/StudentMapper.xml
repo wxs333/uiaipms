@@ -4,11 +4,13 @@
 
     <select id="selectAll" resultType="cn.edu.cdu.wxs.uiaipms.form.StudentForm">
         SELECT
-        stu_id AS id, stu_name AS `name`, username
+            stu_id,
+            stu_name,
+            username
         FROM
-        student
+          student
         WHERE
-        logic_delete_flag = 0
+          logic_delete_flag = 0
     </select>
 
     <select id="selectAllInfo" resultType="cn.edu.cdu.wxs.uiaipms.form.StudentForm">

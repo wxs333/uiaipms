@@ -48,6 +48,8 @@
         SELECT
             a2.admin_name AS applyUserName,
             a1.admin_name AS dealUserName,
+            b.apply_reason,
+	        b.bfa_reason,
             b.bfa_agree,
             b.apply_mount,
             b.create_time,

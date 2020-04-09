@@ -19,7 +19,7 @@ function init(_table) {
             {field: 'proName', title: '项目名', align: "center"},
             {field: 'passFlag', title: '审核结果', align: "center", templet: "#flag"},
             {field: 'reason', title: '审核理由', align: "center"},
-            {field: 'updateTime', title: '审核时间', align: "center", templet: "#updateTime"}
+            {field: 'updateTime', title: '审核时间', align: "center"}
         ]],
         limits: [10, 20, 30],
         parseData: function (res) { // 返回数据格式解析

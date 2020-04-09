@@ -42,7 +42,7 @@ function tableRender(_table) {
             {field: 'wordName,', title: '项目文档', align: "center", event: "preview", templet: "#word"},
             {field: 'tutorName', title: '审批人', align: "center"},
             {field: 'reason', title: '审批理由', align: "center"},
-            {field: 'updateTime', title: '审批时间', align: "center", templet: "#updateTime"},
+            {field: 'updateTime', title: '审批时间', align: "center"},
             {field: '', title: "操作", minWidth: '150', align: "center", toolbar: "#rowTool"}
         ]],
         limits: [10, 20, 30],

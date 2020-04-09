@@ -24,6 +24,6 @@ public class BuyFundsApplyForm extends BuyFundsApply {
     /**
      * 处理人姓名
      */
-    @Excel(name = "处理人", orderNum = "3")
+    @Excel(name = "处理人", orderNum = "4")
     private String dealUserName;
 }

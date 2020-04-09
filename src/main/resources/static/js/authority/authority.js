@@ -7,8 +7,10 @@ layui.use(['table', 'transfer', 'layer'], function () {
     // 监听行工具事件
     _table.on("tool(table)", function (obj) {
         if (obj.event === "role") {
+            var mark = $("#mark").val();
+            var id = mark === "student" ? obj.data.stuId : obj.data.tutorId;
             // 弹出角色穿梭框
-            openTransfer(_layer, $("#mark").val(), obj.data.id);
+            openTransfer(_layer, mark, id);
         }
     });
     // 工具头监听
@@ -60,8 +62,8 @@ function getCols(mark) {
     switch (mark) {
         case 'student':
             cols[0] = [
-                {field: 'id', title: 'ID', align: "center", hide: "true"}
-                , {field: 'name', title: '学生姓名', align: "center"}
+                {field: 'stuId', title: 'ID', align: "center", hide: "true"}
+                , {field: 'stuName', title: '学生姓名', align: "center"}
                 , {field: 'username', title: '用户名', align: "center"}
                 , {field: '', title: "操作", align: "center", toolbar: "#rowTool"}
             ];
@@ -70,8 +72,8 @@ function getCols(mark) {
             break;
         case 'tutor':
             cols[0] = [
-                {field: 'id', title: 'ID', align: "center", hide: "true"}
-                , {field: 'name', title: '导师姓名', align: "center"}
+                {field: 'tutorId', title: 'ID', align: "center", hide: "true"}
+                , {field: 'tutorName', title: '导师姓名', align: "center"}
                 , {field: 'username', title: '用户名', align: "center"}
                 , {field: '', title: "操作", align: "center", toolbar: "#rowTool"}
             ];

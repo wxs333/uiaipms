@@ -66,8 +66,8 @@ function getCols(mark) {
                 {field: 'address', title: '联系地址', align: "center"},
                 {field: 'phone', title: '手机号码', align: "center"},
                 {field: 'ban', title: '状态', align: "center", templet: "#ban"},
-                {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
-                {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},
+                {field: 'updateTime', title: '更新时间', align: "center"},
+                {field: 'createTime', title: '创建时间', align: "center"},
                 {field: '', title: "操作", align: "center", minWidth: "180", toolbar: "#rowTool"}
             ];
             // url
@@ -81,8 +81,8 @@ function getCols(mark) {
                 {field: 'facultyName', title: '学院', align: "center"},
                 {field: 'phone', title: '手机号码', align: "center"},
                 {field: 'ban', title: '状态', align: "center", templet: "#ban"},
-                {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
-                {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},
+                {field: 'updateTime', title: '更新时间', align: "center"},
+                {field: 'createTime', title: '创建时间', align: "center"},
                 {field: '', title: "操作", align: "center", minWidth: "200", toolbar: "#rowTool"}
             ];
             // url
@@ -96,8 +96,8 @@ function getCols(mark) {
                 {field: 'username', title: '用户名', align: "center"},
                 {field: 'phone', title: '联系方式', align: "center"},
                 {field: 'ban', title: '状态', align: "center", templet: "#ban"},
-                {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
-                {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},
+                {field: 'updateTime', title: '更新时间', align: "center"},
+                {field: 'createTime', title: '创建时间', align: "center"},
                 {field: '', title: "操作", align: "center", minWidth: "200", toolbar: "#rowTool"}
             ];
             // url

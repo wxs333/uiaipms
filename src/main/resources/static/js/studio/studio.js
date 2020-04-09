@@ -51,8 +51,8 @@ function tableRender(_table) {
             {field: 'phone', title: '负责人手机号', align: "center"},
             {field: 'studNum', title: '人数', align: "center"},
             {field: 'studArea', title: '占地面积(m^2)', align: "center"},
-            {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
-            {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},
+            {field: 'updateTime', title: '更新时间', align: "center"},
+            {field: 'createTime', title: '创建时间', align: "center"},
             {field: '', title: "操作", align: "center", minWidth: "180", toolbar: "#rowTool"}
         ]],
         parseData: function (res) { // 返回数据格式解析
