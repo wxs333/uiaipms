@@ -60,4 +60,5 @@ public interface CompanyService extends BaseService<CompanyForm> {
      */
     List<CompanyForm> getAll();
 
+
 }

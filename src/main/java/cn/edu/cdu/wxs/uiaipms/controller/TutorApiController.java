@@ -4,6 +4,7 @@ import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.form.TutorForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.TutorService;
+import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 
 /**
@@ -73,5 +75,17 @@ public class TutorApiController extends BaseController {
     @GetMapping("getOne")
     public JsonResult<TutorForm> getOne(String id) {
         return jsonResult(tutorService.getOneById(id));
+    }
+
+    /**
+     * 获取基本资料
+     *
+     * @param session 会话
+     * @return json
+     */
+    @GetMapping("info")
+    public JsonResult<TutorForm> info(HttpSession session) {
+        String id = SystemUtils.getUserId(session);
+        return jsonResult(tutorService.getInfo(id));
     }
 }

@@ -79,4 +79,14 @@ public class AdminWebController {
         }
         return model;
     }
+
+    /**
+     * 基本资料
+     *
+     * @return 视图
+     */
+    @GetMapping("info")
+    public String info() {
+        return "admin/info";
+    }
 }

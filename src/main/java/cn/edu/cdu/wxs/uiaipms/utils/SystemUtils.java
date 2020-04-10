@@ -138,7 +138,7 @@ public class SystemUtils {
     }
 
     public static void main(String[] args) {
-        //       System.out.println(md5("student1", "student1"));
+        System.out.println(md5("liubei", "liubei"));
 //        System.out.println(getUuid());
 //        System.out.println(getUuid());
 //        System.out.println(getUuid());
@@ -146,8 +146,6 @@ public class SystemUtils {
 
         //System.out.println(getNotRepeatingFilename("123.jpg"));
 
-        System.out.println(LocalDateTime.of(LocalDate.now(), LocalTime.MIN));
-        System.out.println(LocalDateTime.of(LocalDate.now(), LocalTime.MAX));
     }
 
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
-      xmlns:th="http://www.thymeleaf.org" style="height: 0px">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,7 +15,7 @@
 <div class="layui-layout layui-layout-admin">
     <!-- 隐藏域 -->
     <div th:if="${session.role != null}">
-        <input type="text" id="role" th:value="${session.role}">
+        <input type="hidden" id="role" th:value="${session.role}">
     </div>
     <div class="layui-header">
         <div class="layui-logo">创新创业园区</div>

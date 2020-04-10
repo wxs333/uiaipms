@@ -4,10 +4,7 @@ import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.domain.Clazz;
 import cn.edu.cdu.wxs.uiaipms.domain.Discipline;
 import cn.edu.cdu.wxs.uiaipms.domain.Faculty;
-import cn.edu.cdu.wxs.uiaipms.form.CompanyForm;
-import cn.edu.cdu.wxs.uiaipms.form.StudentForm;
-import cn.edu.cdu.wxs.uiaipms.form.TutorForm;
-import cn.edu.cdu.wxs.uiaipms.form.UserRoleForm;
+import cn.edu.cdu.wxs.uiaipms.form.*;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.*;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
@@ -19,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -187,5 +185,36 @@ public class AdminApiController extends BaseController {
             return jsonResult("操作成功");
         }
         return jsonResult(GlobalConstant.FAILURE, "操作失败");
+    }
+
+    /**
+     * 获取个人基本信息
+     *
+     * @param session 会话
+     * @return json
+     */
+    @GetMapping("info")
+    public JsonResult<AdminForm> info(HttpSession session) {
+        // 获取当前登录用户id
+        String id = SystemUtils.getUserId(session);
+        return jsonResult(service.getInfo(id));
+    }
+
+    /**
+     * 修改
+     *
+     * @param form 表单
+     * @return json
+     */
+    @PostMapping("update")
+    public JsonResult<String> update(AdminForm form) {
+        // 参数设置
+        form.setUpdateTime(LocalDateTime.now());
+
+        if (service.modifyById(form)) {
+            return jsonResult("修改成功");
+        }
+
+        return jsonResult(GlobalConstant.FAILURE, "修改失败");
     }
 }

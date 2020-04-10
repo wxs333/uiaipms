@@ -27,7 +27,10 @@ function imgUpload(upload, _layer, $) {
         },
         done: function (res) {
             var icon = res.code === '200' ? 1 : 2;
-            layer.msg(res.msg, {icon: icon});
+            layer.msg(res.msg, {icon: icon}, function () {
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+            });
         }
     });
 }

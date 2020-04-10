@@ -7,6 +7,7 @@ import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.CompanyService;
 import cn.edu.cdu.wxs.uiaipms.service.ExcelService;
 import cn.edu.cdu.wxs.uiaipms.service.StudioService;
+import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -99,5 +101,17 @@ public class CompanyApiController extends BaseController {
         List<StudioForm> list = studioService.getList(comId);
         // 数据导出
         excelService.export("工作室", "我的工作室", list, StudioForm.class, response);
+    }
+
+    /**
+     * 获取基本信息
+     *
+     * @param session 会话
+     * @return json
+     */
+    @GetMapping("info")
+    public JsonResult<CompanyForm> info(HttpSession session) {
+        String id = SystemUtils.getUserId(session);
+        return jsonResult(service.getOne(id));
     }
 }

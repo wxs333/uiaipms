@@ -25,4 +25,11 @@ public interface AdminService extends BaseService<AdminForm> {
      */
     AdminForm getByUsername(String username);
 
+    /**
+     * 获取基本信息
+     * @param id id
+     * @return 信息
+     */
+    AdminForm getInfo(String id);
+
 }

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>导师基本资料</title>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/static/css/common.css"/>
+    <style>
+        .layui-card-body {
+            background-color: #EEEEEE;
+        }
+
+        .layui-btn-container {
+            margin-left: 110px;
+        }
+
+        .layui-btn-container .layui-btn {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form" enctype="multipart/form-data" lay-filter="info">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-submit>
+                    <i class="layui-icon layui-icon-ok"></i>修改
+                </button>
+                <button class="layui-btn layui-btn-sm" type="reset">
+                    <i class="layui-icon layui-icon-refresh"></i>重置
+                </button>
+            </div>
+            <hr class="html-editor-hr"/>
+            <div class="layui-form-item" hidden>
+                <label class="layui-form-label">id</label>
+                <div class="layui-input-block">
+                    <input type="hidden" class="layui-input" name="tutorId"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" name="tutorName" readonly/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" name="username" readonly/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" name="nickname"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">手机</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" name="phone"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- js文件 -->
+<script type="text/javascript" src="/static/js/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/tutor/info.js"></script>
+</body>
+
+</html>

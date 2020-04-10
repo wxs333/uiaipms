@@ -66,4 +66,11 @@ public interface TutorService extends BaseService<TutorForm> {
      * @return 学院id
      */
     String getFacIdById(String id);
+
+    /**
+     * 获取导师的基本资料
+     * @param id id
+     * @return 信息
+     */
+    TutorForm getInfo(String id);
 }

@@ -75,4 +75,13 @@ public class TutorServiceImpl extends BaseServiceImpl<TutorForm> implements Tuto
                 .eq(TutorColumn.TUTOR_ID, id);
         return mapper.selectOne(wrapper).getFacultyId();
     }
+
+    @Override
+    public TutorForm getInfo(String id) {
+        QueryWrapper<TutorForm> wrapper = new QueryWrapper<>();
+        wrapper.select(TutorColumn.TUTOR_ID, TutorColumn.TUTOR_NAME, TutorColumn.NICKNAME, TutorColumn.USERNAME,
+                TutorColumn.PHONE)
+                .eq(TutorColumn.TUTOR_ID, id);
+        return mapper.selectOne(wrapper);
+    }
 }

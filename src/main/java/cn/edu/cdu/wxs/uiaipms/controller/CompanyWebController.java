@@ -68,4 +68,14 @@ public class CompanyWebController {
         modelAndView.setViewName(PREFIX + "goods_details");
         return modelAndView;
     }
+
+    /**
+     * 基本资料
+     *
+     * @return 视图
+     */
+    @GetMapping("info")
+    public String info() {
+        return PREFIX + "info";
+    }
 }

@@ -10,7 +10,8 @@ layui.use(['element', 'layer'], function () {
     // 菜单点击事件监听
     navClick(element, $, _layer);
     // 头像显示
-    headImg($)
+    headImg($);
+
 });
 
 /**
@@ -18,8 +19,19 @@ layui.use(['element', 'layer'], function () {
  */
 function click($, _layer) {
     $('#info').click(function () {
+        var url = "";
+        var role = $("#role").val();
+        if (role === "admin") {
+            url = "/admin/info";
+        } else if (role === "student") {
+            url = "/stu/info";
+        } else if (role === "tutor") {
+            url = "/tutor/info"
+        } else {
+            url = "/com/info";
+        }
         // 弹出基本资料框
-        var data = {"title": "基本资料", "url": "/stu/info", "width": "800px"};
+        var data = {"title": "基本资料", "url": url, "width": "800px"};
         openHtml(_layer, data);
     });
     $('#update-img').click(function () {
@@ -107,7 +119,7 @@ function openHtml(_layer, data) {
         type: 2,
         title: data.title,
         content: data.url,
-        area: [data.width, "630px"],
+        area: [data.width, "570px"],
         anim: 1,
         scrollbar: false,
         offset: '60px'

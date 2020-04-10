@@ -49,4 +49,13 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminForm> implements Admi
                 .eq(AdminColumn.USERNAME, username);
         return mapper.selectOne(wrapper);
     }
+
+    @Override
+    public AdminForm getInfo(String id) {
+        QueryWrapper<AdminForm> wrapper = new QueryWrapper<>();
+        wrapper.select(AdminColumn.ADMIN_ID, AdminColumn.ADMIN_NAME, AdminColumn.NICKNAME,
+                AdminColumn.USERNAME, AdminColumn.PHONE)
+                .eq(AdminColumn.ADMIN_ID, id);
+        return mapper.selectOne(wrapper);
+    }
 }
