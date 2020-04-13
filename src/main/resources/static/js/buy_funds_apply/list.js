@@ -11,6 +11,8 @@ layui.use("table", function () {
             window.location.href = "/api/bf/export";
         } else if (event === "wipe-out") {
             // 弹出报销页面
+        } else if ("statistics" === event) {
+            statistics(_layer);
         } else {
             // 修改标题
             changeTitle($, event);
@@ -120,5 +122,19 @@ function openConfirmHtml(_layer, _table, obj) {
                     }
                 });
         }
+    });
+}
+/**
+ * 统计页面
+ */
+function statistics(_layer) {
+    _layer.open({
+        type: 2,
+        title: "库存拨款记录统计",
+        content: "/bf/statistics",
+        area: ['1000px', '550px'],
+        anim: 1,
+        scrollbar: false,
+        offset: '30px'
     });
 }

@@ -17,6 +17,7 @@ import org.springframework.util.StringUtils;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 采购资金申请 业务实现类
@@ -73,5 +74,10 @@ public class BuyFundsApplyServiceImpl extends BaseServiceImpl<BuyFundsApplyForm>
     @Override
     public IPage<BuyFundsApplyForm> getApplyList(Page<BuyFundsApplyForm> page) {
         return mapper.selectApplyList(page);
+    }
+
+    @Override
+    public Map<String, Map<String, Object>> getBetweenStartAndEnd(LocalDateTime start, LocalDateTime end) {
+        return mapper.selectBetweenStartAndEnd(start, end);
     }
 }

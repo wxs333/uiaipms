@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 采购资金申请 数据控制类
@@ -115,6 +117,20 @@ public class BuyFundsApplyApiController extends BaseController {
     @GetMapping("applyList")
     public JsonResult<IPage<BuyFundsApplyForm>> applyList(Page<BuyFundsApplyForm> page) {
         return jsonResult("0", service.getApplyList(page));
+    }
+
+    /**
+     * 统计
+     *
+     * @param date 日期
+     * @return json
+     */
+    @GetMapping("statistics")
+    public JsonResult<Map<String, List>> statistics(String date) {
+        LocalDate localDate = SystemUtils.stringToLocalDate(date);
+        // 获取数据
+        Map<String, Map<String, Object>> data = service.getBetweenStartAndEnd(SystemUtils.getStartOfDay(localDate), SystemUtils.getEndOfDay(localDate));
+        return jsonResult(SystemUtils.formatMap(data, "applyUserName", "total"));
     }
 
 }

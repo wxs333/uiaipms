@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 /**
  * 采购资金申请 表单
  *
@@ -26,4 +28,8 @@ public class BuyFundsApplyForm extends BuyFundsApply {
      */
     @Excel(name = "处理人", orderNum = "4", width = 30)
     private String dealUserName;
+    /**
+     * 某天某个人拨款总金额
+     */
+    private BigDecimal total;
 }

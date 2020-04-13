@@ -4,7 +4,9 @@ import cn.edu.cdu.wxs.uiaipms.form.BuyFundsApplyForm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 采购资金申请 业务接口类
@@ -43,4 +45,12 @@ public interface BuyFundsApplyService extends BaseService<BuyFundsApplyForm> {
      * @return 分页集合
      */
     IPage<BuyFundsApplyForm> getApplyList(Page<BuyFundsApplyForm> page);
+
+    /**
+     * 获取一段时间内的拨款统计
+     * @param start 开始时间
+     * @param end 结束时间
+     * @return 集合
+     */
+    Map<String, Map<String, Object>> getBetweenStartAndEnd(LocalDateTime start,LocalDateTime end);
 }
