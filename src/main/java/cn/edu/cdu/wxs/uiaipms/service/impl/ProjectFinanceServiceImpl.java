@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDateTime;
+import java.util.Map;
+
 /**
  * <p>
  * 项目拨款财务记录 服务实现类
@@ -70,5 +73,10 @@ public class ProjectFinanceServiceImpl extends BaseServiceImpl<ProjectFinanceFor
     @Override
     public IPage<ProjectFinanceForm> getByProId(Page<ProjectFinanceForm> page, String proId) {
         return mapper.selectByProId(page, proId);
+    }
+
+    @Override
+    public Map<String, Map<String, Object>> getBetweenStartAndEnd(LocalDateTime start, LocalDateTime end) {
+        return mapper.selectBetweenStartAndEnd(start, end);
     }
 }

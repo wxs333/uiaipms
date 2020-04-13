@@ -45,4 +45,13 @@ public class ProjectFinanceWebController {
         modelAndView.setViewName(PREFIX + "sp");
         return modelAndView;
     }
+
+    /**
+     * 统计页面
+     * @return 视图
+     */
+    @GetMapping("statistics")
+    public String statistics() {
+        return PREFIX + "statistics";
+    }
 }

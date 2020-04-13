@@ -9,13 +9,11 @@ import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -64,11 +62,9 @@ public class StockIntoLogApiController extends BaseController {
     @GetMapping("statistics")
     public JsonResult<Map<String, List>> statistics(String date) {
         // 处理时间参数字符串
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate parse = StringUtils.isEmpty(date) ? LocalDate.now() : LocalDate.parse(date, formatter);
-
+        LocalDate localDate = SystemUtils.stringToLocalDate(date);
         // 获取数据
-        Map<String, List> data = SystemUtils.formatMap(service.getBetweenStartAndEnd(SystemUtils.getStartOfDay(parse), SystemUtils.getEndOfDay(parse)));
+        Map<String, List> data = SystemUtils.formatMap(service.getBetweenStartAndEnd(SystemUtils.getStartOfDay(localDate), SystemUtils.getEndOfDay(localDate)), "goodsName", "total");
         return jsonResult(data);
     }
 

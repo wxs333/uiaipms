@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 /**
  * @author WXS
  * @date 2020/3/17
@@ -29,4 +31,8 @@ public class ProjectFinanceForm extends ProjectFinance {
      */
     @Excel(name = "处理人", orderNum = "5", width = 30)
     private String adminName;
+    /**
+     * 某天某个项目拨款总数
+     */
+    private BigDecimal total;
 }

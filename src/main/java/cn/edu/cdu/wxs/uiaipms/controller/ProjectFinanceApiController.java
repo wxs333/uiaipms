@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目拨款财务记录 数据控制类
@@ -110,12 +112,28 @@ public class ProjectFinanceApiController extends BaseController {
 
     /**
      * 查询某个项目的历史申请记录
-     * @param page 分页
+     *
+     * @param page  分页
      * @param proId 项目id
      * @return json
      */
     @GetMapping("history")
     public JsonResult<IPage<ProjectFinanceForm>> history(Page<ProjectFinanceForm> page, String proId) {
-            return jsonResult("0", service.getByProId(page, proId));
+        return jsonResult("0", service.getByProId(page, proId));
+    }
+
+    /**
+     * 统计
+     *
+     * @param date 日期
+     * @return json
+     */
+    @GetMapping("statistics")
+    public JsonResult<Map<String, List>> statistics(String date) {
+        // 处理日期字符串
+        LocalDate localDate = SystemUtils.stringToLocalDate(date);
+        // 获取数据
+        Map<String, Map<String, Object>> data = service.getBetweenStartAndEnd(SystemUtils.getStartOfDay(localDate), SystemUtils.getEndOfDay(localDate));
+        return jsonResult(SystemUtils.formatMap(data, "proName", "total"));
     }
 }

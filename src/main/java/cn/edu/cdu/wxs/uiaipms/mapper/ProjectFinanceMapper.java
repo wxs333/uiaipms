@@ -4,8 +4,12 @@ import cn.edu.cdu.wxs.uiaipms.form.ProjectFinanceForm;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.time.LocalDateTime;
+import java.util.Map;
 
 /**
  * <p>
@@ -49,4 +53,13 @@ public interface ProjectFinanceMapper extends BaseMapper<ProjectFinanceForm> {
      * @return 分页集合
      */
     IPage<ProjectFinanceForm> selectByProId(Page<ProjectFinanceForm> page, @Param("proId") String proId);
+
+    /**
+     * 获取一段时间内的拨款统计
+     * @param start 开始时间
+     * @param end 结束时间
+     * @return 集合
+     */
+    @MapKey("pro_name")
+    Map<String, Map<String, Object>> selectBetweenStartAndEnd(@Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
 }

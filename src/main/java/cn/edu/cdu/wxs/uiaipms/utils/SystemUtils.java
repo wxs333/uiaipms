@@ -2,12 +2,14 @@ package cn.edu.cdu.wxs.uiaipms.utils;
 
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import org.apache.shiro.crypto.hash.Md5Hash;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -118,23 +120,35 @@ public class SystemUtils {
     /**
      * 对出入库统计结果进行格式化
      *
-     * @param map 结果集和
+     * @param map           结果集和
+     * @param categoryFiled 类别的字段
+     * @param totalFiled    数量的字段
      * @return 格式化结果集合
      */
-    public static Map<String, List> formatMap(Map<String, Map<String, Object>> map) {
+    public static Map<String, List> formatMap(Map<String, Map<String, Object>> map, String categoryFiled, String totalFiled) {
         List<String> name = new ArrayList<>(map.size());
         List<Integer> num = new ArrayList<>(name.size());
         Iterator<Map<String, Object>> iterator = map.values().iterator();
         while (iterator.hasNext()) {
             Map<String, Object> next = iterator.next();
-            name.add((String) next.get("goodsName"));
-            num.add(((BigDecimal) next.get("total")).intValue());
+            name.add((String) next.get(categoryFiled));
+            num.add(((BigDecimal) next.get(totalFiled)).intValue());
         }
         Map<String, List> data = new HashMap<>(2);
         data.put("name", name);
         data.put("num", num);
 
         return data;
+    }
+
+    /**
+     * 将日期字符串转换成日起对象
+     * @param date 日期字符串
+     * @return 日起对象
+     */
+    public static LocalDate stringToLocalDate(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return StringUtils.isEmpty(date) ? LocalDate.now() : LocalDate.parse(date, formatter);
     }
 
     public static void main(String[] args) {

@@ -4,6 +4,9 @@ import cn.edu.cdu.wxs.uiaipms.form.ProjectFinanceForm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import java.time.LocalDateTime;
+import java.util.Map;
+
 /**
  * <p>
  * 项目拨款财务记录 服务类
@@ -44,5 +47,13 @@ public interface ProjectFinanceService extends BaseService<ProjectFinanceForm> {
      * @return 分页集合
      */
     IPage<ProjectFinanceForm> getByProId(Page<ProjectFinanceForm> page, String proId);
+
+    /**
+     * 获取一段时间内的拨款统计
+     * @param start 开始时间
+     * @param end 结束时间
+     * @return 集合
+     */
+    Map<String, Map<String, Object>> getBetweenStartAndEnd(LocalDateTime start, LocalDateTime end);
 
 }

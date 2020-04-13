@@ -6,7 +6,10 @@ layui.use("table", function () {
     tableRender(_table, "not");
     // 表头工具监听
     _table.on("toolbar(pro-fin)", function (obj) {
-        if (obj.event !== "export") {
+        if ("statistics" === obj.event) {
+            // 弹出统计页面
+            statistics(_layer);
+        } else if (obj.event !== "export") {
             // 修改标题
             changeTitle($, obj.event);
             // 加载数据
@@ -120,5 +123,19 @@ function openConfirmHtml(_layer, _table, obj) {
                     }
                 });
         }
+    });
+}
+/**
+ * 统计页面
+ */
+function statistics(_layer) {
+    _layer.open({
+        type: 2,
+        title: "拨款记录统计",
+        content: "/pf/statistics",
+        area: ['1000px', '550px'],
+        anim: 1,
+        scrollbar: false,
+        offset: '30px'
     });
 }

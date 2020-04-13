@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>项目拨款统计</title>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/static/css/common.css"/>
+    <style>
+        .layui-card-body {
+            background-color: #EEEEEE;
+        }
+
+        .layui-row .layui-col-md5 {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <div class="layui-row">
+            <!-- 拨款日期选择 -->
+            <div class="layui-col-md6 layui-col-md-offset3">
+                <label class="layui-form-label">拨款日期</label>
+                <div class="layui-input-block">
+                    <input type="text" class="layui-input" id="date" placeholder="请选择拨款日期">
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <!-- 拨款统计图 -->
+            <div class="layui-col-md6 layui-col-md-offset3">
+                <div id="show" style="height: 400px; width: 540px"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- js文件 -->
+<script type="text/javascript" src="/static/js/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="/static/js/pro_finance/statistics.js"></script>
+
+</body>
+</html>
