@@ -253,7 +253,7 @@ public class UserApiController extends BaseController {
         if (result) {
             return jsonResult("修密码成功");
         }
-        return jsonResult(GlobalConstant.FAILURE, "修改密码失败");
+        return jsonResult(GlobalConstant.FAILURE, "账号不存在");
     }
 
     /**

@@ -9,9 +9,7 @@ layui.use("table", function () {
         var event = obj.event;
         if (event === "export") {
             window.location.href = "/api/bf/export";
-        } else if (event === "wipe-out") {
-            // 弹出报销页面
-        } else if ("statistics" === event) {
+        }else if ("statistics" === event) {
             statistics(_layer);
         } else {
             // 修改标题

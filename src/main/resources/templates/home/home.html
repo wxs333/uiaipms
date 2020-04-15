@@ -23,7 +23,10 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="" class="layui-nav-img" id="img">
-                    <span>记得修改此处</span>
+                    <span th:if="${session.nickname != null}">
+                        <span th:text="${session.nickname}"></span>
+                    </span>
+
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
@@ -45,47 +48,47 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-shrink="all" lay-filter="test">
                 <!--shiro:hasRole="sys_role"-->
-                <li class="layui-nav-item">
+                <li class="layui-nav-item" shiro:hasRole="sys_role">
                     <a href="javascript:;" id="member">成员管理</a>
                 </li>
                 <!--shiro:hasRole="sys_role"-->
-                <li class="layui-nav-item">
-                    <a href="javascript:;" id="authority">权限分配 </a>
+                <li class="layui-nav-item" shiro:hasRole="sys_role">
+                    <a href="javascript:;" id="authority">角色分配 </a>
                 </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;" id="pro-fin">项目拨款</a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;" id="buy-funds-apply">货款申请</a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;" id="sto-fin">库存财务</a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;" id="stock">库存管理</a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;" id="goods">物品管理</a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;" id="project-sb">项目申报</a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;" id="project-sp">项目审批</a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;" id="project-sh">项目审核</a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;" id="project-lx">项目立项</a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;" id="my-pro">我的项目</a>
-                </li>
-                <li class="layui-nav-item">
+                <li class="layui-nav-item" shiro:hasRole="sys_role">
                     <a href="javascript:;" id="studio">工作室管理</a>
                 </li>
-                <li class="layui-nav-item">
+                <li class="layui-nav-item" shiro:hasRole="fin_role">
+                    <a href="javascript:;" id="pro-fin">项目拨款</a>
+                </li>
+                <li class="layui-nav-item" shiro:hasRole="fin_role">
+                    <a href="javascript:;" id="sto-fin">库存拨款</a>
+                </li>
+                <li class="layui-nav-item" shiro:hasRole="stock_role">
+                    <a href="javascript:;" id="buy-funds-apply">采购资金申请</a>
+                </li>
+                <li class="layui-nav-item" shiro:hasRole="stock_role">
+                    <a href="javascript:;" id="stock">库存管理</a>
+                </li>
+                <li class="layui-nav-item" shiro:hasRole="stock_role">
+                    <a href="javascript:;" id="goods">物品管理</a>
+                </li>
+                <li class="layui-nav-item" shiro:hasRole="student_role">
+                    <a href="javascript:;" id="project-sb">项目申报</a>
+                </li>
+                <li class="layui-nav-item" shiro:hasRole="student_role">
+                    <a href="javascript:;" id="my-pro">我的项目</a>
+                </li>
+                <li class="layui-nav-item" shiro:hasRole="tutor_role">
+                    <a href="javascript:;" id="project-sp">项目审批</a>
+                </li>
+                <li class="layui-nav-item" shiro:hasRole="tutor_leader_role">
+                    <a href="javascript:;" id="project-sh">项目审核</a>
+                </li>
+                <li class="layui-nav-item" shiro:hasRole="tutor_leader_role">
+                    <a href="javascript:;" id="project-lx">项目立项</a>
+                </li>
+                <li class="layui-nav-item" shiro:hasRole="company_role">
                     <a href="javascript:;" id="com-studio">我的工作室</a>
                 </li>
             </ul>

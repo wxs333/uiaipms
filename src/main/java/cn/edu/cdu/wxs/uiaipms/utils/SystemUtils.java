@@ -152,7 +152,7 @@ public class SystemUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(md5("liubei", "liubei"));
+        System.out.println(md5("com_dahan", "com_dahan"));
 //        System.out.println(getUuid());
 //        System.out.println(getUuid());
 //        System.out.println(getUuid());

@@ -31,8 +31,6 @@ public class UserRealm extends AuthorizingRealm {
     private CompanyService companyService;
     @Autowired
     private RoleService roleService;
-    @Autowired
-    private PermissionService permissionService;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -46,9 +44,6 @@ public class UserRealm extends AuthorizingRealm {
         // 获取所有角色
         Set<String> roles = roleService.getRoleByUsername(role, username);
         info.setRoles(roles);
-        // 获取所有权限
-        Set<String> pers = permissionService.selectAllByRoleCode(roles);
-        info.setStringPermissions(pers);
 
         return info;
     }
