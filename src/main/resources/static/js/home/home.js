@@ -39,6 +39,9 @@ function click($, _layer) {
         var data = {"title": "修改头像", "url": "/user/img", "width": "800px"};
         openHtml(_layer, data);
     });
+    $("#update-passwd").click(function () {
+        openPasswordHtml(_layer);
+    });
 
 }
 
@@ -123,5 +126,22 @@ function openHtml(_layer, data) {
         anim: 1,
         scrollbar: false,
         offset: '60px'
+    });
+}
+/**
+ * 弹出修改密码HTML页面
+ */
+function openPasswordHtml(_layer) {
+    _layer.open({
+        type: 2,
+        title: "修改密码",
+        content: "/user/password",
+        area: ["800px", "570px"],
+        anim: 1,
+        scrollbar: false,
+        offset: '60px',
+        end: function () {
+            window.location.href = "/user/index";
+        }
     });
 }

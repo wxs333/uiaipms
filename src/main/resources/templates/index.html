@@ -12,6 +12,10 @@
             font-size: 0.9em;
             color: blue;
         }
+
+        .layui-btn-fluid {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 
@@ -62,25 +66,18 @@
         <div class="layui-form-item layui-col-md-offset10">
             <a href="javascript:;" id="forget-password">忘记密码？</a>
         </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login">登录</button>
-            </div>
+        <div class="layui-col-md10 layui-col-md-offset2">
+            <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login" style="margin-left: 10px">登录
+            </button>
+            <button class="layui-btn layui-btn-fluid layui-btn-primary" type="button" id="register">学生注册</button>
+            <button class="layui-btn layui-btn-fluid layui-btn-primary" type="button" id="company">企业入驻</button>
         </div>
-
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn layui-btn-fluid layui-btn-primary" type="button" name="register">注册
-                </button>
-            </div>
-        </div>
-    </form>
+</form>
 </div>
 
 <!-- js文件 -->
-<script src="/static/js/layui/layui.all.js"></script>
+<script type="text/javascript" src="/static/js/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/index/index.js"></script>
-<script type="text/javascript" src="/static/js/encryption/sha1.js"></script>
 </body>
 
 </html>

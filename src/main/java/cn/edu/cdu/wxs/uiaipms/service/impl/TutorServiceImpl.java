@@ -39,7 +39,7 @@ public class TutorServiceImpl extends BaseServiceImpl<TutorForm> implements Tuto
     @Override
     public TutorForm getByUsername(String username) {
         QueryWrapper<TutorForm> wrapper = new QueryWrapper<>();
-        wrapper.select(TutorColumn.TUTOR_ID, TutorColumn.NICKNAME, TutorColumn.IMAGE)
+        wrapper.select(TutorColumn.TUTOR_ID, TutorColumn.NICKNAME, TutorColumn.IMAGE, TutorColumn.USERNAME)
                 .eq(TutorColumn.LOGIC_DELETE_FLAG, 0)
                 .eq(TutorColumn.USERNAME, username);
         return mapper.selectOne(wrapper);

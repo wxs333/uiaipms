@@ -64,8 +64,25 @@ public class UserWebController {
         return "user/img";
     }
 
+    /**
+     * 找回密码
+     *
+     * @return 视图
+     */
     @GetMapping("findPassword")
     public String findPassword() {
         return "user/find_password";
     }
+
+    /**
+     * 修改密码
+     *
+     * @return 视图
+     */
+    @GetMapping("password")
+    public String password() {
+        return "user/update_password";
+    }
+
+
 }

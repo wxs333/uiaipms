@@ -11,7 +11,6 @@ import com.documents4j.api.DocumentType;
 import com.documents4j.api.IConverter;
 import com.documents4j.job.LocalConverter;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -102,14 +101,14 @@ public class UserApiController extends BaseController {
         try {
             // 执行登录验证
             currentUser.login(token);
-        } catch (UnknownAccountException e) {
-            return jsonResult(GlobalConstant.FAILURE, "账号或密码错误");
-        } catch (AccountUnavailableException e1) {
-            return jsonResult(GlobalConstant.FAILURE,"该账号已被禁用");
+        } catch (AccountUnavailableException e) {
+            return jsonResult(GlobalConstant.FAILURE, "该账号已被禁用");
+        } catch (Exception e1) {
+            return jsonResult(GlobalConstant.FAILURE,"账号或密码错误");
         }
         // 将用户信息放入session
         putUserToSession(session, form.getRole(), form.getUsername());
-        return jsonResult("登陆成功");
+        return jsonResult("登录成功");
     }
 
     /**
@@ -225,13 +224,16 @@ public class UserApiController extends BaseController {
     }
 
     /**
-     * 修改密码
+     * 找回密码
      *
      * @param password 新密码
      * @return json
      */
     @PostMapping("updatePassword")
-    public JsonResult<String> updatePassword(String password, String username) {
+    public JsonResult<String> updatePassword(String password, String username, HttpSession session) {
+        if (StringUtils.isEmpty(username)) {
+            username = (String)session.getAttribute(GlobalConstant.USERNAME);
+        }
         boolean result = false;
         if (adminService.isUsernameExist(username)) {
             AdminForm adminForm = new AdminForm();
@@ -275,24 +277,28 @@ public class UserApiController extends BaseController {
                 session.setAttribute(GlobalConstant.USER_ID, adminForm.getAdminId());
                 session.setAttribute(GlobalConstant.USER_NICKNAME, adminForm.getNickname());
                 session.setAttribute(GlobalConstant.USER_IMAGE, adminForm.getImage());
+                session.setAttribute(GlobalConstant.USERNAME, adminForm.getUsername());
                 break;
             case "tutor":
                 TutorForm tutorForm = tutorService.getByUsername(username);
                 session.setAttribute(GlobalConstant.USER_ID, tutorForm.getTutorId());
                 session.setAttribute(GlobalConstant.USER_NICKNAME, tutorForm.getNickname());
                 session.setAttribute(GlobalConstant.USER_IMAGE, tutorForm.getImage());
+                session.setAttribute(GlobalConstant.USERNAME, tutorForm.getUsername());
                 break;
             case "student":
                 StudentForm studentForm = studentService.getByUsername(username);
                 session.setAttribute(GlobalConstant.USER_ID, studentForm.getStuId());
                 session.setAttribute(GlobalConstant.USER_NICKNAME, studentForm.getNickname());
                 session.setAttribute(GlobalConstant.USER_IMAGE, studentForm.getImage());
+                session.setAttribute(GlobalConstant.USERNAME, studentForm.getUsername());
                 break;
             case "company":
                 CompanyForm companyForm = companyService.getByUsername(username);
                 session.setAttribute(GlobalConstant.USER_ID, companyForm.getComId());
                 session.setAttribute(GlobalConstant.USER_NICKNAME, companyForm.getComName());
                 session.setAttribute(GlobalConstant.USER_IMAGE, companyForm.getImage());
+                session.setAttribute(GlobalConstant.USERNAME, companyForm.getUsername());
                 break;
             default:
                 break;
@@ -308,6 +314,8 @@ public class UserApiController extends BaseController {
      */
     private void updateImg(HttpSession session, String type, String url) {
         String userId = (String) session.getAttribute(GlobalConstant.USER_ID);
+        // 修改session里的图片路劲
+        SystemUtils.reset(session, "", url);
         switch (type) {
             case "admin":
                 AdminForm adminForm = new AdminForm();

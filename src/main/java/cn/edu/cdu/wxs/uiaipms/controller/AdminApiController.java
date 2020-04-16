@@ -204,14 +204,16 @@ public class AdminApiController extends BaseController {
      * 修改
      *
      * @param form 表单
+     * @param session 会话
      * @return json
      */
     @PostMapping("update")
-    public JsonResult<String> update(AdminForm form) {
+    public JsonResult<String> update(AdminForm form, HttpSession session) {
         // 参数设置
         form.setUpdateTime(LocalDateTime.now());
 
         if (service.modifyById(form)) {
+            SystemUtils.reset(session, form.getNickname(), "");
             return jsonResult("修改成功");
         }
 

@@ -63,13 +63,14 @@ public class CompanyApiController extends BaseController {
     /**
      * 修改
      *
-     * @param form 表单
+     * @param form    表单
      * @return json
      */
     @PostMapping("update")
     public JsonResult<String> update(CompanyForm form) {
         form.setUpdateTime(LocalDateTime.now());
         if (service.update(form)) {
+
             return jsonResult("修改成功");
         }
         return jsonResult(GlobalConstant.FAILURE, "修改失败");

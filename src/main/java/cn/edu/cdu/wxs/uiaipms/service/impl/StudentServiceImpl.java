@@ -80,7 +80,7 @@ public class StudentServiceImpl extends BaseServiceImpl<StudentForm> implements 
     @Override
     public StudentForm getByUsername(String username) {
         QueryWrapper<StudentForm> wrapper = new QueryWrapper<>();
-        wrapper.select(StudentColumn.STU_ID, StudentColumn.NICKNAME, StudentColumn.IMAGE)
+        wrapper.select(StudentColumn.STU_ID, StudentColumn.NICKNAME, StudentColumn.IMAGE, StudentColumn.USERNAME)
                 .eq(StudentColumn.LOGIC_DELETE_FLAG, 0)
                 .eq(StudentColumn.USERNAME, username);
         return mapper.selectOne(wrapper);
@@ -103,8 +103,7 @@ public class StudentServiceImpl extends BaseServiceImpl<StudentForm> implements 
 
     @Override
     public boolean update(StudentForm form) {
-        form.setDiscId(null);
-        form.setUpdateTime(LocalDateTime.now());
+
         return SystemUtils.gtTheZero(mapper.updateById(form));
     }
 

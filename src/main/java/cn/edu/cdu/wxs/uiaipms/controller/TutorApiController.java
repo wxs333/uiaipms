@@ -55,12 +55,14 @@ public class TutorApiController extends BaseController {
      * 修改信息
      *
      * @param form 信息
+     * @param session 会话
      * @return json
      */
     @PostMapping("update")
-    public JsonResult<String> update(TutorForm form) {
+    public JsonResult<String> update(TutorForm form, HttpSession session) {
         form.setUpdateTime(LocalDateTime.now());
         if (tutorService.update(form)) {
+            SystemUtils.reset(session, form.getNickname(), "");
             return jsonResult("修改成功");
         }
         return jsonResult(GlobalConstant.FAILURE, "修改失败");

@@ -151,6 +151,21 @@ public class SystemUtils {
         return StringUtils.isEmpty(date) ? LocalDate.now() : LocalDate.parse(date, formatter);
     }
 
+    /**
+     * 重设session里的昵称、头像
+     * @param session 会话
+     * @param nickname 昵称
+     * @param image 头像地址
+     */
+    public static void reset(HttpSession session, String nickname, String image) {
+        if (!StringUtils.isEmpty(nickname)) {
+            session.setAttribute(GlobalConstant.USER_NICKNAME, nickname);
+        }
+        if (!StringUtils.isEmpty(image)) {
+            session.setAttribute(GlobalConstant.USER_IMAGE, image);
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println(md5("com_dahan", "com_dahan"));
 //        System.out.println(getUuid());

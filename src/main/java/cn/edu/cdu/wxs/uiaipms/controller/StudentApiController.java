@@ -88,21 +88,6 @@ public class StudentApiController extends BaseController {
     }
 
     /**
-     * 修改
-     *
-     * @param form 表单
-     * @return json
-     */
-    @PostMapping("update")
-    public JsonResult<String> update(StudentForm form) {
-        if (studentService.update(form)) {
-            return jsonResult("修改成功");
-        }
-        return jsonResult(GlobalConstant.FAILURE, "修改失败");
-
-    }
-
-    /**
      * 根据ID获取学生信息
      *
      * @param id ID
@@ -116,14 +101,17 @@ public class StudentApiController extends BaseController {
     /**
      * 修改
      *
-     * @param form 表单
+     * @param form    表单
+     * @param session 会话
      * @return json
      */
-    @PostMapping("updateInfo")
-    public JsonResult<String> updateInfo(StudentForm form) {
+    @PostMapping("update")
+    public JsonResult<String> update(StudentForm form, HttpSession session) {
         // 参数设置
+        form.setDiscId(null);
         form.setUpdateTime(LocalDateTime.now());
         if (studentService.modifyById(form)) {
+            SystemUtils.reset(session, form.getNickname(), "");
             return jsonResult("修改成功");
         }
         return jsonResult(GlobalConstant.FAILURE, "修改失败");

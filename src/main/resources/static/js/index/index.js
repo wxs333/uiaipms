@@ -6,7 +6,7 @@ layui.use(['form', 'jquery'], function () {
     // 更换验证码
     changeCode($);
     // 打开注册页面
-    $("[name='register']").click(function () {
+    $("#register").click(function () {
         openHtml(_layer, {"title": "学生注册", "content": "/user/register"})
     });
 
@@ -29,7 +29,7 @@ function login($, _layer, data) {
         data,
         function (result) {
             var icon = result.code === 'success' ? 1 : 2;
-            _layer.msg(result.message, {time: 1500, icon: icon, offset: '250px'}, function () {
+            _layer.msg(result.message, {time: 1500, icon: icon}, function () {
                 if (result.code === "success") {
                     window.location.href = "/user/home";
                 } else {

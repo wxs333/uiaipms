@@ -38,7 +38,7 @@ public class CompanyServiceImpl extends BaseServiceImpl<CompanyForm> implements 
     @Override
     public CompanyForm getByUsername(String username) {
         QueryWrapper<CompanyForm> wrapper = new QueryWrapper<>();
-        wrapper.select(CompanyColumn.COM_ID, CompanyColumn.COM_NAME, CompanyColumn.IMAGE)
+        wrapper.select(CompanyColumn.COM_ID, CompanyColumn.COM_NAME, CompanyColumn.IMAGE, CompanyColumn.USERNAME)
                 .eq(CompanyColumn.LOGIC_DELETE_FLAG, 0)
                 .eq(CompanyColumn.USERNAME, username);
         return mapper.selectOne(wrapper);
