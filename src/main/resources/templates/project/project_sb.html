@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -7,21 +7,7 @@
     <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
     <link rel="stylesheet" href="/static/css/common.css"/>
     <style>
-        .layui-card {
-            background-color: #EEEEEE;
-        }
-
-        .layui-card .layui-card-header {
-            margin-top: 10px;
-            height: 50px;
-        }
-
-        .layui-card .layui-card-header div {
-            margin: 15px 20px;
-        }
-
         .layui-card .layui-card-header div span {
-            font-size: 2em;
             margin-left: 150px;
         }
 
@@ -54,19 +40,19 @@
             <input type="hidden" name="wordName" id="hide-word-name">
             <input type="hidden" name="proLocation" id="proLocation">
             <div class="layui-form-item layui-col-md-offset1 layui-col-md7">
-                <label class="layui-form-label">标题</label>
+                <label class="layui-form-label"><span>*</span>标题</label>
                 <div class="layui-input-block">
                     <input type="text" class="layui-input" name="proName"/>
                 </div>
             </div>
             <div class="layui-form-item layui-col-md-offset1 layui-col-md7">
-                <label class="layui-form-label">描述</label>
+                <label class="layui-form-label"><span>*</span>描述</label>
                 <div class="layui-input-block">
                     <textarea class="layui-input" name="proDesc"></textarea>
                 </div>
             </div>
             <div class="layui-form-item layui-col-md-offset1">
-                <label class="layui-form-label">项目文档</label>
+                <label class="layui-form-label"><span>*</span>项目文档</label>
                 <div class="layui-upload">
                     <button type="button" class="layui-btn layui-btn-normal" id="word">
                         <i class="layui-icon layui-icon-upload"></i>选择word文档

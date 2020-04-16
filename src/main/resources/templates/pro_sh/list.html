@@ -1,18 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>项目审核</title>
     <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
-    <style>
-        .layui-table-page {
-            text-align: center;
-        }
-
-        .layui-table-tool {
-            background-color: white
-        }
-    </style>
+    <link rel="stylesheet" href="/static/css/common.css"/>
 </head>
 <body>
 <div class="layui-card">
@@ -35,7 +27,7 @@
         {{ d.wordName }}
     </span>
 </script>
-<!-- 表头工具  -->
+<!-- 表头工具 -->
 <script type="text/html" id="tool">
     <button class="layui-btn layui-btn-sm" lay-event="personal">
         <i class="layui-icon layui-icon-log"></i>个人审核记录

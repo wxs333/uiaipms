@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -7,10 +7,6 @@
     <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
     <link rel="stylesheet" href="/static/css/common.css"/>
     <style>
-        .layui-card-body {
-            background-color: #EEEEEE;
-        }
-
         .layui-btn-container {
             margin-left: 110px;
         }
@@ -41,19 +37,19 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">姓名</label>
+                <label class="layui-form-label"><span>*</span>姓名</label>
                 <div class="layui-input-block">
                     <input class="layui-input" name="adminName" readonly/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">用户名</label>
+                <label class="layui-form-label"><span>*</span>用户名</label>
                 <div class="layui-input-block">
                     <input class="layui-input" name="username" readonly/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">昵称</label>
+                <label class="layui-form-label"><span>*</span>昵称</label>
                 <div class="layui-input-block">
                     <input class="layui-input" name="nickname"/>
                 </div>

@@ -1,34 +1,40 @@
 body {
     background-color: #EEEEEE;
 }
-
-.layui-card {
-    margin: 0px 0px;
-}
-
-.layui-card .layui-card-header {
-    margin-top: 3px;
-    height: 16px;
-    line-height: 16px;
-    padding: 2px 15px;
-}
-
-.layui-card .layui-card-header .layui-breadcrumb span {
-    font-size: 12px;
-}
-
-.layui-form .layui-btn-fluid {
-    text-align: center;
-}
-
-.layui-form form .layui-inline {
-    margin: 5px 5px;
-}
-
 .layui-layout-body .layui-layout .layui-header .layui-logo {
     font-size: 1.8em;
 }
 
 .layui-layout-body .layui-side ul li dl dd:hover {
     background-color: #009688;
+}
+.layui-card {
+    background-color: #EEEEEE;
+}
+
+.layui-form .layui-form-item .layui-form-label span {
+    color: red;
+}
+.layui-table-page {
+    text-align: center;
+}
+
+.layui-table-tool {
+    background-color: white
+}
+.layui-card-header {
+    background-color: #EEEEEE;
+}
+
+.layui-card .layui-card-header {
+    margin-top: 10px;
+    height: 50px;
+}
+
+.layui-card .layui-card-header div {
+    margin: 15px 20px;
+}
+
+.layui-card .layui-card-header div span {
+    font-size: 2em;
 }

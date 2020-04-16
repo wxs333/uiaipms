@@ -6,10 +6,6 @@
     <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
     <link rel="stylesheet" href="/static/css/common.css"/>
     <style>
-        .layui-card-body {
-            background-color: #EEEEEE;
-        }
-
         .layui-btn-container {
             margin-left: 110px;
         }
@@ -42,17 +38,17 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">项目名</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" th:value="${proName}"/>
+                    <input class="layui-input" th:value="${proName}" readonly/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">审批结果</label>
+                <label class="layui-form-label"><span>*</span>审批结果</label>
                 <div class="layui-input-block">
                     <input type="checkbox" value="0" name="agree" lay-skin="switch" lay-text="同意|驳回">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">理由</label>
+                <label class="layui-form-label"><span>*</span>理由</label>
                 <div class="layui-input-block">
                     <textarea class="layui-input" name="reviewReason"></textarea>
                 </div>

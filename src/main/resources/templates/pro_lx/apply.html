@@ -6,10 +6,6 @@
     <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
     <link rel="stylesheet" href="/static/css/common.css"/>
     <style>
-        .layui-card-body {
-            background-color: #EEEEEE;
-        }
-
         .layui-btn-container {
             margin-left: 110px;
         }
@@ -38,13 +34,13 @@
             <hr class="html-editor-hr"/>
             <input type="hidden" th:value="${proId}" name="proId">
             <div class="layui-form-item">
-                <label class="layui-form-label">申请金额</label>
+                <label class="layui-form-label"><span>*</span>申请金额</label>
                 <div class="layui-input-block">
                     <input class="layui-input" name="pfAmount"/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">申请理由</label>
+                <label class="layui-form-label"><span>*</span>申请理由</label>
                 <div class="layui-input-block">
                     <textarea class="layui-input" name="applyReason"></textarea>
                 </div>
