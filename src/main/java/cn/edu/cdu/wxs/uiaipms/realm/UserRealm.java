@@ -1,5 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.realm;
 
+import cn.edu.cdu.wxs.uiaipms.exception.AccountUnavailableException;
+import cn.edu.cdu.wxs.uiaipms.form.RealmFrom;
 import cn.edu.cdu.wxs.uiaipms.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -54,13 +56,16 @@ public class UserRealm extends AuthorizingRealm {
         // 数据库查询
         String username = (String) usernamePasswordToken.getPrincipal();
         String[] strs = username.split("-");
-        String password = getPasswordByRoleAndUsername(strs[1], strs[0]);
+        RealmFrom from = getPasswordByRoleAndUsername(strs[1], strs[0]);
 
-        if (ObjectUtils.isEmpty(password)) {
+        if (ObjectUtils.isEmpty(from)) {
             throw new UnknownAccountException();
         }
+        if (from.getBan() == 1) {
+            throw new AccountUnavailableException();
+        }
 
-        return new SimpleAuthenticationInfo(strs[0], password, ByteSource.Util.bytes(strs[0]), getName());
+        return new SimpleAuthenticationInfo(strs[0], from.getPassword(), ByteSource.Util.bytes(strs[0]), getName());
     }
 
     /**
@@ -70,25 +75,20 @@ public class UserRealm extends AuthorizingRealm {
      * @param username 用户名
      * @return 密码
      */
-    private String getPasswordByRoleAndUsername(String role, String username) {
-        String password = null;
+    private RealmFrom getPasswordByRoleAndUsername(String role, String username) {
         switch (role) {
             case "admin":
-                password = adminService.getPasswordByUsername(username);
-                break;
+                return adminService.getPasswordByUsername(username);
             case "tutor":
-                password = tutorService.getPasswordByUsername(username);
-                break;
+                return tutorService.getPasswordByUsername(username);
             case "student":
-                password = studentService.getPasswordByUsername(username);
-                break;
+                return studentService.getPasswordByUsername(username);
             case "company":
-                password = companyService.getPasswordByUsername(username);
-                break;
+                return companyService.getPasswordByUsername(username);
             default:
                 break;
         }
-        return password;
+        return null;
     }
 
 }

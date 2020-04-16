@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
+import cn.edu.cdu.wxs.uiaipms.exception.AccountUnavailableException;
 import cn.edu.cdu.wxs.uiaipms.form.*;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.*;
@@ -10,6 +11,7 @@ import com.documents4j.api.DocumentType;
 import com.documents4j.api.IConverter;
 import com.documents4j.job.LocalConverter;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -100,8 +102,10 @@ public class UserApiController extends BaseController {
         try {
             // 执行登录验证
             currentUser.login(token);
-        } catch (Exception e) {
+        } catch (UnknownAccountException e) {
             return jsonResult(GlobalConstant.FAILURE, "账号或密码错误");
+        } catch (AccountUnavailableException e1) {
+            return jsonResult(GlobalConstant.FAILURE,"该账号已被禁用");
         }
         // 将用户信息放入session
         putUserToSession(session, form.getRole(), form.getUsername());

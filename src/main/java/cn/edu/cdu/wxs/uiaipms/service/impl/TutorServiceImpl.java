@@ -2,7 +2,7 @@ package cn.edu.cdu.wxs.uiaipms.service.impl;
 
 import cn.edu.cdu.wxs.uiaipms.column.TutorColumn;
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
-import cn.edu.cdu.wxs.uiaipms.domain.Tutor;
+import cn.edu.cdu.wxs.uiaipms.form.RealmFrom;
 import cn.edu.cdu.wxs.uiaipms.form.TutorForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.TutorMapper;
 import cn.edu.cdu.wxs.uiaipms.service.TutorService;
@@ -32,7 +32,7 @@ public class TutorServiceImpl extends BaseServiceImpl<TutorForm> implements Tuto
     }
 
     @Override
-    public String getPasswordByUsername(String username) {
+    public RealmFrom getPasswordByUsername(String username) {
         return mapper.selectPasswordByUsername(username, TutorColumn.TUTOR_TABLE);
     }
 

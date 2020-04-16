@@ -1,5 +1,6 @@
 package cn.edu.cdu.wxs.uiaipms.service;
 
+import cn.edu.cdu.wxs.uiaipms.form.RealmFrom;
 import cn.edu.cdu.wxs.uiaipms.form.StudentForm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -12,12 +13,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
  */
 public interface StudentService extends BaseService<StudentForm> {
     /**
-     * 根据用户名获取密码
+     * 根据用户名获取密码和状态
      *
      * @param username 用户名
      * @return 密码
      */
-    String getPasswordByUsername(String username);
+    RealmFrom getPasswordByUsername(String username);
 
     /**
      * 注册学生

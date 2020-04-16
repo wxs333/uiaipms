@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.service;
 
 import cn.edu.cdu.wxs.uiaipms.form.AdminForm;
+import cn.edu.cdu.wxs.uiaipms.form.RealmFrom;
 
 /**
  * 管理员服务层
@@ -10,12 +11,12 @@ import cn.edu.cdu.wxs.uiaipms.form.AdminForm;
  */
 public interface AdminService extends BaseService<AdminForm> {
     /**
-     * 根据用户名获取密码
+     * 根据用户名获取密码和状态
      *
      * @param username 用户名
-     * @return 密码
+     * @return 表单
      */
-    String getPasswordByUsername(String username);
+    RealmFrom getPasswordByUsername(String username);
 
     /**
      * 根据用户名获取用户

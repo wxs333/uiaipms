@@ -11,9 +11,10 @@
         ${idCol} = #{id}
     </update>
 
-    <select id="selectPasswordByUsername" resultType="java.lang.String">
+    <select id="selectPasswordByUsername" resultType="cn.edu.cdu.wxs.uiaipms.form.RealmFrom">
         SELECT
-        `password`
+        `password`,
+        ban
         FROM
         ${tableName}
         WHERE

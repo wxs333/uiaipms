@@ -1,23 +1,14 @@
 package cn.edu.cdu.wxs.uiaipms.service.impl;
 
 import cn.edu.cdu.wxs.uiaipms.column.AdminColumn;
-import cn.edu.cdu.wxs.uiaipms.column.TutorColumn;
-import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
-import cn.edu.cdu.wxs.uiaipms.domain.Admin;
-import cn.edu.cdu.wxs.uiaipms.domain.Tutor;
 import cn.edu.cdu.wxs.uiaipms.form.AdminForm;
-import cn.edu.cdu.wxs.uiaipms.form.StudentForm;
+import cn.edu.cdu.wxs.uiaipms.form.RealmFrom;
 import cn.edu.cdu.wxs.uiaipms.mapper.AdminMapper;
-import cn.edu.cdu.wxs.uiaipms.mapper.StudentMapper;
-import cn.edu.cdu.wxs.uiaipms.mapper.TutorMapper;
-import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.AdminService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 /**
  * @author WXS
@@ -37,7 +28,7 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminForm> implements Admi
     }
 
     @Override
-    public String getPasswordByUsername(String username) {
+    public RealmFrom getPasswordByUsername(String username) {
         return mapper.selectPasswordByUsername(username, AdminColumn.ADMIN_TABLE);
     }
 

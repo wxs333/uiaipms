@@ -66,6 +66,11 @@ public class Admin implements Serializable {
      */
     @TableField("image")
     private String image;
+    /**
+     * 0 启用 1 禁用，默认0
+     */
+    @TableField("ban")
+    private Integer ban;
 
     /**
      * 更新时间

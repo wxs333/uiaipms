@@ -2,6 +2,7 @@ package cn.edu.cdu.wxs.uiaipms.service.impl;
 
 import cn.edu.cdu.wxs.uiaipms.column.StudentColumn;
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
+import cn.edu.cdu.wxs.uiaipms.form.RealmFrom;
 import cn.edu.cdu.wxs.uiaipms.form.StudentForm;
 import cn.edu.cdu.wxs.uiaipms.form.UserRoleForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.StudentMapper;
@@ -47,7 +48,7 @@ public class StudentServiceImpl extends BaseServiceImpl<StudentForm> implements 
 
     @Override
     @Transactional(readOnly = true)
-    public String getPasswordByUsername(String username) {
+    public RealmFrom getPasswordByUsername(String username) {
         return mapper.selectPasswordByUsername(username, StudentColumn.STUDENT_TABLE);
     }
 
