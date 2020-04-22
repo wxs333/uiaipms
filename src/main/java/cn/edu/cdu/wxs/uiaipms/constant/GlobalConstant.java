@@ -82,9 +82,13 @@ public class GlobalConstant {
      */
     public static final String FTP_HEAD_IMG_DIRECTORY = "/uiaipms/head-img/";
     /**
-     * FTP中word文件存放目录
+     * FTP中项目word文件存放目录
      */
     public static final String FTP_WORD_DIRECTORY = "/uiaipms/word/";
+    /**
+     * FTP中企业入驻申请word文件存放目录
+     */
+    public static final String FTP_COMPANY_WORD_DIRECTORY = "/uiaipms/company/";
     /**
      * session里的用户id
      */
@@ -97,4 +101,12 @@ public class GlobalConstant {
      * session里的用户头像地址
      */
     public static final String USER_IMAGE = "image";
+    /**
+     * 默认头像地址
+     */
+    public static final String DEFAULT_IMAGE = "/uiaipms/head-img/icon.png";
+    /**
+     * 企业角色id
+     */
+    public static final String COMPANY_ROLE_ID = "3bfb84a2ad49489aab8be641fc87472a";
 }

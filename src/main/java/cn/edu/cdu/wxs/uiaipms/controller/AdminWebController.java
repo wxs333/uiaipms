@@ -89,4 +89,24 @@ public class AdminWebController {
     public String info() {
         return "admin/info";
     }
+
+    /**
+     * 企业入驻审批
+     *
+     * @return 视图
+     */
+    @GetMapping("comRegister")
+    public String comRegister() {
+        return "admin/company_sp";
+    }
+
+    /**
+     * 企业入驻审批历史记录
+     *
+     * @return 视图
+     */
+    @GetMapping("registerLog")
+    public String registerLog() {
+        return "admin/com_register_log";
+    }
 }

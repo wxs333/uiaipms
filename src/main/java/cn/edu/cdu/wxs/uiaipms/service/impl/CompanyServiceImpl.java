@@ -69,4 +69,32 @@ public class CompanyServiceImpl extends BaseServiceImpl<CompanyForm> implements 
         wrapper.select(CompanyColumn.COM_ID, CompanyColumn.COM_NAME);
         return mapper.selectList(wrapper);
     }
+
+    @Override
+    public IPage<CompanyForm> getNotRegister(Page<CompanyForm> page) {
+        QueryWrapper<CompanyForm> wrapper = new QueryWrapper<>();
+        wrapper.select(CompanyColumn.COM_ID, CompanyColumn.COM_NAME, CompanyColumn.USERNAME, CompanyColumn.COM_PEOPLE, CompanyColumn.PHONE
+                , CompanyColumn.WORD_NAME, CompanyColumn.LOCATION, CompanyColumn.CREATE_TIME)
+                .isNull(CompanyColumn.IMAGE)
+                .isNull(CompanyColumn.UPDATE_TIME);
+        return mapper.selectPage(page, wrapper);
+    }
+
+    @Override
+    public IPage<CompanyForm> getByPage(Page<CompanyForm> page) {
+        QueryWrapper<CompanyForm> wrapper = new QueryWrapper<>();
+        wrapper.select(CompanyColumn.LOCATION, CompanyColumn.COM_NAME, CompanyColumn.USERNAME, CompanyColumn.COM_PEOPLE,
+                CompanyColumn.PHONE, CompanyColumn.WORD_NAME, CompanyColumn.AGREE, CompanyColumn.CREATE_TIME, CompanyColumn.UPDATE_TIME)
+                .isNotNull(CompanyColumn.UPDATE_TIME);
+        return mapper.selectPage(page, wrapper);
+    }
+
+    @Override
+    public List<CompanyForm> exportData() {
+        QueryWrapper<CompanyForm> wrapper = new QueryWrapper<>();
+        wrapper.select(CompanyColumn.COM_NAME, CompanyColumn.USERNAME, CompanyColumn.COM_PEOPLE,
+                CompanyColumn.PHONE, CompanyColumn.BAN, CompanyColumn.AGREE, CompanyColumn.CREATE_TIME, CompanyColumn.UPDATE_TIME)
+                .isNotNull(CompanyColumn.UPDATE_TIME);
+        return mapper.selectList(wrapper);
+    }
 }

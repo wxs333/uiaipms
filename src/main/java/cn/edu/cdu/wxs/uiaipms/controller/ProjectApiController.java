@@ -79,7 +79,7 @@ public class ProjectApiController extends BaseController {
      */
     @PostMapping("uploadWord")
     public Map<String, Object> uploadWord(MultipartFile file) {
-        Map<String, Object> map = new HashMap<>(3);
+        Map<String, Object> map = new HashMap<>(4);
         try {
             String filename = SystemUtils.getNotRepeatingFilename(Objects.requireNonNull(file.getOriginalFilename()));
             if (ftpService.upload(GlobalConstant.FTP_WORD_DIRECTORY, filename, file.getInputStream())) {

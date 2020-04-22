@@ -2,6 +2,7 @@ package cn.edu.cdu.wxs.uiaipms.service.impl;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import cn.edu.cdu.wxs.uiaipms.service.ExcelService;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
@@ -29,11 +30,15 @@ public class ExcelServiceImpl<T> implements ExcelService<T> {
     @Override
     public void export(String title, String sheetName, List<T> data, Class clazz, HttpServletResponse response) {
         // 获取工作簿
-        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(title, sheetName), clazz, data);
+        ExportParams params = new ExportParams();
+        params.setTitle(title);
+        params.setSheetName(sheetName);
+        params.setType(ExcelType.XSSF);
+        Workbook workbook = ExcelExportUtil.exportExcel(params, clazz, data);
         OutputStream os = null;
         try {
             response.setContentType("application/octet-stream;charset=UTF-8");
-            response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(sheetName + ".xls", "utf-8"));
+            response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(sheetName + ".xlsx" , "utf-8"));
             // 浏览器不缓存
             response.addHeader("Pragma", "no-cache");
             response.addHeader("Cache-Control", "no-cache");

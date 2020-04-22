@@ -23,7 +23,7 @@ layui.use(['element', 'table'], function () {
             openApproveHtml(_table, _layer, obj.data.paId, obj.data.proName);
         } else if ("preview" === event) {
             // 文档预览准备
-            wordPreview($, obj.data);
+            wordPreview($, obj.data.proLocation, obj.data.wordName);
         }
 
     });

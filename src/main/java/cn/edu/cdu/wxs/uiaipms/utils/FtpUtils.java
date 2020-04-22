@@ -38,6 +38,7 @@ public class FtpUtils {
                 return ftpClient;
             }
         } catch (Exception e) {
+            logger.info("ftp连接失败");
             return null;
         }
         return null;
@@ -56,7 +57,6 @@ public class FtpUtils {
      * @return true 成功 false 失败
      */
     public static boolean upload(String host, int port, String username, String password, String path, String filename, InputStream inputStream) {
-        // 获取FTPClient
         FTPClient ftpClient = getFtpClient(host, port, username, password);
         try {
             // FTPClient连接服务器成功
@@ -92,7 +92,6 @@ public class FtpUtils {
      * @param outputStream 输出流
      */
     public static void download(String host, int port, String username, String password, String path, OutputStream outputStream) {
-        // 获取FTPClient
         FTPClient ftpClient = getFtpClient(host, port, username, password);
         try {
             if (!ObjectUtils.isEmpty(ftpClient)) {
@@ -120,7 +119,6 @@ public class FtpUtils {
      * @return 输入流
      */
     public static InputStream download(String host, int port, String username, String password, String path) {
-        // 获取FTPClient
         FTPClient ftpClient = getFtpClient(host, port, username, password);
         InputStream inputStream = null;
         try {

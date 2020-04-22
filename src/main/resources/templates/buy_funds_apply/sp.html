@@ -45,7 +45,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>理由</label>
                 <div class="layui-input-block">
-                    <textarea class="layui-input" name="bfaReason"></textarea>
+                    <textarea class="layui-input" name="bfaReason" lay-verify="required|reason" lay-verType="tips"></textarea>
                 </div>
             </div>
         </form>
@@ -54,5 +54,6 @@
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/buy_funds_apply/sp.js"></script>
+<script type="text/javascript" src="/static/js/common/verify.js"></script>
 </body>
 </html>

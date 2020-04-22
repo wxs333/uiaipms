@@ -45,13 +45,22 @@ public class UserWebController {
     }
 
     /**
-     * 注册页面
+     * 学生注册页面
      *
      * @return 视图
      */
-    @GetMapping("register")
-    public String registerHtml() {
-        return "register/register";
+    @GetMapping("stuRegister")
+    public String stuRegister() {
+        return "register/stu_register";
+    }
+    /**
+     * 学生注册页面
+     *
+     * @return 视图
+     */
+    @GetMapping("comRegister")
+    public String comRegister() {
+        return "register/com_register";
     }
 
     /**

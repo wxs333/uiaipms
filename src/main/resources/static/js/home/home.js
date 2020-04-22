@@ -75,6 +75,9 @@ function changeHtml(id, $, _layer) {
         case "authority":
             elem.attr("src", "/admin/authority");
             break;
+        case "com-register":
+            elem.attr("src", "/admin/comRegister");
+            break;
         case "stock":
             elem.attr("src", "/sto/list");
             break;
@@ -128,6 +131,7 @@ function openHtml(_layer, data) {
         offset: '60px'
     });
 }
+
 /**
  * 弹出修改密码HTML页面
  */
@@ -137,7 +141,7 @@ function openPasswordHtml(_layer) {
         title: "修改密码",
         content: "/user/password",
         area: ["800px", "570px"],
-        anim: 1,
+        anim: 3,
         scrollbar: false,
         offset: '60px',
         end: function () {

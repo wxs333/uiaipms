@@ -203,7 +203,7 @@ public class AdminApiController extends BaseController {
     /**
      * 修改
      *
-     * @param form 表单
+     * @param form    表单
      * @param session 会话
      * @return json
      */
@@ -218,5 +218,19 @@ public class AdminApiController extends BaseController {
         }
 
         return jsonResult(GlobalConstant.FAILURE, "修改失败");
+    }
+
+    /**
+     * 企业入驻审批
+     *
+     * @param agree 标识 0 通过 1 驳回
+     * @return json
+     */
+    @PostMapping("registerSp")
+    public JsonResult<String> registerSp(Integer agree, String id) {
+        if (service.registerSp(agree, id)) {
+            return jsonResult("成功");
+        }
+        return jsonResult(GlobalConstant.FAILURE, "失败");
     }
 }

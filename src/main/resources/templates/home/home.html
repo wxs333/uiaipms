@@ -50,16 +50,17 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-shrink="all" lay-filter="test">
-                <!--shiro:hasRole="sys_role"-->
                 <li class="layui-nav-item" shiro:hasRole="sys_role">
                     <a href="javascript:;" id="member">成员管理</a>
                 </li>
-                <!--shiro:hasRole="sys_role"-->
                 <li class="layui-nav-item" shiro:hasRole="sys_role">
                     <a href="javascript:;" id="authority">角色分配 </a>
                 </li>
                 <li class="layui-nav-item" shiro:hasRole="sys_role">
                     <a href="javascript:;" id="studio">工作室管理</a>
+                </li>
+                <li class="layui-nav-item" shiro:hasRole="sys_role">
+                    <a href="javascript:;" id="com-register">企业入驻</a>
                 </li>
                 <li class="layui-nav-item" shiro:hasRole="fin_role">
                     <a href="javascript:;" id="pro-fin">项目拨款</a>

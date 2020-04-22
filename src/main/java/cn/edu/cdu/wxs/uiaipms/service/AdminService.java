@@ -33,4 +33,12 @@ public interface AdminService extends BaseService<AdminForm> {
      */
     AdminForm getInfo(String id);
 
+    /**
+     * 企业入驻审批
+     * @param agree 标识 0 通过 1 驳回
+     * @param id id
+     * @return true 成功 false 失败
+     */
+    boolean registerSp(Integer agree, String id);
+
 }

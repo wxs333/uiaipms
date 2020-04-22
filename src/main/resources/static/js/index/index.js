@@ -7,7 +7,10 @@ layui.use(['form', 'jquery'], function () {
     changeCode($);
     // 打开注册页面
     $("#register").click(function () {
-        openHtml(_layer, {"title": "学生注册", "content": "/user/register"})
+        openHtml(_layer, {"title": "学生注册", "content": "/user/stuRegister"})
+    });
+    $("#company").click(function () {
+        openHtml(_layer, {"title": "企业入驻", "content": "/user/comRegister"})
     });
 
     form.on('submit(login)', function (data) {

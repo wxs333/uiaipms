@@ -36,13 +36,25 @@ public class CompanyColumn {
      */
     public static final String COM_PEOPLE = "com_people";
     /**
-     * 0 启用 1禁用
+     * 0 启用 1禁用 默认1
      */
     public static final String BAN = "ban";
     /**
      * 头像地址
      */
     public static final String IMAGE = "image";
+    /**
+     * 文档存储地址
+     */
+    public static final String LOCATION = "location";
+    /**
+     * 文档名称
+     */
+    public static final String WORD_NAME = "word_name";
+    /**
+     * 0 审批通过 1 审批不通过，默认1
+     */
+    public static final String AGREE = "agree";
     /**
      * 更新时间
      */

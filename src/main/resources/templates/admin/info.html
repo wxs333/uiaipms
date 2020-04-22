@@ -25,9 +25,6 @@
                 <button class="layui-btn layui-btn-sm" lay-submit>
                     <i class="layui-icon layui-icon-ok"></i>修改
                 </button>
-                <button class="layui-btn layui-btn-sm" type="reset">
-                    <i class="layui-icon layui-icon-refresh"></i>重置
-                </button>
             </div>
             <hr class="html-editor-hr"/>
             <div class="layui-form-item" hidden>
@@ -37,13 +34,13 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label"><span>*</span>姓名</label>
+                <label class="layui-form-label">姓名</label>
                 <div class="layui-input-block">
                     <input class="layui-input" name="adminName" readonly/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label"><span>*</span>用户名</label>
+                <label class="layui-form-label">用户名</label>
                 <div class="layui-input-block">
                     <input class="layui-input" name="username" readonly/>
                 </div>
@@ -51,13 +48,13 @@
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>昵称</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="nickname"/>
+                    <input class="layui-input" name="nickname" lay-verify="required|name" lay-verType="tips"/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">手机</label>
+                <label class="layui-form-label"><span>*</span>手机</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="phone"/>
+                    <input class="layui-input" name="phone" lay-verify="phone" lay-verType="tips"/>
                 </div>
             </div>
         </form>
@@ -66,6 +63,7 @@
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/admin/info.js"></script>
+<script type="text/javascript" src="/static/js/common/verify.js"></script>
 </body>
 
 </html>

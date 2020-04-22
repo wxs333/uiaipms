@@ -22,7 +22,7 @@ layui.use('table', function () {
             openApplyHtml(_layer, _table, obj.data.proId);
         } else if ("preview" === event) {
             // 文档预览
-            wordPreview($, obj.data);
+            wordPreview($, obj.data.proLocation, obj.data.wordName);
         } else if ("record" === event) {
             openRecordHtml(_layer, obj.data.proId);
         }

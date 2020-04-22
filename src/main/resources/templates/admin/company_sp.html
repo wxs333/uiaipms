@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>企业入驻审批</title>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/static/css/common.css"/>
+</head>
+<body>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table class="layui-table" id="sp"></table>
+    </div>
+</div>
+<!-- 头工具栏 -->
+<script type="text/html" id="toolbar">
+    <button class="layui-btn layui-btn-sm" lay-event="export">
+        <i class="layui-icon layui-icon-export"></i>导出
+    </button>
+    <button class="layui-btn layui-btn-sm" lay-event="log">
+        <i class="layui-icon layui-icon-log"></i>审批记录
+    </button>
+</script>
+<!-- 行工具栏 -->
+<script type="text/html" id="row">
+    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="ok">
+        <i class="layui-icon layui-icon-ok"></i>通过
+    </button>
+    <button class="layui-btn layui-btn-sm layui-bg-orange" lay-event="no">
+        <i class="layui-icon layui-icon-close"></i>驳回
+    </button>
+</script>
+<!-- 处理文档 -->
+<script type="text/html" id="word">
+    <span style="color: blue;text-decoration: underline">
+        {{ d.wordName }}
+    </span>
+</script>
+<!-- js文件 -->
+<script type="text/javascript" src="/static/js/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/common/base.js"></script>
+<script type="text/javascript" src="/static/js/admin/company_sp.js"></script>
+</body>
+</html>

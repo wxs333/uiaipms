@@ -5,6 +5,7 @@ import cn.edu.cdu.wxs.uiaipms.form.CompanyForm;
 import cn.edu.cdu.wxs.uiaipms.form.StudioForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.CompanyService;
+import cn.edu.cdu.wxs.uiaipms.service.ExcelService;
 import cn.edu.cdu.wxs.uiaipms.service.StudioService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,6 +32,8 @@ public class StudioApiController extends BaseController {
     private StudioService studioService;
     @Autowired
     private CompanyService companyService;
+    @Autowired
+    private ExcelService<StudioForm> excelService;
 
     /**
      * 查询所有
@@ -112,4 +116,20 @@ public class StudioApiController extends BaseController {
         }
         return jsonResult(GlobalConstant.FAILURE, status + "失败");
     }
+
+    /**
+     * 导出企业的工作室信息
+     *
+     * @param response 响应
+     */
+    @GetMapping("export")
+    public void export(HttpServletResponse response) {
+        // 获取当前登录企业用户的ID
+        String comId = "19ccb469b89b4c59a7ff1ad559f9b53a";
+        // 获取数据
+        List<StudioForm> list = studioService.getList(comId);
+        // 数据导出
+        excelService.export("工作室", "我的工作室", list, StudioForm.class, response);
+    }
+
 }

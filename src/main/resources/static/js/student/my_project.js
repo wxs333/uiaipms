@@ -9,7 +9,7 @@ layui.use(['table'], function () {
         console.log(obj.event);
         if ("preview" === obj.event) {
             // 文档预览
-            wordPreview($, obj.data);
+            wordPreview($, obj.data.proLocation, obj.data.wordName);
         } else if ("afresh" === obj.event) {
             var url = "/stu/afresh?proId=" + obj.data.proId + "&proName=" + obj.data.proName + "&proDesc=" + obj.data.proDesc;
             // 打开页面

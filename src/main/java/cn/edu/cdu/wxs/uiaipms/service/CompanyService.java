@@ -61,5 +61,27 @@ public interface CompanyService extends BaseService<CompanyForm> {
      */
     List<CompanyForm> getAll();
 
+    /**
+     * 分页获取未注册的账号信息
+     *
+     * @param page 分页
+     * @return 分页集合
+     */
+    IPage<CompanyForm> getNotRegister(Page<CompanyForm> page);
+
+    /**
+     * 申请历史记录
+     *
+     * @param page 分页
+     * @return 分页集合
+     */
+    IPage<CompanyForm> getByPage(Page<CompanyForm> page);
+
+    /**
+     * 企业注册信息导出数据
+     *
+     * @return 集合
+     */
+    List<CompanyForm> exportData();
 
 }

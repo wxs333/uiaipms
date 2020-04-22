@@ -16,7 +16,7 @@ function msg(code, msg, func) {
 /**
  * Word文档预览
  */
-function wordPreview($, data) {
-    var url = "/static/js/pdf/web/viewer.html?file=" + encodeURIComponent("/api/user/previewWord?filePath=" + data.proLocation + "&fileName=" + data.wordName);
+function wordPreview($, location, wordName) {
+    var url = "/static/js/pdf/web/viewer.html?file=" + encodeURIComponent("/api/user/previewWord?filePath=" + location + "&fileName=" + wordName);
     window.open(url);
 }

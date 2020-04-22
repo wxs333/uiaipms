@@ -23,7 +23,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span> 姓名</label>
                 <div class="layui-input-block">
-                    <input type="text" class="layui-input" name="stuName" lay-verify="required|stuName"
+                    <input type="text" class="layui-input" name="stuName" lay-verify="required|name"
                            lay-verType="tips" placeholder="请输入姓名"/>
                 </div>
             </div>
@@ -44,14 +44,14 @@
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span> 密码</label>
                 <div class="layui-input-block">
-                    <input type="password" class="layui-input" name="password" lay-verify="required|password"
+                    <input type="password" class="layui-input" id="password" lay-verify="required|password"
                            lay-verType="tips" placeholder="请输入密码"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span> 确认密码</label>
                 <div class="layui-input-block">
-                    <input type="password" class="layui-input" name="passwordAgin" lay-verify="required|passwordAgin"
+                    <input type="password" class="layui-input" name="password" lay-verify="required|passwordAgain"
                            lay-verType="tips" placeholder="请确认密码"/>
                 </div>
             </div>
@@ -75,5 +75,6 @@
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/index/register.js"></script>
+<script type="text/javascript" src="/static/js/common/verify.js"></script>
 </body>
 </html>
