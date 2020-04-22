@@ -142,4 +142,30 @@ public class StudioApiController extends BaseController {
         return jsonResult(studioService.getIdAndAddressAndRoomNo());
     }
 
+    /**
+     * 获取所有已经分配的工作室
+     *
+     * @param page 分页
+     * @return json
+     */
+    @GetMapping("out")
+    public JsonResult<IPage<StudioForm>> out(Page<StudioForm> page) {
+        return jsonResult("0", studioService.getHaveComId(page));
+    }
+
+    /**
+     * 回收工作室
+     *
+     * @param studId id
+     * @return json
+     */
+    @PostMapping("revoke")
+    public JsonResult<String> revoke(String studId) {
+        if (studioService.revoke(studId)) {
+            return jsonResult("收回成功");
+        }
+
+        return jsonResult(GlobalConstant.FAILURE, "收回失败");
+    }
+
 }

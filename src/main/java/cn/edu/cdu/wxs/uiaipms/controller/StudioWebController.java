@@ -59,4 +59,14 @@ public class StudioWebController {
         return modelAndView;
     }
 
+    /**
+     * 回收工作室
+     *
+     * @return 视图
+     */
+    @GetMapping("revoke")
+    public String revoke() {
+        return PREFIX + "revoke";
+    }
+
 }

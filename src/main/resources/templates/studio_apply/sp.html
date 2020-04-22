@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>工作室申请审批</title>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/static/css/common.css"/>
+    <style>
+        .layui-btn-container {
+            margin-left: 110px;
+        }
+
+        .layui-btn-container .layui-btn {
+            margin-bottom: 0;
+        }
+
+        .layui-form .layui-form-item textarea {
+            height: 169px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form" lay-filter="update-form">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-submit>
+                    <i class="layui-icon layui-icon-ok"></i>确定
+                </button>
+                <button class="layui-btn layui-btn-sm" type="reset">
+                    <i class="layui-icon layui-icon-refresh"></i>重置
+                </button>
+            </div>
+            <hr class="html-editor-hr"/>
+            <input type="hidden" name="saId" th:value="${id}"/>
+            <input type="hidden" name="comId" th:value="${comId}"/>
+            <input type="hidden" name="studId" th:value="${studId}"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><span>*</span>是否通过</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" value="0" name="agree" lay-skin="switch" lay-text="通过|不通过">
+                </div>
+            </div>
+            <div class="layui-form-item layui-col-md-offset1 layui-col-md7">
+                <label class="layui-form-label"><span>*</span>原因</label>
+                <div class="layui-input-block">
+                    <textarea class="layui-input" name="saReason"></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- js文件 -->
+<script type="text/javascript" src="/static/js/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/studio_apply/sp.js"></script>
+</body>
+
+</html>

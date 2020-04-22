@@ -5,9 +5,9 @@ layui.use(['table'], function () {
     // 初始化表格
     tableRender(_table);
     // 表头工具栏监听
-    _table.on('toolbar(table)', function (data) {
-        // 打开新增页面
-        openHtml(_table, _layer, data.event, null);
+    _table.on('toolbar(table)', function (obj) {
+        // 打开页面
+        openHtml(_table, _layer, obj.event, null);
     });
     // 行工具栏监听
     _table.on('tool(table)', function (data) {
@@ -73,35 +73,43 @@ function tableRender(_table) {
 function openHtml(_table, _layer, event, id) {
     var d = {};
     if ('add' === event) {
-        d = {'title': '新增工作室', 'content': '/stud/add', 'id': ''};
-        doOpen(_table, _layer, d);
+        d = {'title': '新增工作室', 'content': '/stud/add', 'id': '', "width": "800px"};
+        doOpen(_table, _layer, d, "true");
     } else if ('edit' === event) {
-        d = {'title': '修改工作室', 'content': '/stud/update', 'id': id};
-        doOpen(_table, _layer, d);
+        d = {'title': '修改工作室', 'content': '/stud/update', 'id': id, "width": "800px"};
+        doOpen(_table, _layer, d, "true");
+    } else if ("sp" === event) {
+        d = {'title': '工作室申请审批', 'content': '/sa/list', 'id': "", "width": "1200px"};
+        doOpen(_table, _layer, d, "false");
+    } else if ("revoke" === event) {
+        d = {'title': '工作室回收', 'content': '/stud/revoke', 'id': "", "width": "1200px"};
+        doOpen(_table, _layer, d, "false");
     }
 }
 
 /**
  * 执行打开页面
  */
-function doOpen(_table, _layer, data) {
+function doOpen(_table, _layer, data, flag) {
     var content = data.id === '' ? data.content : data.content + '?id=' + data.id;
     _layer.open({
         type: 2,
         title: data.title,
         content: content,
-        area: ['800px', '550px'],
+        area: [data.width, '550px'],
         anim: 1,
         scrollbar: false,
         offset: '30px',
         end: function f() {
-            _table.reload('table',
-                {
-                    url: '/api/stud/list',
-                    page: {
-                        curr: 1
-                    }
-                });
+            if (flag === "true") {
+                _table.reload('table',
+                    {
+                        url: '/api/stud/list',
+                        page: {
+                            curr: 1
+                        }
+                    });
+            }
         }
     });
 }

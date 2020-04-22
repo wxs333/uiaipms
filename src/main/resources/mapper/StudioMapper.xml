@@ -14,14 +14,45 @@
 
     <select id="selectIdAndAddressAndRoomNo" resultType="cn.edu.cdu.wxs.uiaipms.form.StudioForm">
         SELECT
+            stud_id,
+            stud_address,
+            stud_room_no
+        FROM
+            studio
+        WHERE
+            ban = 0
+            AND logic_delete_flag = 0
+            AND stud_id NOT IN (
+            SELECT
+                s.stud_id
+            FROM
+                studio s
+                RIGHT JOIN studio_apply sa ON s.stud_id = sa.stud_id
+            WHERE
+                ( s.com_id IS NOT NULL OR ( sa.update_time IS NULL AND sa.agree = 1 ) )
+            AND s.logic_delete_flag = 0
+            AND sa.logic_delete_flag = 0)
+    </select>
+
+    <select id="selectHaveComId" resultType="cn.edu.cdu.wxs.uiaipms.form.StudioForm">
+        SELECT
             s.stud_id,
             s.stud_address,
-            s.stud_room_no
+            s.stud_room_no,
+            c.com_name
         FROM
-            studio s
-            LEFT JOIN studio_apply a ON s.stud_id = a.stud_id
+            studio s,
+            company c
         WHERE
-            a.stud_id IS NULL
-        AND s.ban = 0
+            s.com_id = c.com_id
+            AND s.logic_delete_flag = 0
+            AND c.logic_delete_flag = 0
     </select>
+
+    <update id="updateComIdIsNullById">
+        UPDATE studio
+        SET com_id = NULL,
+        update_time = NOW()
+        WHERE stud_id = #{id}
+    </update>
 </mapper>

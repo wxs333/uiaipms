@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>工作室申请列表</title>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/static/css/common.css"/>
+</head>
+<body>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table class="layui-table" id="list" lay-filter="list"></table>
+    </div>
+</div>
+<!-- js文件 -->
+<script type="text/javascript" src="/static/js/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/studio_apply/list.js"></script>
+<!-- 头工具栏 -->
+<script type="text/html" id="toolbar">
+
+</script>
+<!-- 行工具 -->
+<script type="text/html" id="rowTool">
+    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="sp">
+        <i class="layui-icon layui-icon-edit"></i>审批
+    </button>
+</script>
+</body>
+</html>

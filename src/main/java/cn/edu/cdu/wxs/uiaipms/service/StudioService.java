@@ -63,4 +63,18 @@ public interface StudioService extends BaseService<StudioForm> {
      * @return 集合
      */
     List<StudioForm> getIdAndAddressAndRoomNo();
+
+    /**
+     * 查询所有已分配的工作室
+     * @param page 分页
+     * @return 分页集合
+     */
+    IPage<StudioForm> getHaveComId(Page<StudioForm> page);
+
+    /**
+     * 回收工作室
+     * @param id id
+     * @return true 成功 false 失败
+     */
+    boolean revoke(String id);
 }

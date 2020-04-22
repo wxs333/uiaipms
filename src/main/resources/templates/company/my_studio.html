@@ -30,7 +30,7 @@
 </script>
 <!-- 行工具 -->
 <script type="text/html" id="rowTool">
-    {{# if(d.ban == 1) { }}
+    {{# if(d.ban == 0) { }}
     <button class="layui-btn layui-btn-sm layui-bg-orange" lay-event="edit">
         <i class="layui-icon layui-icon-edit"></i>人数变更
     </button>
@@ -53,7 +53,7 @@
 </script>
 <!-- 禁用格式化 -->
 <script type="text/html" id="ban">
-    {{# if (d.ban == 0) { }}
+    {{# if (d.ban == 1) { }}
     <span>禁用</span>
     {{# } else { }}
     <span>可用</span>

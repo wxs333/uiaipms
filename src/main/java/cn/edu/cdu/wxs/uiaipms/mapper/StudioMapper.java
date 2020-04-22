@@ -1,6 +1,8 @@
 package cn.edu.cdu.wxs.uiaipms.mapper;
 
 import cn.edu.cdu.wxs.uiaipms.form.StudioForm;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -32,4 +34,18 @@ public interface StudioMapper extends CommonMapper<StudioForm> {
      * @return 集合
      */
     List<StudioForm> selectIdAndAddressAndRoomNo();
+
+    /**
+     * 查询所有已分配的工作室
+     * @param page 分页
+     * @return 分页集合
+     */
+    IPage<StudioForm> selectHaveComId(Page<StudioForm> page);
+
+    /**
+     * 根据id设置comId为NULL
+     * @param id id
+     * @return 影响行数
+     */
+    int updateComIdIsNullById(@Param("id") String id);
 }

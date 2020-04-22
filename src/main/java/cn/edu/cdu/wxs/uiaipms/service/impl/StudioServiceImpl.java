@@ -83,4 +83,14 @@ public class StudioServiceImpl extends BaseServiceImpl<StudioForm> implements St
     public List<StudioForm> getIdAndAddressAndRoomNo() {
         return mapper.selectIdAndAddressAndRoomNo();
     }
+
+    @Override
+    public IPage<StudioForm> getHaveComId(Page<StudioForm> page) {
+        return mapper.selectHaveComId(page);
+    }
+
+    @Override
+    public boolean revoke(String id) {
+        return SystemUtils.gtTheZero(mapper.updateComIdIsNullById(id));
+    }
 }
