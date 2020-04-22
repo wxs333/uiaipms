@@ -21,7 +21,18 @@
         <button class="layui-btn layui-btn-sm" lay-event="add">
             <i class="layui-icon layui-icon-add-1"></i>新增
         </button>
+        <button class="layui-btn layui-btn-sm" lay-event="sp">
+            <i class="layui-icon layui-icon-edit"></i>申请审批
+        </button>
     </div>
+</script>
+<!-- 状态 -->
+<script type="text/html" id="ban">
+    {{# if (d.ban == 0) { }}
+    可用
+    {{# } else { }}
+    禁用
+    {{# } }}
 </script>
 <!-- 行工具 -->
 <script type="text/html" id="rowTool">
@@ -29,12 +40,12 @@
         <i class="layui-icon layui-icon-edit"></i>修改
     </button>
     {{# if (d.ban == 0) { }}
-    <button class="layui-btn layui-btn-sm layui-bg-blue" lay-event="enable">
-        <i class="layui-icon layui-icon-ok"></i>启用
-    </button>
-    {{# } else { }}
     <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="ban">
         <i class="layui-icon layui-icon-close"></i>禁用
+    </button>
+    {{# } else { }}
+    <button class="layui-btn layui-btn-sm layui-bg-blue" lay-event="enable">
+        <i class="layui-icon layui-icon-ok"></i>启用
     </button>
     {{# } }}
 </script>

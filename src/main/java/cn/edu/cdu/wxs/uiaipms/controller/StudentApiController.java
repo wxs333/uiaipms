@@ -4,7 +4,6 @@ import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.form.StudentForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.StudentService;
-import cn.edu.cdu.wxs.uiaipms.service.UserRoleService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -35,8 +34,6 @@ public class StudentApiController extends BaseController {
      */
     @Autowired
     private StudentService studentService;
-    @Autowired
-    private UserRoleService userRoleService;
 
     /**
      * 学生注册

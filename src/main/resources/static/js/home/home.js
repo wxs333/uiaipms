@@ -102,6 +102,9 @@ function changeHtml(id, $, _layer) {
         case "com-studio":
             elem.attr("src", "/com/myStudio");
             break;
+        case "studio-apply":
+            openHtml(_layer, {"title": "工作室申请", "url": "/com/studioApply", "width": "800px"});
+            break;
         case "goods":
             elem.attr("src", "/goods/list");
             break;
@@ -126,7 +129,7 @@ function openHtml(_layer, data) {
         title: data.title,
         content: data.url,
         area: [data.width, "570px"],
-        anim: 1,
+        anim: 3,
         scrollbar: false,
         offset: '60px'
     });
@@ -141,7 +144,7 @@ function openPasswordHtml(_layer) {
         title: "修改密码",
         content: "/user/password",
         area: ["800px", "570px"],
-        anim: 3,
+        anim: 1,
         scrollbar: false,
         offset: '60px',
         end: function () {

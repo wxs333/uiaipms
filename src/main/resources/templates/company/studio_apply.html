@@ -1,28 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>新增工作室</title>
-    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <title>工作室申请</title>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css">
     <link rel="stylesheet" href="/static/css/common.css"/>
     <style>
-        .layui-btn-container {
-            margin-left: 110px;
-        }
-
-        .layui-btn-container .layui-btn {
-            margin-bottom: 0;
+        .layui-form .layui-form-item textarea {
+            height: 169px;
         }
     </style>
 </head>
-
 <body>
 <div class="layui-card">
     <div class="layui-card-body">
         <form class="layui-form">
             <div class="layui-btn-container">
                 <button class="layui-btn layui-btn-sm" lay-submit>
-                    <i class="layui-icon layui-icon-ok"></i>确定
+                    <i class="layui-icon layui-icon-ok"></i>申请
                 </button>
                 <button class="layui-btn layui-btn-sm" type="reset">
                     <i class="layui-icon layui-icon-refresh"></i>重置
@@ -30,21 +25,15 @@
             </div>
             <hr class="html-editor-hr"/>
             <div class="layui-form-item">
-                <label class="layui-form-label"><span>*</span>地址</label>
+                <label class="layui-form-label"><span>*</span>工作室</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="studAddress"/>
+                    <select class="layui-input" name="studId" id="studio"></select>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label"><span>*</span>房间号</label>
+                <label class="layui-form-label"><span>*</span>申请理由</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="studRoomNo"/>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">占地面积</label>
-                <div class="layui-input-block">
-                    <input class="layui-input" name="studArea"/>
+                    <textarea class="layui-input" name="applyReason" lay-verify="required|reason" lay-verType="tips"></textarea>
                 </div>
             </div>
         </form>
@@ -52,7 +41,8 @@
 </div>
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
-<script type="text/javascript" src="/static/js/studio/add_studio.js"></script>
+<script type="text/javascript" src="/static/js/common/base.js"></script>
+<script type="text/javascript" src="/static/js/company/studio_apply.js"></script>
+<script type="text/javascript" src="/static/js/common/verify.js"></script>
 </body>
-
 </html>

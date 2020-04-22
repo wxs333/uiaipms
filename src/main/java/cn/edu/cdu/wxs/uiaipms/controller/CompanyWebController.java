@@ -78,4 +78,14 @@ public class CompanyWebController {
     public String info() {
         return PREFIX + "info";
     }
+
+    /**
+     * 工作室申请
+     *
+     * @return 视图
+     */
+    @GetMapping("studioApply")
+    public String studioApply() {
+        return PREFIX + "studio_apply";
+    }
 }

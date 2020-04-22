@@ -67,10 +67,10 @@ public class Studio implements Serializable {
     @Excel(name = "人数", orderNum = "2", width = 30)
     private Integer studNum;
     /**
-     * 是否禁用，0 禁用 1 启用
+     * 是否禁用，0 启用 1 禁用，默认0
      */
     @TableField(value = "ban", jdbcType = JdbcType.INTEGER)
-    @Excel(name = "是否禁用", replace = {"禁用_0", "可用_1"}, orderNum = "4", width = 30)
+    @Excel(name = "是否禁用", replace = {"可用_0", "禁用用_1"}, orderNum = "4", width = 30)
     private Integer ban;
 
     /**

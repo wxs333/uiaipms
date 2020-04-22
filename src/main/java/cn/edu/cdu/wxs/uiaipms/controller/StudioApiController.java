@@ -132,4 +132,14 @@ public class StudioApiController extends BaseController {
         excelService.export("工作室", "我的工作室", list, StudioForm.class, response);
     }
 
+    /**
+     * 获取填充select框的数据
+     *
+     * @return json
+     */
+    @GetMapping("getSelect")
+    public JsonResult<List<StudioForm>> getSelect() {
+        return jsonResult(studioService.getIdAndAddressAndRoomNo());
+    }
+
 }

@@ -21,31 +21,7 @@ function initForm(_form, $) {
         '/api/stud/getOne',
         {'studId': studId},
         function (res) {
-            // 给select框赋值
-            initSelect(_form, $, res.data.comId);
             _form.val('update-form', res.data);
-        }
-    );
-}
-
-/**
- * 给select框赋值
- */
-function initSelect(_form, $, id) {
-    $.get(
-        '/api/stud/getCompany',
-        {},
-        function (res) {
-            var html = '<option value="">请选择</option>';
-            $.each(res.data, function (index, item) {
-                if (item.comId === id) {
-                    html += '<option value=' + item.comId + ' selected>' + item.comName + '</option>';
-                } else {
-                    html += '<option value=' + item.comId + '>' + item.comName + '</option>';
-                }
-            });
-            $('#company').html(html);
-            _form.render('select');
         }
     );
 }

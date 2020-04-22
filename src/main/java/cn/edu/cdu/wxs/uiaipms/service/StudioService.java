@@ -56,4 +56,11 @@ public interface StudioService extends BaseService<StudioForm> {
      * @return 集合
      */
     List<StudioForm> getList(String comId);
+
+    /**
+     * 获取所有未禁用未使用工作室的id，地址，房间号
+     *
+     * @return 集合
+     */
+    List<StudioForm> getIdAndAddressAndRoomNo();
 }

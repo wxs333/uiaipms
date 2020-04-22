@@ -33,7 +33,19 @@ public class StudioColumn {
      */
     public static final String STUD_AREA = "stud_area";
     /**
-     * 禁用
+     * 0 可用 1 禁用
      */
     public static final String BAN = "ban";
+    /**
+     * 更新时间
+     */
+    public static final String UPDATE_TIME = "update_time";
+    /**
+     * 创建时间
+     */
+    public static final String CREATE_TIME = "create_time";
+    /**
+     * 逻辑删除字段
+     */
+    public static final String LOGIC_DELETE_FLAG = "logic_delete_flag";
 }
