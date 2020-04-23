@@ -22,7 +22,7 @@ layui.use("table", function () {
     // 行工具监听
     _table.on("tool(pro-fin)", function (obj) {
         // 打开审批页面
-        openConfirmHtml(_layer, _table, obj);
+        openConfirmHtml(_layer, _table, $, obj);
     });
 });
 
@@ -105,11 +105,11 @@ function changeTitle($, event) {
 /**
  * 确认页面
  */
-function openConfirmHtml(_layer, _table, obj) {
+function openConfirmHtml(_layer, _table, $, obj) {
     _layer.open({
         type: 2,
         title: "项目资金申请审批",
-        content: "/pf/sp?pfId=" + obj.data.pfId + "&proName=" + obj.data.proName + "&pfAmount=" + obj.data.pfAmount,
+        content: "/pf/sp?pfId=" + obj.data.pfId + "&proName=" + obj.data.proName + "&pfAmount=" + obj.data.pfAmount + "&userId=" + $("#userId").val(),
         area: ['800px', '550px'],
         anim: 1,
         scrollbar: false,

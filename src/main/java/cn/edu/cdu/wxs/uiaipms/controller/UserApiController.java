@@ -104,11 +104,11 @@ public class UserApiController extends BaseController {
         } catch (AccountUnavailableException e) {
             return jsonResult(GlobalConstant.FAILURE, "该账号已被禁用");
         } catch (Exception e1) {
-            return jsonResult(GlobalConstant.FAILURE,"账号或密码错误");
+            return jsonResult(GlobalConstant.FAILURE, "账号或密码错误");
         }
         // 将用户信息放入session
-        putUserToSession(session, form.getRole(), form.getUsername());
-        return jsonResult("登录成功");
+        String userId = putUserToSession(session, form.getRole(), form.getUsername());
+        return jsonResult(GlobalConstant.SUCCESS, "登录成功", userId + "-" + form.getRole());
     }
 
     /**
@@ -136,10 +136,12 @@ public class UserApiController extends BaseController {
      * 头像显示
      *
      * @param response 响应
+     * @param session  会话
+     * @param userId   用户ID
      */
     @GetMapping("headImg")
-    public void headImg(HttpServletResponse response, HttpSession session) {
-        String path = (String) session.getAttribute(GlobalConstant.USER_IMAGE);
+    public void headImg(HttpServletResponse response, HttpSession session, String userId) {
+        String path = SystemUtils.getImageFromSession(session, userId);
         try {
             ftpService.download(path, response.getOutputStream());
         } catch (IOException e) {
@@ -151,22 +153,26 @@ public class UserApiController extends BaseController {
      * 头像上传
      *
      * @param multipartFile 文头像件
+     * @param session       会话
+     * @param userId        用户id
      */
     @PostMapping("uploadHeadImg")
     public Map<String, Object> uploadHeadImg(@RequestParam("file") MultipartFile multipartFile,
-                                             HttpSession session) {
+                                             HttpSession session, String userId) {
         Map<String, Object> map = new HashMap<>(2);
         try {
             String filename = SystemUtils.getNotRepeatingFilename(Objects.requireNonNull(multipartFile.getOriginalFilename()));
             if (ftpService.upload(GlobalConstant.FTP_HEAD_IMG_DIRECTORY, filename, multipartFile.getInputStream())) {
                 // 获取当前登录用户的类型
-                String type = (String) session.getAttribute("role");
+                String username = SystemUtils.getUsernameFromSession(session, userId);
+                String type = (String) session.getAttribute(username + "-role");
                 // 修改用户图片的路径
-                updateImg(session, type, GlobalConstant.FTP_HEAD_IMG_DIRECTORY + filename);
+                updateImg(session, type, GlobalConstant.FTP_HEAD_IMG_DIRECTORY + filename, userId);
                 map.put("msg", "头像修改成功");
                 map.put("code", "200");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             map.put("msg", "头像修改失败");
             map.put("code", "0");
         }
@@ -227,12 +233,14 @@ public class UserApiController extends BaseController {
      * 找回密码
      *
      * @param password 新密码
+     * @param userId   用户id
      * @return json
      */
     @PostMapping("updatePassword")
-    public JsonResult<String> updatePassword(String password, String username, HttpSession session) {
+    public JsonResult<String> updatePassword(String password, String username, HttpSession session, String userId) {
+        System.out.println(userId);
         if (StringUtils.isEmpty(username)) {
-            username = (String)session.getAttribute(GlobalConstant.USERNAME);
+            username = SystemUtils.getUsernameFromSession(session, userId);
         }
         boolean result = false;
         if (adminService.isUsernameExist(username)) {
@@ -257,9 +265,22 @@ public class UserApiController extends BaseController {
             result = companyService.updatePasswordByUsername(companyForm, username);
         }
         if (result) {
-            return jsonResult("修密码成功");
+            return jsonResult("修改密码成功");
         }
         return jsonResult(GlobalConstant.FAILURE, "账号不存在");
+    }
+
+    /**
+     * 获取当点登录用户的昵称和角色
+     *
+     * @param session 会话
+     * @param userId  用户ID
+     * @return json
+     */
+    @GetMapping("getNickname")
+    public JsonResult<String> getNicknameAndRole(HttpSession session, String userId) {
+
+        return jsonResult(((Map<String, String>) session.getAttribute(userId)).get(GlobalConstant.USER_NICKNAME));
     }
 
     /**
@@ -268,41 +289,50 @@ public class UserApiController extends BaseController {
      * @param session  session
      * @param role     角色
      * @param username 用户名
+     * @return userId
      */
-    private void putUserToSession(HttpSession session, String role, String username) {
-        session.setAttribute("role", role);
+    private String putUserToSession(HttpSession session, String role, String username) {
+        String userId = "";
+        Map<String, String> sessionMap = new HashMap<>(5);
+        session.setAttribute(username + "-role", role);
         switch (role) {
             case "admin":
                 AdminForm adminForm = adminService.getByUsername(username);
-                session.setAttribute(GlobalConstant.USER_ID, adminForm.getAdminId());
-                session.setAttribute(GlobalConstant.USER_NICKNAME, adminForm.getNickname());
-                session.setAttribute(GlobalConstant.USER_IMAGE, adminForm.getImage());
-                session.setAttribute(GlobalConstant.USERNAME, adminForm.getUsername());
+                userId = adminForm.getAdminId();
+                sessionMap.put(GlobalConstant.USER_ID, adminForm.getAdminId());
+                sessionMap.put(GlobalConstant.USER_NICKNAME, adminForm.getNickname());
+                sessionMap.put(GlobalConstant.USER_IMAGE, adminForm.getImage());
+                sessionMap.put(GlobalConstant.USERNAME, adminForm.getUsername());
                 break;
             case "tutor":
                 TutorForm tutorForm = tutorService.getByUsername(username);
-                session.setAttribute(GlobalConstant.USER_ID, tutorForm.getTutorId());
-                session.setAttribute(GlobalConstant.USER_NICKNAME, tutorForm.getNickname());
-                session.setAttribute(GlobalConstant.USER_IMAGE, tutorForm.getImage());
-                session.setAttribute(GlobalConstant.USERNAME, tutorForm.getUsername());
+                userId = tutorForm.getTutorId();
+                sessionMap.put(GlobalConstant.USER_ID, tutorForm.getTutorId());
+                sessionMap.put(GlobalConstant.USER_NICKNAME, tutorForm.getNickname());
+                sessionMap.put(GlobalConstant.USER_IMAGE, tutorForm.getImage());
+                sessionMap.put(GlobalConstant.USERNAME, tutorForm.getUsername());
                 break;
             case "student":
                 StudentForm studentForm = studentService.getByUsername(username);
-                session.setAttribute(GlobalConstant.USER_ID, studentForm.getStuId());
-                session.setAttribute(GlobalConstant.USER_NICKNAME, studentForm.getNickname());
-                session.setAttribute(GlobalConstant.USER_IMAGE, studentForm.getImage());
-                session.setAttribute(GlobalConstant.USERNAME, studentForm.getUsername());
+                userId = studentForm.getStuId();
+                sessionMap.put(GlobalConstant.USER_ID, studentForm.getStuId());
+                sessionMap.put(GlobalConstant.USER_NICKNAME, studentForm.getNickname());
+                sessionMap.put(GlobalConstant.USER_IMAGE, studentForm.getImage());
+                sessionMap.put(GlobalConstant.USERNAME, studentForm.getUsername());
                 break;
             case "company":
                 CompanyForm companyForm = companyService.getByUsername(username);
-                session.setAttribute(GlobalConstant.USER_ID, companyForm.getComId());
-                session.setAttribute(GlobalConstant.USER_NICKNAME, companyForm.getComName());
-                session.setAttribute(GlobalConstant.USER_IMAGE, companyForm.getImage());
-                session.setAttribute(GlobalConstant.USERNAME, companyForm.getUsername());
+                userId = companyForm.getComId();
+                sessionMap.put(GlobalConstant.USER_ID, companyForm.getComId());
+                sessionMap.put(GlobalConstant.USER_NICKNAME, companyForm.getComName());
+                sessionMap.put(GlobalConstant.USER_IMAGE, companyForm.getImage());
+                sessionMap.put(GlobalConstant.USERNAME, companyForm.getUsername());
                 break;
             default:
                 break;
         }
+        session.setAttribute(userId, sessionMap);
+        return userId;
     }
 
     /**
@@ -311,11 +341,11 @@ public class UserApiController extends BaseController {
      * @param session 会话
      * @param type    用户类别
      * @param url     路径
+     * @param userId  用户id
      */
-    private void updateImg(HttpSession session, String type, String url) {
-        String userId = (String) session.getAttribute(GlobalConstant.USER_ID);
+    private void updateImg(HttpSession session, String type, String url, String userId) {
         // 修改session里的图片路劲
-        SystemUtils.reset(session, "", url);
+        SystemUtils.reset(session, "", url, userId);
         switch (type) {
             case "admin":
                 AdminForm adminForm = new AdminForm();

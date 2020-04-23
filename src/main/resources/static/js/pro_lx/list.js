@@ -3,12 +3,12 @@ layui.use('table', function () {
     var $ = layui.$;
     var _layer = layui.layer;
     // 初始化
-    tableRender(_table);
+    tableRender(_table, $);
     // 头工具栏事件监听
     _table.on('toolbar(pro-lx)', function (obj) {
         if (obj.event === "export") {
             // 数据导出
-            window.location.href = "/api/ps/export";
+            window.location.href = "/api/ps/export?userId=" + $("#userId").val();
         }
     });
     // 行工具栏事件监听
@@ -19,7 +19,7 @@ layui.use('table', function () {
             openConfirm($, _layer, _table, {"psId": obj.data.psId, "lxFlag": 0});
         } else if ("apply" === event) {
             // 打开申请页面
-            openApplyHtml(_layer, _table, obj.data.proId);
+            openApplyHtml(_layer, _table, $, obj.data.proId);
         } else if ("preview" === event) {
             // 文档预览
             wordPreview($, obj.data.proLocation, obj.data.wordName);
@@ -33,13 +33,13 @@ layui.use('table', function () {
 /**
  * 初始化表格
  */
-function tableRender(_table) {
+function tableRender(_table, $) {
     _table.render({
         elem: '#pro-lx',
         height: 570,
         toolbar: "#toolbar",
         defaultToolbar: [],
-        url: "/api/ps/list",
+        url: "/api/ps/list?userId=" + $("#userId").val(),
         page: true,
         cols: [[ // 表头
             {field: 'psId', title: '', align: "center", hide: 'true'},
@@ -47,7 +47,7 @@ function tableRender(_table) {
             {field: 'proLocation', title: '', align: "center", hide: 'true'},
             {field: 'stuName', title: '申请人', align: "center"},
             {field: 'proName', title: '项目名称', align: "center"},
-            {field: 'wordName', title: '项目文档', align: "center", event:"preview", templet: "#word"},
+            {field: 'wordName', title: '项目文档', align: "center", event: "preview", templet: "#word"},
             {field: 'paTutor', title: '审批导师', align: "center"},
             {field: 'paTime', title: '审批时间', align: "center"},
             {field: 'prTutor', title: '审核导师', align: "center"},
@@ -103,7 +103,7 @@ function openConfirm($, _layer, _table, data) {
  */
 function lx($, _layer, _table, data) {
     $.post(
-        "/api/ps/lx",
+        "/api/ps/lx?userId=" + $("#userId").val(),
         data,
         function (res) {
             msg(res.code, res.message, function () {
@@ -116,11 +116,11 @@ function lx($, _layer, _table, data) {
 /**
  * 弹出资金申请页面
  */
-function openApplyHtml(_layer, _table, proId) {
+function openApplyHtml(_layer, _table, $, proId) {
     _layer.open({
         type: 2,
         title: "项目资金申请",
-        content: '/ps/apply?proId=' + proId,
+        content: '/ps/apply?proId=' + proId + "&userId=" + $("#userId").val(),
         area: ['800px', '550px'],
         anim: 1,
         scrollbar: false,

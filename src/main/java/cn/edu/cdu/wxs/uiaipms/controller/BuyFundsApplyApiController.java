@@ -39,13 +39,13 @@ public class BuyFundsApplyApiController extends BaseController {
      * 新增
      *
      * @param form 表单
+     * @param userId 用户ID
      * @return json
      */
     @PostMapping("add")
-    public JsonResult<String> add(BuyFundsApplyForm form) {
+    public JsonResult<String> add(BuyFundsApplyForm form, String userId) {
         // 补充数据
         form.setBfaId(SystemUtils.getUuid());
-        String userId = "e7a185e5074741b385d3615d41a92038";
         form.setApplyUserId(userId);
         form.setCreateTime(LocalDateTime.now());
         form.setUpdateTime(LocalDateTime.now());
@@ -82,12 +82,12 @@ public class BuyFundsApplyApiController extends BaseController {
      * 审批
      *
      * @param form 表单
+     * @param userId 用户ID
      * @return json
      */
     @PostMapping("update")
-    public JsonResult<String> update(BuyFundsApplyForm form) {
-        String adminId = "883a51f8cae347048e45a785b8f87a0e";
-        form.setDealUserId(adminId);
+    public JsonResult<String> update(BuyFundsApplyForm form, String userId) {
+        form.setDealUserId(userId);
         if (service.modifyById(form)) {
             return jsonResult("审批成功");
         }

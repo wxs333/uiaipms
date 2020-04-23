@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -83,10 +84,13 @@ public class AdminWebController {
     /**
      * 基本资料
      *
+     * @param model  数据模型
+     * @param userId 用户ID
      * @return 视图
      */
     @GetMapping("info")
-    public String info() {
+    public String info(Model model, String userId) {
+        model.addAttribute("userId", userId);
         return "admin/info";
     }
 

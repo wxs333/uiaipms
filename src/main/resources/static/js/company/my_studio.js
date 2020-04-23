@@ -3,10 +3,10 @@ layui.use('table', function () {
     var $ = layui.$;
     var _layer = layui.layer;
     // 初始化
-    tableRender(_table);
+    tableRender(_table, $);
     // 表头工具栏监听
     _table.on('toolbar(my-studio)', function (obj) {
-        window.location.href = '/api/stud/export';
+        window.location.href = '/api/stud/export?userId=' + $("#userId").val();
     });
 
     // 行工具栏监听
@@ -29,13 +29,13 @@ layui.use('table', function () {
 /**
  * 初始化表格
  */
-function tableRender(_table) {
+function tableRender(_table, $) {
     _table.render({
         elem: '#my-studio',
         height: 500,
         toolbar: "#toolbar",
         defaultToolbar: [],
-        url: '/api/com/getAllStudio',
+        url: '/api/com/getAllStudio?userId=' + $("#userId").val(),
         page: true,
         cols: [[ // 表头
             {field: 'studId', title: 'id', align: "center", hide: 'true'},
@@ -46,7 +46,7 @@ function tableRender(_table) {
             {field: 'ban', title: '禁用', align: "center", templet: '#ban'},
             {field: 'updateTime', title: '更新时间', align: "center", templet: '#updateTime'},
             {field: 'createTime', title: '创建时间', align: "center", templet: '#createTime'},
-            {field: '', title: "操作", align: "center", minWidth: 320, toolbar: "#rowTool"}
+            {field: '', title: "操作", align: "center", minWidth: 330, toolbar: "#rowTool"}
         ]],
         limits: [10, 20, 30],
         parseData: function (res) { // 返回数据格式解析
@@ -98,7 +98,7 @@ function openPrompt(_layer, $, _table, value, studId) {
                 var icon = 'success' === res.code ? 1 : 2;
                 _layer.msg(res.message, {icon: icon, time: 1000, offset: '200px'}, function () {
                     // 从新渲染表格
-                    tableRender(_table);
+                    tableRender(_table, $);
                 })
             }
         );

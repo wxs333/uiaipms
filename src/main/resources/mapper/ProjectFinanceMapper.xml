@@ -49,6 +49,7 @@
             AND p.logic_delete_flag = 0
             AND t.logic_delete_flag = 0
             AND pf.deal = 0
+            AND pf.agree = 0
             ORDER BY pf.update_time DESC
     </select>
 

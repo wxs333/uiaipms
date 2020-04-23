@@ -190,14 +190,12 @@ public class AdminApiController extends BaseController {
     /**
      * 获取个人基本信息
      *
-     * @param session 会话
+     * @param userId 用户id
      * @return json
      */
     @GetMapping("info")
-    public JsonResult<AdminForm> info(HttpSession session) {
-        // 获取当前登录用户id
-        String id = SystemUtils.getUserId(session);
-        return jsonResult(service.getInfo(id));
+    public JsonResult<AdminForm> info(String userId) {
+        return jsonResult(service.getInfo(userId));
     }
 
     /**
@@ -205,15 +203,15 @@ public class AdminApiController extends BaseController {
      *
      * @param form    表单
      * @param session 会话
+     * @param userId  用户ID
      * @return json
      */
     @PostMapping("update")
-    public JsonResult<String> update(AdminForm form, HttpSession session) {
+    public JsonResult<String> update(AdminForm form, HttpSession session, String userId) {
         // 参数设置
         form.setUpdateTime(LocalDateTime.now());
-
         if (service.modifyById(form)) {
-            SystemUtils.reset(session, form.getNickname(), "");
+            SystemUtils.reset(session, form.getNickname(), "", userId);
             return jsonResult("修改成功");
         }
 

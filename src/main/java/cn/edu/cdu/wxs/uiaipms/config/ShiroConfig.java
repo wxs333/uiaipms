@@ -3,6 +3,7 @@ package cn.edu.cdu.wxs.uiaipms.config;
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import cn.edu.cdu.wxs.uiaipms.realm.UserRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -52,6 +53,7 @@ public class ShiroConfig {
     public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("userRealm") UserRealm realm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(realm);
+        securityManager.setCacheManager(ehCacheManager());
         return securityManager;
     }
 
@@ -90,4 +92,15 @@ public class ShiroConfig {
         return new ShiroDialect();
     }
 
+    /**
+     * shiro缓存管理器
+     *
+     * @return 缓存管理器
+     */
+    @Bean(name = "ehCacheManager")
+    public EhCacheManager ehCacheManager() {
+        EhCacheManager cacheManager = new EhCacheManager();
+        cacheManager.setCacheManagerConfigFile("classpath:config/ehcache-shiro.xml");
+        return cacheManager;
+    }
 }

@@ -1,18 +1,19 @@
 layui.use("table", function () {
     var _table = layui.table;
+    var $ = layui.$;
     // 初始化表格
-    init(_table);
+    init($, _table);
 });
 
 /**
  * 表格初始化
  */
-function init(_table) {
+function init($, _table) {
     _table.render({
         elem: '#personal',
         height: 440,
         defaultToolbar: [],
-        url: "/api/pr/personal",
+        url: "/api/pr/personal?userId=" + $("#userId").val(),
         page: true,
         cols: [[ // 表头
             {field: 'stuName', title: '申请人', align: "center"},

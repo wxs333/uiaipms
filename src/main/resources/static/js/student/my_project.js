@@ -3,7 +3,7 @@ layui.use(['table'], function () {
     var $ = layui.$;
     var _layer = layui.layer;
     // 初始化表格
-    tableRender(_table);
+    tableRender(_table, $);
     // 行工具栏监听
     _table.on('tool', function (obj) {
         console.log(obj.event);
@@ -11,7 +11,7 @@ layui.use(['table'], function () {
             // 文档预览
             wordPreview($, obj.data.proLocation, obj.data.wordName);
         } else if ("afresh" === obj.event) {
-            var url = "/stu/afresh?proId=" + obj.data.proId + "&proName=" + obj.data.proName + "&proDesc=" + obj.data.proDesc;
+            var url = "/stu/afresh?proId=" + obj.data.proId + "&proName=" + obj.data.proName + "&proDesc=" + obj.data.proDesc + "&userId=" + $("#userId").val();
             // 打开页面
             openHtml(_table, _layer, {"title": "项目重新申报", "url": url, "width": "1000px"})
         }
@@ -21,12 +21,12 @@ layui.use(['table'], function () {
 /**
  * 初始化表格
  */
-function tableRender(_table) {
+function tableRender(_table,$) {
     _table.render({
         elem: '#my-pro',
         height: 570,
         defaultToolbar: [],
-        url: '/api/pro/getPersonalPro', //数据接口
+        url: '/api/pro/getPersonalPro?userId=' + $("#userId").val(), //数据接口
         page: true, //开启分页
         limits: [10, 20, 30],
         cols: [[ // 表头

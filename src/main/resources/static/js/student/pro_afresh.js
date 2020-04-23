@@ -46,7 +46,7 @@ function wordUpload(_upload, $, _layer) {
  */
 function add($, _layer, data) {
     $.post(
-        '/api/pro/afresh',
+        '/api/pro/afresh?userId=' + $("#userId").val(),
         data,
         function (res) {
             var icon = res.code === 'success' ? 1 : 2;

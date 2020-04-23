@@ -9,7 +9,7 @@ layui.use("table", function () {
         var event = obj.event;
         if (event === "export") {
             window.location.href = "/api/bf/export";
-        }else if ("statistics" === event) {
+        } else if ("statistics" === event) {
             statistics(_layer);
         } else {
             // 修改标题
@@ -22,7 +22,7 @@ layui.use("table", function () {
     // 行工具监听
     _table.on("tool(sto-fin)", function (obj) {
         // 打开审批页面
-        openConfirmHtml(_layer, _table, obj);
+        openConfirmHtml(_layer, _table, $, obj);
     });
 });
 
@@ -102,11 +102,11 @@ function changeTitle($, event) {
 /**
  * 确认页面
  */
-function openConfirmHtml(_layer, _table, obj) {
+function openConfirmHtml(_layer, _table, $, obj) {
     _layer.open({
         type: 2,
         title: "采购资金申请审批",
-        content: "/bf/sp?bfaId=" + obj.data.bfaId + "&applyMount=" + obj.data.applyMount,
+        content: "/bf/sp?bfaId=" + obj.data.bfaId + "&applyMount=" + obj.data.applyMount + "&userId=" + $("#userId").val(),
         area: ['800px', '550px'],
         anim: 1,
         scrollbar: false,
@@ -122,6 +122,7 @@ function openConfirmHtml(_layer, _table, obj) {
         }
     });
 }
+
 /**
  * 统计页面
  */

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>项目审核</title>
@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/static/css/common.css"/>
 </head>
 <body>
+<input type="hidden" th:value="${userId}" id="userId">
 <div class="layui-card">
     <div class="layui-card-body">
         <table class="layui-table" id="pro-sh" lay-filter="pro-sh"></table>

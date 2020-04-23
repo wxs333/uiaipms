@@ -30,30 +30,28 @@ public class ProjectApprovalApiController extends BaseController {
     /**
      * 分页查询某个导师已审批的项目
      *
-     * @param page 分页
+     * @param page   分页
+     * @param userId 用户ID
      * @return json
      */
     @GetMapping("getPersonal")
-    public JsonResult<IPage<ProjectApprovalForm>> getPersonal(Page<ProjectApprovalForm> page) {
-        // 获取当前登录导师的ID
-        String tutorId = "66c38cfebcac46649d071058f2eb7fd1";
-        return jsonResult("0", service.getByTutorId(page, tutorId));
+    public JsonResult<IPage<ProjectApprovalForm>> getPersonal(Page<ProjectApprovalForm> page, String userId) {
+        return jsonResult("0", service.getByTutorId(page, userId));
     }
 
 
     /**
      * 修改
      *
-     * @param form 表单
+     * @param form   表单
+     * @param userId 用户ID
      * @return json
      */
     @PostMapping("update")
-    public JsonResult<String> update(ProjectApprovalForm form) {
-        // 获取当前登录导师的ID
-        String tutorId = "66c38cfebcac46649d071058f2eb7fd1";
+    public JsonResult<String> update(ProjectApprovalForm form, String userId) {
         // 参数设置
         form.setUpdateTime(LocalDateTime.now());
-        form.setTutorId(tutorId);
+        form.setTutorId(userId);
         if (service.modifyById(form)) {
             return jsonResult("审批成功");
         }

@@ -32,7 +32,7 @@ function tableRender(_table) {
             {field: 'goodsModel', title: '型号', align: "center"},
             {field: 'applyNum', title: '数量', align: "center"},
             {field: 'createTime', title: '申请时间', align: "center"},
-            {field: '', title: '操作', align: "center", templet: '#option'}
+            {field: '', title: '操作', align: "center", minWidth: 180, templet: '#option'}
         ]],
         parseData: function (res) { // 返回数据格式解析
             return {
@@ -85,11 +85,11 @@ function openConfirm(_layer, $, _table, event, data) {
  */
 function doApply($, _layer, _table, data) {
     $.post(
-        '/api/out/agree',
+        '/api/out/agree?userId=' + $("#userId").val(),
         data,
         function (res) {
             var icon = res.code === 'success' ? 1 : 2;
-            _layer.msg(res.message, {time: 1500, icon: icon, offset: '200px'},
+            _layer.msg(res.message, {time: 1500, icon: icon},
                 function () {
                     // 重载表格
                     reloadTable(_table);

@@ -33,7 +33,7 @@ function initSelect($, _form) {
  */
 function add($, data) {
     $.post(
-        "/api/sa/add",
+        "/api/sa/add?userId=" + $("#userId").val(),
         data,
         function (res) {
             msg(res.code, res.message, function () {

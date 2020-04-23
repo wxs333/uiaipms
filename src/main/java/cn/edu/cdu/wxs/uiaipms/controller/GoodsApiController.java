@@ -47,12 +47,12 @@ public class GoodsApiController extends BaseController {
      * 入库
      *
      * @param form 表单
+     * @param userId 用户ID
      * @return json
      */
     @PostMapping("add")
-    public JsonResult<String> add(GoodsForm form) {
-        String adminId = "e7a185e5074741b385d3615d41a92038";
-        if (service.add(form, adminId)) {
+    public JsonResult<String> add(GoodsForm form, String userId) {
+        if (service.add(form, userId)) {
             return jsonResult("入库成功");
         }
         return jsonResult(GlobalConstant.FAILURE, "发生错误，请与系统管理员联系");

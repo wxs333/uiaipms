@@ -36,13 +36,17 @@ public class UserRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        // 开启授权缓存
+        setAuthorizationCachingEnabled(true);
+        setAuthorizationCacheName("authorizationCache");
+
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         // 获取当前登录用户
         Subject currentUser = SecurityUtils.getSubject();
         // 获取用户名
         String username = (String) currentUser.getPrincipal();
         // 获取登录角色
-        String role = (String) currentUser.getSession().getAttribute("role");
+        String role = (String) currentUser.getSession().getAttribute(username + "-role");
         // 获取所有角色
         Set<String> roles = roleService.getRoleByUsername(role, username);
         info.setRoles(roles);
@@ -65,7 +69,7 @@ public class UserRealm extends AuthorizingRealm {
             throw new AccountUnavailableException();
         }
 
-        return new SimpleAuthenticationInfo(strs[0], from.getPassword(), ByteSource.Util.bytes(strs[0]), getName());
+        return new SimpleAuthenticationInfo(strs[0], from.getPassword(), ByteSource.Util.bytes(strs[0]), getName() + strs[0]);
     }
 
     /**

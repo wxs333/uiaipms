@@ -15,7 +15,7 @@ layui.use("form", function () {
  */
 function update($, _layer, data) {
     $.post(
-        "/api/pr/update",
+        "/api/pr/update?userId="+ $("#userId").val(),
         data,
         function (res) {
             msg(res.code, res.message, function () {

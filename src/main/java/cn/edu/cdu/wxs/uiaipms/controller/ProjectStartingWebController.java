@@ -2,6 +2,7 @@ package cn.edu.cdu.wxs.uiaipms.controller;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,23 +28,28 @@ public class ProjectStartingWebController {
     /**
      * 列表
      *
+     * @param model  数据模型
+     * @param userId 用户ID
      * @return 视图
      */
     @GetMapping("list")
-    public String list() {
+    public String list(Model model, String userId) {
+        model.addAttribute("userId", userId);
         return PREFIX + "list";
     }
 
     /**
      * 资金申请
      *
-     * @param proId 项目id
+     * @param proId  项目id
+     * @param userId 用户ID
      * @return 视图
      */
     @GetMapping("apply")
-    public ModelAndView apply(@NotNull String proId) {
+    public ModelAndView apply(@NotNull String proId, String userId) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("proId", proId);
+        modelAndView.addObject("userId", userId);
         modelAndView.setViewName(PREFIX + "apply");
         return modelAndView;
     }

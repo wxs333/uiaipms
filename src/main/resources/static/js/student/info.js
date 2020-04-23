@@ -17,11 +17,11 @@ layui.use(['form', 'layer'], function () {
  */
 function update($, _layer, data) {
     $.post(
-        '/api/stu/update',
+        '/api/stu/update?userId=' + $("#userId").val(),
         data,
         function (res) {
             var icon = res.code === 'success' ? 1 : 2;
-            layer.msg(res.message, {icon: icon},function () {
+            layer.msg(res.message, {icon: icon}, function () {
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
             });
@@ -34,7 +34,7 @@ function update($, _layer, data) {
  */
 function initForm($, _form) {
     $.get(
-        '/api/stu/info',
+        '/api/stu/info?userId=' + $("#userId").val(),
         {},
         function (res) {
             _form.val('info', res.data);

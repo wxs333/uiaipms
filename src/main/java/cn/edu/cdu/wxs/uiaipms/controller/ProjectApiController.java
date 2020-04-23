@@ -41,16 +41,17 @@ public class ProjectApiController extends BaseController {
     /**
      * 项目申报
      *
-     * @param form 表单数据
+     * @param form   表单数据
+     * @param userId 用户ID
      * @return json
      */
     @PostMapping("add")
-    public JsonResult<String> add(ProjectForm form) {
+    public JsonResult<String> add(ProjectForm form, String userId) {
         // 设置参数
         LocalDateTime dateTime = LocalDateTime.now();
         form.setUpdateTime(dateTime);
         form.setCreateTime(dateTime);
-        form.setStuId("fb832302c2484467afaf1d01715ee2c4");
+        form.setStuId(userId);
         form.setProId(SystemUtils.getUuid());
         // 新增
         return projectService.add(form) ? jsonResult("申报成功，等待导师审批") : jsonResult("发生错误，申报失败");
@@ -59,14 +60,13 @@ public class ProjectApiController extends BaseController {
     /**
      * 分页获取某个学院为审批的项目
      *
-     * @param page 分页
+     * @param page   分页
+     * @param userId 用户ID
      * @return json
      */
     @GetMapping("listNoDeal")
-    public JsonResult<IPage<ProjectForm>> listNoDeal(Page<ProjectForm> page) {
-        // 获取当前导师的学院id
-        String tutorId = "66c38cfebcac46649d071058f2eb7fd1";
-        String facId = tutorService.getFacIdById(tutorId);
+    public JsonResult<IPage<ProjectForm>> listNoDeal(Page<ProjectForm> page, String userId) {
+        String facId = tutorService.getFacIdById(userId);
 
         return jsonResult("0", projectService.getByFacId(page, facId));
     }
@@ -99,31 +99,31 @@ public class ProjectApiController extends BaseController {
     /**
      * 分页获取某个学生申报的项目
      *
-     * @param page 分页
+     * @param page   分页
+     * @param userId 用户ID
      * @return json
      */
     @GetMapping("getPersonalPro")
-    public JsonResult<IPage<ProjectForm>> getPersonalPro(Page<ProjectForm> page) {
-        // 当前登录的学生id
-        String stuId = "fb832302c2484467afaf1d01715ee2c4";
-
-        return jsonResult("0", projectService.getByStuId(page, stuId));
+    public JsonResult<IPage<ProjectForm>> getPersonalPro(Page<ProjectForm> page, String userId) {
+        return jsonResult("0", projectService.getByStuId(page, userId));
     }
 
 
     /**
      * 项目重新申报
      *
-     * @param form 表单
+     * @param form     表单
+     * @param oldProId 需要重新申报项目的id
+     * @param userId   用户ID
      * @return json
      */
     @PostMapping("afresh")
-    public JsonResult<String> afresh(ProjectForm form, String oldProId) {
+    public JsonResult<String> afresh(ProjectForm form, String oldProId, String userId) {
         // 参数设置
         form.setProId(SystemUtils.getUuid());
         form.setCreateTime(LocalDateTime.now());
         form.setUpdateTime(LocalDateTime.now());
-        form.setStuId("fb832302c2484467afaf1d01715ee2c4");
+        form.setStuId(userId);
 
         return projectService.afresh(form, oldProId) ? jsonResult("重新申报成功，等待导师审批") : jsonResult("发生错误，重新申报失败");
     }

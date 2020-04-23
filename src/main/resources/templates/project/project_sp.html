@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>项目审批列表</title>
@@ -13,6 +13,7 @@
     </style>
 </head>
 <body>
+<input type="hidden" id="userId" th:value="${userId}">
 <div class="layui-card-body">
     <div class="layui-tab layui-tab-brief" lay-filter="sp">
         <div class="layui-tab-title">

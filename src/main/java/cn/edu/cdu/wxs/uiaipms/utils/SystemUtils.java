@@ -88,13 +88,24 @@ public class SystemUtils {
     }
 
     /**
-     * 获取当前登录用户的id
+     * 获取当前登录用户的用户名
      *
      * @param session 会话
      * @return id
      */
-    public static String getUserId(HttpSession session) {
-        return (String) session.getAttribute(GlobalConstant.USER_ID);
+    public static String getUsernameFromSession(HttpSession session, String userId) {
+
+        return ((Map<String, String>) session.getAttribute(userId)).get(GlobalConstant.USERNAME);
+    }
+    /**
+     * 获取当前登录用户的用户名
+     *
+     * @param session 会话
+     * @return id
+     */
+    public static String getImageFromSession(HttpSession session, String userId) {
+
+        return ((Map<String, String>) session.getAttribute(userId)).get(GlobalConstant.USER_IMAGE);
     }
 
     /**
@@ -143,6 +154,7 @@ public class SystemUtils {
 
     /**
      * 将日期字符串转换成日起对象
+     *
      * @param date 日期字符串
      * @return 日起对象
      */
@@ -153,16 +165,18 @@ public class SystemUtils {
 
     /**
      * 重设session里的昵称、头像
-     * @param session 会话
+     *
+     * @param session  会话
      * @param nickname 昵称
-     * @param image 头像地址
+     * @param image    头像地址
+     * @param userId 用户id
      */
-    public static void reset(HttpSession session, String nickname, String image) {
+    public static void reset(HttpSession session, String nickname, String image, String userId) {
         if (!StringUtils.isEmpty(nickname)) {
-            session.setAttribute(GlobalConstant.USER_NICKNAME, nickname);
+            ((Map<String, String>)session.getAttribute(userId)).put(GlobalConstant.USER_NICKNAME, nickname);
         }
         if (!StringUtils.isEmpty(image)) {
-            session.setAttribute(GlobalConstant.USER_IMAGE, image);
+            ((Map<String, String>)session.getAttribute(userId)).put(GlobalConstant.USER_IMAGE, image);
         }
     }
 

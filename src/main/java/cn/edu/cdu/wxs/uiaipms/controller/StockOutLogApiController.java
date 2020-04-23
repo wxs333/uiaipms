@@ -76,14 +76,13 @@ public class StockOutLogApiController extends BaseController {
      * 审批
      *
      * @param form 表单
+     * @param userId 用户ID
      * @return json
      */
     @PostMapping("agree")
-    public JsonResult<String> agree(StockOutLogForm form) {
-        // 获取session里的用户ID
-        String adminId = "e7a185e5074741b385d3615d41a92038";
+    public JsonResult<String> agree(StockOutLogForm form, String userId) {
         form.setUpdateTime(LocalDateTime.now());
-        form.setAdminId(adminId);
+        form.setAdminId(userId);
         if (service.modifyById(form)) {
             return jsonResult("审批成功");
         }

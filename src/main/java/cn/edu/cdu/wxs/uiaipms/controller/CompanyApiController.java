@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -86,26 +85,26 @@ public class CompanyApiController extends BaseController {
     /**
      * 分页获取当前登录企业用户所有的工作室
      *
-     * @param page 分页
+     * @param page   分页
+     * @param userId 用户ID
      * @return json
      */
     @GetMapping("getAllStudio")
-    public JsonResult<IPage<StudioForm>> getAllStudio(Page<StudioForm> page) {
-        // 获取当前登录企业用户的ID
-        String comId = "19ccb469b89b4c59a7ff1ad559f9b53a";
-        return jsonResult("0", studioService.getAllByComId(page, comId));
+    public JsonResult<IPage<StudioForm>> getAllStudio(Page<StudioForm> page, String userId) {
+        return jsonResult("0", studioService.getAllByComId(page, userId));
     }
+
     /**
      * 获取基本信息
      *
-     * @param session 会话
+     * @param userId 会话
      * @return json
      */
     @GetMapping("info")
-    public JsonResult<CompanyForm> info(HttpSession session) {
-        String id = SystemUtils.getUserId(session);
-        return jsonResult(service.getOne(id));
+    public JsonResult<CompanyForm> info(String userId) {
+        return jsonResult(service.getOne(userId));
     }
+
 
     /**
      * 入驻申请文档上传

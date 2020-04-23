@@ -17,7 +17,7 @@ layui.use('table', function () {
     _table.on("toolbar(pro-sh)", function (obj) {
         if ("personal" === obj.event) {
             // 弹出记录显示页面
-            openHistory(_layer);
+            openHistory($, _layer);
         }
     });
 
@@ -80,7 +80,7 @@ function openReason(_layer, _table, obj) {
     _layer.open({
         type: 2,
         title: "项目审核",
-        content: '/pr/sh?prId=' + obj.data.prId + "&proName=" + obj.data.proName,
+        content: '/pr/sh?prId=' + obj.data.prId + "&proName=" + obj.data.proName + "&userId=" + $("#userId").val(),
         area: ['800px', '550px'],
         anim: 1,
         scrollbar: false,
@@ -95,11 +95,11 @@ function openReason(_layer, _table, obj) {
 /**
  * 历史记录页面
  */
-function openHistory(_layer) {
+function openHistory($, _layer) {
     _layer.open({
         type: 2,
         title: "个人审核记录",
-        content: "/pr/history",
+        content: "/pr/history?userId=" + $("#userId").val(),
         area: ['1200px', '550px'],
         anim: 1,
         scrollbar: false,

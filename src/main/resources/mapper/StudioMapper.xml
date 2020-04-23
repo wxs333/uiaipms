@@ -52,6 +52,7 @@
     <update id="updateComIdIsNullById">
         UPDATE studio
         SET com_id = NULL,
+        stud_num = 0,
         update_time = NOW()
         WHERE stud_id = #{id}
     </update>

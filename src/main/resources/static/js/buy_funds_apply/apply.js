@@ -14,7 +14,7 @@ layui.use("form", function () {
  */
 function add(_layer, $, data) {
     $.post(
-        "/api/bf/add",
+        "/api/bf/add?userId=" + $("#userId").val(),
         data,
         function (res) {
             var icon = res.code === "success" ? 1 : 2;

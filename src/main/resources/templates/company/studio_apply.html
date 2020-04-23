@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>工作室申请</title>
@@ -12,6 +12,7 @@
     </style>
 </head>
 <body>
+<input type="hidden" id="userId" th:value="${userId}">
 <div class="layui-card">
     <div class="layui-card-body">
         <form class="layui-form">

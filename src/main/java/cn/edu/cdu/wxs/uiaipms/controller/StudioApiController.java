@@ -121,13 +121,12 @@ public class StudioApiController extends BaseController {
      * 导出企业的工作室信息
      *
      * @param response 响应
+     * @param userId 用户ID
      */
     @GetMapping("export")
-    public void export(HttpServletResponse response) {
-        // 获取当前登录企业用户的ID
-        String comId = "19ccb469b89b4c59a7ff1ad559f9b53a";
+    public void export(HttpServletResponse response, String userId) {
         // 获取数据
-        List<StudioForm> list = studioService.getList(comId);
+        List<StudioForm> list = studioService.getList(userId);
         // 数据导出
         excelService.export("工作室", "我的工作室", list, StudioForm.class, response);
     }

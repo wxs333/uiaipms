@@ -54,15 +54,16 @@ public class TutorApiController extends BaseController {
     /**
      * 修改信息
      *
-     * @param form 信息
+     * @param form    信息
      * @param session 会话
+     * @param userId 用户ID
      * @return json
      */
     @PostMapping("update")
-    public JsonResult<String> update(TutorForm form, HttpSession session) {
+    public JsonResult<String> update(TutorForm form, HttpSession session, String userId) {
         form.setUpdateTime(LocalDateTime.now());
         if (tutorService.update(form)) {
-            SystemUtils.reset(session, form.getNickname(), "");
+            SystemUtils.reset(session, form.getNickname(), "", userId);
             return jsonResult("修改成功");
         }
         return jsonResult(GlobalConstant.FAILURE, "修改失败");
@@ -82,12 +83,11 @@ public class TutorApiController extends BaseController {
     /**
      * 获取基本资料
      *
-     * @param session 会话
+     * @param userId 用户id
      * @return json
      */
     @GetMapping("info")
-    public JsonResult<TutorForm> info(HttpSession session) {
-        String id = SystemUtils.getUserId(session);
-        return jsonResult(tutorService.getInfo(id));
+    public JsonResult<TutorForm> info(String userId) {
+        return jsonResult(tutorService.getInfo(userId));
     }
 }

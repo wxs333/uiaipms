@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>修改头像</title>
@@ -29,9 +29,10 @@
 </head>
 <body>
 <div>
+    <input type="hidden" id="userId" th:value="${userId}">
     <div class="layui-upload">
         <div class="layui-upload-list">
-            <img class="layui-upload-img" id="img" src="/api/user/headImg">
+            <img class="layui-upload-img" id="img" src="">
         </div>
         <button type="button" class="layui-btn layui-btn-normal" id="upload">
             <i class="layui-icon layui-icon-upload"></i>选择头像

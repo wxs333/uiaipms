@@ -38,16 +38,16 @@ public class ProjectFinanceApiController extends BaseController {
     /**
      * 新增
      *
-     * @param form 表单
+     * @param form   表单
+     * @param userId 用户ID
      * @return json
      */
     @PostMapping("add")
-    public JsonResult<String> add(ProjectFinanceForm form) {
+    public JsonResult<String> add(ProjectFinanceForm form, String userId) {
         // 参数设置
         form.setPfId(SystemUtils.getUuid());
         form.setCreateTime(LocalDateTime.now());
-        String tutorId = "e80f275768a24d9e855bf5595a6e1f33";
-        form.setUserId(tutorId);
+        form.setUserId(userId);
 
         if (service.add(form)) {
             return jsonResult("申请发送成功，请等待管理员审批");
@@ -80,14 +80,14 @@ public class ProjectFinanceApiController extends BaseController {
     /**
      * 更新
      *
-     * @param form 表单
+     * @param form   表单
+     * @param userId 用户ID
      * @return json
      */
     @PostMapping("update")
-    public JsonResult<String> update(ProjectFinanceForm form) {
+    public JsonResult<String> update(ProjectFinanceForm form, String userId) {
         form.setUpdateTime(LocalDateTime.now());
-        String adminId = "1447df502e6b4a5fa2b148be4bf03ec4";
-        form.setAdminId(adminId);
+        form.setAdminId(userId);
 
         if (service.modifyById(form)) {
             return jsonResult("审批成功");

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 
 /**
@@ -32,13 +31,13 @@ public class StudioApplyApiController extends BaseController {
     /**
      * 新增
      *
-     * @param form    表单
-     * @param session 会话
+     * @param form   表单
+     * @param userId 用户ID
      * @return json
      */
     @PostMapping("add")
-    public JsonResult<String> add(StudioApplyForm form, HttpSession session) {
-        form.setApplyComId((String) session.getAttribute(GlobalConstant.USER_ID));
+    public JsonResult<String> add(StudioApplyForm form, String userId) {
+        form.setApplyComId(userId);
         form.setCreateTime(LocalDateTime.now());
         form.setSaId(SystemUtils.getUuid());
 
@@ -57,17 +56,19 @@ public class StudioApplyApiController extends BaseController {
      */
     @GetMapping("list")
     public JsonResult<IPage<StudioApplyForm>> list(Page<StudioApplyForm> page) {
-        return jsonResult("0",service.getByPage(page));
+        return jsonResult("0", service.getByPage(page));
     }
 
     /**
      * 审批
+     *
      * @param form 表单
+     * @param userId 用户ID
      * @return json
      */
     @PostMapping("sp")
-    public JsonResult<String> sp(StudioApplyForm form, HttpSession session) {
-        form.setDealUserId((String)session.getAttribute(GlobalConstant.USER_ID));
+    public JsonResult<String> sp(StudioApplyForm form, String userId) {
+        form.setDealUserId(userId);
 
         if (service.applyApproval(form)) {
             return jsonResult("审批成功");

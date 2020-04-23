@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,10 +18,14 @@ public class UserWebController {
     /**
      * 主页
      *
+     * @param model  数据模型
+     * @param userId 用户id
      * @return 视图
      */
     @GetMapping("home")
-    public String home() {
+    public String home(Model model, String userId, String role) {
+        model.addAttribute("userId", userId);
+        model.addAttribute("role", role);
         return "home/home";
     }
 
@@ -53,6 +58,7 @@ public class UserWebController {
     public String stuRegister() {
         return "register/stu_register";
     }
+
     /**
      * 学生注册页面
      *
@@ -69,7 +75,8 @@ public class UserWebController {
      * @return 视图
      */
     @GetMapping("img")
-    public String img() {
+    public String img(String userId, Model model) {
+        model.addAttribute("userId", userId);
         return "user/img";
     }
 
@@ -86,10 +93,13 @@ public class UserWebController {
     /**
      * 修改密码
      *
+     * @param userId 用户id
+     * @param model  数据模型
      * @return 视图
      */
     @GetMapping("password")
-    public String password() {
+    public String password(Model model, String userId) {
+        model.addAttribute("userId", userId);
         return "user/update_password";
     }
 

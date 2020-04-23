@@ -34,7 +34,8 @@ function login($, _layer, data) {
             var icon = result.code === 'success' ? 1 : 2;
             _layer.msg(result.message, {time: 1500, icon: icon}, function () {
                 if (result.code === "success") {
-                    window.location.href = "/user/home";
+                    var data = result.data.split("-");
+                    window.location.href = "/user/home?userId=" + data[0] + "&role=" + data[1];
                 } else {
                     doChange($);
                 }
@@ -49,7 +50,6 @@ function login($, _layer, data) {
  */
 function changeCode($) {
     $("#changeCode").click(function () {
-        console.log("sssssss");
         doChange($);
     });
 }

@@ -24,11 +24,13 @@ public class StudioWebController {
     /**
      * 工作室管理主页
      *
+     * @param userId 用户ID
      * @return 视图
      */
     @GetMapping("list")
-    public ModelAndView list() {
+    public ModelAndView list(String userId) {
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("userId", userId);
         modelAndView.setViewName(PREFIX + "studio");
         return modelAndView;
     }

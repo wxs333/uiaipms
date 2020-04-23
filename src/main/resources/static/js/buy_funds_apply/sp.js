@@ -16,7 +16,7 @@ layui.use("form", function () {
  */
 function updateProjectFinance($, _layer, data) {
     $.post(
-        "/api/bf/update",
+        "/api/bf/update?userId=" + $("#userId").val(),
         data,
         function (res) {
             var icon = res.code === 'success' ? 1 : 2;

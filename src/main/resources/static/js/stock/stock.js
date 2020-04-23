@@ -15,7 +15,7 @@ layui.use(['table'], function () {
             tableRender(_table, event);
         } else {
             // 打开相应页面
-            openHtml(_table, _layer, event);
+            openHtml(_table, _layer, $, event);
         }
 
     });
@@ -85,12 +85,13 @@ function getColsAndUrl(event) {
 /**
  * 打开页面
  */
-function openHtml(_table, _layer, event) {
+function openHtml(_table, _layer, $, event) {
     var d = {};
+    var userId = $("#userId").val();
     if ('into' === event) {
-        d = {'title': '物品入库', 'content': '/sto/into', 'width': '800px'};
+        d = {'title': '物品入库', 'content': '/sto/into?userId=' + userId, 'width': '800px'};
     } else if ('out' === event) {
-        d = {'title': '出库审批', 'content': '/sto/out_list', 'width': '1200px'};
+        d = {'title': '出库审批', 'content': '/sto/out_list?userId=' + userId, 'width': '1200px'};
     } else if ('apply' === event) {
         d = {'title': '采购资金申请', 'content': '/sto/applyList', 'width': '1200px'};
     } else if ("statistics" === event) {

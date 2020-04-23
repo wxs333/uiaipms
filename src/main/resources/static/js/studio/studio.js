@@ -7,13 +7,13 @@ layui.use(['table'], function () {
     // 表头工具栏监听
     _table.on('toolbar(table)', function (obj) {
         // 打开页面
-        openHtml(_table, _layer, obj.event, null);
+        openHtml(_table, _layer, $, obj.event, null);
     });
     // 行工具栏监听
     _table.on('tool(table)', function (data) {
         if (data.event === 'edit') {
             // 打开修改页面
-            openHtml(_table, _layer, data.event, data.data.studId);
+            openHtml(_table, _layer, $, data.event, data.data.studId);
         } else {
             // 弹出提示框
             var content = data.event === 'ban' ? '禁用' : '启用';
@@ -70,7 +70,7 @@ function tableRender(_table) {
 /**
  * 打开页面
  */
-function openHtml(_table, _layer, event, id) {
+function openHtml(_table, _layer, $, event, id) {
     var d = {};
     if ('add' === event) {
         d = {'title': '新增工作室', 'content': '/stud/add', 'id': '', "width": "800px"};
@@ -79,7 +79,7 @@ function openHtml(_table, _layer, event, id) {
         d = {'title': '修改工作室', 'content': '/stud/update', 'id': id, "width": "800px"};
         doOpen(_table, _layer, d, "true");
     } else if ("sp" === event) {
-        d = {'title': '工作室申请审批', 'content': '/sa/list', 'id': "", "width": "1200px"};
+        d = {'title': '工作室申请审批', 'content': '/sa/list?userId=' + $("#userId").val(), 'id': "", "width": "1200px"};
         doOpen(_table, _layer, d, "false");
     } else if ("revoke" === event) {
         d = {'title': '工作室回收', 'content': '/stud/revoke', 'id': "", "width": "1200px"};

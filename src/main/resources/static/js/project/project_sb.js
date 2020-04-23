@@ -26,7 +26,7 @@ function wordUpload(_upload, $, _layer) {
         exts: 'doc|docx',
         multiple: true,
         choose: function (obj) {
-            obj.preview(function (index, file, result) {
+            obj.preview(function (index, file) {
                 $("#wordName").text("已选择：" + file.name);
             });
         },
@@ -46,7 +46,7 @@ function wordUpload(_upload, $, _layer) {
  */
 function add($, _layer, data) {
     $.post(
-        '/api/pro/add',
+        '/api/pro/add?userId=' + $("#userId").val(),
         data,
         function (res) {
             var icon = res.code === 'success' ? 1 : 2;

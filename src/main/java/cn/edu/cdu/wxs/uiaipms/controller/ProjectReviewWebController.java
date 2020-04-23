@@ -2,6 +2,7 @@ package cn.edu.cdu.wxs.uiaipms.controller;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,10 +28,13 @@ public class ProjectReviewWebController {
     /**
      * 列表
      *
+     * @param model  数据模型
+     * @param userId 用户id
      * @return 视图
      */
     @GetMapping("list")
-    public String list() {
+    public String list(Model model, String userId) {
+        model.addAttribute("userId", userId);
         return PREFIX + "list";
     }
 
@@ -42,21 +46,24 @@ public class ProjectReviewWebController {
      * @return 视图
      */
     @GetMapping("sh")
-    public ModelAndView sh(@NotNull String prId, @NotNull String proName) {
+    public ModelAndView sh(@NotNull String prId, @NotNull String proName, String userId) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("prId", prId);
         modelAndView.addObject("proName", proName);
+        modelAndView.addObject("userId", userId);
         modelAndView.setViewName(PREFIX + "sh");
         return modelAndView;
     }
 
     /**
      * 个人审核历史记录
-     *
+     * @param model  数据模型
+     * @param userId 用户id
      * @return 视图
      */
     @GetMapping("history")
-    public String history() {
+    public String history(Model model, String userId) {
+        model.addAttribute("userId", userId);
         return PREFIX + "history";
     }
 

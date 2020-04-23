@@ -39,14 +39,13 @@ public class ProjectStartingApiController extends BaseController {
      * 列表
      *
      * @param page 分页
+     * @param userId 用户ID
      * @return json
      */
     @GetMapping("list")
-    public JsonResult<IPage<ProjectStartingForm>> list(Page<ProjectStartingForm> page) {
-        // 当前登录导师的id
-        String id = "e80f275768a24d9e855bf5595a6e1f33";
+    public JsonResult<IPage<ProjectStartingForm>> list(Page<ProjectStartingForm> page, String userId) {
         // 获取导师的学院id
-        String facId = tutorService.getFacIdById(id);
+        String facId = tutorService.getFacIdById(userId);
 
         return jsonResult("0", service.getByFacId(page, facId));
     }
@@ -58,11 +57,9 @@ public class ProjectStartingApiController extends BaseController {
      * @return json
      */
     @PostMapping("lx")
-    public JsonResult<String> lx(ProjectStartingForm form) {
-        // 当前登录导师的id
-        String id = "66c38cfebcac46649d071058f2eb7fd1";
+    public JsonResult<String> lx(ProjectStartingForm form, String userId) {
         // 参数设置
-        form.setTutorId(id);
+        form.setTutorId(userId);
         form.setUpdateTime(LocalDateTime.now());
 
         if (service.modifyById(form)) {
@@ -74,13 +71,12 @@ public class ProjectStartingApiController extends BaseController {
     /**
      * 数据导出
      * @param response 响应
+     * @param userId 用户ID
      */
     @GetMapping("export")
-    public void export(HttpServletResponse response) {
-        // 当前登录导师的id
-        String id = "e80f275768a24d9e855bf5595a6e1f33";
+    public void export(HttpServletResponse response, String userId) {
         // 获取导师的学院id
-        String facId = tutorService.getFacIdById(id);
+        String facId = tutorService.getFacIdById(userId);
         // 获取数据
         List<ProjectStartingForm> data = service.getExportData(facId);
         // 导出

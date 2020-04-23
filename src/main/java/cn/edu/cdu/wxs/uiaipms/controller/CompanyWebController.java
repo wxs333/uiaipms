@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,10 +36,13 @@ public class CompanyWebController {
     /**
      * 我管理的工作室
      *
+     * @param model  数据模型
+     * @param userId 用户id
      * @return 视图
      */
     @RequestMapping("myStudio")
-    public String myStudio() {
+    public String myStudio(Model model, String userId) {
+        model.addAttribute("userId", userId);
         return PREFIX + "my_studio";
     }
 
@@ -72,20 +76,26 @@ public class CompanyWebController {
     /**
      * 基本资料
      *
+     * @param model  数据模型
+     * @param userId 用户id
      * @return 视图
      */
     @GetMapping("info")
-    public String info() {
+    public String info(Model model, String userId) {
+        model.addAttribute("userId", userId);
         return PREFIX + "info";
     }
 
     /**
      * 工作室申请
      *
+     * @param model  数据模型
+     * @param userId 用户id
      * @return 视图
      */
     @GetMapping("studioApply")
-    public String studioApply() {
+    public String studioApply(Model model, String userId) {
+        model.addAttribute("userId", userId);
         return PREFIX + "studio_apply";
     }
 }

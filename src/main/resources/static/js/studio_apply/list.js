@@ -8,7 +8,7 @@ layui.use(['table'], function () {
     _table.on('tool(list)', function (obj) {
         if (obj.event === 'sp') {
             // 打开修改页面
-            openHtml(_table, _layer, obj.data.saId, obj.data.comId, obj.data.studId);
+            openHtml(_table, _layer, $, obj.data.saId, obj.data.comId, obj.data.studId);
         }
     })
 });
@@ -53,11 +53,11 @@ function tableRender(_table) {
 /**
  * 打开页面
  */
-function openHtml(_table, _layer, id, comId, studId) {
+function openHtml(_table, _layer, $, id, comId, studId) {
     _layer.open({
         type: 2,
         title: "工作室申请审批",
-        content: "/sa/sp?id=" + id + "&comId=" + comId + "&studId=" + studId,
+        content: "/sa/sp?id=" + id + "&comId=" + comId + "&studId=" + studId + "&userId=" + $("#userId").val(),
         area: ['800px', '450px'],
         anim: 1,
         scrollbar: false,

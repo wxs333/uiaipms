@@ -6,7 +6,7 @@ layui.use(['form'], function () {
     initSelect($, _form);
     // 入库
     _form.on('submit', function (data) {
-        add($, _layer, data.field);
+        add($, _layer, $, data.field);
         return false;
     })
 });
@@ -32,13 +32,13 @@ function initSelect($, _form) {
 /**
  * 物品入库
  */
-function add($, _layer, data) {
+function add($, _layer, $, data) {
     $.post(
-        '/api/goods/add',
+        '/api/goods/add?userId=' + $("#userId").val(),
         data,
         function (res) {
             var icon = res.code === 'success' ? 1 : 2;
-            _layer.msg(res.message, {time: 1500, icon: icon, offset: '200px'}, function () {
+            _layer.msg(res.message, {time: 1500, icon: icon}, function () {
                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                 parent.layer.close(index); //再执行关闭
             });

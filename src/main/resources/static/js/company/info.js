@@ -17,7 +17,7 @@ layui.use(['form', 'layer'], function () {
  */
 function update($, _layer, data) {
     $.post(
-        '/api/com/update',
+        "/api/com/update",
         data,
         function (res) {
             var icon = res.code === 'success' ? 1 : 2;
@@ -34,7 +34,7 @@ function update($, _layer, data) {
  */
 function initForm($, _form) {
     $.get(
-        '/api/com/info',
+        '/api/com/info?userId=' + $("#userId").val(),
         {},
         function (res) {
             _form.val('info', res.data);

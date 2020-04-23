@@ -5,14 +5,14 @@ layui.use(['element', 'table'], function () {
     var $ = layui.$;
 
     // 初始化未审批项目的表格
-    initNoDealTable(_table);
+    initNoDealTable(_table, $);
     // 监听选项卡切换
     _element.on('tab(sp)', function (data) {
         if (data.index === 0) {
-            initNoDealTable(_table);
+            initNoDealTable(_table, $);
         } else {
             // 初始化已审批项目的表格
-            initPersonalTable(_table);
+            initPersonalTable(_table, $);
         }
     });
     // 监听未审批表格的行事
@@ -20,7 +20,7 @@ layui.use(['element', 'table'], function () {
         var event = obj.event;
         if ("approve" === event) {
             // 打开审批页面
-            openApproveHtml(_table, _layer, obj.data.paId, obj.data.proName);
+            openApproveHtml(_table, _layer, $, obj.data.paId, obj.data.proName);
         } else if ("preview" === event) {
             // 文档预览准备
             wordPreview($, obj.data.proLocation, obj.data.wordName);
@@ -33,10 +33,10 @@ layui.use(['element', 'table'], function () {
 /**
  * 初始化未审批项目的表格
  */
-function initNoDealTable(_table) {
+function initNoDealTable(_table, $) {
     _table.render({
         elem: '#no-deal',
-        url: '/api/pro/listNoDeal',
+        url: '/api/pro/listNoDeal?userId=' + $("#userId").val(),
         height: 485,
         defaultToolbar: [],
         page: true,
@@ -60,10 +60,10 @@ function initNoDealTable(_table) {
 /**
  * 初始化个人审批项目记录的表格
  */
-function initPersonalTable(_table) {
+function initPersonalTable(_table, $) {
     _table.render({
         elem: '#personal',
-        url: '/api/pa/getPersonal',
+        url: '/api/pa/getPersonal?userId=' + $("#userId").val(),
         height: 485,
         defaultToolbar: [],
         page: true,
@@ -115,11 +115,11 @@ function col() {
 /**
  * 打开审批页面页面
  */
-function openApproveHtml(_table, _layer, paId, proName) {
+function openApproveHtml(_table, _layer, $, paId, proName) {
     _layer.open({
         type: 2,
         title: "项目审批",
-        content: '/pro/doSp?paId=' + paId + '&proName=' + proName,
+        content: '/pro/doSp?paId=' + paId + '&proName=' + proName + "&userId=" + $("#userId").val(),
         area: ['800px', '550px'],
         anim: 1,
         scrollbar: false,

@@ -1,6 +1,7 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,10 +22,13 @@ public class StockLogWebController {
     /**
      * 库存管理
      *
+     * @param model  数据模型
+     * @param userId 用户id
      * @return 视图
      */
     @GetMapping("list")
-    public String list() {
+    public String list(Model model, String userId) {
+        model.addAttribute("userId", userId);
         return PREFIX + "stock";
     }
 
@@ -41,20 +45,26 @@ public class StockLogWebController {
     /**
      * 入库
      *
+     * @param model  数据模型
+     * @param userId 用户id
      * @return 视图
      */
     @GetMapping("into")
-    public String into() {
+    public String into(Model model, String userId) {
+        model.addAttribute("userId", userId);
         return PREFIX + "into";
     }
 
     /**
      * 出库审批列表
      *
+     * @param model  数据模型
+     * @param userId 用户id
      * @return 视图
      */
     @GetMapping("out_list")
-    public String out() {
+    public String out(Model model, String userId) {
+        model.addAttribute("userId", userId);
         return PREFIX + "out_list";
     }
 

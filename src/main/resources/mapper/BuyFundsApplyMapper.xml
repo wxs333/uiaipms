@@ -63,6 +63,7 @@
             AND a1.logic_delete_flag = 0
             AND a2.logic_delete_flag = 0
             AND b.deal = 0
+            AND b.bfa_agree = 0
         ORDER BY
             b.update_time DESC
     </select>

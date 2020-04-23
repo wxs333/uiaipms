@@ -14,19 +14,16 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <!-- 隐藏域 -->
-    <div th:if="${session.role != null}">
-        <input type="hidden" id="role" th:value="${session.role}">
-    </div>
+    <input type="hidden" id="role" th:value="${role}">
+    <input type="hidden" id="userId" th:value="${userId}">
+
     <div class="layui-header">
         <div class="layui-logo">创新创业园区</div>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="" class="layui-nav-img" id="img">
-                    <span th:if="${session.nickname != null}">
-                        <span th:text="${session.nickname}"></span>
-                    </span>
-
+                    <span id="nickname"></span>
                 </a>
                 <dl class="layui-nav-child">
                     <dd>

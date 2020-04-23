@@ -12,7 +12,6 @@ function msg(code, msg, func) {
         }
     });
 }
-
 /**
  * Word文档预览
  */

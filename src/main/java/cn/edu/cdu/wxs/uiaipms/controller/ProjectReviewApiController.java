@@ -50,27 +50,25 @@ public class ProjectReviewApiController extends BaseController {
      * 分页获取个人审核历史记录
      *
      * @param page 分页
+     * @param userId 用户ID
      * @return json
      */
     @GetMapping("personal")
-    public JsonResult<IPage<ProjectReviewForm>> personal(Page<ProjectReviewForm> page) {
-        // 当前登录用户id
-        String tutorId = "e80f275768a24d9e855bf5595a6e1f33";
-        return jsonResult("0", service.getByTutorId(page, tutorId));
+    public JsonResult<IPage<ProjectReviewForm>> personal(Page<ProjectReviewForm> page, String userId) {
+        return jsonResult("0", service.getByTutorId(page, userId));
     }
 
     /**
      * 修改
      *
      * @param form 表单
+     * @param userId 用户id
      * @return json
      */
     @PostMapping("update")
-    public JsonResult<String> update(ProjectReviewForm form) {
-        // 当前登录用户id
-        String tutorId = "e80f275768a24d9e855bf5595a6e1f33";
+    public JsonResult<String> update(ProjectReviewForm form, String userId) {
         // 参数设置
-        form.setTutorId(tutorId);
+        form.setTutorId(userId);
         form.setUpdateTime(LocalDateTime.now());
         if (service.modifyById(form)) {
             return jsonResult("审核成功");

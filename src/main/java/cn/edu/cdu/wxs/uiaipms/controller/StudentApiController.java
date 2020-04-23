@@ -100,15 +100,16 @@ public class StudentApiController extends BaseController {
      *
      * @param form    表单
      * @param session 会话
+     * @param userId 用户ID
      * @return json
      */
     @PostMapping("update")
-    public JsonResult<String> update(StudentForm form, HttpSession session) {
+    public JsonResult<String> update(StudentForm form, HttpSession session, String userId) {
         // 参数设置
         form.setDiscId(null);
         form.setUpdateTime(LocalDateTime.now());
         if (studentService.modifyById(form)) {
-            SystemUtils.reset(session, form.getNickname(), "");
+            SystemUtils.reset(session, form.getNickname(), "",userId);
             return jsonResult("修改成功");
         }
         return jsonResult(GlobalConstant.FAILURE, "修改失败");
@@ -116,13 +117,11 @@ public class StudentApiController extends BaseController {
 
     /**
      * 获取学生基本信息
-     *
+     * @param userId 用户ID
      * @return json
      */
     @GetMapping("info")
-    public JsonResult<StudentForm> info(HttpSession session) {
-        // 获取当前用户的ID
-        String id = (String) session.getAttribute(GlobalConstant.USER_ID);
-        return jsonResult(studentService.getInfo(id));
+    public JsonResult<StudentForm> info(String userId) {
+        return jsonResult(studentService.getInfo(userId));
     }
 }

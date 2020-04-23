@@ -3,6 +3,8 @@ layui.use(['upload', 'layer'], function () {
     var upload = layui.upload;
     var _layer = layui.layer;
 
+    $("#img").attr("src", "/api/user/headImg?userId=" + $("#userId").val());
+
     // 头像上传，获取服务器上的文件名
     imgUpload(upload, _layer, $);
 });
@@ -14,7 +16,7 @@ function imgUpload(upload, _layer, $) {
     //普通图片上传
     upload.render({
         elem: '#upload',
-        url: '/api/user/uploadHeadImg',
+        url: "/api/user/uploadHeadImg?userId=" + $("#userId").val(),
         auto: false,
         bindAction: '#ok',
         size: 1024,
