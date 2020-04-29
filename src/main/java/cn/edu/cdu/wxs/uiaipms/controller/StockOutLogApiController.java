@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -97,14 +96,7 @@ public class StockOutLogApiController extends BaseController {
      */
     @GetMapping("statistics")
     public JsonResult<Map<String, List>> statistics(String date) {
-        // 处理时间参数字符串
-        LocalDate localDate = SystemUtils.stringToLocalDate(date);
-        // 获取开始日期
-        LocalDateTime start = SystemUtils.getStartOfDay(localDate);
-        // 获取结束日期
-        LocalDateTime end = SystemUtils.getEndOfDay(localDate);
-        // 获取数据
-        Map<String, List> data = SystemUtils.formatMap(service.getBetweenStartAndEnd(start, end), "goodsName", "total");
-        return jsonResult(data);
+        // 查询总量
+        return jsonResult("");
     }
 }

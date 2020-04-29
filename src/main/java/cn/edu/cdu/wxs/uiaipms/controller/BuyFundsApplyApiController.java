@@ -129,8 +129,7 @@ public class BuyFundsApplyApiController extends BaseController {
     public JsonResult<Map<String, List>> statistics(String date) {
         LocalDate localDate = SystemUtils.stringToLocalDate(date);
         // 获取数据
-        Map<String, Map<String, Object>> data = service.getBetweenStartAndEnd(SystemUtils.getStartOfDay(localDate), SystemUtils.getEndOfDay(localDate));
-        return jsonResult(SystemUtils.formatMap(data, "applyUserName", "total"));
+        return jsonResult("");
     }
 
 }

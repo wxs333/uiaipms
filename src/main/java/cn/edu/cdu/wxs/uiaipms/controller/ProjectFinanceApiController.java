@@ -132,8 +132,6 @@ public class ProjectFinanceApiController extends BaseController {
     public JsonResult<Map<String, List>> statistics(String date) {
         // 处理日期字符串
         LocalDate localDate = SystemUtils.stringToLocalDate(date);
-        // 获取数据
-        Map<String, Map<String, Object>> data = service.getBetweenStartAndEnd(SystemUtils.getStartOfDay(localDate), SystemUtils.getEndOfDay(localDate));
-        return jsonResult(SystemUtils.formatMap(data, "proName", "total"));
+        return jsonResult("");
     }
 }

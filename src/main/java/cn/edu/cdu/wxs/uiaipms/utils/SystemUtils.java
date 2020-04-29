@@ -1,14 +1,13 @@
 package cn.edu.cdu.wxs.uiaipms.utils;
 
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
+import cn.edu.cdu.wxs.uiaipms.model.TreeMapModel;
 import org.apache.shiro.crypto.hash.Md5Hash;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpSession;
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -97,6 +96,7 @@ public class SystemUtils {
 
         return ((Map<String, String>) session.getAttribute(userId)).get(GlobalConstant.USERNAME);
     }
+
     /**
      * 获取当前登录用户的用户名
      *
@@ -108,48 +108,33 @@ public class SystemUtils {
         return ((Map<String, String>) session.getAttribute(userId)).get(GlobalConstant.USER_IMAGE);
     }
 
-    /**
-     * 获取指定日期的开始时间
-     *
-     * @param date 日期
-     * @return 开始时间
-     */
-    public static LocalDateTime getStartOfDay(LocalDate date) {
-        return LocalDateTime.of(date, LocalTime.MIN);
-    }
-
-    /**
-     * 获取指定日期的结束时间
-     *
-     * @param date 日期
-     * @return 结束时间
-     */
-    public static LocalDateTime getEndOfDay(LocalDate date) {
-        return LocalDateTime.of(date, LocalTime.MAX);
-    }
 
     /**
      * 对出入库统计结果进行格式化
      *
-     * @param map           结果集和
-     * @param categoryFiled 类别的字段
-     * @param totalFiled    数量的字段
+     * @param sum  每天总量
+     * @param data 每天单个数量
      * @return 格式化结果集合
      */
-    public static Map<String, List> formatMap(Map<String, Map<String, Object>> map, String categoryFiled, String totalFiled) {
-        List<String> name = new ArrayList<>(map.size());
-        List<Integer> num = new ArrayList<>(name.size());
-        Iterator<Map<String, Object>> iterator = map.values().iterator();
-        while (iterator.hasNext()) {
-            Map<String, Object> next = iterator.next();
-            name.add((String) next.get(categoryFiled));
-            num.add(((BigDecimal) next.get(totalFiled)).intValue());
-        }
-        Map<String, List> data = new HashMap<>(2);
-        data.put("name", name);
-        data.put("num", num);
+    public static List<TreeMapModel> format(List<Integer> sum, Map<String, List<TreeMapModel>> data) {
+        List<TreeMapModel> list = new ArrayList<>();
+        int index = 0;
 
-        return data;
+        Iterator<Map.Entry<String, List<TreeMapModel>>> iterator = data.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<String, List<TreeMapModel>> next = iterator.next();
+            if (!ObjectUtils.isEmpty(next.getValue())) {
+                TreeMapModel model = new TreeMapModel();
+                model.setName(next.getKey().replace(" 00:00", ""));
+                model.setValue(sum.get(index));
+                model.setChildren(next.getValue());
+                list.add(model);
+            }
+            index ++;
+        }
+
+        return list;
     }
 
     /**
@@ -169,14 +154,14 @@ public class SystemUtils {
      * @param session  会话
      * @param nickname 昵称
      * @param image    头像地址
-     * @param userId 用户id
+     * @param userId   用户id
      */
     public static void reset(HttpSession session, String nickname, String image, String userId) {
         if (!StringUtils.isEmpty(nickname)) {
-            ((Map<String, String>)session.getAttribute(userId)).put(GlobalConstant.USER_NICKNAME, nickname);
+            ((Map<String, String>) session.getAttribute(userId)).put(GlobalConstant.USER_NICKNAME, nickname);
         }
         if (!StringUtils.isEmpty(image)) {
-            ((Map<String, String>)session.getAttribute(userId)).put(GlobalConstant.USER_IMAGE, image);
+            ((Map<String, String>) session.getAttribute(userId)).put(GlobalConstant.USER_IMAGE, image);
         }
     }
 

@@ -5,22 +5,20 @@ layui.use(["form", "laydate"], function () {
     renderInto(_laydate, $);
     renderOut(_laydate, $);
     // 统计图初始化
-    initData($, "入库数量", "into", "/api/into/statistics", {});
-    initData($, "出库数量", "out", "/api/out/statistics", {});
+    initData($, "into", "/api/into/statistics", {"rangeDate": ""});
+    //initData($, "out", "/api/out/statistics", {});
 });
 
 /**
  * 渲染入库时间选择框
  */
 function renderInto(_laydate, $) {
-    var max = new Date().toDateString();
     _laydate.render({
         elem: "#into-date",
         trigger: 'click',
-        value: new Date(),
-        max: max,
+        range: "~",
         done: function (value) {
-            initData($, "入库数量", "into", "/api/into/statistics", {"date": value + ""});
+            initData($, "into", "/api/into/statistics", {"rangeDate": value + ""});
         }
     })
 }
@@ -29,14 +27,12 @@ function renderInto(_laydate, $) {
  * 渲染出库时间选择框
  */
 function renderOut(_laydate, $) {
-    var max = new Date().toDateString();
     _laydate.render({
         elem: "#out-date",
         trigger: 'click',
-        value: new Date(),
-        max: max,
+        range: "~",
         done: function (value) {
-            initData($, "出库数量", "out", "/api/out/statistics", {"date": value + ""});
+            initData($, "out", "/api/out/statistics", {"rangeDate": value + ""});
         }
     })
 }
@@ -44,62 +40,59 @@ function renderOut(_laydate, $) {
 /**
  * 统计图初始化
  */
-function initData($, mark, id, url, data) {
+function initData($, id, url, data) {
+    if (data.rangeDate === "") {
+        return;
+    }
     // 定义参数
     var option = {
         title: {
-            text: ''
+            text: '数据统计',
+            top: 5,
+            left: 'center'
         },
         tooltip: {
-            trigger: 'axis'
-        },
-        legend: {
-            data: [mark]
-        },
-        xAxis: {
-            data: [],
-            axisLabel: {
-                interval: 0
+            formatter: function (info) {
+                var value = info.value;
+                var name = info.name;
+
+                return [
+                    name + "：" + value
+                ].join('');
             }
         },
-        yAxis: {
-            type: "value"
-        },
         series: [{
-            name: mark,
-            type: 'line',
-            itemStyle: {
-                normal: {
+            type: 'treemap',
+            leafDepth: 1,
+            data: [
+                {
                     label: {
-                        show: true
+                        normal: {
+                            show: true
+                        }
                     }
                 }
-            },
-            data: []
+            ]
         }]
     };
     var domain = echarts.init(document.getElementById(id));
     domain.showLoading();
     domain.setOption(option);
-    getAndInit($, domain, id, url, data, mark);
+    getAndInit($, domain, url, data);
 }
 
 /**
  * 获取数据并初始化
  */
-function getAndInit($, domain, id, url, data, mark) {
+function getAndInit($, domain, url, data) {
     // 获取数据
     $.get(
         url,
         data,
         function (res) {
             domain.setOption({
-                xAxis: {
-                    data: res.data.name
-                },
                 series: [{
-                    name: mark,
-                    data: res.data.num
+                    data: res.data
                 }]
             });
             domain.hideLoading();

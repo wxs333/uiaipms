@@ -1,15 +1,14 @@
 package cn.edu.cdu.wxs.uiaipms.mapper;
 
 import cn.edu.cdu.wxs.uiaipms.form.StockIntoLogForm;
+import cn.edu.cdu.wxs.uiaipms.model.TreeMapModel;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.List;
 
 /**
  * 出库记录 数据层
@@ -28,12 +27,18 @@ public interface StockIntoLogMapper extends BaseMapper<StockIntoLogForm> {
     IPage<StockIntoLogForm> selectAll(Page<StockIntoLogForm> page);
 
     /**
-     * 查询一段时间内的入库统计
-     *
+     * 查询每一天的入库数据
      * @param start 开始时间
-     * @param end   结束时间
+     * @param end 结束时间
      * @return 集合
      */
-    @MapKey("goodsName")
-    Map<String, Map<String, Object>> selectBetweenStartAndEnd(@Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
+    List<TreeMapModel> selectBetweenStartAndEnd(@Param("start") String start, @Param("end") String end);
+
+    /**
+     * 获取一段时间内入库的总量
+     * @param start 开始时间
+     * @param end 结束时间
+     * @return 总量
+     */
+    String selectSumBetweenStartAndEnd(@Param("start") String start, @Param("end") String end);
 }

@@ -2,9 +2,11 @@ package cn.edu.cdu.wxs.uiaipms.controller;
 
 import cn.edu.cdu.wxs.uiaipms.domain.Unit;
 import cn.edu.cdu.wxs.uiaipms.form.StockIntoLogForm;
+import cn.edu.cdu.wxs.uiaipms.model.TreeMapModel;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.StockIntoLogService;
 import cn.edu.cdu.wxs.uiaipms.service.UnitService;
+import cn.edu.cdu.wxs.uiaipms.utils.DateUtils;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -56,16 +57,19 @@ public class StockIntoLogApiController extends BaseController {
     /**
      * 统计每日入库量
      *
-     * @param date 日期
+     * @param rangeDate 范围日期
      * @return json
      */
     @GetMapping("statistics")
-    public JsonResult<Map<String, List>> statistics(String date) {
-        // 处理时间参数字符串
-        LocalDate localDate = SystemUtils.stringToLocalDate(date);
-        // 获取数据
-        Map<String, List> data = SystemUtils.formatMap(service.getBetweenStartAndEnd(SystemUtils.getStartOfDay(localDate), SystemUtils.getEndOfDay(localDate)), "goodsName", "total");
-        return jsonResult(data);
+    public JsonResult<List<TreeMapModel>> statistics(String rangeDate) {
+        Map<String, String> day = DateUtils.getStartAndEndOfDay(rangeDate);
+        // 获取每天的总量
+        List<Integer> sum = service.getSumEveryDay(day);
+        // 获取每天入库物品及其数量
+        Map<String, List<TreeMapModel>> data = service.getStatisticsData(day);
+        // 处理数据
+        List<TreeMapModel> format = SystemUtils.format(sum, data);
+        return jsonResult(format);
     }
 
 }
