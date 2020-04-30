@@ -72,4 +72,10 @@ public interface GoodsMapper extends BaseMapper<GoodsForm> {
      * @return 总数
      */
     int selectCount();
+
+    /**
+     * 获取所有可用的物品的名称以及入库价格
+     * @return 集合
+     */
+    List<GoodsForm> selectNameAndPrice();
 }

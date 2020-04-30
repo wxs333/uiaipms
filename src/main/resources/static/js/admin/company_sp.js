@@ -40,7 +40,7 @@ function init(_table) {
         height: 570,
         defaultToolbar: [],
         toolbar: "#toolbar",
-        limits: [10,20,30],
+        limits: [10, 20, 30],
         page: true,
         url: '/api/com/getNotRegister', //数据接口
         cols: [[
@@ -87,11 +87,12 @@ function reload(_table) {
  * @param fn
  */
 function ask(_layer, fn) {
-    _layer.confirm("你确定吗？",{icon: 3, title:'提示', anim:1}, function (index) {
+    _layer.confirm("你确定吗？", {icon: 3, title: '提示', anim: 1}, function (index) {
         fn();
         _layer.close(index);
     })
 }
+
 /**
  * 企业入驻审批
  */

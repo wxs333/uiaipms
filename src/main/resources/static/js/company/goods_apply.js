@@ -30,12 +30,12 @@ function initSelect($, _layer, _form) {
                 // 初始化
                 var html = '<option value="">请选择</option>';
                 $.each(res.data, function (index, item) {
-                    html += '<option value=' + item.goodsId + '>' + item.goodsName + '</option>';
+                    html += '<option value=' + item.goodsId + '>' + item.goodsName + '--' + item.price + '</option>';
                 });
                 $('#goods').html(html);
                 _form.render('select');
             } else {
-                _layer.msg('发生系统错误，请联系管理员', {icon: 2, time: 1000, offset: '200px'});
+                _layer.msg('发生系统错误，请联系管理员', {icon: 2, time: 1000, anim: 6});
             }
         }
     );

@@ -62,6 +62,7 @@ function getData(_transfer, data, index) {
                 title: "提示信息",
                 content: "用户必须有一个角色",
                 icon: 2,
+                anim: 1,
                 yes: function (index, layero) {
                     getRoles($, function (data) {
                         // 渲染
@@ -83,7 +84,7 @@ function getData(_transfer, data, index) {
                 {'userId': $('#userId').val(), 'data': JSON.stringify(data)},
                 function (res) {
                     var icon = res.code === 'success' ? 1 : 2;
-                    layer.msg(res.message, {icon: icon});
+                    layer.msg(res.message, {icon: icon, time: 1500});
                 }
             )
         }

@@ -20,7 +20,7 @@ function add(_layer, $, data) {
             var icon = res.code === "success" ? 1 : 2;
             _layer.msg(
                 res.message,
-                {icon: icon, time: 2000},
+                {icon: icon, time: 1500},
                 function () {
                     // 关闭
                     var index = parent.layer.getFrameIndex(window.name);

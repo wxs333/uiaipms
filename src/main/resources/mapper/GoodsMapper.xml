@@ -113,4 +113,19 @@
             AND g.logic_delete_flag = 0
     </select>
 
+    <select id="selectNameAndPrice" resultType="cn.edu.cdu.wxs.uiaipms.form.GoodsForm">
+        SELECT
+            g.goods_id,
+            g.goods_name,
+            s.price
+        FROM
+            goods g,
+            stock_into_log s
+        WHERE
+            g.goods_id = s.goods_id
+            AND g.logic_delete_flag = 0
+            AND s.logic_delete_flag = 0
+            AND g.ban = 0
+    </select>
+
 </mapper>

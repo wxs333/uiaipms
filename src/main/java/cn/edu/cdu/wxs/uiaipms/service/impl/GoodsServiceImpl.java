@@ -39,11 +39,7 @@ public class GoodsServiceImpl extends BaseServiceImpl<GoodsForm> implements Good
 
     @Override
     public List<GoodsForm> getAllGoods() {
-        QueryWrapper<GoodsForm> wrapper = new QueryWrapper<>();
-        wrapper.select(GoodsColumn.GOODS_ID, GoodsColumn.GOODS_NAME)
-                .eq(GoodsColumn.LOGIC_DELETE_FLAG, 0)
-                .eq(GoodsColumn.BAN, 0);
-        return mapper.selectList(wrapper);
+        return mapper.selectNameAndPrice();
     }
 
     @Override

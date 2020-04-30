@@ -20,7 +20,7 @@ function updateProjectFinance($, _layer, data) {
         data,
         function (res) {
             var icon = res.code === 'success' ? 1 : 2;
-            _layer.msg(res.message, {time: 2000, icon: icon, offset: "200px"}, function () {
+            _layer.msg(res.message, {time: 1500, icon: icon}, function () {
                 //先得到当前iframe层的索引
                 var index = parent.layer.getFrameIndex(window.name);
                 //再执行关闭
