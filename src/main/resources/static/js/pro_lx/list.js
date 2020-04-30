@@ -91,7 +91,7 @@ function reloadTable(_table) {
  */
 function openConfirm($, _layer, _table, data) {
     _layer.confirm("确定要将该项目立项？",
-        {icon: 3, title: '确定提示'},
+        {icon: 3, title: '确定提示', anim: 1},
         function (index) {
             _layer.close(index);
             lx($, _layer, _table, data);

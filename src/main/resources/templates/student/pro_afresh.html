@@ -50,7 +50,7 @@
             <div class="layui-form-item layui-col-md-offset1 layui-col-md7">
                 <label class="layui-form-label"><span>*</span>描述</label>
                 <div class="layui-input-block">
-                    <textarea class="layui-input" name="proDesc" th:text="${form.proDesc}"></textarea>
+                    <textarea class="layui-input" name="proDesc" th:text="${form.proDesc}" lay-verify="reason" lay-verType="tips"></textarea>
                 </div>
             </div>
             <div class="layui-form-item layui-col-md-offset1">
@@ -77,6 +77,8 @@
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/student/pro_afresh.js"></script>
+<script type="text/javascript" src="/static/js/common/verify.js"></script>
+
 </body>
 
 </html>

@@ -66,7 +66,7 @@ function reloadTable(_table) {
  */
 function openConfirm(_layer, $, _table, event, data) {
     var msg = event === "agree" ? "您确定同意吗？" : "您确定驳回吗？";
-    _layer.confirm(msg, {icon: 3, title: '确认信息', offset: '80px'}, function (index) {
+    _layer.confirm(msg, {icon: 3, title: '确认信息', anim: 1}, function (index) {
         var agree = event === 'agree' ? 0 : 1;
         // 数据提交
         doApply($, _layer, _table, {

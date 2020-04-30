@@ -39,25 +39,25 @@
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>企业名</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="comName"/>
+                    <input class="layui-input" name="comName" readonly/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>用户名</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="username"/>
+                    <input class="layui-input" name="username" readonly/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>负责人</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="comPeople"/>
+                    <input class="layui-input" name="comPeople" lay-verify="required" lay-verType="tips"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>手机号码</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="phone"/>
+                    <input class="layui-input" name="phone" lay-verify="required|phone" lay-verType="tips"/>
                 </div>
             </div>
         </form>
@@ -66,6 +66,7 @@
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/member/update_company.js"></script>
+<script type="text/javascript" src="/static/js/common/verify.js"></script>
 </body>
 
 </html>

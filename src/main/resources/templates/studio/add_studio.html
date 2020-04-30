@@ -32,19 +32,19 @@
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>地址</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="studAddress"/>
+                    <input class="layui-input" name="studAddress" lay-verify="required" lay-verType="tips"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>房间号</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="studRoomNo"/>
+                    <input class="layui-input" name="studRoomNo" lay-verify="required" lay-verType="tips"/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">占地面积</label>
+                <label class="layui-form-label">面积(m^2)</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="studArea"/>
+                    <input class="layui-input" name="studArea" lay-verify="area" lay-verType="tips"/>
                 </div>
             </div>
         </form>
@@ -53,6 +53,7 @@
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/studio/add_studio.js"></script>
+<script type="text/javascript" src="/static/js/common/verify.js"></script>
 </body>
 
 </html>

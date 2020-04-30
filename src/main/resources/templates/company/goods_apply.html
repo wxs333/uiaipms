@@ -36,19 +36,19 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">设备</label>
+                <label class="layui-form-label"><span>*</span>设备</label>
                 <div class="layui-input-block">
-                    <select class="layui-input" id="goods" name="goodsId"></select>
+                    <select class="layui-input" id="goods" name="goodsId" lay-verify="required" lay-verType="tips"></select>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">品牌</label>
+                <label class="layui-form-label"><span>*</span>品牌</label>
                 <div class="layui-input-block">
                     <input class="layui-input" readonly/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">型号</label>
+                <label class="layui-form-label"><span>*</span>型号</label>
                 <div class="layui-input-block">
                     <input class="layui-input" readonly/>
                 </div>
@@ -56,13 +56,13 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">剩余数量</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" readonly/>
+                    <input class="layui-input" readonly id="lastNum"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>申请数量</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="applyNum"/>
+                    <input class="layui-input" name="applyNum" lay-verify="required|notFloatNum|applyNum" lay-verType="tips"/>
                 </div>
             </div>
         </form>

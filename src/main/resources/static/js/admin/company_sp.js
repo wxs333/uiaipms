@@ -87,7 +87,7 @@ function reload(_table) {
  * @param fn
  */
 function ask(_layer, fn) {
-    _layer.confirm("你确定吗？",{icon: 3, title:'提示'}, function (index) {
+    _layer.confirm("你确定吗？",{icon: 3, title:'提示', anim:1}, function (index) {
         fn();
         _layer.close(index);
     })

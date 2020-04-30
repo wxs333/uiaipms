@@ -37,25 +37,25 @@
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>名称</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="goodsName"/>
+                    <input class="layui-input" name="goodsName" lay-verify="required" lay-verType="tips"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>品牌</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="goodsBrand"/>
+                    <input class="layui-input" name="goodsBrand" lay-verify="required" lay-verType="tips"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>型号</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="goodsModel"/>
+                    <input class="layui-input" name="goodsModel" lay-verify="required" lay-verType="tips"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>单位</label>
                 <div class="layui-input-block">
-                    <select class="layui-input" name="unitId" id="unit"></select>
+                    <select class="layui-input" name="unitId" id="unit" lay-verify="required" lay-verType="tips"></select>
                 </div>
             </div>
         </form>
@@ -64,5 +64,6 @@
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/goods/update.js"></script>
+<script type="text/javascript" src="/static/js/common/verify.js"></script>
 </body>
 </html>

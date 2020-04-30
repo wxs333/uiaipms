@@ -104,7 +104,7 @@ function reloadTable(_table) {
  */
 function openConfirm($, _layer, _table, obj) {
     var msg = obj.event === "ban" ? "您确定要下架吗？" : "您确定要上架吗？";
-    _layer.confirm(msg, {icon: 3, title: "确认信息", offset: '80px'}, function (index) {
+    _layer.confirm(msg, {icon: 3, title: "确认信息", anim: 1}, function (index) {
         // 执行修改
         updateStatus($, _layer, _table, obj.event, obj.data.goodsId);
         // 关闭

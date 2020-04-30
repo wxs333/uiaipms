@@ -127,7 +127,7 @@ function openApproveHtml(_table, _layer, $, paId, proName) {
         end: function f() {
             _table.reload('no-deal',
                 {
-                    url: '/api/pro/listNoDeal',
+                    url: "/api/pro/listNoDeal?userId=" + $("#userId").val(),
                     page: {
                         curr: 1
                     }

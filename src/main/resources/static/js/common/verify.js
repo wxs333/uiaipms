@@ -50,6 +50,31 @@ function verify(_form, $) {
             if (value.length < 15) {
                 return "至少输入15个字"
             }
+        },
+        area: function (value) {
+            if (value !== "" && isNaN(value)) {
+                return "面积应该为数字";
+            }
+            if (value !== "" && value <= 0) {
+                return "面积应大于0"
+            }
+        },
+        num: function (value) {
+            if (value !== "" && isNaN(value)) {
+                return "只能输入数字";
+            }
+            if (value !== "" && value <= 0) {
+                return "金额应该大于0"
+            }
+        },
+        notFloatNum: [
+            /^[1-9]\d*$/,
+            "只能输入非零正整数"
+        ],
+        applyNum: function (value) {
+            if (value > $("#lastNum").val())  {
+                return "申请数量超过限制"
+            }
         }
     });
 }

@@ -37,13 +37,13 @@
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>申请金额</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" name="pfAmount"/>
+                    <input class="layui-input" name="pfAmount" lay-verify="required|num" lay-verType="tips"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>申请理由</label>
                 <div class="layui-input-block">
-                    <textarea class="layui-input" name="applyReason"></textarea>
+                    <textarea class="layui-input" name="applyReason" lay-verify="reason" lay-verType="tips"></textarea>
                 </div>
             </div>
         </form>
@@ -52,5 +52,6 @@
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/pro_lx/apply.js"></script>
+<script type="text/javascript" src="/static/js/common/verify.js"></script>
 </body>
 </html>
