@@ -4,6 +4,7 @@ import cn.edu.cdu.wxs.uiaipms.form.StockIntoLogForm;
 import cn.edu.cdu.wxs.uiaipms.form.StockOutLogForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.StockIntoLogMapper;
 import cn.edu.cdu.wxs.uiaipms.mapper.StockOutLogMapper;
+import cn.edu.cdu.wxs.uiaipms.model.StatisticsModel;
 import cn.edu.cdu.wxs.uiaipms.model.TreeMapModel;
 import cn.edu.cdu.wxs.uiaipms.service.StockIntoLogService;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -39,36 +40,7 @@ public class StockIntoLogServiceImpl extends BaseServiceImpl<StockIntoLogForm> i
     }
 
     @Override
-    public List<TreeMapModel> getBetweenStartAndEnd(String start, String end) {
+    public List<StatisticsModel> getStatisticsData(String start, String end) {
         return mapper.selectBetweenStartAndEnd(start, end);
-    }
-
-    @Override
-    public int getSumBetweenStartAndEnd(String start, String end) {
-        String data = mapper.selectSumBetweenStartAndEnd(start, end);
-
-        return StringUtils.isEmpty(data) ? 0 : Integer.parseInt(data);
-    }
-
-    @Override
-    public Map<String, List<TreeMapModel>> getStatisticsData(Map<String, String> map) {
-        Map<String, List<TreeMapModel>> data = new TreeMap<>();
-        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, String> next = iterator.next();
-            data.put(next.getKey(), getBetweenStartAndEnd(next.getKey(), next.getValue()));
-        }
-        return data;
-    }
-
-    @Override
-    public List<Integer> getSumEveryDay(Map<String, String> map) {
-        List<Integer> sum = new LinkedList<>();
-        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, String> next = iterator.next();
-            sum.add(getSumBetweenStartAndEnd(next.getKey(), next.getValue()));
-        }
-        return sum;
     }
 }

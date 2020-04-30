@@ -1,15 +1,13 @@
 package cn.edu.cdu.wxs.uiaipms.mapper;
 
 import cn.edu.cdu.wxs.uiaipms.form.BuyFundsApplyForm;
+import cn.edu.cdu.wxs.uiaipms.model.StatisticsModel;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 采购资金申请 数据访问类
@@ -50,11 +48,10 @@ public interface BuyFundsApplyMapper extends BaseMapper<BuyFundsApplyForm> {
     IPage<BuyFundsApplyForm> selectApplyList(Page<BuyFundsApplyForm> page);
 
     /**
-     * 获取一段时间内的拨款统计
+     * 获取库存拨款
      * @param start 开始时间
      * @param end 结束时间
      * @return 集合
      */
-    @MapKey("adminName")
-    Map<String, Map<String, Object>> selectBetweenStartAndEnd(@Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
+    List<StatisticsModel> selectBetweenStartAndEnd(@Param("start") String start, @Param("end") String end);
 }

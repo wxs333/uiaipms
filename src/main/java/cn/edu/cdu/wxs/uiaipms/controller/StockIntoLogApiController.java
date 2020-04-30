@@ -1,7 +1,9 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
+import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.domain.Unit;
 import cn.edu.cdu.wxs.uiaipms.form.StockIntoLogForm;
+import cn.edu.cdu.wxs.uiaipms.model.StatisticsModel;
 import cn.edu.cdu.wxs.uiaipms.model.TreeMapModel;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.StockIntoLogService;
@@ -11,12 +13,12 @@ import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 库存入库记录 数据控制层
@@ -62,14 +64,18 @@ public class StockIntoLogApiController extends BaseController {
      */
     @GetMapping("statistics")
     public JsonResult<List<TreeMapModel>> statistics(String rangeDate) {
-        Map<String, String> day = DateUtils.getStartAndEndOfDay(rangeDate);
-        // 获取每天的总量
-        List<Integer> sum = service.getSumEveryDay(day);
-        // 获取每天入库物品及其数量
-        Map<String, List<TreeMapModel>> data = service.getStatisticsData(day);
+        String[] dates = DateUtils.dealRangeDate(rangeDate);
+        // 获取数据
+        List<StatisticsModel> statisticsData = service.getStatisticsData(dates[0], dates[1]);
+
+        // 无数据
+        if (ObjectUtils.isEmpty(statisticsData)) {
+            return jsonResult(GlobalConstant.FAILURE, "当前日期无数据");
+        }
+
         // 处理数据
-        List<TreeMapModel> format = SystemUtils.format(sum, data);
-        return jsonResult(format);
+        List<TreeMapModel> data = SystemUtils.dealStatisticsData(statisticsData);
+        return jsonResult(data);
     }
 
 }

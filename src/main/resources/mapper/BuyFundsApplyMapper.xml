@@ -92,10 +92,11 @@
 	        b1.create_time DESC
     </select>
 
-    <select id="selectBetweenStartAndEnd" resultType="map">
-        SELECT
-            a.admin_name AS applyUserName,
-            SUM( b.apply_mount ) AS total
+    <select id="selectBetweenStartAndEnd" resultType="cn.edu.cdu.wxs.uiaipms.model.StatisticsModel">
+       SELECT
+            DATE( b.create_time ) AS `date`,
+            a.admin_name AS `name`,
+            SUM( b.apply_mount ) AS num
         FROM
             buy_funds_apply b,
             admin a
@@ -105,9 +106,10 @@
             AND a.logic_delete_flag = 0
             AND b.deal = 0
             AND b.bfa_agree = 0
-            AND b.update_time BETWEEN #{start}
+            AND b.create_time BETWEEN #{start}
             AND #{end}
         GROUP BY
+            b.create_time,
             a.admin_name
     </select>
 

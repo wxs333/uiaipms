@@ -3,22 +3,18 @@ layui.use(["form", "laydate"], function () {
     var _laydate = layui.laydate;
     // 渲染时间选择框
     renderInto(_laydate, $);
-    // 统计图初始化
-    initData($, {});
 });
 
 /**
  * 渲染时间选择框
  */
 function renderInto(_laydate, $) {
-    var max = new Date().toDateString();
     _laydate.render({
         elem: "#date",
         trigger: 'click',
-        value: new Date(),
-        max: max,
+        range: "~",
         done: function (value) {
-            initData($, {"date": value + ""});
+            initData($, {"rangeDate": value + ""});
         }
     })
 }
@@ -30,34 +26,36 @@ function initData($, data) {
     // 定义参数
     var option = {
         title: {
-            text: ''
+            text: '项目拨款数据统计',
+            top: 5,
+            left: 'center'
         },
         tooltip: {
-            trigger: 'axis'
-        },
-        legend: {
-            data: ["每天拨款金额"]
-        },
-        xAxis: {
-            data: [],
-            axisLabel: {
-                interval: 0
+            formatter: function (info) {
+                var value = info.value;
+                var name = info.name;
+
+                if (name.split("-").length === 3) {
+                    return ["总拨款数：" + value + "元"];
+                }
+
+                return [
+                    "项目：" + name + "<br>拨款金额：" + value + "元"
+                ].join('');
             }
         },
-        yAxis: {
-            type: "value"
-        },
         series: [{
-            name: "每天拨款金额",
-            type: 'line',
-            itemStyle: {
-                normal: {
+            type: 'treemap',
+            leafDepth: 1,
+            data: [
+                {
                     label: {
-                        show: true
+                        normal: {
+                            show: true
+                        }
                     }
                 }
-            },
-            data: []
+            ]
         }]
     };
     var domain = echarts.init(document.getElementById("show"));
@@ -75,14 +73,15 @@ function getAndInit($, domain, data) {
         "/api/pf/statistics",
         data,
         function (res) {
-            domain.setOption({
-                xAxis: {
-                    data: res.data.name
-                },
-                series: [{
-                    data: res.data.num
-                }]
-            });
+            if (res.code === "success") {
+                domain.setOption({
+                    series: [{
+                        data: res.data
+                    }]
+                });
+            } else {
+                layui.layer.msg(res.message, {time: 1500, icon: 2, anim: 6})
+            }
             domain.hideLoading();
         }
     );

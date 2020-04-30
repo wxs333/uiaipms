@@ -4,6 +4,7 @@ import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.domain.SysInfo;
 import cn.edu.cdu.wxs.uiaipms.form.BuyFundsApplyForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.BuyFundsApplyMapper;
+import cn.edu.cdu.wxs.uiaipms.model.StatisticsModel;
 import cn.edu.cdu.wxs.uiaipms.service.BuyFundsApplyService;
 import cn.edu.cdu.wxs.uiaipms.service.SysInfoService;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -77,7 +78,7 @@ public class BuyFundsApplyServiceImpl extends BaseServiceImpl<BuyFundsApplyForm>
     }
 
     @Override
-    public Map<String, Map<String, Object>> getBetweenStartAndEnd(LocalDateTime start, LocalDateTime end) {
+    public List<StatisticsModel> getBetweenStartAndEnd(String start, String end) {
         return mapper.selectBetweenStartAndEnd(start, end);
     }
 }

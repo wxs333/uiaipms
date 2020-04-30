@@ -3,6 +3,7 @@ package cn.edu.cdu.wxs.uiaipms.service.impl;
 import cn.edu.cdu.wxs.uiaipms.form.StockOutLogForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.GoodsMapper;
 import cn.edu.cdu.wxs.uiaipms.mapper.StockOutLogMapper;
+import cn.edu.cdu.wxs.uiaipms.model.StatisticsModel;
 import cn.edu.cdu.wxs.uiaipms.service.StockOutLogService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -55,7 +57,7 @@ public class StockOutLogServiceImpl extends BaseServiceImpl<StockOutLogForm> imp
     }
 
     @Override
-    public Map<String, Map<String, Object>> getBetweenStartAndEnd(LocalDateTime start, LocalDateTime end) {
+    public List<StatisticsModel> statisticsData(String start, String end) {
         return mapper.selectBetweenStartAndEnd(start, end);
     }
 }

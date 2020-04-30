@@ -23,13 +23,14 @@
 			s.create_time DESC
     </select>
 
-    <select id="selectBetweenStartAndEnd" resultType="cn.edu.cdu.wxs.uiaipms.model.TreeMapModel">
+    <select id="selectBetweenStartAndEnd" resultType="cn.edu.cdu.wxs.uiaipms.model.StatisticsModel">
         SELECT
-            g.goods_name AS  `name`,
-            SUM(s.goods_num) AS `value`
+            DATE( s.create_time ) AS `date`,
+            g.goods_name AS `name`,
+            SUM( s.goods_num ) AS num
         FROM
-            goods g,
-            stock_into_log s
+            stock_into_log s,
+            goods g
         WHERE
             s.goods_id = g.goods_id
             AND s.logic_delete_flag = 0
@@ -37,20 +38,7 @@
             AND s.create_time BETWEEN #{start}
             AND #{end}
         GROUP BY
+            s.create_time,
             g.goods_name
-    </select>
-
-    <select id="selectSumBetweenStartAndEnd" resultType="string">
-        SELECT
-            SUM( s.goods_num )
-        FROM
-            goods g,
-            stock_into_log s
-        WHERE
-            s.goods_id = g.goods_id
-            AND s.logic_delete_flag = 0
-            AND g.logic_delete_flag = 0
-            AND s.create_time BETWEEN #{start}
-            AND #{end}
     </select>
 </mapper>

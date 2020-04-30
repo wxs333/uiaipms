@@ -1,9 +1,9 @@
 package cn.edu.cdu.wxs.uiaipms.utils;
 
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
+import cn.edu.cdu.wxs.uiaipms.model.StatisticsModel;
 import cn.edu.cdu.wxs.uiaipms.model.TreeMapModel;
 import org.apache.shiro.crypto.hash.Md5Hash;
-import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpSession;
@@ -110,32 +110,46 @@ public class SystemUtils {
 
 
     /**
-     * 对出入库统计结果进行格式化
+     * 处理统计数据
      *
-     * @param sum  每天总量
-     * @param data 每天单个数量
+     * @param statisticsData 统计数据
      * @return 格式化结果集合
      */
-    public static List<TreeMapModel> format(List<Integer> sum, Map<String, List<TreeMapModel>> data) {
+    public static List<TreeMapModel> dealStatisticsData(List<StatisticsModel> statisticsData) {
         List<TreeMapModel> list = new ArrayList<>();
-        int index = 0;
 
-        Iterator<Map.Entry<String, List<TreeMapModel>>> iterator = data.entrySet().iterator();
+        Map<String, Integer> total = new TreeMap<>();
 
-        while (iterator.hasNext()) {
-            Map.Entry<String, List<TreeMapModel>> next = iterator.next();
-            if (!ObjectUtils.isEmpty(next.getValue())) {
-                TreeMapModel model = new TreeMapModel();
-                model.setName(next.getKey().replace(" 00:00", ""));
-                model.setValue(sum.get(index));
-                model.setChildren(next.getValue());
-                list.add(model);
+        // 统计每天的总量
+        statisticsData.forEach(x -> {
+            if (total.containsKey(x.getDate())) {
+                total.put(x.getDate(), total.get(x.getDate()) + x.getNum());
+            } else {
+                total.put(x.getDate(), x.getNum());
             }
-            index ++;
-        }
+        });
 
+        // 将每天的总量作为父节点
+        total.forEach((k, v) -> {
+            TreeMapModel treeMapModel = new TreeMapModel();
+            treeMapModel.setName(k);
+            treeMapModel.setValue(v);
+            treeMapModel.setChildren(new ArrayList<>());
+            list.add(treeMapModel);
+        });
+        for (StatisticsModel s : statisticsData) {
+            for (TreeMapModel t: list) {
+                if (s.getDate().equals(t.getName())) {
+                    TreeMapModel treeMapModel = new TreeMapModel();
+                    treeMapModel.setName(s.getName());
+                    treeMapModel.setValue(s.getNum());
+                    t.getChildren().add(treeMapModel);
+                }
+            }
+        }
         return list;
     }
+
 
     /**
      * 将日期字符串转换成日起对象

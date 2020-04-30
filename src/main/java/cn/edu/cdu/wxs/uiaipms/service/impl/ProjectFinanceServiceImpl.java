@@ -2,12 +2,11 @@ package cn.edu.cdu.wxs.uiaipms.service.impl;
 
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
 import cn.edu.cdu.wxs.uiaipms.domain.SysInfo;
-import cn.edu.cdu.wxs.uiaipms.form.BuyFundsApplyForm;
 import cn.edu.cdu.wxs.uiaipms.form.ProjectFinanceForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.ProjectFinanceMapper;
+import cn.edu.cdu.wxs.uiaipms.model.StatisticsModel;
 import cn.edu.cdu.wxs.uiaipms.service.ProjectFinanceService;
 import cn.edu.cdu.wxs.uiaipms.service.SysInfoService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -17,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.List;
 
 /**
  * <p>
@@ -76,7 +75,7 @@ public class ProjectFinanceServiceImpl extends BaseServiceImpl<ProjectFinanceFor
     }
 
     @Override
-    public Map<String, Map<String, Object>> getBetweenStartAndEnd(LocalDateTime start, LocalDateTime end) {
+    public List<StatisticsModel> getBetweenStartAndEnd(String start, String end) {
         return mapper.selectBetweenStartAndEnd(start, end);
     }
 }

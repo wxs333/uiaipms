@@ -84,10 +84,11 @@
             AND p.pro_id = #{proId}
     </select>
 
-    <select id="selectBetweenStartAndEnd" resultType="map">
-        SELECT
-            p.pro_name AS proName,
-            SUM(pf.pf_amount) AS total
+    <select id="selectBetweenStartAndEnd" resultType="cn.edu.cdu.wxs.uiaipms.model.StatisticsModel">
+       SELECT
+            DATE( pf.create_time ) AS `date`,
+            p.pro_name AS `name`,
+            SUM( pf.pf_amount ) AS num
         FROM
             project_finance pf,
             project p
@@ -95,11 +96,12 @@
             pf.pro_id = p.pro_id
             AND pf.logic_delete_flag = 0
             AND p.logic_delete_flag = 0
-            AND deal = 0
-            AND agree = 0
-            AND pf.update_time BETWEEN #{start}
+            AND pf.deal = 0
+            AND pf.agree = 0
+            AND pf.create_time BETWEEN #{start}
             AND #{end}
         GROUP BY
+            pf.create_time,
             p.pro_name
     </select>
 

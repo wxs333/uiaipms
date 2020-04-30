@@ -1,11 +1,11 @@
 package cn.edu.cdu.wxs.uiaipms.service;
 
 import cn.edu.cdu.wxs.uiaipms.form.StockOutLogForm;
+import cn.edu.cdu.wxs.uiaipms.model.StatisticsModel;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.List;
 
 /**
  * 出库记录 业务层接口
@@ -38,5 +38,5 @@ public interface StockOutLogService extends BaseService<StockOutLogForm> {
      * @param end   结束时间
      * @return 集合
      */
-    Map<String, Map<String, Object>> getBetweenStartAndEnd(LocalDateTime start, LocalDateTime end);
+    List<StatisticsModel> statisticsData(String start, String end);
 }

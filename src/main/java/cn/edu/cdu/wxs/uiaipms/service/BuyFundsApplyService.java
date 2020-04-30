@@ -1,12 +1,11 @@
 package cn.edu.cdu.wxs.uiaipms.service;
 
 import cn.edu.cdu.wxs.uiaipms.form.BuyFundsApplyForm;
+import cn.edu.cdu.wxs.uiaipms.model.StatisticsModel;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 采购资金申请 业务接口类
@@ -52,5 +51,5 @@ public interface BuyFundsApplyService extends BaseService<BuyFundsApplyForm> {
      * @param end 结束时间
      * @return 集合
      */
-    Map<String, Map<String, Object>> getBetweenStartAndEnd(LocalDateTime start,LocalDateTime end);
+    List<StatisticsModel> getBetweenStartAndEnd(String start, String end);
 }
