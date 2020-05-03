@@ -20,4 +20,11 @@ public interface ClazzService extends BaseService<Clazz> {
      */
     List<Clazz> getAllByDiscId(String discId);
 
+    /**
+     * 获取所有班级
+     *
+     * @return 集合
+     */
+    List<Clazz> getAll();
+
 }

@@ -37,4 +37,11 @@ public class ClazzServiceImpl extends BaseServiceImpl<Clazz> implements ClazzSer
         wrapper.eq(DISC_ID, discId);
         return mapper.selectList(wrapper);
     }
+
+    @Override
+    public List<Clazz> getAll() {
+        QueryWrapper<Clazz> wrapper = new QueryWrapper<>();
+        wrapper.select("clazz_id","clazz_name");
+        return mapper.selectList(wrapper);
+    }
 }

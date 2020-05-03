@@ -7,6 +7,7 @@ import cn.edu.cdu.wxs.uiaipms.model.TreeMapModel;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.BuyFundsApplyService;
 import cn.edu.cdu.wxs.uiaipms.service.ExcelService;
+import cn.edu.cdu.wxs.uiaipms.service.SysInfoService;
 import cn.edu.cdu.wxs.uiaipms.utils.DateUtils;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -36,6 +37,8 @@ public class BuyFundsApplyApiController extends BaseController {
     private BuyFundsApplyService service;
     @Autowired
     private ExcelService<BuyFundsApplyForm> excelService;
+    @Autowired
+    private SysInfoService sysInfoService;
 
     /**
      * 新增
@@ -51,6 +54,10 @@ public class BuyFundsApplyApiController extends BaseController {
         form.setApplyUserId(userId);
         form.setCreateTime(LocalDateTime.now());
         form.setUpdateTime(LocalDateTime.now());
+
+        if (sysInfoService.getSysMoney().compareTo(form.getApplyMount()) < 0) {
+            return jsonResult(GlobalConstant.FAILURE,"申请金额大于财务金额");
+        }
 
         if (service.add(form)) {
             return jsonResult("申请成功，请等待管理员审批");

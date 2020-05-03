@@ -24,10 +24,6 @@ public class GlobalConstant {
      */
     public static final String FAILURE_MSG = "发生未知错误，请联系系统管理员";
     /**
-     * 登录角色-学生
-     */
-    public static final int LOGIN_ROLE_STUDENT = 3;
-    /**
      * 登录角色-管理员
      */
     public static final int LOGIN_ROLE_ADMIN = 1;
@@ -35,6 +31,10 @@ public class GlobalConstant {
      * 登录角色-导师
      */
     public static final int LOGIN_ROLE_TUTOR = 2;
+    /**
+     * 登录角色-学生
+     */
+    public static final int LOGIN_ROLE_STUDENT = 3;
     /**
      * 登录角色-企业
      */

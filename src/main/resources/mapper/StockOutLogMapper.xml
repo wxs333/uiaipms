@@ -50,7 +50,7 @@
 
     <select id="selectBetweenStartAndEnd" resultType="cn.edu.cdu.wxs.uiaipms.model.StatisticsModel">
 		SELECT
-			DATE( s.create_time ) AS `date`,
+			DATE( s.update_time ) AS `date`,
 			g.goods_name AS `name`,
 			SUM( s.apply_num ) AS num
 		FROM
@@ -60,10 +60,10 @@
 			s.goods_id = g.goods_id
 			AND s.logic_delete_flag = 0
 			AND g.logic_delete_flag = 0
-			AND s.create_time BETWEEN #{start}
+			AND s.update_time BETWEEN #{start}
 			AND #{end}
 		GROUP BY
-			s.create_time,
+			s.update_time,
 			g.goods_name
 	</select>
 </mapper>

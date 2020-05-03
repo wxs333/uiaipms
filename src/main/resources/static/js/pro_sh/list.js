@@ -3,12 +3,12 @@ layui.use('table', function () {
     var $ = layui.$;
     var _layer = layui.layer;
     // 初始化
-    tableRender(_table);
+    tableRender(_table ,$);
     // 行工具栏事件监听
     _table.on('tool(pro-sh)', function (obj) {
         if (obj.event === "sh") {
             // 弹出填写理由页面
-            openReason(_layer, _table, obj);
+            openReason(_layer, _table, $, obj);
         } else if (obj.event === "preview") {
             wordPreview($, obj.data.proLocation, obj.data.wordName);
         }
@@ -26,13 +26,13 @@ layui.use('table', function () {
 /**
  * 初始化表格
  */
-function tableRender(_table) {
+function tableRender(_table, $) {
     _table.render({
         elem: '#pro-sh',
         height: 550,
         toolbar: "#tool",
         defaultToolbar: [],
-        url: "/api/pr/listNotDeal",
+        url: "/api/pr/listNotDeal?id=" + $("#userId").val(),
         page: true,
         cols: [[ // 表头
             {field: 'prId', title: '审核记录id', align: "center", hide: 'true'},
@@ -76,7 +76,7 @@ function reloadTable(_table) {
 /**
  * 审核页面
  */
-function openReason(_layer, _table, obj) {
+function openReason(_layer, _table, $, obj) {
     _layer.open({
         type: 2,
         title: "项目审核",

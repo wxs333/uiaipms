@@ -4,6 +4,7 @@ layui.use("form", function () {
     var $ = layui.$;
     // 表单提交事件监听
     _form.on("submit", function (data) {
+        console.log(data);
         // 提交数据
         updateProjectFinance($, _layer, data.field);
         // 阻止表单跳转

@@ -49,7 +49,6 @@
             AND p.logic_delete_flag = 0
             AND t.logic_delete_flag = 0
             AND pf.deal = 0
-            AND pf.agree = 0
             ORDER BY pf.update_time DESC
     </select>
 
@@ -86,7 +85,7 @@
 
     <select id="selectBetweenStartAndEnd" resultType="cn.edu.cdu.wxs.uiaipms.model.StatisticsModel">
        SELECT
-            DATE( pf.create_time ) AS `date`,
+            DATE( pf.update_time ) AS `date`,
             p.pro_name AS `name`,
             SUM( pf.pf_amount ) AS num
         FROM
@@ -98,10 +97,10 @@
             AND p.logic_delete_flag = 0
             AND pf.deal = 0
             AND pf.agree = 0
-            AND pf.create_time BETWEEN #{start}
+            AND pf.update_time BETWEEN #{start}
             AND #{end}
         GROUP BY
-            pf.create_time,
+            pf.update_time,
             p.pro_name
     </select>
 

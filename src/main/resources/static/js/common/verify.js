@@ -72,7 +72,8 @@ function verify(_form, $) {
             "只能输入非零正整数"
         ],
         applyNum: function (value) {
-            if (value > $("#lastNum").val())  {
+            var lastNum = parseInt($("#lastNum").val());
+            if (parseInt(value) > lastNum)  {
                 return "申请数量超过限制"
             }
         }

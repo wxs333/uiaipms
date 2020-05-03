@@ -1,8 +1,10 @@
 package cn.edu.cdu.wxs.uiaipms.controller;
 
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
+import cn.edu.cdu.wxs.uiaipms.domain.Clazz;
 import cn.edu.cdu.wxs.uiaipms.form.StudentForm;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
+import cn.edu.cdu.wxs.uiaipms.service.ClazzService;
 import cn.edu.cdu.wxs.uiaipms.service.StudentService;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.logging.Logger;
 
 
@@ -34,6 +37,8 @@ public class StudentApiController extends BaseController {
      */
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private ClazzService clazzService;
 
     /**
      * 学生注册
@@ -50,6 +55,7 @@ public class StudentApiController extends BaseController {
             form.setUpdateTime(date);
             form.setCreateTime(date);
             form.setStuId(SystemUtils.getUuid());
+            form.setImage(GlobalConstant.DEFAULT_IMAGE);
             form.setPassword(SystemUtils.md5(form.getPassword(), form.getUsername()));
 
             if (studentService.register(form)) {
@@ -100,7 +106,7 @@ public class StudentApiController extends BaseController {
      *
      * @param form    表单
      * @param session 会话
-     * @param userId 用户ID
+     * @param userId  用户ID
      * @return json
      */
     @PostMapping("update")
@@ -109,7 +115,7 @@ public class StudentApiController extends BaseController {
         form.setDiscId(null);
         form.setUpdateTime(LocalDateTime.now());
         if (studentService.modifyById(form)) {
-            SystemUtils.reset(session, form.getNickname(), "",userId);
+            SystemUtils.reset(session, form.getNickname(), "", userId);
             return jsonResult("修改成功");
         }
         return jsonResult(GlobalConstant.FAILURE, "修改失败");
@@ -117,11 +123,22 @@ public class StudentApiController extends BaseController {
 
     /**
      * 获取学生基本信息
+     *
      * @param userId 用户ID
      * @return json
      */
     @GetMapping("info")
     public JsonResult<StudentForm> info(String userId) {
         return jsonResult(studentService.getInfo(userId));
+    }
+
+    /**
+     * 获取所有班级
+     *
+     * @return json
+     */
+    @GetMapping("clazz")
+    public JsonResult<List<Clazz>> clazz() {
+        return jsonResult(clazzService.getAll());
     }
 }

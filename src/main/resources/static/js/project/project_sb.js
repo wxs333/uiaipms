@@ -22,7 +22,7 @@ function wordUpload(_upload, $, _layer) {
         url: '/api/pro/uploadWord',
         headers: {'method': 'post'},
         accept: 'file',
-        acceptMime: 'file/doc, file/docx',
+        acceptMime: '.doc, .docx',
         exts: 'doc|docx',
         multiple: true,
         choose: function (obj) {

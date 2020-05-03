@@ -180,13 +180,10 @@ public class SystemUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(md5("com_dahan", "com_dahan"));
-//        System.out.println(getUuid());
-//        System.out.println(getUuid());
-//        System.out.println(getUuid());
-        //       System.out.println(verificationCode());
 
-        //System.out.println(getNotRepeatingFilename("123.jpg"));
+        for (int i = 0; i<30; i++) {
+            System.out.println(getUuid());
+        }
 
     }
 

@@ -7,6 +7,7 @@ import cn.edu.cdu.wxs.uiaipms.model.TreeMapModel;
 import cn.edu.cdu.wxs.uiaipms.result.JsonResult;
 import cn.edu.cdu.wxs.uiaipms.service.ExcelService;
 import cn.edu.cdu.wxs.uiaipms.service.ProjectFinanceService;
+import cn.edu.cdu.wxs.uiaipms.service.SysInfoService;
 import cn.edu.cdu.wxs.uiaipms.utils.DateUtils;
 import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -36,6 +37,8 @@ public class ProjectFinanceApiController extends BaseController {
     private ProjectFinanceService service;
     @Autowired
     private ExcelService<ProjectFinanceForm> excelService;
+    @Autowired
+    private SysInfoService sysInfoService;
 
     /**
      * 新增
@@ -51,6 +54,9 @@ public class ProjectFinanceApiController extends BaseController {
         form.setCreateTime(LocalDateTime.now());
         form.setUserId(userId);
 
+        if (sysInfoService.getSysMoney().compareTo(form.getPfAmount()) < 0) {
+            return jsonResult(GlobalConstant.FAILURE,"申请金额大于财务金额");
+        }
         if (service.add(form)) {
             return jsonResult("申请发送成功，请等待管理员审批");
         }
@@ -89,6 +95,7 @@ public class ProjectFinanceApiController extends BaseController {
     @PostMapping("update")
     public JsonResult<String> update(ProjectFinanceForm form, String userId) {
         form.setUpdateTime(LocalDateTime.now());
+        form.setUserId(null);
         form.setAdminId(userId);
 
         if (service.modifyById(form)) {
@@ -109,7 +116,7 @@ public class ProjectFinanceApiController extends BaseController {
         // 获取数据
         Page<ProjectFinanceForm> page = new Page<>(0, total);
         List<ProjectFinanceForm> data = service.getAllDealed(page).getRecords();
-        excelService.export("项目拨款记录", "项目拨款记录", data, ProjectFinanceForm.class, response);
+        excelService.export("项目拨款申请记录", "项目拨款申请记录", data, ProjectFinanceForm.class, response);
     }
 
     /**

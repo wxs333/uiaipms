@@ -34,14 +34,13 @@ public class ProjectReviewApiController extends BaseController {
      * 分页获取未处理的审核记录
      *
      * @param page 分页
+     * @param id 当前登录用户id
      * @return json
      */
     @GetMapping("listNotDeal")
-    public JsonResult<IPage<ProjectReviewForm>> listNotDeal(Page<ProjectReviewForm> page) {
-        // 获取当前登录导师的ID
-        String tutorId = "66c38cfebcac46649d071058f2eb7fd1";
+    public JsonResult<IPage<ProjectReviewForm>> listNotDeal(Page<ProjectReviewForm> page, String id) {
         // 获取当前登录导师的学院id
-        String facId = tutorService.getFacIdById(tutorId);
+        String facId = tutorService.getFacIdById(id);
 
         return jsonResult("0", service.getByFacId(page, facId));
     }

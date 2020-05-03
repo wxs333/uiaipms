@@ -94,7 +94,7 @@
 
     <select id="selectBetweenStartAndEnd" resultType="cn.edu.cdu.wxs.uiaipms.model.StatisticsModel">
        SELECT
-            DATE( b.create_time ) AS `date`,
+            DATE( b.update_time ) AS `date`,
             a.admin_name AS `name`,
             SUM( b.apply_mount ) AS num
         FROM
@@ -106,10 +106,10 @@
             AND a.logic_delete_flag = 0
             AND b.deal = 0
             AND b.bfa_agree = 0
-            AND b.create_time BETWEEN #{start}
+            AND b.update_time BETWEEN #{start}
             AND #{end}
         GROUP BY
-            b.create_time,
+            b.update_time,
             a.admin_name
     </select>
 
