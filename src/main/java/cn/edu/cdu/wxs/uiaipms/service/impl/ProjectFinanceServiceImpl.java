@@ -61,7 +61,7 @@ public class ProjectFinanceServiceImpl extends BaseServiceImpl<ProjectFinanceFor
         if (StringUtils.isEmpty(domain.getAgree())) {
             return super.modifyById(domain);
         }
-        // 同意
+        // 同意，减少财务金额
         SysInfo info = new SysInfo();
         info.setUpdateTime(domain.getUpdateTime());
         info.setSysCount(domain.getPfAmount());

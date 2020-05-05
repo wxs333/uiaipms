@@ -137,6 +137,7 @@ public class SystemUtils {
             treeMapModel.setChildren(new ArrayList<>());
             list.add(treeMapModel);
         });
+        // 为每个父节点设置其子节点
         for (StatisticsModel s : statisticsData) {
             for (TreeMapModel t: list) {
                 if (s.getDate().equals(t.getName())) {

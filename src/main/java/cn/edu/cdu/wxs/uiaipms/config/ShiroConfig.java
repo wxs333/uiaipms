@@ -34,7 +34,11 @@ public class ShiroConfig {
         // 资源访问控制
         Map<String, String> map = new LinkedHashMap<>();
         map.put("/logout", "logout");
-        map.put("/**", "anon");
+        map.put("/static/**", "anon");
+        map.put("/api/user/code", "anon");
+        map.put("/api/user/headImg", "anon");
+        map.put("/api/user/login", "anon");
+        map.put("/**", "authc");
         filterFactoryBean.setFilterChainDefinitionMap(map);
         // 路径控制
         filterFactoryBean.setSuccessUrl("/user/home");
@@ -46,16 +50,16 @@ public class ShiroConfig {
     /**
      * 创建DefaultWebSecurityManager(web程序，Java 程序创建DefaultSecurityManager)
      *
-     * @param realm 自定义realm
      * @return DefaultWebSecurityManager
      */
     @Bean(name = "defaultWebSecurityManager")
-    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("userRealm") UserRealm realm) {
+    public DefaultWebSecurityManager defaultWebSecurityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(realm);
+        securityManager.setRealm(getRealm());
         securityManager.setCacheManager(ehCacheManager());
         return securityManager;
     }
+
 
     /**
      * 创建realm
@@ -63,11 +67,12 @@ public class ShiroConfig {
      * @return realm
      */
     @Bean("userRealm")
-    public UserRealm getRealm(@Qualifier("hashedCredentialsMatcher") HashedCredentialsMatcher hashedCredentialsMatcher) {
+    public UserRealm getRealm() {
         UserRealm realm = new UserRealm();
-        realm.setCredentialsMatcher(hashedCredentialsMatcher);
+        realm.setCredentialsMatcher(hashedCredentialsMatcher());
         return realm;
     }
+
 
     /**
      * 密码加密
