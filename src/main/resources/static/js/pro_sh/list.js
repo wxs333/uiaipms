@@ -10,7 +10,7 @@ layui.use('table', function () {
             // 弹出填写理由页面
             openReason(_layer, _table, $, obj);
         } else if (obj.event === "preview") {
-            wordPreview($, obj.data.proLocation, obj.data.wordName);
+            wordPreview($, obj.data.proLocation, obj.data.wordName.split(".")[0] + ".pdf");
         }
     });
     // 头工具事件监听

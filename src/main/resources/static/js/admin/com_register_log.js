@@ -6,7 +6,8 @@ layui.use("table", function () {
 
     _table.on("tool", function (obj) {
         if ("word" === obj.event) {
-            wordPreview($, obj.data.location, obj.data.wordName);
+            var wordName = obj.data.wordName.split(".")[0] + ".pdf";
+            wordPreview($, obj.data.location, wordName);
         }
 
     })

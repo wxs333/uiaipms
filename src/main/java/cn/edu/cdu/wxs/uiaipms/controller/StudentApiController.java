@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.logging.Logger;
 
 
 /**
@@ -30,7 +29,6 @@ import java.util.logging.Logger;
 @RestController
 @RequestMapping("api/stu")
 public class StudentApiController extends BaseController {
-    private Logger logger = Logger.getLogger("StudentApiController");
 
     /**
      * 业务层对象

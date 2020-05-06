@@ -7,6 +7,8 @@ layui.use(["form", "upload"], function () {
     wordUpload(_upload, $, _layer);
 
     _form.on("submit", function (data) {
+        // 密码加密
+        data.field.password = md5(data.field.password);
         register($, data.field);
         return false;
     });

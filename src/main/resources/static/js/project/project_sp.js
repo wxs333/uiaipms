@@ -22,8 +22,9 @@ layui.use(['element', 'table'], function () {
             // 打开审批页面
             openApproveHtml(_table, _layer, $, obj.data.paId, obj.data.proName);
         } else if ("preview" === event) {
+            var wordName = obj.data.wordName.split(".")[0] + ".pdf";
             // 文档预览准备
-            wordPreview($, obj.data.proLocation, obj.data.wordName);
+            wordPreview($, obj.data.proLocation, wordName);
         }
 
     });

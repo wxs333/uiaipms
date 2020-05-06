@@ -14,6 +14,8 @@ layui.use(['form', 'jquery'], function () {
     });
 
     form.on('submit(login)', function (data) {
+        // 密码加密
+        data.field.password = md5(data.field.password);
         login($, _layer, data.field);
         return false;
     });

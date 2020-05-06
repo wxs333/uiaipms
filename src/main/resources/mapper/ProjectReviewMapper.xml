@@ -5,6 +5,8 @@
     <select id="selectByTutorId" resultType="cn.edu.cdu.wxs.uiaipms.form.ProjectReviewForm">
         SELECT
             p.pro_name,
+            p.word_name,
+            p.pro_location,
             pr.reason,
             pr.pass_flag,
             pr.update_time,

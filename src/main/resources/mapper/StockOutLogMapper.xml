@@ -6,6 +6,7 @@
 			s.apply_num,
 			s.update_time,
 			s.create_time,
+			s.agree,
 			g.goods_name,
 			a.admin_name,
 			CONCAT(st.stud_address,',',st.stud_room_no) AS address,

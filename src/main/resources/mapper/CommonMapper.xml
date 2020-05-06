@@ -21,6 +21,8 @@
         username = #{username}
         AND
         logic_delete_flag = 0
+        AND update_time IS NOT NULL
+	    AND image IS NOT NULL
     </select>
 
     <select id="getIdByUsername" resultType="string">

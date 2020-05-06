@@ -142,7 +142,10 @@ public class CompanyApiController extends BaseController {
         form.setCreateTime(LocalDateTime.now());
         form.setPassword(SystemUtils.md5(form.getPassword(), form.getUsername()));
         form.setBan(1);
-
+        // 企业名和账号检测
+        if (service.isExistComNameAndUsername(form.getComName(), form.getUsername())) {
+            return jsonResult(GlobalConstant.FAILURE, "该企业已有账号或账号重复");
+        }
         if (service.add(form)) {
             return jsonResult("申请成功，请等待管理员审批");
         }

@@ -11,6 +11,7 @@ import com.documents4j.api.DocumentType;
 import com.documents4j.api.IConverter;
 import com.documents4j.job.LocalConverter;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -103,7 +104,9 @@ public class UserApiController extends BaseController {
             currentUser.login(token);
         } catch (AccountUnavailableException e) {
             return jsonResult(GlobalConstant.FAILURE, "该账号已被禁用");
-        } catch (Exception e1) {
+        } catch (UnknownAccountException e1) {
+            return jsonResult(GlobalConstant.FAILURE, "账号不存在");
+        } catch(Exception e2) {
             return jsonResult(GlobalConstant.FAILURE, "账号或密码错误");
         }
         // 将用户信息放入session
@@ -224,7 +227,7 @@ public class UserApiController extends BaseController {
     public JsonResult<String> sendEmail(String email) {
         String code = emailService.sendVerCodeEmail(email);
         if (!StringUtils.isEmpty(code)) {
-            return jsonResult(GlobalConstant.SUCCESS, "验证码发送成功", code);
+            return jsonResult(GlobalConstant.SUCCESS, "验证码发送成功", SystemUtils.md5(code));
         }
         return jsonResult(GlobalConstant.FAILURE, "验证码发送失败， 请稍后再试");
     }

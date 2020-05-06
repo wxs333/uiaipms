@@ -74,8 +74,9 @@ function getColsAndUrl(event) {
             {field: 'goodsName', title: '物品', align: "center"},
             {field: 'applyNum', title: '数量', align: "center"},
             {field: 'address', title: '申请人', align: "center"},
-            {field: 'updateTime', title: '更新时间', align: "center"},
-            {field: 'createTime', title: '创建时间', align: "center"}
+            {field: 'createTime', title: '申请时间', align: "center"},
+            {field: 'agree', title: '处理结果', align: "center", templet: "#agree"},
+            {field: 'updateTime', title: '处理时间', align: "center"}
         ];
         data[1] = '/api/out/list';
     }
@@ -93,7 +94,7 @@ function openHtml(_table, _layer, $, event) {
     } else if ('out' === event) {
         d = {'title': '出库审批', 'content': '/sto/out_list?userId=' + userId, 'width': '1200px'};
     } else if ('apply' === event) {
-        d = {'title': '采购资金申请', 'content': '/sto/applyList', 'width': '1200px'};
+        d = {'title': '采购资金申请记录', 'content': '/sto/applyList', 'width': '1200px'};
     } else if ("statistics" === event) {
         d = {'title': '统计', 'content': '/sto/statistics', 'width': '1200px'};
     }

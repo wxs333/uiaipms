@@ -35,9 +35,18 @@ public class ShiroConfig {
         Map<String, String> map = new LinkedHashMap<>();
         map.put("/logout", "logout");
         map.put("/static/**", "anon");
+        map.put("/api/stu/clazz", "anon");
+        map.put("/api/stu/register", "anon");
+        map.put("/api/com/register", "anon");
+        map.put("/api/com/upload", "anon");
         map.put("/api/user/code", "anon");
         map.put("/api/user/headImg", "anon");
         map.put("/api/user/login", "anon");
+        map.put("/api/user/sendEmail", "anon");
+        map.put("/api/user/updatePassword", "anon");
+        map.put("/user/stuRegister", "anon");
+        map.put("/user/comRegister", "anon");
+        map.put("/user/findPassword", "anon");
         map.put("/**", "authc");
         filterFactoryBean.setFilterChainDefinitionMap(map);
         // 路径控制

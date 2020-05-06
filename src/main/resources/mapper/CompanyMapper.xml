@@ -15,5 +15,6 @@
             company
         WHERE
             logic_delete_flag = 0
+            AND update_time IS NOT NULL
     </select>
 </mapper>

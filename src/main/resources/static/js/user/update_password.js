@@ -9,8 +9,9 @@ layui.use(["form"], function () {
             msg("", "两次密码不一致", null);
             return false;
         } else {
+            // 密码加密
+            data.field.password = md5(data.field.password);
             update($, _layer, data.field);
-
         }
         return false;
     })

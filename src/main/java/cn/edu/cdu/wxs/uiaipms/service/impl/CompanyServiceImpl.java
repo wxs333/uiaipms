@@ -97,4 +97,14 @@ public class CompanyServiceImpl extends BaseServiceImpl<CompanyForm> implements 
                 .isNotNull(CompanyColumn.UPDATE_TIME);
         return mapper.selectList(wrapper);
     }
+
+    @Override
+    public boolean isExistComNameAndUsername(String comName, String username) {
+        QueryWrapper<CompanyForm> wrapper = new QueryWrapper<>();
+        wrapper.select(CompanyColumn.COM_ID)
+                .eq(CompanyColumn.COM_NAME, comName)
+                .or()
+                .eq(CompanyColumn.USERNAME, username);
+        return SystemUtils.gtTheZero(mapper.selectList(wrapper).size());
+    }
 }

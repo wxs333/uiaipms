@@ -60,7 +60,7 @@ public class UserWebController {
     }
 
     /**
-     * 学生注册页面
+     * 企业注册页面
      *
      * @return 视图
      */

@@ -6,10 +6,9 @@ layui.use(['table'], function () {
     tableRender(_table, $);
     // 行工具栏监听
     _table.on('tool', function (obj) {
-        console.log(obj.event);
         if ("preview" === obj.event) {
             // 文档预览
-            wordPreview($, obj.data.proLocation, obj.data.wordName);
+            wordPreview($, obj.data.proLocation, obj.data.wordName.split(".")[0] + ".pdf");
         } else if ("afresh" === obj.event) {
             var url = "/stu/afresh?proId=" + obj.data.proId + "&proName=" + obj.data.proName + "&proDesc=" + obj.data.proDesc + "&userId=" + $("#userId").val();
             // 打开页面

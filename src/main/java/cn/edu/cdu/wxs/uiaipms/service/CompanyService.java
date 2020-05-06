@@ -84,4 +84,14 @@ public interface CompanyService extends BaseService<CompanyForm> {
      */
     List<CompanyForm> exportData();
 
+
+    /**
+     * 判断企业名或者账号是否存在
+     *
+     * @param comName  企业名
+     * @param username 账号
+     * @return true 存在 false 不存在
+     */
+    boolean isExistComNameAndUsername(String comName, String username);
+
 }

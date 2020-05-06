@@ -44,5 +44,13 @@
         </button>
     </div>
 </script>
+
+<script type="text/html" id="agree">
+    {{# if(d.agree == 0) { }}
+    <span style="color: #009688;">同意</span>
+    {{# } else { }}
+    <span style="color: red">驳回</span>
+    {{# } }}
+</script>
 </body>
 </html>

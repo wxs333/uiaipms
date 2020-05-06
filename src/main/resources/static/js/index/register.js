@@ -35,6 +35,8 @@ function initSelect($, _form) {
  */
 function register(_form, $, _layer) {
     _form.on('submit', function (data) {
+        // 密码加密
+        data.field.password = md5(data.field.password);
         $.post(
             '/api/stu/register',
             data.field,

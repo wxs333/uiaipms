@@ -15,13 +15,20 @@
 </div>
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/common/base.js"></script>
 <script type="text/javascript" src="/static/js/pro_sh/history.js"></script>
 <script type="text/html" id="flag">
-    {{# if(d.passFlag == 0) {  }}
-    通过
+    {{# if(d.agree == 0) { }}
+    <span style="color: #009688;">同意</span>
     {{# } else { }}
-    未通过
+    <span style="color: red">驳回</span>
     {{# } }}
+</script>
+<!-- 处理文档 -->
+<script type="text/html" id="word">
+    <span style="color: blue;text-decoration: underline">
+        {{ d.wordName }}
+    </span>
 </script>
 </body>
 </html>

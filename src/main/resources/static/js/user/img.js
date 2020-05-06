@@ -21,6 +21,7 @@ function imgUpload(upload, _layer, $) {
         bindAction: '#ok',
         size: 1024,
         field: 'file',
+        acceptMime: ".png,.jpg",
         headers: {'method': 'post'},
         choose: function (obj) { // 图片预览
             obj.preview(function (index, file, result) {

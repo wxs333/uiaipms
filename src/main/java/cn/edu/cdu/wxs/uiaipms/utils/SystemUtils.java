@@ -7,8 +7,6 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpSession;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -40,6 +38,17 @@ public class SystemUtils {
         // 加密次数
         final int hashIterations = 1024;
         Md5Hash md5Hash = new Md5Hash(str, salt, hashIterations);
+        return md5Hash.toString();
+    }
+
+    /**
+     * Md5加密
+     *
+     * @param str 密码
+     * @return 加密的密码
+     */
+    public static String md5(String str) {
+        Md5Hash md5Hash = new Md5Hash(str);
         return md5Hash.toString();
     }
 
@@ -139,7 +148,7 @@ public class SystemUtils {
         });
         // 为每个父节点设置其子节点
         for (StatisticsModel s : statisticsData) {
-            for (TreeMapModel t: list) {
+            for (TreeMapModel t : list) {
                 if (s.getDate().equals(t.getName())) {
                     TreeMapModel treeMapModel = new TreeMapModel();
                     treeMapModel.setName(s.getName());
@@ -151,17 +160,6 @@ public class SystemUtils {
         return list;
     }
 
-
-    /**
-     * 将日期字符串转换成日起对象
-     *
-     * @param date 日期字符串
-     * @return 日起对象
-     */
-    public static LocalDate stringToLocalDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return StringUtils.isEmpty(date) ? LocalDate.now() : LocalDate.parse(date, formatter);
-    }
 
     /**
      * 重设session里的昵称、头像
@@ -181,11 +179,8 @@ public class SystemUtils {
     }
 
     public static void main(String[] args) {
-
-        for (int i = 0; i<30; i++) {
-            System.out.println(getUuid());
-        }
-
+        String i = md5("123456");
+        System.out.println(md5(i, "daqin"));
     }
 
 }

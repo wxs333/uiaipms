@@ -8,7 +8,8 @@ layui.use("table", function () {
     _table.on("tool", function (obj) {
         var event = obj.event;
         if ("word" === event) {
-            wordPreview($, obj.data.location, obj.data.wordName);
+            var wordName = obj.data.wordName.split(".")[0] + ".pdf";
+            wordPreview($, obj.data.location, wordName);
         } else if ("ok" === event) {
             ask(_layer, function () {
                 sp($, _table, "0", obj.data.comId);

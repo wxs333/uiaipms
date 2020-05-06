@@ -11,7 +11,7 @@ layui.use(["form"], function () {
     // 监听第二步表单
     _form.on("submit(two)", function (data) {
         // 验证码校验
-        if (data.field.code !== $("#email-code").val()) {
+        if (md5(data.field.code) !== $("#email-code").val()) {
             _layer.msg("验证码不正确", {time: 1500, icon: 2, anim: 6})
         } else {
             disableAndShow($, "", "#three");
@@ -30,7 +30,7 @@ layui.use(["form"], function () {
             _layer.msg("两次密码不一样", {time: 1500, icon: 2, anim: 6})
         } else {
             // 修改密码
-            updatePassword($, _layer, data.field.password);
+            updatePassword($, _layer, md5(data.field.password));
         }
         return false;
     });
