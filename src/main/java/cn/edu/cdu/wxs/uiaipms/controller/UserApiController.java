@@ -169,6 +169,12 @@ public class UserApiController extends BaseController {
                 // 获取当前登录用户的类型
                 String username = SystemUtils.getUsernameFromSession(session, userId);
                 String type = (String) session.getAttribute(username + "-role");
+                // 获取用户图片的路径
+                String oldPath = SystemUtils.getImageFromSession(session, userId);
+                // 如果不是默认图片，就删除
+                if (!GlobalConstant.DEFAULT_IMAGE.equals(oldPath)) {
+                    ftpService.remove(oldPath);
+                }
                 // 修改用户图片的路径
                 updateImg(session, type, GlobalConstant.FTP_HEAD_IMG_DIRECTORY + filename, userId);
                 map.put("msg", "头像修改成功");
@@ -211,7 +217,7 @@ public class UserApiController extends BaseController {
         } finally {
             try {
                 outputStream.close();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 log.info("outputStream关闭失败：" + e.getMessage());
             }
         }
@@ -241,7 +247,6 @@ public class UserApiController extends BaseController {
      */
     @PostMapping("updatePassword")
     public JsonResult<String> updatePassword(String password, String username, HttpSession session, String userId) {
-        System.out.println(userId);
         if (StringUtils.isEmpty(username)) {
             username = SystemUtils.getUsernameFromSession(session, userId);
         }

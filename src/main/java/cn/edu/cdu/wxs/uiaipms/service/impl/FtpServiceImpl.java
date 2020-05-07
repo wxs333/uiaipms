@@ -2,8 +2,6 @@ package cn.edu.cdu.wxs.uiaipms.service.impl;
 
 import cn.edu.cdu.wxs.uiaipms.service.FtpService;
 import cn.edu.cdu.wxs.uiaipms.utils.FtpUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -41,11 +39,6 @@ public class FtpServiceImpl implements FtpService {
     @Value("${ftp.password}")
     private String password;
 
-    /**
-     * 日志
-     */
-    private Logger logger = LoggerFactory.getLogger(getClass());
-
 
     @Override
     public boolean upload(String path, String fileName, InputStream inputStream) {
@@ -60,5 +53,10 @@ public class FtpServiceImpl implements FtpService {
     @Override
     public InputStream download(String path) {
         return FtpUtils.download(host, port, username, password, path);
+    }
+
+    @Override
+    public boolean remove(String path) {
+        return FtpUtils.remove(host, port, username, password, path);
     }
 }

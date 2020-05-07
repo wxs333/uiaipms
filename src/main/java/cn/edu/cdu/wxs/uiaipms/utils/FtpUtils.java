@@ -8,6 +8,7 @@ import org.springframework.util.ObjectUtils;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Objects;
 
 /**
  * ftp文件上传下载 工具类
@@ -102,7 +103,7 @@ public class FtpUtils {
                 }
             }
         } catch (Exception e) {
-            logger.info("下载文件失败");
+            logger.info("下载文件失败：" + e.getMessage());
         } finally {
             close(ftpClient);
         }
@@ -126,11 +127,34 @@ public class FtpUtils {
                 inputStream = ftpClient.retrieveFileStream(path);
             }
         } catch (Exception e) {
-            logger.info("获取文件输入流失败");
+            logger.info("获取文件输入流失败：" + e.getMessage());
         } finally {
             close(ftpClient);
         }
         return inputStream;
+    }
+
+    /**
+     * 删除文件
+     *
+     * @param host     IP地址
+     * @param port     端口
+     * @param username 用户名
+     * @param password 密码
+     * @param path     路径
+     * @return true 成功 false 失败
+     */
+    public static boolean remove(String host, int port, String username, String password, String path) {
+        FTPClient ftpClient = getFtpClient(host, port, username, password);
+        boolean result = false;
+        try {
+            result = Objects.requireNonNull(ftpClient).deleteFile(path);
+        } catch (Exception e) {
+            logger.info("发生异常：" + e.getMessage());
+        }finally {
+            close(ftpClient);
+        }
+        return result;
     }
 
 
@@ -145,7 +169,7 @@ public class FtpUtils {
                 ftpClient.disconnect();
             }
         } catch (Exception e) {
-            logger.info("关闭FTP连接报错");
+            logger.info("关闭FTP连接报错" + e.getMessage());
         }
     }
 

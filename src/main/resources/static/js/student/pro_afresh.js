@@ -17,18 +17,20 @@ layui.use(['upload', 'form', 'layer'], function () {
  * Word文档上传
  */
 function wordUpload(_upload, $, _layer) {
+    var index = "";
     _upload.render({
         elem: '#word',
-        url: '/api/pro/uploadWord',
+        url: '/api/pro/uploadWord?oldPath=' + $("#proLocation").val(),
         headers: {'method': 'post'},
         accept: 'file',
-        acceptMime: 'file/doc, file/docx',
+        acceptMime: '.doc, .docx',
         exts: 'doc|docx',
         multiple: true,
         choose: function (obj) {
             obj.preview(function (index, file, result) {
                 $("#wordName").text("已选择：" + file.name);
             });
+            index = _layer.load(2);
         },
         done: function (res) {
             var icon = res.code === "200" ? 1 : 2;
@@ -36,6 +38,8 @@ function wordUpload(_upload, $, _layer) {
                 $("#proLocation").val(res.proLocation);
                 $("#hide-word-name").val(res.wordName);
                 $("#submit").removeClass("layui-btn-disabled");
+
+                _layer.close(index);
             });
         }
     })

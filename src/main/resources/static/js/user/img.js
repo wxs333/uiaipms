@@ -13,6 +13,11 @@ layui.use(['upload', 'layer'], function () {
  * 头像上传
  */
 function imgUpload(upload, _layer, $) {
+    var i = "";
+    // 绑定点击事件
+    $("#ok").click(function () {
+        i = _layer.load(2);
+    });
     //普通图片上传
     upload.render({
         elem: '#upload',
@@ -31,6 +36,8 @@ function imgUpload(upload, _layer, $) {
         done: function (res) {
             var icon = res.code === '200' ? 1 : 2;
             layer.msg(res.msg, {icon: icon}, function () {
+                _layer.close(i);
+
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
             });

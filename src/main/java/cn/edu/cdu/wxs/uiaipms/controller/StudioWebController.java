@@ -54,7 +54,6 @@ public class StudioWebController {
      */
     @GetMapping("update")
     public ModelAndView update(@NotNull String id) {
-        System.err.println(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("id", id);
         modelAndView.setViewName(PREFIX + "update_studio");

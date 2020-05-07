@@ -90,7 +90,6 @@ public class SystemUtils {
         // 得到文件后缀
         int index = filename.lastIndexOf(".");
         String suffix = filename.substring(index);
-        System.out.println(index);
         // 重新命名
         return System.currentTimeMillis() + suffix;
     }
@@ -107,10 +106,10 @@ public class SystemUtils {
     }
 
     /**
-     * 获取当前登录用户的用户名
+     * 获取当前登录用户的图片路径
      *
      * @param session 会话
-     * @return id
+     * @return 图片路径
      */
     public static String getImageFromSession(HttpSession session, String userId) {
 

@@ -33,6 +33,15 @@ public interface FtpService {
      * 获取文件输入流
      *
      * @param path 路径
+     * @return 输入流
      */
     InputStream download(String path);
+
+    /**
+     * 删除文件
+     *
+     * @param path 文件路径
+     * @return true 成功 false 失败
+     */
+    boolean remove(String path);
 }

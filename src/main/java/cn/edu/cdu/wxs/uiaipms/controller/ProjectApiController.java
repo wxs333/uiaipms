@@ -10,6 +10,7 @@ import cn.edu.cdu.wxs.uiaipms.utils.SystemUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,10 +79,14 @@ public class ProjectApiController extends BaseController {
      * @return json
      */
     @PostMapping("uploadWord")
-    public Map<String, Object> uploadWord(MultipartFile file) {
+    public Map<String, Object> uploadWord(MultipartFile file, String oldPath) {
         Map<String, Object> map = new HashMap<>(4);
         try {
             String filename = SystemUtils.getNotRepeatingFilename(Objects.requireNonNull(file.getOriginalFilename()));
+            // 删除旧项目文档
+            if (!StringUtils.isEmpty(oldPath)) {
+                ftpService.remove(oldPath);
+            }
             if (ftpService.upload(GlobalConstant.FTP_WORD_DIRECTORY, filename, file.getInputStream())) {
                 // 修改项目信息
                 map.put("proLocation", GlobalConstant.FTP_WORD_DIRECTORY + filename);

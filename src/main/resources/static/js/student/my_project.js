@@ -10,7 +10,8 @@ layui.use(['table'], function () {
             // 文档预览
             wordPreview($, obj.data.proLocation, obj.data.wordName.split(".")[0] + ".pdf");
         } else if ("afresh" === obj.event) {
-            var url = "/stu/afresh?proId=" + obj.data.proId + "&proName=" + obj.data.proName + "&proDesc=" + obj.data.proDesc + "&userId=" + $("#userId").val();
+            var url = "/stu/afresh?proId=" + obj.data.proId + "&proName=" + obj.data.proName + "&proDesc=" + obj.data.proDesc
+                + "&userId=" + $("#userId").val() + "&proLocation=" + obj.data.proLocation;
             // 打开页面
             openHtml(_table, _layer, {"title": "项目重新申报", "url": url, "width": "1000px"})
         }
