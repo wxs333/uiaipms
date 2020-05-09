@@ -39,6 +39,7 @@
             p.pro_location,
             p.word_name,
             p.create_time,
+            p.success,
             pa.pass_flag AS paFlag,
             pa.tutor_id AS isPa,
             pr.pass_flag AS prFlag,

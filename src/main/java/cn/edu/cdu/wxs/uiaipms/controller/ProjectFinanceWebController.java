@@ -39,15 +39,17 @@ public class ProjectFinanceWebController {
      * 项目资金申请审批
      *
      * @param pfId     申请记录id
+     * @param proId 项目id
      * @param proName  项目名
      * @param pfAmount 申请金额
      * @param userId   用户ID
      * @return 视图
      */
     @GetMapping("sp")
-    public ModelAndView sp(@NotNull String pfId, @NotNull String proName, @NotNull String pfAmount, String userId) {
+    public ModelAndView sp(@NotNull String pfId, String proId, @NotNull String proName, @NotNull String pfAmount, String userId) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("pfId", pfId);
+        modelAndView.addObject("proId", proId);
         modelAndView.addObject("proName", proName);
         modelAndView.addObject("pfAmount", pfAmount);
         modelAndView.addObject("userId", userId);

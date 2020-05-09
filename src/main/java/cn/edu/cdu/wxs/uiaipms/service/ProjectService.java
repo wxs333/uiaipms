@@ -37,4 +37,12 @@ public interface ProjectService extends BaseService<ProjectForm> {
      * @return true 成功 false 失败
      */
     boolean afresh(ProjectForm form, String odlProId);
+
+    /**
+     * 获取项目的结题状态
+     * @param proId 项目id
+     * @return 结题状态
+     */
+    String getSuccessByProId(String proId);
+
 }

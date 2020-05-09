@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>资金申请审批</title>
+    <title>项目结题</title>
     <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
     <link rel="stylesheet" href="/static/css/common.css"/>
     <style>
@@ -19,6 +20,7 @@
         }
     </style>
 </head>
+
 <body>
 <input type="hidden" id="userId" th:value="${userId}">
 <div class="layui-card">
@@ -26,33 +28,31 @@
         <form class="layui-form">
             <div class="layui-btn-container">
                 <button class="layui-btn layui-btn-sm" lay-submit>
-                    <i class="layui-icon layui-icon-ok"></i>确定
+                    <i class="layui-icon layui-icon-ok"></i>结题
                 </button>
                 <button class="layui-btn layui-btn-sm" type="reset">
                     <i class="layui-icon layui-icon-refresh"></i>重置
                 </button>
             </div>
             <hr class="html-editor-hr"/>
-            <input type="hidden" th:value="${pfId}" name="pfId">
-            <input type="hidden" th:value="${pfAmount}" name="pfAmount">
-            <input type="hidden" th:value="${proId}" name="proId">
-            <input type="hidden" value="0" name="deal">
+            <input type="hidden" class="layui-input" th:value="${proId}" name="proId"/>
+            <input type="hidden" class="layui-input" th:value="${psId}" name="psId"/>
             <div class="layui-form-item">
                 <label class="layui-form-label">项目名</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" th:value="${proName}" readonly/>
+                    <input type="text" class="layui-input" readonly th:value="${proName}"/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label"><span>*</span>审批结果</label>
+                <label class="layui-form-label"><span>*</span>孵化结果</label>
                 <div class="layui-input-block">
-                    <input type="checkbox" value="0" name="agree" lay-skin="switch" lay-text="同意|驳回">
+                    <input type="checkbox" value="0" name="success" lay-skin="switch" lay-text="成功|失败">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label"><span>*</span>理由</label>
                 <div class="layui-input-block">
-                    <textarea class="layui-input" name="reviewReason" lay-verify="reason" lay-verType="tips"></textarea>
+                    <textarea class="layui-input" name="reason" lay-verify="reason" lay-verType="tips"></textarea>
                 </div>
             </div>
         </form>
@@ -60,7 +60,9 @@
 </div>
 <!-- js文件 -->
 <script type="text/javascript" src="/static/js/layui/layui.js"></script>
-<script type="text/javascript" src="/static/js/pro_finance/sp.js"></script>
+<script type="text/javascript" src="/static/js/pro_lx/end.js"></script>
+<script type="text/javascript" src="/static/js/common/base.js"></script>
 <script type="text/javascript" src="/static/js/common/verify.js"></script>
 </body>
+
 </html>

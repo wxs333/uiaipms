@@ -64,6 +64,7 @@ function getColsAndUrl(event) {
     if (event === 'not') {
         data[0] = [ // 表头
             {field: 'pfId', title: 'id', align: "center", hide: true},
+            {field: 'proId', title: '', align: "center", hide: true},
             {field: 'proName', title: '项目', align: "center"},
             {field: 'tutorName', title: '申请人', align: "center"},
             {field: 'pfAmount', title: '申请金额', align: "center"},
@@ -109,7 +110,7 @@ function openConfirmHtml(_layer, _table, $, obj) {
     _layer.open({
         type: 2,
         title: "项目资金申请审批",
-        content: "/pf/sp?pfId=" + obj.data.pfId + "&proName=" + obj.data.proName + "&pfAmount=" + obj.data.pfAmount + "&userId=" + $("#userId").val(),
+        content: "/pf/sp?pfId=" + obj.data.pfId + "&proId=" + obj.data.proId + "&proName=" + obj.data.proName + "&pfAmount=" + obj.data.pfAmount + "&userId=" + $("#userId").val(),
         area: ['800px', '550px'],
         anim: 1,
         scrollbar: false,

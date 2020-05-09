@@ -56,4 +56,11 @@ public interface ProjectFinanceService extends BaseService<ProjectFinanceForm> {
      */
     List<StatisticsModel> getBetweenStartAndEnd(String start, String end);
 
+    /**
+     * 审批
+     * @param form 表单
+     * @return 审批结果
+     */
+    String approve(ProjectFinanceForm form);
+
 }

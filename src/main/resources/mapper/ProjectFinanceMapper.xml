@@ -8,6 +8,7 @@
             pf.pf_amount,
             pf.apply_reason,
             pf.create_time,
+            p.pro_id,
             p.pro_name,
             t.tutor_name
         FROM
@@ -21,6 +22,7 @@
             AND p.logic_delete_flag = 0
             AND t.logic_delete_flag = 0
             AND pf.deal = 1
+            AND p.success IS NULL
             ORDER BY pf.create_time DESC
     </select>
 

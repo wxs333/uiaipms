@@ -19,6 +19,8 @@ public class ProjectColumn {
 
     public static final String PRO_DESC = "pro_desc";
 
+    public static final String SUCCESS = "success";
+
     public static final String UPDATE_TIME = "update_time";
 
     public static final String CREATE_TIME = "create_time";

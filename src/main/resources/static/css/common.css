@@ -2,7 +2,7 @@ body {
     background-color: #EEEEEE;
 }
 .layui-layout-body .layui-layout .layui-header .layui-logo {
-    font-size: 1.8em;
+    font-size: 0.8em;
 }
 
 .layui-layout-body .layui-side ul li dl dd:hover {

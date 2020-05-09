@@ -35,4 +35,8 @@ public class ProjectFinanceForm extends ProjectFinance {
      * 某天某个项目拨款总数
      */
     private BigDecimal total;
+    /**
+     * 项目id
+     */
+    private String proId;
 }

@@ -61,6 +61,12 @@ public class Project implements Serializable {
     private String proDesc;
 
     /**
+     * 是否成功结题 0 成功 1失败
+     */
+    @TableField("success")
+    private String success;
+
+    /**
      * 更新时间
      */
     @TableField(value = "update_time", jdbcType = JdbcType.TIMESTAMP)

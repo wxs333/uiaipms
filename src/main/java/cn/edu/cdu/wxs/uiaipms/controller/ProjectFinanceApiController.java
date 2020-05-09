@@ -55,7 +55,7 @@ public class ProjectFinanceApiController extends BaseController {
         form.setUserId(userId);
 
         if (sysInfoService.getSysMoney().compareTo(form.getPfAmount()) < 0) {
-            return jsonResult(GlobalConstant.FAILURE,"申请金额大于财务金额");
+            return jsonResult(GlobalConstant.FAILURE, "申请金额大于财务金额");
         }
         if (service.add(form)) {
             return jsonResult("申请发送成功，请等待管理员审批");
@@ -98,9 +98,15 @@ public class ProjectFinanceApiController extends BaseController {
         form.setUserId(null);
         form.setAdminId(userId);
 
-        if (service.modifyById(form)) {
+        String flag = service.approve(form);
+
+        if (GlobalConstant.ERROR.equals(flag)) {
+            return jsonResult(GlobalConstant.FAILURE, "该项目已经结题");
+        }
+        if (GlobalConstant.SUCCESS.equals(flag)) {
             return jsonResult("审批成功");
         }
+
         return jsonResult(GlobalConstant.FAILURE, GlobalConstant.FAILURE_MSG);
     }
 

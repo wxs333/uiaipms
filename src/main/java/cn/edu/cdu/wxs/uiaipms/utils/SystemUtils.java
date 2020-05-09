@@ -1,12 +1,16 @@
 package cn.edu.cdu.wxs.uiaipms.utils;
 
 import cn.edu.cdu.wxs.uiaipms.constant.GlobalConstant;
+import cn.edu.cdu.wxs.uiaipms.model.ProjectResultModel;
 import cn.edu.cdu.wxs.uiaipms.model.StatisticsModel;
 import cn.edu.cdu.wxs.uiaipms.model.TreeMapModel;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 
 /**
@@ -118,7 +122,7 @@ public class SystemUtils {
 
 
     /**
-     * 处理统计数据
+     * 处理TreeMap统计数据
      *
      * @param statisticsData 统计数据
      * @return 格式化结果集合
@@ -177,9 +181,59 @@ public class SystemUtils {
         }
     }
 
-    public static void main(String[] args) {
-        String i = md5("123456");
-        System.out.println(md5(i, "daqin"));
+    /**
+     * 拆分范围日期
+     *
+     * @param date    范围日期
+     * @param pattern 分隔符
+     * @return 日期数组
+     */
+    public static String[] splitDate(String date, String pattern) {
+        String str = date.replace(" ", "");
+        return str.split(pattern);
+    }
+
+    /**
+     * 获取一天的结束时间
+     *
+     * @param date 日期
+     * @return 结束时间
+     */
+    public static String getMaxOfDay(String date) {
+        LocalDate localDate = LocalDate.parse(date);
+
+        return LocalDateTime.of(localDate, LocalTime.MAX).toString().replace("T", " ");
+    }
+
+    /**
+     * 处理成果展示数据
+     *
+     * @param list 集合
+     * @return 集合
+     */
+    public static Map<String, List> deal(List<ProjectResultModel> list) {
+        Map<String, Integer> map = new TreeMap<>();
+
+        for (ProjectResultModel model : list) {
+            if (!map.containsKey(model.getDate())) {
+                map.put(model.getDate(), model.getSum());
+            } else {
+                int s = map.get(model.getDate());
+                map.put(model.getDate(), s + model.getSum());
+            }
+        }
+
+        Map<String, List> res = new HashMap<>(2);
+        List<String> dateList = new ArrayList<>();
+        List<Integer> num = new ArrayList<>();
+        for (String d : map.keySet()) {
+            dateList.add(d);
+            num.add(map.get(d));
+        }
+        res.put("date", dateList);
+        res.put("num", num);
+
+        return res;
     }
 
 }

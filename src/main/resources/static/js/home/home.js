@@ -122,6 +122,9 @@ function changeHtml(id, $, _layer) {
         case "my-pro":
             elem.attr("src", "/stu/myPro?userId=" + userId);
             break;
+        case "pro-result":
+            elem.attr("src", "/res/show");
+            break;
     }
 }
 

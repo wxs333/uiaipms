@@ -32,20 +32,36 @@
         <i class="layui-icon layui-icon-ok"></i>立项
     </button>
     {{# } else { }}
+    {{# if(d.end == 0) { }}
+    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="record">
+        <i class="layui-icon layui-icon-list"></i>记录
+    </button>
+    {{# } else { }}
+    <button class="layui-btn layui-btn-sm" lay-event="end">
+        <i class="layui-icon layui-icon-ok"></i>结题
+    </button>
     <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="apply">
         <i class="layui-icon layui-icon-form"></i>申请
     </button>
     <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="record">
         <i class="layui-icon layui-icon-list"></i>记录
     </button>
-    {{# } }}
+    {{# } }  }}
+
 </script>
 <!-- 格式化状态 -->
 <script type="text/html" id="lx">
     {{#  if(d.lxFlag == 0) {  }}
-    已立项
+    <span style="color: #009688;">已立项</span>
     {{# }else { }}
-    未立项
+    <span style="color: #FF5722;">未立项</span>
+    {{# } }}
+</script>
+<script type="text/html" id="end">
+    {{#  if(d.end == 0) {  }}
+    <span style="color: #009688;">已结题</span>
+    {{# }else { }}
+    <span style="color: #FF5722;">未结题</span>
     {{# } }}
 </script>
 <!-- 项目文档 -->

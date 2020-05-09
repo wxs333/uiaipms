@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>创新创业孵化园区管理系统</title>
+    <title>高校创新创业孵化园区管理系统v1.0</title>
     <!-- 网站图标 -->
     <link rel="shortcut icon" href="/static/icon.ico"/>
     <!-- css文件 -->
@@ -18,7 +18,7 @@
     <input type="hidden" id="userId" th:value="${userId}">
 
     <div class="layui-header">
-        <div class="layui-logo">创新创业园区</div>
+        <div class="layui-logo">高校创新创业孵化园区管理系统v1.0</div>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
@@ -94,6 +94,9 @@
                 </li>
                 <li class="layui-nav-item" shiro:hasRole="company_role">
                     <a href="javascript:;" id="studio-apply">工作室申请</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;" id="pro-result">成果展示</a>
                 </li>
             </ul>
         </div>

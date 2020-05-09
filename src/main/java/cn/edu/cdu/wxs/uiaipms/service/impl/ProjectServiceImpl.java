@@ -94,4 +94,12 @@ public class ProjectServiceImpl extends BaseServiceImpl<ProjectForm> implements 
         // 新增一条项目记录，旧项目逻辑删除
         return add(form) && modifyById(updateForm);
     }
+
+    @Override
+    public String getSuccessByProId(String proId) {
+        QueryWrapper<ProjectForm> wrapper = new QueryWrapper<>();
+        wrapper.select(ProjectColumn.SUCCESS)
+                .eq(ProjectColumn.PRO_ID, proId);
+        return mapper.selectOne(wrapper).getSuccess();
+    }
 }

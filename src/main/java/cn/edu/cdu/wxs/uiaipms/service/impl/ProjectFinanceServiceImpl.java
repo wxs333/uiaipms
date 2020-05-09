@@ -6,6 +6,7 @@ import cn.edu.cdu.wxs.uiaipms.form.ProjectFinanceForm;
 import cn.edu.cdu.wxs.uiaipms.mapper.ProjectFinanceMapper;
 import cn.edu.cdu.wxs.uiaipms.model.StatisticsModel;
 import cn.edu.cdu.wxs.uiaipms.service.ProjectFinanceService;
+import cn.edu.cdu.wxs.uiaipms.service.ProjectService;
 import cn.edu.cdu.wxs.uiaipms.service.SysInfoService;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -33,6 +34,8 @@ public class ProjectFinanceServiceImpl extends BaseServiceImpl<ProjectFinanceFor
     private ProjectFinanceMapper mapper;
     @Autowired
     private SysInfoService sysInfoService;
+    @Autowired
+    private ProjectService projectService;
 
     @Override
     public BaseMapper<ProjectFinanceForm> getMapper() {
@@ -56,17 +59,33 @@ public class ProjectFinanceServiceImpl extends BaseServiceImpl<ProjectFinanceFor
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean modifyById(ProjectFinanceForm domain) {
+    public String approve(ProjectFinanceForm form) {
+        boolean flag;
+        // 如果项目已经结题，就删除该记录
+        if (!StringUtils.isEmpty(projectService.getSuccessByProId(form.getProId()))) {
+            ProjectFinanceForm financeForm = new ProjectFinanceForm();
+            financeForm.setPfId(form.getPfId());
+            financeForm.setLogicDeleteFlag(1);
+            financeForm.setUpdateTime(LocalDateTime.now());
+            super.modifyById(financeForm);
+            return GlobalConstant.ERROR;
+        }
         // 未同意
-        if (StringUtils.isEmpty(domain.getAgree())) {
-            return super.modifyById(domain);
+        if (StringUtils.isEmpty(form.getAgree())) {
+            flag = super.modifyById(form);
         }
         // 同意，减少财务金额
         SysInfo info = new SysInfo();
-        info.setUpdateTime(domain.getUpdateTime());
-        info.setSysCount(domain.getPfAmount());
+        info.setUpdateTime(form.getUpdateTime());
+        info.setSysCount(form.getPfAmount());
         info.setSysId(GlobalConstant.MONEY_ID);
-        return super.modifyById(domain) && sysInfoService.modifyById(info);
+        flag = super.modifyById(form) && sysInfoService.modifyById(info);
+
+        if (flag) {
+            return GlobalConstant.SUCCESS;
+        }
+
+        return GlobalConstant.FAILURE;
     }
 
     @Override

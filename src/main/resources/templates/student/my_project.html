@@ -56,5 +56,15 @@
     <span style="color: #FF5722;">未立项</span>
     {{# } } }}
 </script>
+<script type="text/html" id="success">
+    {{# if(d.success !== "") { }}
+        {{# if(d.success == 0) { }}
+        <span style="color: #009688;">成功结题</span>
+        {{# } else { }}
+        <span style="color: #FF5722;">失败结题</span>
+        {{# } }}
+    {{# } }}
+</script>
+
 </body>
 </html>

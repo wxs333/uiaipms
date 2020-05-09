@@ -20,7 +20,7 @@ function wordUpload(_upload, $, _layer) {
     var index = "";
     _upload.render({
         elem: '#word',
-        url: '/api/pro/uploadWord?oldPath=' + $("#proLocation").val(),
+        url: '/api/pro/uploadWord?oldPath=' + $("#oldPath").val(),
         headers: {'method': 'post'},
         accept: 'file',
         acceptMime: '.doc, .docx',

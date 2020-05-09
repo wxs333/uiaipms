@@ -52,6 +52,11 @@ public class ProjectStarting implements Serializable {
     private Integer lxFlag;
 
     /**
+     * 是否结题 0 是 1 否，默认1
+     */
+    @TableField("end")
+    private String end;
+    /**
      * 创建时间
      */
     @TableField("create_time")

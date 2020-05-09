@@ -36,9 +36,10 @@ function tableRender(_table,$) {
             {field: 'wordName', title: '项目文档', align: "center", event: "preview", templet: "#word"},
             {field: 'proDesc', title: '项目描述', align: "center"},
             {field: 'createTime', title: '申报时间', align: "center"},
-            {field: 'paFlag', title: '是否审批', align: "center", templet: "#pa"},
-            {field: 'prFlag', title: '是否审核', align: "center", templet: "#pr"},
-            {field: 'lxFlag', title: '是否立项', align: "center", templet: "#lx"},
+            {field: 'paFlag', title: '审批', align: "center", templet: "#pa"},
+            {field: 'prFlag', title: '审核', align: "center", templet: "#pr"},
+            {field: 'lxFlag', title: '立项', align: "center", templet: "#lx"},
+            {field: 'success', title: '结题', align: "center", templet: "#success"},
             {field: '', title: "操作", align: "center", toolbar: "#rowTool"}
         ]],
         parseData: function (res) { // 返回数据格式解析

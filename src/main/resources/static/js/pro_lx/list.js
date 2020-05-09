@@ -25,6 +25,9 @@ layui.use('table', function () {
             wordPreview($, obj.data.proLocation, obj.data.wordName);
         } else if ("record" === event) {
             openRecordHtml(_layer, obj.data.proId);
+        } else if ("end" === event) {
+            // 弹出结题页面
+            openEndHtml($, _layer, _table, obj.data.psId, obj.data.proId, obj.data.proName);
         }
     })
 
@@ -53,9 +56,10 @@ function tableRender(_table, $) {
             {field: 'prTutor', title: '审核导师', align: "center"},
             {field: 'prTime', title: '审核时间', align: "center"},
             {field: 'lxFlag', title: '是否立项', align: "center", templet: "#lx"},
+            {field: 'end', title: '是否结题', align: "center", templet: "#end"},
             {field: 'psTutor', title: '立项导师', align: "center"},
             {field: 'updateTime', title: '立项时间', align: "center"},
-            {field: '', title: "操作", minWidth: '180', align: "center", toolbar: "#rowTool"}
+            {field: '', title: "操作", minWidth: '250', align: "center", toolbar: "#rowTool"}
         ]],
         limits: [10, 20, 30],
         parseData: function (res) { // 返回数据格式解析
@@ -142,5 +146,23 @@ function openRecordHtml(_layer, proId) {
         anim: 1,
         scrollbar: false,
         offset: '30px'
+    });
+}
+
+/**
+ * 结题页面
+ */
+function openEndHtml($, _layer, _table, psId, proId, proName) {
+    _layer.open({
+        type: 2,
+        title: "项目结题",
+        content: "/ps/end?proId=" + proId + "&psId=" + psId + "&userId=" + $("#userId").val() + "&proName=" + proName,
+        area: ["800px", '560px'],
+        anim: 1,
+        scrollbar: false,
+        offset: '30px',
+        end: function () {
+            reloadTable(_table);
+        }
     });
 }

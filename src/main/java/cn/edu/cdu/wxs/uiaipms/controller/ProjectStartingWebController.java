@@ -54,11 +54,37 @@ public class ProjectStartingWebController {
         return modelAndView;
     }
 
+    /**
+     * 申请记录
+     *
+     * @param proId 项目id
+     * @return 视图
+     */
     @GetMapping("finHistory")
     public ModelAndView finHistory(@NotNull String proId) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("proId", proId);
         modelAndView.setViewName(PREFIX + "fin_history");
+        return modelAndView;
+    }
+
+    /**
+     * 项目结题
+     *
+     * @param psId    立项记录id
+     * @param proId   项目id
+     * @param userId  用户ID
+     * @param proName 项目名
+     * @return 视图
+     */
+    @GetMapping("end")
+    public ModelAndView end(String psId, String proId, String userId, String proName) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("psId", psId);
+        modelAndView.addObject("proId", proId);
+        modelAndView.addObject("userId", userId);
+        modelAndView.addObject("proName", proName);
+        modelAndView.setViewName(PREFIX + "end");
         return modelAndView;
     }
 }

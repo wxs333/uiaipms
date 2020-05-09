@@ -20,6 +20,10 @@ public class GlobalConstant {
      */
     public static final String FAILURE = "failure";
     /**
+     * 请求出错状态码
+     */
+    public static final String ERROR = "error";
+    /**
      * 请求失败消息
      */
     public static final String FAILURE_MSG = "发生未知错误，请联系系统管理员";
