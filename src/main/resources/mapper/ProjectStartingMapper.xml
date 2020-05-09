@@ -57,6 +57,7 @@
             pr.update_time AS prTime,
             ps.lx_flag,
             ps.update_time,
+            ps.end,
             t1.tutor_name AS paTutor,
             pa.update_time AS paTime
         FROM

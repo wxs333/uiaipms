@@ -55,6 +55,7 @@ public class ProjectStarting implements Serializable {
      * 是否结题 0 是 1 否，默认1
      */
     @TableField("end")
+    @Excel(name = "是否结题", orderNum = "9", replace = {"已结题_0", "未结题_1"}, width = 30)
     private String end;
     /**
      * 创建时间
