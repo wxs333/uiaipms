@@ -98,8 +98,9 @@ public class ProjectServiceImpl extends BaseServiceImpl<ProjectForm> implements 
     @Override
     public String getSuccessByProId(String proId) {
         QueryWrapper<ProjectForm> wrapper = new QueryWrapper<>();
-        wrapper.select(ProjectColumn.SUCCESS)
+        wrapper.select(ProjectColumn.SUCCESS, ProjectColumn.PRO_ID)
                 .eq(ProjectColumn.PRO_ID, proId);
-        return mapper.selectOne(wrapper).getSuccess();
+        ProjectForm domain = mapper.selectOne(wrapper);
+        return domain.getSuccess();
     }
 }
